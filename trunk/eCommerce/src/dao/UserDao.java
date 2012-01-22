@@ -4,7 +4,7 @@ import java.util.List;
 
 import pojo.User;
 
-public interface UserDAO {
+public interface UserDao {
 
 	public void insert(User u);
 	public void update(User u);

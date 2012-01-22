@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import pojo.User;
 
-public class UserJdbcDAO implements UserDAO {
+public class UserJdbcDao implements UserDao {
 
 	private JdbcTemplate jdbcTemplate;
 
@@ -21,6 +21,7 @@ public class UserJdbcDAO implements UserDAO {
 	public void insert(User u) {
 		jdbcTemplate.update("insert into user (id,username,password) values (?, ?)",
 				new Object[] { u.getId(), u.getUsername(), u.getPassword() });
+		System.out.println("Insert a user");
 	}
 
 	@Override

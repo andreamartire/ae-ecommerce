@@ -4,7 +4,7 @@ import java.util.List;
 
 import pojo.User;
 
-public class UserHibernateDAO implements UserDAO {
+public class UserHibernateDao implements UserDao {
 
 	@Override
 	public void insert(User u) {
