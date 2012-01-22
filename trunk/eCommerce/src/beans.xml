@@ -30,6 +30,7 @@
 	</bean>
 
 	<bean id="user" class="pojo.User">
+		<property name="id" value="1" />
 		<property name="username" value="myUsername" />
 		<property name="password" value="myPass" />
 	</bean>
