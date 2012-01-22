@@ -21,12 +21,9 @@ public class Main {
 		userDao.insert(user);
 		userDao.delete(new User(2));
 		
-		List<User> users = userDao.findAllUsers();
-		
-		for(User u: users)
+		for(User u: userDao.findAllUsers()){
 			System.out.println("User " + u);
-		
-		User u9 = userDao.findByID(9);
-		System.out.println(u9);
+			userDao.delete(u);
+		}
 	}
 }
