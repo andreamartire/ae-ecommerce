@@ -5,16 +5,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pojo.User;
 import dao.UserDAO;
-import dao.UserDAOImpl;
+import dao.UserHibernateDAO;
 
 public class Main {
 
 	public static void main(String[] args) {
-		UserDAO userDAO = new UserDAOImpl();
+		UserDAO userDAO = new UserHibernateDAO();
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		User user = (User) context.getBean("user");
 		System.out.println(user);
-		userDAO.saveUser(user);
+		userDAO.insert(user);
 	}
 
 }
