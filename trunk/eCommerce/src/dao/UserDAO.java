@@ -1,11 +1,16 @@
 package dao;
 
+import java.util.List;
+
 import pojo.User;
 
 public interface UserDAO {
-	
-	public void saveUser(User u);
-	public void updateUser(User u);
-	public void deleteUser(User u);
+
+	public void insert(User u);
+	public void update(User u);
+	public void delete(User u);
+	public User findByID(String id); 
+	public List<User> findAllUsers();  
+	public int userCount();
 
 }
