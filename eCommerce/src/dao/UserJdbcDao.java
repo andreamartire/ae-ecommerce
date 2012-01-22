@@ -19,7 +19,9 @@ public class UserJdbcDao implements UserDao {
 
 	@Override
 	public void insert(User u) {
-		jdbcTemplate.update("insert into user (id,username,password) values (?, ?)",
+		if (jdbcTemplate == null)
+			System.out.println("Non inizializzato");
+		jdbcTemplate.update("insert into user (id,username,password) values (?, ?, ?)",
 				new Object[] { u.getId(), u.getUsername(), u.getPassword() });
 		System.out.println("Insert a user");
 	}
