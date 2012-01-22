@@ -2,18 +2,22 @@ package pojo;
 
 public class User {
 	
-	String id;
+	int id;
 	String username;
 	String password;
 	
 	public User() {
 	}
+	
+	public User(int id) {
+		setId(id);
+	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -34,6 +38,6 @@ public class User {
 	}
 	
 	public String toString(){
-		return username + " " + password; 
+		return id + " " + username + " " + password; 
 	}
 }

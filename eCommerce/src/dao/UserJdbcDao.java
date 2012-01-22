@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import pojo.User;
@@ -21,8 +22,9 @@ public class UserJdbcDao implements UserDao {
 	public void insert(User u) {
 		if (jdbcTemplate == null)
 			System.out.println("Non inizializzato");
+		String id = String.valueOf(this.userMaxIndex() + 1);
 		jdbcTemplate.update("insert into user (id,username,password) values (?, ?, ?)",
-				new Object[] { u.getId(), u.getUsername(), u.getPassword() });
+				new Object[] { id, u.getUsername(), u.getPassword() });
 		System.out.println("Insert a user");
 	}
 
@@ -38,9 +40,11 @@ public class UserJdbcDao implements UserDao {
 	}
 
 	@Override
-	public User findByID(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public User findByID(int id) {
+		User user = (User) jdbcTemplate.queryForObject("select * from user where id = ?",
+				new Object[] { id },
+				new UserRowMapper());   
+		return user;
 	}
 
 	@Override
@@ -53,6 +57,12 @@ public class UserJdbcDao implements UserDao {
 	public int userCount() {
 		int rowCount = jdbcTemplate.queryForInt("select count(*) from user");
 		return rowCount;
+	}
+
+	@Override
+	public int userMaxIndex() {
+		int max = jdbcTemplate.queryForInt("select max(id) from user");
+		return max;
 	}
 
 }
