@@ -12,6 +12,4 @@ public interface UserDao {
 	public User findByID(int id); 
 	public List<User> findAllUsers();  
 	public int userCount();
-	public int userMaxIndex();
-
 }
