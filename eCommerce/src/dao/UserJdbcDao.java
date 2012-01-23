@@ -1,12 +1,9 @@
 package dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import pojo.User;
 
@@ -20,12 +17,8 @@ public class UserJdbcDao implements UserDao {
 
 	@Override
 	public void insert(User u) {
-		if (jdbcTemplate == null)
-			System.out.println("Non inizializzato");
-		String id = String.valueOf(this.userMaxIndex() + 1);
 		jdbcTemplate.update("insert into user (id,username,password) values (?, ?, ?)",
-				new Object[] { id, u.getUsername(), u.getPassword() });
-		System.out.println("Insert a user");
+				new Object[] { u.getId(), u.getUsername(), u.getPassword() });
 	}
 
 	@Override
@@ -39,30 +32,21 @@ public class UserJdbcDao implements UserDao {
 		jdbcTemplate.update("delete from user where id = ?", new Object[] { u.getId() });
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public User findByID(int id) {
-		User user = (User) jdbcTemplate.queryForObject("select * from user where id = ?",
-				new Object[] { id },
-				new UserRowMapper());   
-		return user;
+		return jdbcTemplate.queryForObject("select * from user where id = ?",
+				new Object[] { id }, new UserRowMapper());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAllUsers() {
-		List<User> users = (List<User>) jdbcTemplate.query("select * from user", new UserRowMapper());
-		return users;
+		return (List<User>) jdbcTemplate.query("select * from user", new UserRowMapper());
 	}
 
 	@Override
 	public int userCount() {
-		int rowCount = jdbcTemplate.queryForInt("select count(*) from user");
-		return rowCount;
+		return findAllUsers().size();
 	}
-
-	@Override
-	public int userMaxIndex() {
-		int max = jdbcTemplate.queryForInt("select max(id) from user");
-		return max;
-	}
-
 }
