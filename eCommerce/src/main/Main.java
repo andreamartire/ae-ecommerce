@@ -13,24 +13,30 @@ public class Main {
 		UserDao userDao = (UserDao) context.getBean("userDao");
 		
 		for(User u: userDao.findAllUsers()){
-			System.out.println("User " + u);
+			System.out.println("User deleted " + u);
 			userDao.delete(u);
 		}
 		
-		User user = (User) context.getBean("user");
-		System.out.println(user);
-		userDao.insert(user);
+		User user1 = (User) context.getBean("user1");
+		User user2 = (User) context.getBean("user2");
+		User user3 = (User) context.getBean("user3");
 		
-		user.setId(2);
-		System.out.println(user);
-		userDao.insert(user);
+		System.out.println("Insert " + user1);
+		userDao.insert(user1);
 		
-		user.setId(3);
-		System.out.println(user);
-		userDao.insert(user);
+		System.out.println("Insert " + user2);
+		userDao.insert(user2);
+		
+		System.out.println("Insert " + user3);
+		userDao.insert(user3);
+		
+		User userById = userDao.findByID(3);
+		System.out.println("UserByID " + userById);
+		
+		System.out.println("User count: " + userDao.userCount());
 		
 		for(User u: userDao.findAllUsers()){
-			System.out.println("User " + u);
+			System.out.println("User deleted " + u);
 			userDao.delete(u);
 		}
 	}
