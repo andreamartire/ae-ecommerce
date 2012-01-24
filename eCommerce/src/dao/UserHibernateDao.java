@@ -3,9 +3,7 @@ package dao;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import persistence.HibernateUtil;
 import pojo.User;
