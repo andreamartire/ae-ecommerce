@@ -5,10 +5,19 @@
                            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
 	<!-- Pojo Declaration -->
-	<bean id="user" class="pojo.User">
-		<property name="id" value="1" />
-		<property name="username" value="myUsername" />
-		<property name="password" value="myPass" />
+	<bean id="user1" class="pojo.User">
+		<property name="username" value="salvatore" />
+		<property name="password" value="loria" />
+	</bean>
+	
+	<bean id="user2" class="pojo.User">
+		<property name="username" value="andrea" />
+		<property name="password" value="martire" />
+	</bean>
+	
+	<bean id="user3" class="pojo.User">
+		<property name="username" value="ciccio" />
+		<property name="password" value="pasticcio" />
 	</bean>
 
 	<!-- Data Source Declaration -->
