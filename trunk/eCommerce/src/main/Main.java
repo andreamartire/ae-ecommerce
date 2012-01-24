@@ -12,6 +12,8 @@ public class Main {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		UserDao userDao = (UserDao) context.getBean("userDao");
 		
+		System.out.println("Initial user count " + userDao.userCount());
+		
 		for(User u: userDao.findAllUsers()){
 			System.out.println("User deleted " + u);
 			userDao.delete(u);
