@@ -32,6 +32,10 @@ public class Main {
 		
 		User userById = userDao.findByID(3);
 		System.out.println("UserByID " + userById);
+		userById.setUsername("hello");
+		userDao.update(userById);
+		System.out.println("Updated Local " + userById);
+		System.out.println("Updated DB " + userDao.findByID(3));
 		
 		System.out.println("User count: " + userDao.userCount());
 		
