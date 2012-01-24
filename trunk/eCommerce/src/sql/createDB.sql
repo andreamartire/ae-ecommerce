@@ -1,1 +1,0 @@
-create table user (	id int, username varchar(30), password varchar(30), PRIMARY KEY (id));
