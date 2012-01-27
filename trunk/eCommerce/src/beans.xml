@@ -8,16 +8,19 @@
 	<bean id="user1" class="pojo.User">
 		<property name="username" value="salvatore" />
 		<property name="password" value="loria" />
+		<property name="dataRegistrazione" value="10/12/2010 18:34:31" />
 	</bean>
 	
 	<bean id="user2" class="pojo.User">
 		<property name="username" value="andrea" />
 		<property name="password" value="martire" />
+		<property name="dataRegistrazione" value="10/12/2010 18:34:31" />
 	</bean>
 	
 	<bean id="user3" class="pojo.User">
 		<property name="username" value="ciccio" />
 		<property name="password" value="pasticcio" />
+		<property name="dataRegistrazione" value="10/12/2010 18:34:31" />
 	</bean>
 
 	<!-- Data Source Declaration -->

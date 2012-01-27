@@ -30,7 +30,7 @@ public class UserHibernateDao extends HibernateDaoSupport implements UserDao {
 	@Transactional
 	@Override
 	public User findByID(int id) {
-		return (User) getHibernateTemplate().find("from User where id = "  + id ).get(0);
+		return (User) getHibernateTemplate().get(User.class,id);
 	}
 
 	@Transactional
