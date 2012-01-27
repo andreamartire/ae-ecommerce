@@ -1,28 +1,46 @@
 package pojo;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER")
+@Table(name="user")
 public class User {
 	
 	@Id @GeneratedValue
-	@Column(name="USER_ID")
+	@Column(name="user_id")
 	int id;
 	
-	@Column(name="USERNAME")
+	@Column(name="username")
 	String username;
 	
-	@Column(name="PASSWORD")
+	@Column(name="password")
 	String password;
 	
-	public User() {
-	}
+	@Column(name="data_registrazione")
+	Date dataRegistrazione;
 	
+	@OneToMany(cascade=CascadeType.ALL)
+	Set<Recapito> recapiti = new HashSet<Recapito>();
+	
+	public User() {}
+	
+	public User(String username, String password, Date dataRegistrazione) {
+		this.username = username;
+		this.password = password;
+		this.dataRegistrazione = dataRegistrazione;
+	}
+
+
 	public User(int id) {
 		setId(id);
 	}
@@ -51,6 +69,22 @@ public class User {
 		this.password = password;
 	}
 	
+	public Date getDataRegistrazione() {
+		return dataRegistrazione;
+	}
+
+	public void setDataRegistrazione(Date dataRegistrazione) {
+		this.dataRegistrazione = dataRegistrazione;
+	}
+
+	public Set<Recapito> getRecapiti() {
+		return recapiti;
+	}
+
+	public void setRecapiti(Set<Recapito> recapiti) {
+		this.recapiti = recapiti;
+	}
+
 	public String toString(){
 		return id + " " + username + " " + password; 
 	}
