@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id @GeneratedValue
-	@Column(name="user_id")
+	@Column(name="id")
 	int id;
 	
 	@Column(name="username")
@@ -31,6 +31,9 @@ public class User {
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	Set<Recapito> recapiti = new HashSet<Recapito>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	Set<Indirizzo> indirizzi = new HashSet<Indirizzo>();
 	
 	public User() {}
 	
@@ -83,6 +86,14 @@ public class User {
 
 	public void setRecapiti(Set<Recapito> recapiti) {
 		this.recapiti = recapiti;
+	}
+
+	public Set<Indirizzo> getIndirizzi() {
+		return indirizzi;
+	}
+
+	public void setIndirizzi(Set<Indirizzo> indirizzi) {
+		this.indirizzi = indirizzi;
 	}
 
 	public String toString(){

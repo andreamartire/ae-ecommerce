@@ -1,9 +1,11 @@
-package dao;
+package junk;
 
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import dao.UserDao;
 
 import pojo.User;
 
