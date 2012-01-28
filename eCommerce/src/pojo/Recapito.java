@@ -1,36 +1,40 @@
 package pojo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="recapito")
 public class Recapito {
 
-	public enum Tipo {
-		TELEFONO_FISSO,
-		CELLULARE,
-		FAX,
-		EMAIL,
-		SITO_WEB
-	}
+	public static String TELEFONO_FISSO = "Telefono Fisso";
+	public static String CELLULARE = "Cellulare";
+	public static String FAX = "Fax";
+	public static String EMAIL = "eMail";
+	public static String SITO_WEB = "Sito Web";
+	
 
 	@Id @GeneratedValue
-	@Column(name="recapito_id")
+	@Column(name="id")
 	int id;
 	
 	@Column(name="valore")
 	String valore;
 	
 	@Column(name="tipo")
-	Tipo tipo;
+	String tipo;
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	User user = new User();
 	
 	public Recapito(){}
 	
-	public Recapito(String valore, Tipo tipo) {
+	public Recapito(String valore, String tipo) {
 		this.valore = valore;
 		this.tipo = tipo;
 	}
@@ -51,11 +55,19 @@ public class Recapito {
 		this.valore = valore;
 	}
 
-	public Tipo getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Tipo tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
