@@ -27,7 +27,7 @@ public class Main {
 
 		for(User u: userDao.findAllUsers()){
 			System.out.println("User deleted " + u);
-			userDao.delete(u);
+			userDao.delete(u.getId());
 		}
 
 		User user1 = (User) context.getBean("user1");
@@ -57,7 +57,7 @@ public class Main {
 		System.out.println("UserByID into the DB " + userDao.findByID(userById.getId()));
 
 		user1.getRecapiti().remove(r1);
-		recapitoDao.delete(r1);
+		recapitoDao.delete(r1.getId());
 		
 		r2.setValore("changed");
 		recapitoDao.update(r2);

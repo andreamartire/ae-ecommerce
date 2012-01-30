@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import pojo.Indirizzo;
 import pojo.User;
 
 public class UserHibernateDao extends HibernateDaoSupport implements UserDao {
@@ -23,8 +24,9 @@ public class UserHibernateDao extends HibernateDaoSupport implements UserDao {
 
 	@Transactional
 	@Override
-	public void delete(User u) {
-		getHibernateTemplate().delete(u);
+	public void delete(int id) {
+		User user = (User) getHibernateTemplate().get(User.class, id);
+		getHibernateTemplate().delete(user);
 	}
 
 	@Transactional

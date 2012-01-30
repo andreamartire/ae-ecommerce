@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
+import pojo.Indirizzo;
 import pojo.Recapito;
 import pojo.User;
 
@@ -16,8 +17,9 @@ public class RecapitoHibernateDao extends HibernateDaoSupport implements Recapit
 	}
 
 	@Override
-	public void delete(Recapito r) {
-		getHibernateTemplate().delete(r);
+	public void delete(int id) {
+		Recapito recapito = (Recapito) getHibernateTemplate().get(Recapito.class, id);
+		getHibernateTemplate().delete(recapito);
 	}
 
 	@Override

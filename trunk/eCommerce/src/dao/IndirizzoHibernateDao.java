@@ -16,8 +16,9 @@ public class IndirizzoHibernateDao extends HibernateDaoSupport implements Indiri
 	}
 
 	@Override
-	public void delete(Indirizzo r) {
-		getHibernateTemplate().delete(r);
+	public void delete(int id) {
+		Indirizzo indirizzo = (Indirizzo) getHibernateTemplate().get(Indirizzo.class, id);
+		getHibernateTemplate().delete(indirizzo);
 	}
 
 	@Override
