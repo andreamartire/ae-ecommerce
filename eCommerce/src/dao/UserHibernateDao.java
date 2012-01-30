@@ -12,13 +12,13 @@ public class UserHibernateDao extends HibernateDaoSupport implements UserDao {
 	@Transactional
 	@Override
 	public void insert(User u) {
-		getHibernateTemplate().saveOrUpdate(u);
+		getHibernateTemplate().save(u);
 	}
 
 	@Transactional
 	@Override
 	public void update(User u) {
-		getHibernateTemplate().saveOrUpdate(u);
+		getHibernateTemplate().update(u);
 	}
 
 	@Transactional

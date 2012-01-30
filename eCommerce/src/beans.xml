@@ -11,13 +11,15 @@
 		<property name="dataRegistrazione" value="10/12/2010 18:34:31" />
 	</bean>
 
-	<bean id="user2" class="pojo.User">
+	<bean id="user2" class="pojo.Amministratore">
 		<property name="username" value="andrea" />
 		<property name="password" value="martire" />
 		<property name="dataRegistrazione" value="10/12/2010 18:34:31" />
+		<property name="banner" value="mioBannerPath" />
+		<property name="googleMap" value="miaMappaPath" />
 	</bean>
 
-	<bean id="user3" class="pojo.User">
+	<bean id="user3" class="pojo.Cliente">
 		<property name="username" value="ciccio" />
 		<property name="password" value="pasticcio" />
 		<property name="dataRegistrazione" value="10/12/2010 18:34:31" />

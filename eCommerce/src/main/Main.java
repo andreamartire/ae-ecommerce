@@ -34,13 +34,12 @@ public class Main {
 		User user2 = (User) context.getBean("user2");
 		User user3 = (User) context.getBean("user3");
 
-		System.out.println("Insert " + user1);
-
 		Recapito r1 = new Recapito("955557897895", Recapito.CELLULARE);
 		Recapito r2 = new Recapito("asdas@asddas.org", Recapito.EMAIL);
 		user1.addRecapito(r1);
 		user1.addRecapito(r2);
 
+		System.out.println("Insert " + user1);
 		userDao.insert(user1);
 
 		System.out.println("Insert " + user2);
@@ -49,19 +48,19 @@ public class Main {
 		System.out.println("Insert " + user3);
 		userDao.insert(user3);
 
-//		User userById = userDao.findByID(userDao.findAllUsers().get(0).getId());
-//		System.out.println("UserByID " + userById);
-//		userById.setUsername("hello");
-//		userDao.update(userById);
-//		System.out.println("Updated Local " + userById);
-//		System.out.println("Updated DB " + userDao.findByID(userById.getId()));
-//		
-//		user1.getRecapiti().remove(r1);
-//		userDao.update(user1);
-//		recapitoDao.delete(r1);
-//		
-//		r2.setValore("changed");
-//		recapitoDao.update(r2);
+		User userById = userDao.findByID(userDao.findAllUsers().get(0).getId());
+		System.out.println("UserByID Before " + userById);
+		userById.setUsername("hello");
+		System.out.println("UserByID After " + userById);
+		userDao.update(userById);
+		
+		System.out.println("UserByID into the DB " + userDao.findByID(userById.getId()));
+
+		user1.getRecapiti().remove(r1);
+		recapitoDao.delete(r1);
+		
+		r2.setValore("changed");
+		recapitoDao.update(r2);
 		
 		System.out.println("User count: " + userDao.userCount());
 		
