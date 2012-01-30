@@ -15,28 +15,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name="user")
 public class User {
-	
+
 	@Id @GeneratedValue
 	@Column(name="id")
 	int id;
-	
+
 	@Column(name="username")
 	String username;
-	
+
 	@Column(name="password")
 	String password;
-	
+
 	@Column(name="data_registrazione")
 	Date dataRegistrazione;
-	
-	@OneToMany(cascade=CascadeType.ALL)
+
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
 	Set<Recapito> recapiti = new HashSet<Recapito>();
-	
-	@OneToMany(cascade=CascadeType.ALL)
+
+	@OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
 	Set<Indirizzo> indirizzi = new HashSet<Indirizzo>();
-	
+
 	public User() {}
-	
+
 	public User(String username, String password, Date dataRegistrazione) {
 		this.username = username;
 		this.password = password;
@@ -71,7 +71,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Date getDataRegistrazione() {
 		return dataRegistrazione;
 	}
@@ -80,7 +80,7 @@ public class User {
 		this.dataRegistrazione = dataRegistrazione;
 	}
 
-	public Set<Recapito> getRecapiti() {
+	private Set<Recapito> getRecapiti() {
 		return recapiti;
 	}
 
@@ -88,12 +88,22 @@ public class User {
 		this.recapiti = recapiti;
 	}
 
-	public Set<Indirizzo> getIndirizzi() {
+	private Set<Indirizzo> getIndirizzi() {
 		return indirizzi;
 	}
 
 	public void setIndirizzi(Set<Indirizzo> indirizzi) {
 		this.indirizzi = indirizzi;
+	}
+
+	public void addIndirizzo(Indirizzo ind) {
+		ind.setUser(this);
+		getIndirizzi().add(ind);
+	}
+
+	public void addRecapito(Recapito rec) {
+		rec.setUser(this);
+		getRecapiti().add(rec);
 	}
 
 	public String toString(){

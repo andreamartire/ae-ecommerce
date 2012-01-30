@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -31,8 +32,9 @@ public class Indirizzo {
 	@Column(name="cap")
 	String cap;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	User user = new User();
+	@ManyToOne( targetEntity = pojo.User.class )
+	@JoinColumn(name = "user_id", nullable = false)
+	User user;
 	
 	public Indirizzo(){}
 
