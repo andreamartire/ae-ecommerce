@@ -1,4 +1,4 @@
-package eacommerce.service;
+package eaecommerce.service;
 
 import eaecommerce.pojo.User;
 
