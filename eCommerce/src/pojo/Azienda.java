@@ -4,8 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="azienda")
 public class Azienda extends Cliente {
 	
 	@Column
@@ -14,13 +16,10 @@ public class Azienda extends Cliente {
 	@Column
 	String ragioneSociale;
 
-	public Azienda() {
-		// TODO Auto-generated constructor stub
-	}
+	public Azienda() {}
 
 	public Azienda(String username, String password, Date dataRegistrazione) {
 		super(username, password, dataRegistrazione);
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getPiva() {
