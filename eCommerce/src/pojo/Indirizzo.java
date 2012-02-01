@@ -13,22 +13,22 @@ import javax.persistence.Table;
 public class Indirizzo {	
 
 	@Id @GeneratedValue
-	@Column(name="id")
+	@Column
 	int id;
 	
-	@Column(name="via")
+	@Column
 	String via;
 	
-	@Column(name="numero")
+	@Column
 	String numero;
 	
-	@Column(name="citta")
+	@Column
 	String citta;
 	
-	@Column(name="provincia")
+	@Column
 	String provincia;
 	
-	@Column(name="cap")
+	@Column
 	String cap;
 	
 	@ManyToOne( targetEntity = pojo.User.class )

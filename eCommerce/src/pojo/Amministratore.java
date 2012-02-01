@@ -10,9 +10,10 @@ import javax.persistence.Entity;
 @DiscriminatorValue("Admin")
 public class Amministratore extends User {
 	
-	@Column(name="banner")
+	@Column
 	String banner;
-	@Column(name="googleMap")
+	
+	@Column
 	String googleMap;
 
 	public Amministratore() {

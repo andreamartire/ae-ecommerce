@@ -20,13 +20,13 @@ public class Recapito {
 	
 
 	@Id @GeneratedValue
-	@Column(name="id")
+	@Column
 	int id;
 	
-	@Column(name="valore")
+	@Column
 	String valore;
 	
-	@Column(name="tipo")
+	@Column
 	String tipo;
 	
 	@ManyToOne( targetEntity = pojo.User.class )

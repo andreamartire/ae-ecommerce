@@ -4,10 +4,13 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
 @Entity
-@DiscriminatorValue("Ciente")
-public class Cliente extends User {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Cliente extends User {
 
 	public Cliente() {
 		// TODO Auto-generated constructor stub
