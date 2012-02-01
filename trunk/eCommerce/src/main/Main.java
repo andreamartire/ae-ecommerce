@@ -1,5 +1,7 @@
 package main;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,6 +13,7 @@ public class Main {
 	static UserDao userDao;
 	static RecapitoDao recapitoDao;
 	static IndirizzoDao indirizzoDao;
+	static MetodoSpedizioneDao metodoSpedizioneDao;
 	static ApplicationContext context;
 
 	public static void main(String[] args) {
@@ -18,6 +21,7 @@ public class Main {
 		userDao = (UserDao) context.getBean("userDao");
 		recapitoDao = (RecapitoDao) context.getBean("recapitoDao");
 		indirizzoDao = (IndirizzoDao) context.getBean("indirizzoDao");
+		metodoSpedizioneDao = (MetodoSpedizioneDao) context.getBean("metodoSpedizioneDao");
 
 		testUsers();
 	}
@@ -70,7 +74,24 @@ public class Main {
 		user1.addIndirizzo(i2);
 		
 		userDao.update(user1);
-//		
+		
+		
+		
+		// testing metodo spedizione
+		MetodoSpedizione corriere = new MetodoSpedizione();
+		corriere.setNome("Corriere Espresso");
+		corriere.setDescrizione( "Spedizione nazionale tramite corriere espresso SDA\n"+
+								 "Tempi di spedizione previsti: 24/48 ore\n" +
+								 "Escluso isole e zone disagiate");
+		corriere.setPrezzoBase("5.90 euro");
+		metodoSpedizioneDao.insert(corriere);
+		
+		List<MetodoSpedizione> metodiSpedizione = metodoSpedizioneDao.findAll();
+		for(MetodoSpedizione m : metodiSpedizione) {
+			System.out.println(m);
+			metodoSpedizioneDao.delete(m.getId());
+		}
+		
 //		user1.getIndirizzi().remove(i1);
 //		userDao.update(user1);
 //		indirizzoDao.delete(i1);

@@ -58,6 +58,10 @@
 	<bean id="indirizzoDao" class="dao.IndirizzoHibernateDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="metodoSpedizioneDao" class="dao.MetodoSpedizioneHibernateDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 
 </beans>
 
