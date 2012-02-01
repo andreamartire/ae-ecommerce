@@ -17,22 +17,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="user")
 public class User {
 
 	@Id @GeneratedValue
-	@Column(name="id")
+	@Column
 	int id;
 
-	@Column(name="username")
+	@Column
 	String username;
 
-	@Column(name="password")
+	@Column
 	String password;
 
-	@Column(name="data_registrazione")
+	@Column
 	Date dataRegistrazione;
 
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "user")

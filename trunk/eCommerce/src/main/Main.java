@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -13,7 +14,9 @@ public class Main {
 	static UserDao userDao;
 	static RecapitoDao recapitoDao;
 	static IndirizzoDao indirizzoDao;
+	static AziendaDao aziendaDao;
 	static MetodoSpedizioneDao metodoSpedizioneDao;
+
 	static ApplicationContext context;
 
 	public static void main(String[] args) {
@@ -21,9 +24,18 @@ public class Main {
 		userDao = (UserDao) context.getBean("userDao");
 		recapitoDao = (RecapitoDao) context.getBean("recapitoDao");
 		indirizzoDao = (IndirizzoDao) context.getBean("indirizzoDao");
+		aziendaDao = (AziendaDao) context.getBean("aziendaDao");
 		metodoSpedizioneDao = (MetodoSpedizioneDao) context.getBean("metodoSpedizioneDao");
 
-		testUsers();
+//		testUsers();
+		testClienti();
+	}
+
+	private static void testClienti() {
+		Azienda az = new Azienda("azienda", "pass", new Date("12/12/2001"));
+		az.setPiva("31213123123");
+		az.setRagioneSociale("dasd ad das asd das");
+		aziendaDao.insert(az);
 	}
 
 	private static void testUsers() {
@@ -34,9 +46,9 @@ public class Main {
 			userDao.delete(u.getId());
 		}
 
-		User user1 = (User) context.getBean("user1");
-		User user2 = (User) context.getBean("user2");
-		User user3 = (User) context.getBean("user3");
+		User user1 = new User("user1", "pass1", new Date("12/12/2001"));
+		User user2 = new User("user2", "pass2", new Date("12/12/2001"));
+		User user3 = new User("user3", "pass3", new Date("12/12/2001"));
 
 		Recapito r1 = new Recapito("955557897895", Recapito.CELLULARE);
 		Recapito r2 = new Recapito("asdas@asddas.org", Recapito.EMAIL);
