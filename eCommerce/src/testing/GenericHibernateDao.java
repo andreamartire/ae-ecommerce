@@ -7,7 +7,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /** A generic DAO implementation
  */
-public abstract class GenericHibernateDao extends HibernateDaoSupport {
+public abstract class GenericHibernateDao extends HibernateDaoSupport implements GenericDao {
 	public void insert(Object entity) {
 		getHibernateTemplate().saveOrUpdate(entity);
 	}
