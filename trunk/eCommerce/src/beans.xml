@@ -20,7 +20,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
@@ -46,8 +46,15 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="metodoSpedizioneDao" class="dao.MetodoSpedizioneHibernateDao">
+	<bean id="tipoSpedizioneDao" class="dao.TipoSpedizioneHibernateDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="modalitaPagamentoDao" class="dao.ModalitaPagamentoHibernateDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="ordineDao" class="dao.OrdineHibernateDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>

@@ -1,10 +1,11 @@
 package pojo;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="metodoSpedizione")
-public class MetodoSpedizione {
+public class TipoSpedizione {
 
 	@Id
 	@GeneratedValue
@@ -24,11 +25,17 @@ public class MetodoSpedizione {
 	
 	/** Prezzo di partenza del tipo di spedizione
 	 * e.g. 5,90 euro
-	 * TODO: ci sarï¿½ qualche tipo per gli euro?
+	 * TODO: ci sara' qualche tipo per gli euro?
 	 */
-	String prezzoBase;
+	double prezzoBase;
 	
-	public MetodoSpedizione() {
+	/**
+	 * Tutti gli ordini pagati con questa modalità di pagamento
+	 */
+	@OneToMany(mappedBy = "tipoSpedizione")
+	Set<Ordine> ordini;
+	
+	public TipoSpedizione() {
 	}
 
 	public int getId() {
@@ -55,14 +62,22 @@ public class MetodoSpedizione {
 		this.descrizione = descrizione;
 	}
 
-	public String getPrezzoBase() {
+	public double getPrezzoBase() {
 		return prezzoBase;
 	}
 
-	public void setPrezzoBase(String prezzoBase) {
+	public void setPrezzoBase(double prezzoBase) {
 		this.prezzoBase = prezzoBase;
 	}
 	
+	public Set<Ordine> getOrdini() {
+		return ordini;
+	}
+
+	public void setOrdini(Set<Ordine> ordini) {
+		this.ordini = ordini;
+	}
+
 	@Override
 	public String toString() {
 		return nome + "\n" + descrizione + "\n" + prezzoBase + "\n";

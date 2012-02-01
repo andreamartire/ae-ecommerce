@@ -16,7 +16,9 @@ public class Main {
 	static IndirizzoDao indirizzoDao;
 	static AziendaDao aziendaDao;
 	static PrivatoDao privatoDao;
-	static MetodoSpedizioneDao metodoSpedizioneDao;
+	static TipoSpedizioneDao tipoSpedizioneDao;
+	static OrdineDao ordineDao;
+	static ModalitaPagamentoDao modalitaPagamentoDao;
 
 	static ApplicationContext context;
 
@@ -27,12 +29,39 @@ public class Main {
 		indirizzoDao = (IndirizzoDao) context.getBean("indirizzoDao");
 		aziendaDao = (AziendaDao) context.getBean("aziendaDao");
 		privatoDao = (PrivatoDao) context.getBean("privatoDao");
-		metodoSpedizioneDao = (MetodoSpedizioneDao) context.getBean("metodoSpedizioneDao");
-
+		tipoSpedizioneDao = (TipoSpedizioneDao) context.getBean("tipoSpedizioneDao");
+		modalitaPagamentoDao = (ModalitaPagamentoDao) context.getBean("modalitaPagamentoDao");
+		ordineDao = (OrdineDao) context.getBean("ordineDao");
+		
 		testUsers();
 		testClienti();
+		testOrdini();
 	}
 
+	private static void testOrdini() {
+		Ordine o = new Ordine();
+		o.setData(new Date());
+		o.setPesoTotaleApprossimato(10);
+		o.setTotaleDaPagare(499.00);
+		ModalitaPagamento mp = new ModalitaPagamento();
+		mp.setNome("PayPal");
+		mp.setDescrizione("Sistema di pagamento online sicuro");
+		mp.setCommissioni(3.4);
+		o.setModalitaPagamento(mp);
+		TipoSpedizione ts = new TipoSpedizione();
+		ts.setNome("Corriere");
+		ts.setDescrizione("Spedizione in corriere espresso");
+		ts.setPrezzoBase(9.90);
+		o.setTipoSpedizione(ts);
+		ordineDao.insert(o);
+		
+		System.out.println("\n\nElenco ordini:\n");
+		for (Ordine ord : ordineDao.findAll()) {
+			System.out.println(ord);
+			ordineDao.delete(ord.getId());
+		}
+	}
+	
 	private static void testClienti() {
 		Azienda az = new Azienda("azienda", "pass", new Date("12/12/2001"));
 		az.setPiva("31213123123");
@@ -116,18 +145,19 @@ public class Main {
 		
 		
 		// testing metodo spedizione
-		MetodoSpedizione corriere = new MetodoSpedizione();
+		TipoSpedizione corriere = new TipoSpedizione();
 		corriere.setNome("Corriere Espresso");
 		corriere.setDescrizione( "Spedizione nazionale tramite corriere espresso SDA\n"+
 								 "Tempi di spedizione previsti: 24/48 ore\n" +
 								 "Escluso isole e zone disagiate");
-		corriere.setPrezzoBase("5.90 euro");
-		metodoSpedizioneDao.insert(corriere);
+		corriere.setPrezzoBase(5.90);
+		tipoSpedizioneDao.insert(corriere);
 		
-		List<MetodoSpedizione> metodiSpedizione = metodoSpedizioneDao.findAll();
-		for(MetodoSpedizione m : metodiSpedizione) {
+		List<TipoSpedizione> metodiSpedizione = tipoSpedizioneDao.findAll();
+		System.out.println("\n\nElenco tipi di spedizione\n");
+		for(TipoSpedizione m : metodiSpedizione) {
 			System.out.println(m);
-			metodoSpedizioneDao.delete(m.getId());
+			tipoSpedizioneDao.delete(m.getId());
 		}
 		
 //		user1.getIndirizzi().remove(i1);
