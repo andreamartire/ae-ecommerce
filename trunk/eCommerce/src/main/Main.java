@@ -15,6 +15,7 @@ public class Main {
 	static RecapitoDao recapitoDao;
 	static IndirizzoDao indirizzoDao;
 	static AziendaDao aziendaDao;
+	static PrivatoDao privatoDao;
 	static MetodoSpedizioneDao metodoSpedizioneDao;
 
 	static ApplicationContext context;
@@ -25,9 +26,10 @@ public class Main {
 		recapitoDao = (RecapitoDao) context.getBean("recapitoDao");
 		indirizzoDao = (IndirizzoDao) context.getBean("indirizzoDao");
 		aziendaDao = (AziendaDao) context.getBean("aziendaDao");
+		privatoDao = (PrivatoDao) context.getBean("privatoDao");
 		metodoSpedizioneDao = (MetodoSpedizioneDao) context.getBean("metodoSpedizioneDao");
 
-//		testUsers();
+		testUsers();
 		testClienti();
 	}
 
@@ -35,7 +37,31 @@ public class Main {
 		Azienda az = new Azienda("azienda", "pass", new Date("12/12/2001"));
 		az.setPiva("31213123123");
 		az.setRagioneSociale("dasd ad das asd das");
+		Recapito r1 = new Recapito("955557897895", Recapito.CELLULARE);
+		Recapito r2 = new Recapito("asdas@asddas.org", Recapito.EMAIL);
+		az.addRecapito(r1);
+		az.addRecapito(r2);
+		Indirizzo i1 = new Indirizzo("via roma", "99", "cosenza", "CS", "87100");
+		Indirizzo i2 = new Indirizzo("via del castello", "1", "caccuri", "KR", "87101");
+		az.addIndirizzo(i1);
+		az.addIndirizzo(i2);
 		aziendaDao.insert(az);
+		
+		Privato p = new Privato("privato", "pass", new Date("12/12/2001"));
+		p.setNome("mionome");
+		p.setCognome("micognome");
+		p.setCodiceFiscale("adadasdasda");
+		p.setDataNascita(new Date("12/12/2001"));
+		p.setLuogoNascita("amsterdam");
+		Recapito r3 = new Recapito("955557897895", Recapito.CELLULARE);
+		Recapito r4 = new Recapito("asdas@asddas.org", Recapito.EMAIL);
+		p.addRecapito(r3);
+		p.addRecapito(r4);
+		Indirizzo i3 = new Indirizzo("via roma", "99", "cosenza", "CS", "87100");
+		Indirizzo i4 = new Indirizzo("via del castello", "1", "caccuri", "KR", "87101");
+		p.addIndirizzo(i3);
+		p.addIndirizzo(i4);
+		privatoDao.insert(p);
 	}
 
 	private static void testUsers() {

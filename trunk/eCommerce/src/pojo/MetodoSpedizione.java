@@ -3,6 +3,7 @@ package pojo;
 import javax.persistence.*;
 
 @Entity
+@Table(name="metodoSpedizione")
 public class MetodoSpedizione {
 
 	@Id
@@ -23,7 +24,7 @@ public class MetodoSpedizione {
 	
 	/** Prezzo di partenza del tipo di spedizione
 	 * e.g. 5,90 euro
-	 * TODO: ci sarà qualche tipo per gli euro?
+	 * TODO: ci sarï¿½ qualche tipo per gli euro?
 	 */
 	String prezzoBase;
 	

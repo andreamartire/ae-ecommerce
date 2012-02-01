@@ -42,6 +42,10 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
+	<bean id="privatoDao" class="dao.PrivatoHibernateDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 	<bean id="metodoSpedizioneDao" class="dao.MetodoSpedizioneHibernateDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
