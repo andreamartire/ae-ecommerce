@@ -1,5 +1,7 @@
 package eaecommerce.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	
 	@Override
-	public void add(User user) {
+	public void insert(User user) {
 		userDao.insert(user);
 		
 		// e la aop??
@@ -21,11 +23,22 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void delete(User user) {
-		userDao.delete(user.getId());
+	public void delete(int id) {
+		userDao.delete(id);
 		
 		// e la aop??
 		System.out.println("User deleted");
 	}
 
+	@Override
+	public void update(User u) {
+		userDao.update(u);
+		System.out.println("User updated");
+	}
+
+	@Override
+	public User findByUsername(String username) {
+		System.out.println("find user " + username);
+		return userDao.findByUsername(username);
+	}
 }
