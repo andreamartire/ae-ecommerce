@@ -2,27 +2,22 @@ package pojo;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="privato")
 public class Privato extends Cliente {
 
-	@Column
 	String nome;
 	
-	@Column
 	String cognome;
 	
-	@Column
 	String codiceFiscale;
 	
-	@Column
+	@Temporal(TemporalType.DATE)
 	Date dataNascita;
 	
-	@Column
 	String luogoNascita;
 	
 	public Privato() {}
@@ -69,5 +64,10 @@ public class Privato extends Cliente {
 
 	public void setLuogoNascita(String luogoNascita) {
 		this.luogoNascita = luogoNascita;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "\n" + nome + " " + cognome + " " + codiceFiscale;
 	}
 }

@@ -1,5 +1,6 @@
 package pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,6 +31,8 @@ public class Categoria {
 	List<Prodotto> prodotti;
 	
 	public Categoria() {
+		this.prodotti = new ArrayList<Prodotto>();
+		this.children = new ArrayList<Categoria>();
 	}
 
 	public int getId() {
@@ -72,11 +75,27 @@ public class Categoria {
 		this.children = children;
 	}
 	
+	public List<Prodotto> getProdotti() {
+		return prodotti;
+	}
+
+	public void setProdotti(List<Prodotto> prodotti) {
+		this.prodotti = prodotti;
+	}
+
 	public void addSubCat(Categoria subCat) {
 		this.children.add(subCat);
 	}
 	
+	public void removeSubCat(Categoria subCat) {
+		this.children.remove(subCat);
+	}
+	
 	public void addProdotto(Prodotto prodotto) {
 		this.prodotti.add(prodotto);
+	}
+	
+	public void removeProdotto(Prodotto prodotto) {
+		this.prodotti.remove(prodotto);
 	}
 }

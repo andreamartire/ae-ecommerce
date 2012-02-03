@@ -40,4 +40,9 @@ public class OrdineHibernateDao extends HibernateDaoSupport implements OrdineDao
 		return findAll().size();
 	}
 
+	@Override
+	public void delete(Ordine o) {
+		getHibernateTemplate().delete(o);
+	}
+
 }

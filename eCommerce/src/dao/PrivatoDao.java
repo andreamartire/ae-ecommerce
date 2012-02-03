@@ -10,6 +10,6 @@ public interface PrivatoDao {
 	public void update(Privato p);
 	public void delete(int id);
 	public Privato findByID(int id); 
-	public List<Privato> findAllUsers();  
-	public int userCount();
+	public List<Privato> findAll();  
+	public int count();
 }

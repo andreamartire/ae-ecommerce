@@ -40,4 +40,9 @@ public class TipoSpedizioneHibernateDao extends HibernateDaoSupport implements T
 	public void insert(TipoSpedizione m) {
 		getHibernateTemplate().saveOrUpdate(m);
 	}
+
+	@Override
+	public void delete(TipoSpedizione entity) {
+		getHibernateTemplate().delete(entity);
+	}
 }

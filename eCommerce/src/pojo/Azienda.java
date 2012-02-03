@@ -2,18 +2,13 @@ package pojo;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="azienda")
 public class Azienda extends Cliente {
 	
-	@Column
 	String piva;
 	
-	@Column
 	String ragioneSociale;
 
 	public Azienda() {}
@@ -36,5 +31,10 @@ public class Azienda extends Cliente {
 
 	public void setRagioneSociale(String ragioneSociale) {
 		this.ragioneSociale = ragioneSociale;
+	}
+	
+	@Override
+	public String toString() {
+		return id + " " + ragioneSociale + " " + piva;
 	}
 }

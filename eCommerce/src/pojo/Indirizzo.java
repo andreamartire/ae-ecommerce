@@ -1,37 +1,29 @@
 package pojo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="indirizzo")
 public class Indirizzo {	
 
-	@Id @GeneratedValue
-	@Column
+	@Id 
+	@GeneratedValue
 	int id;
 	
-	@Column
 	String via;
 	
-	@Column
 	String numero;
 	
-	@Column
 	String citta;
 	
-	@Column
 	String provincia;
 	
-	@Column
 	String cap;
 	
-	@ManyToOne( targetEntity = pojo.User.class )
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	User user;
 	

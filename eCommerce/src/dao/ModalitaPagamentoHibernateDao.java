@@ -41,4 +41,9 @@ public class ModalitaPagamentoHibernateDao extends HibernateDaoSupport implement
 		return findAll().size();
 	}
 
+	@Override
+	public void delete(ModalitaPagamento p) {
+		getHibernateTemplate().delete(p);
+	}
+
 }

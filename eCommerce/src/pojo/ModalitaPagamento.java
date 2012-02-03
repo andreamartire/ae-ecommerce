@@ -1,6 +1,7 @@
 package pojo;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,9 +37,10 @@ public class ModalitaPagamento {
 	 * Tutti gli ordini pagati con questa modalità di pagamento
 	 */
 	@OneToMany(mappedBy = "modalitaPagamento")
-	Set<Ordine> ordini;
+	List<Ordine> ordini;
 	
 	public ModalitaPagamento() {
+		this.ordini = new ArrayList<Ordine>();
 	}
 
 	public int getId() {
@@ -73,11 +75,11 @@ public class ModalitaPagamento {
 		this.commissioni = commissioni;
 	}
 
-	public Set<Ordine> getOrdini() {
+	public List<Ordine> getOrdini() {
 		return ordini;
 	}
 
-	public void setOrdini(Set<Ordine> ordini) {
+	public void setOrdini(List<Ordine> ordini) {
 		this.ordini = ordini;
 	}
 }

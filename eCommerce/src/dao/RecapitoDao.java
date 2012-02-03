@@ -8,7 +8,8 @@ public interface RecapitoDao {
 
 	public void update(Recapito r);
 	public void delete(int id);
+	public void delete(Recapito r);
 	public Recapito findById(int id);
-	public List<Recapito> findAllRecapito();
-	public int recapitoCount();
+	public List<Recapito> findAll();
+	public int count();
 }
