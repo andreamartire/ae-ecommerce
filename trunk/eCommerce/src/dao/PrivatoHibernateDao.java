@@ -38,13 +38,13 @@ public class PrivatoHibernateDao extends HibernateDaoSupport implements PrivatoD
 	@Transactional
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Privato> findAllUsers() {
-		return getHibernateTemplate().find("from Azienda");
+	public List<Privato> findAll() {
+		return getHibernateTemplate().find("from Privato");
 	}
 
 	@Transactional
 	@Override
-	public int userCount() {
-		return findAllUsers().size();
+	public int count() {
+		return findAll().size();
 	}
 }

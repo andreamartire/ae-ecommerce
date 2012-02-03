@@ -1,6 +1,5 @@
 package pojo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,18 +17,15 @@ public class Recapito {
 	public static String EMAIL = "eMail";
 	public static String SITO_WEB = "Sito Web";
 	
-
-	@Id @GeneratedValue
-	@Column
+	@Id 
+	@GeneratedValue
 	int id;
 	
-	@Column
 	String valore;
 	
-	@Column
 	String tipo;
 	
-	@ManyToOne( targetEntity = pojo.User.class )
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	User user;
 	

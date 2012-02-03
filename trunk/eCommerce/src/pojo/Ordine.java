@@ -6,8 +6,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Ordine {
@@ -18,6 +20,7 @@ public class Ordine {
 	
 	/** Data in cui è stato effettuato l'ordine
 	 */
+	@Temporal(TemporalType.DATE)
 	Date data;
 	
 	/**
@@ -35,16 +38,21 @@ public class Ordine {
 	/** 
 	 * modalita' di pagamento scelta
 	 */
-	@ManyToOne(targetEntity = pojo.ModalitaPagamento.class, cascade=CascadeType.ALL)
-	@JoinColumn(name = "modalita_pagamento_id", nullable = false)
+	@ManyToOne
 	ModalitaPagamento modalitaPagamento;
 	
 	/**
 	 * tipo di spedizione scelta
 	 */
-	@ManyToOne(targetEntity = pojo.TipoSpedizione.class, cascade=CascadeType.ALL)
-	@JoinColumn(name = "tipo_spedizione_id", nullable = false)
+	@ManyToOne
 	TipoSpedizione tipoSpedizione;
+	
+	/** 
+	 * Carrello spesa dell'ordine
+	 * Se un ordine viene cancellato vengono cancellati anche i carrelli ad esso associati...
+	 */
+	@OneToOne(cascade=CascadeType.ALL)
+	Carrello carrello;
 	
 	public Ordine() {
 	}
@@ -97,6 +105,14 @@ public class Ordine {
 		this.tipoSpedizione = tipoSpedizione;
 	}
 	
+	public Carrello getCarrello() {
+		return carrello;
+	}
+
+	public void setCarrello(Carrello carrello) {
+		this.carrello = carrello;
+	}
+
 	@Override
 	public String toString() {
 		return "Ordine: " + id + "\nData: " + data + "\nPeso: " + pesoTotaleApprossimato +

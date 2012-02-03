@@ -37,13 +37,18 @@ public class AziendaHibernateDao extends HibernateDaoSupport implements AziendaD
 	@Transactional
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Azienda> findAllUsers() {
+	public List<Azienda> findAll() {
 		return getHibernateTemplate().find("from Azienda");
 	}
 
 	@Transactional
 	@Override
-	public int userCount() {
-		return findAllUsers().size();
+	public int count() {
+		return findAll().size();
+	}
+
+	@Override
+	public void delete(Azienda a) {
+		getHibernateTemplate().delete(a);
 	}
 }
