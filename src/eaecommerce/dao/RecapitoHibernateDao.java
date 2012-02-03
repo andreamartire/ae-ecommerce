@@ -3,12 +3,7 @@ package eaecommerce.dao;
 import java.util.List;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.transaction.annotation.Transactional;
-
-import eaecommerce.pojo.Indirizzo;
 import eaecommerce.pojo.Recapito;
-import eaecommerce.pojo.User;
-
 
 public class RecapitoHibernateDao extends HibernateDaoSupport implements RecapitoDao {
 
@@ -30,12 +25,17 @@ public class RecapitoHibernateDao extends HibernateDaoSupport implements Recapit
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Recapito> findAllRecapito() {
+	public List<Recapito> findAll() {
 		return getHibernateTemplate().find("from Recapito");
 	}
 
 	@Override
-	public int recapitoCount() {
-		return findAllRecapito().size();
+	public int count() {
+		return findAll().size();
+	}
+
+	@Override
+	public void delete(Recapito r) {
+		getHibernateTemplate().delete(r);
 	}
 }

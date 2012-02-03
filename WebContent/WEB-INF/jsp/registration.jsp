@@ -26,6 +26,6 @@ Insert your data
 		</tr>
 	</table>
 </form:form>
-
+<a href="home.htm"><button>Back</button></a>
 </body>
 </html>

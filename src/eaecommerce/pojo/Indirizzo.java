@@ -1,38 +1,29 @@
 package eaecommerce.pojo;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="indirizzo")
 public class Indirizzo {	
 
-	@Id @GeneratedValue
-	@Column(name="id")
+	@Id 
+	@GeneratedValue
 	int id;
 	
-	@Column(name="via")
 	String via;
 	
-	@Column(name="numero")
 	String numero;
 	
-	@Column(name="citta")
 	String citta;
 	
-	@Column(name="provincia")
 	String provincia;
 	
-	@Column(name="cap")
 	String cap;
 	
-	@ManyToOne( targetEntity = eaecommerce.pojo.User.class )
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	User user;
 	

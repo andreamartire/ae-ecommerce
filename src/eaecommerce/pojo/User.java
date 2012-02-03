@@ -5,35 +5,28 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
-@Table(name="user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 
 	@Id 
 	@GeneratedValue
-	@Column(name="id")
 	int id;
 
-	@Column(name="username")
 	String username;
 
-	@Column(name="password")
 	String password;
 
-	@Column(name="data_registrazione")
+	@Temporal(TemporalType.DATE)
 	Date dataRegistrazione;
 
 	@OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
