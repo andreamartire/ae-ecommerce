@@ -1,0 +1,9 @@
+delete FROM indirizzo;
+delete FROM recapito;
+delete FROM amministratore;
+delete FROM privato;
+delete FROM azienda;
+delete FROM cliente;
+delete FROM user;
+delete FROM modalitapagamento;
+delete FROM tipospedizione;
