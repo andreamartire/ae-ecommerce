@@ -1,6 +1,5 @@
 package eaecommerce.pojo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,18 +17,15 @@ public class Recapito {
 	public static String EMAIL = "eMail";
 	public static String SITO_WEB = "Sito Web";
 	
-
-	@Id @GeneratedValue
-	@Column(name="id")
+	@Id 
+	@GeneratedValue
 	int id;
 	
-	@Column(name="valore")
 	String valore;
 	
-	@Column(name="tipo")
 	String tipo;
 	
-	@ManyToOne( targetEntity = eaecommerce.pojo.User.class )
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	User user;
 	

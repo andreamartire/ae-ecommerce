@@ -2,12 +2,9 @@ package eaecommerce.dao;
 
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
-
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import eaecommerce.pojo.Indirizzo;
-
 
 public class IndirizzoHibernateDao extends HibernateDaoSupport implements IndirizzoDao{
 
@@ -29,13 +26,17 @@ public class IndirizzoHibernateDao extends HibernateDaoSupport implements Indiri
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Indirizzo> findAllIndirizzo() {
+	public List<Indirizzo> findAll() {
 		return getHibernateTemplate().find("from Indirizzo");
 	}
 
 	@Override
-	public int indirizzoCount() {
-		return findAllIndirizzo().size();
+	public int count() {
+		return findAll().size();
 	}
 
+	@Override
+	public void delete(Indirizzo r) {
+		getHibernateTemplate().delete(r);
+	}
 }
