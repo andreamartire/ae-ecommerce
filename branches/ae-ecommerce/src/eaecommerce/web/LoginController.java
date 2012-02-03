@@ -6,16 +6,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import eaecommerce.pojo.User;
 import eaecommerce.service.UserService;
 
 @Controller
-@RequestMapping("/userRegistration.htm")
-@SessionAttributes("user")
-public class UserController {
-
+@RequestMapping("/login.htm")
+public class LoginController {
+	
 	private UserService userService;
 
 	@Autowired
@@ -23,18 +21,15 @@ public class UserController {
 		this.userService = userService;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String showUserForm(ModelMap model)
-	{
-		User user = new User();
-		model.addAttribute(user);
-		return "userForm";
-	}
-
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(@ModelAttribute("user") User user) {
-		userService.add(user);
-		return "redirect:userSuccess.htm";
+	public String registrationForm(@ModelAttribute("user") User user, ModelMap model)
+	{
+		System.out.println("Check existence " + user);
+		User userDB = userService.findByUsername(user.getUsername());
+		System.out.println(user);
+		System.out.println(userDB);
+		if(userDB == null || !userDB.getPassword().equals(user.getPassword()) )
+			return "loginFailed";
+		return "userHome";
 	}
-	
 }

@@ -9,6 +9,8 @@
 </head>
 <body>
 
+Insert your data
+
 <form:form method="POST" commandName="user">
 	<table>
 		<tr>

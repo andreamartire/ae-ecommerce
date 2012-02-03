@@ -7,14 +7,14 @@
 	<display-name>ae-ecommerce</display-name>
 	
 	<servlet>
-		<servlet-name>login</servlet-name>
+		<servlet-name>main</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>login</servlet-name>
-		<url-pattern>*.htm</url-pattern>
+		<servlet-name>main</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>

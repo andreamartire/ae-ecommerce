@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>WebContent/WEB-INF/login-servlet.xml</config>
+		<config>WebContent/WEB-INF/main-servlet.xml</config>
 	</configs>
 	<configSets>
 	</configSets>
