@@ -1,7 +1,6 @@
 package main;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -194,22 +193,6 @@ public class Main {
 		
 		for (User u : userDao.findAll()) {
 			userDao.delete(u);
-		}
-		
-		// testing metodo spedizione
-		TipoSpedizione corriere = new TipoSpedizione();
-		corriere.setNome("Corriere Espresso");
-		corriere.setDescrizione( "Spedizione nazionale tramite corriere espresso SDA\n"+
-								 "Tempi di spedizione previsti: 24/48 ore\n" +
-								 "Escluso isole e zone disagiate");
-		corriere.setPrezzoBase(5.90);
-		tipoSpedizioneDao.insert(corriere);
-		
-		List<TipoSpedizione> metodiSpedizione = tipoSpedizioneDao.findAll();
-		System.out.println("\n\nElenco tipi di spedizione\n");
-		for(TipoSpedizione m : metodiSpedizione) {
-			System.out.println(m);
-			tipoSpedizioneDao.delete(m.getId());
 		}
 		
 //		user1.getIndirizzi().remove(i1);

@@ -11,6 +11,7 @@ public interface UserDao {
 	public void delete(User u);
 	public void delete(int id);
 	public User findByID(int id); 
+	public User findByUsername(String username);
 	public List<User> findAll();  
 	public int count();
 }
