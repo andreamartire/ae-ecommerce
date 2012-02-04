@@ -9,6 +9,7 @@ public class RegistrationInfo {
 
 	private String username;
 	private String password;
+	private String confirmPassword;
 
 	enum UserType { PRIVATO, AZIENDA }
 	private UserType type;
@@ -39,6 +40,14 @@ public class RegistrationInfo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
 	public UserType getType() {
 		return type;
 	}
