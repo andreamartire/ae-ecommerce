@@ -1,9 +1,12 @@
 package aeecommerce.pojo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Prodotto {
@@ -22,7 +25,10 @@ public class Prodotto {
 
 	double prezzoUnitario;
 	
-	String immagine; //TODO string o Image?
+	String immagine; //TODO string o Image? una o tante?
+	
+	@OneToMany(mappedBy="prodotto")
+	List<Offerta> offerte;
 	
 	@ManyToOne
 	Categoria categoria;
