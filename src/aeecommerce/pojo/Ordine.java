@@ -18,7 +18,7 @@ public class Ordine {
 	@GeneratedValue
 	int id;
 	
-	/** Data in cui � stato effettuato l'ordine
+	/** Data in cui e' stato effettuato l'ordine
 	 */
 	@Temporal(TemporalType.DATE)
 	Date data;
