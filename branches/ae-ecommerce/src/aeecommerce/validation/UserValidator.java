@@ -19,6 +19,11 @@ public class UserValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "username.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "confirmPassword.required");
+		RegistrationInfo regInfo = (RegistrationInfo) target;
+		if(!regInfo.getPassword().equals(regInfo.getConfirmPassword()))
+			errors.rejectValue("confirmPassword", "confirmPassword.different");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "type", "type.required");
 	}
 
 }
