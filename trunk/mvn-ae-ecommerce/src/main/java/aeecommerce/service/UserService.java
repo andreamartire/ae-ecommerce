@@ -1,7 +1,5 @@
 package aeecommerce.service;
 
-import java.util.List;
-
 import aeecommerce.pojo.User;
 
 
