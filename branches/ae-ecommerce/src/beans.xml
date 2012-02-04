@@ -61,4 +61,7 @@
 	<bean id="carrelloDao" class="aeecommerce.dao.CarrelloHibernateDao">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<bean id="userValidator" class="aeecommerce.validation.UserValidator"/>
+	
 </beans>

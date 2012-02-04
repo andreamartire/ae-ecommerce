@@ -11,15 +11,17 @@
 
 Insert your data
 
-<form:form method="POST" commandName="user">
+<form:form method="POST" commandName="registrationInfo">
 	<table>
 		<tr>
 			<td>User Name :</td>
 			<td><form:input path="username" /></td>
+			<td><form:errors path="username" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td>Password :</td>
 			<td><form:password path="password" /></td>
+			<td><form:errors path="password" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit"></td>

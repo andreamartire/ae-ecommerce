@@ -12,6 +12,11 @@
 
 	<context:component-scan base-package="aeecommerce" />
 
+	<!-- Dichiaro una sorgente di messaggi usata -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+		p:basename="messages" />
+
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
 
