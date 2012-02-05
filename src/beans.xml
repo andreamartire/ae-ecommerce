@@ -25,42 +25,6 @@
 			</props>
 		</property>
 	</bean>
-
-	<bean id="userDao" class="aeecommerce.dao.UserHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="recapitoDao" class="aeecommerce.dao.RecapitoHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="indirizzoDao" class="aeecommerce.dao.IndirizzoHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="aziendaDao" class="aeecommerce.dao.AziendaHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="privatoDao" class="aeecommerce.dao.PrivatoHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="tipoSpedizioneDao" class="aeecommerce.dao.TipoSpedizioneHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<bean id="modalitaPagamentoDao" class="aeecommerce.dao.ModalitaPagamentoHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="ordineDao" class="aeecommerce.dao.OrdineHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="carrelloDao" class="aeecommerce.dao.CarrelloHibernateDao">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
 	
 	<bean id="userValidator" class="aeecommerce.validation.UserValidator"/>
 	

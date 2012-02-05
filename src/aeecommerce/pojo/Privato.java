@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import aeecommerce.utils.DateUtils;
+
 @Entity
 public class Privato extends Cliente {
 
@@ -24,6 +26,15 @@ public class Privato extends Cliente {
 
 	public Privato(String username, String password, Date dataRegistrazione) {
 		super(username, password, dataRegistrazione);
+	}
+	
+	public Privato(String username, String password, String cognome, String nome, String cf, String luogoNascita, String dataNascita) {
+		super(username, password, DateUtils.now());
+		setLuogoNascita(luogoNascita);
+		setDataNascita(new Date(dataNascita));
+		setCognome(cognome);
+		setNome(nome);
+		setCodiceFiscale(codiceFiscale);
 	}
 
 	public String getNome() {

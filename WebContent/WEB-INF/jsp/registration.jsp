@@ -4,21 +4,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<style type="text/css">
+		.hide { display: none; }
+	</style>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 <!-- 	<script type="text/javascript" src="/js/jquery-1.7.1.js"></script> -->
 <!-- 	<script type="text/javascript" src="../js/jquery-1.7.1.js"></script> -->
 <!-- 	<script type="text/javascript" src="js/jquery-1.7.1.js"></script> -->
 <!-- 	<script type="text/javascript" src="../../js/jquery-1.7.1.js"></script> -->
 	<script type="text/javascript">
+	$(document).ready(function() {
+		if(document.getElementById("radioPrivato").checked)
+			$(".privato").show('fast');
+		if(document.getElementById("radioAzienda").checked)
+			$(".azienda").show('fast');
+	});
 	function add(value){
-		if(value=="privato"){
-			$("input.privato").removeAttr("disabled");
-			$("input.azienda").attr("disabled","disabled");
+		if(value=="Privato"){
+			$(".privato").show('fast');
+			$(".azienda").hide('fast');
 		}
 		else{
-			$("input.azienda").removeAttr("disabled");
-			$("input.privato").attr("disabled","disabled");
+			$(".privato").hide('fast');
+			$(".azienda").show('fast');
 		}
+		$(".error").text('');
 	}
 	</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -46,19 +56,44 @@
 			</tr>
 			<tr>
 				<td>Type :</td>
-				<td><form:radiobutton path="type" value="privato" label="Privato" onclick="add(this.value)"/>
-					<form:radiobutton path="type" value="azienda" label="Azienda" onclick="add(this.value)"/>
+				<td><form:radiobutton id="radioPrivato" path="type" value="Privato" label="Privato" onclick="add(this.value)"/>
+					<form:radiobutton id="radioAzienda" path="type" value="Azienda" label="Azienda" onclick="add(this.value)"/>
 					<form:errors path="type" cssClass="error" /></td>
 			</tr>
 <!-- 			Azienda -->
-			<tr>
+			<tr class="azienda hide">
 				<td>Partita IVA :</td>
-				<td><form:input path="piva" class="azienda" disabled="true"/></td>
+				<td><form:input path="piva"/></td>
 				<td><form:errors path="piva" cssClass="error" /></td>
 			</tr>
-			<tr>
+			<tr class="azienda hide">
+				<td>Ragione Sociale :</td>
+				<td><form:input path="ragioneSociale"/></td>
+				<td><form:errors path="ragioneSociale" cssClass="error" /></td>
+			</tr>
+			<tr class="privato hide">
+				<td>Cognome :</td>
+				<td><form:input path="cognome"/></td>
+				<td><form:errors path="cognome" cssClass="error" /></td>
+			</tr>
+			<tr class="privato hide">
+				<td>Nome :</td>
+				<td><form:input path="nome"/></td>
+				<td><form:errors path="nome" cssClass="error" /></td>
+			</tr>
+			<tr class="privato hide">
+				<td>Data di Nascita :</td>
+				<td><form:input path="dataNascita"/></td>
+				<td><form:errors path="dataNascita" cssClass="error" /></td>
+			</tr>
+			<tr class="privato hide">
+				<td>Luogo di Nascita :</td>
+				<td><form:input path="luogoNascita"/></td>
+				<td><form:errors path="luogoNascita" cssClass="error" /></td>
+			</tr>
+			<tr class="privato hide">
 				<td>Codice Fiscale :</td>
-				<td><form:input path="codiceFiscale" class="privato" disabled="true"/></td>
+				<td><form:input path="codiceFiscale"/></td>
 				<td><form:errors path="codiceFiscale" cssClass="error" /></td>
 			</tr>
 			<tr>

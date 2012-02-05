@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import aeecommerce.utils.DateUtils;
+
 @Entity
 public class Azienda extends Cliente {
 	
@@ -15,6 +17,12 @@ public class Azienda extends Cliente {
 
 	public Azienda(String username, String password, Date dataRegistrazione) {
 		super(username, password, dataRegistrazione);
+	}
+
+	public Azienda(String username, String password, String piva,String ragioneSociale) {
+		super(username, password, DateUtils.now());
+		setPiva(piva);
+		setRagioneSociale(ragioneSociale);
 	}
 
 	public String getPiva() {

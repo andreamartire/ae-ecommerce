@@ -2,12 +2,20 @@ package aeecommerce.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Component;
 
 import aeecommerce.pojo.User;
 
-
+@Component
 public class UserHibernateDao extends HibernateDaoSupport implements UserDao {
+
+	@Autowired
+	public void init(SessionFactory factory) {
+	    setSessionFactory(factory);
+	}
 
 	public void insert(User u) {
 		getHibernateTemplate().save(u);
