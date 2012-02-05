@@ -2,11 +2,21 @@ package aeecommerce.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Component;
 
 import aeecommerce.pojo.Prodotto;
 
+@Component
 public class ProdottoHibernateDao extends HibernateDaoSupport implements ProdottoDao {
+	
+	@Autowired
+	public void init(SessionFactory factory) {
+	    setSessionFactory(factory);
+	}
+	
 	public void insert(Prodotto entity) {
 		getHibernateTemplate().saveOrUpdate(entity);
 	}
