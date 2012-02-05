@@ -7,11 +7,8 @@
 	<style type="text/css">
 		.hide { display: none; }
 	</style>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-<!-- 	<script type="text/javascript" src="/js/jquery-1.7.1.js"></script> -->
-<!-- 	<script type="text/javascript" src="../js/jquery-1.7.1.js"></script> -->
-<!-- 	<script type="text/javascript" src="js/jquery-1.7.1.js"></script> -->
-<!-- 	<script type="text/javascript" src="../../js/jquery-1.7.1.js"></script> -->
+	<script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
+	
 	<script type="text/javascript">
 	$(document).ready(function() {
 		if(document.getElementById("radioPrivato").checked)

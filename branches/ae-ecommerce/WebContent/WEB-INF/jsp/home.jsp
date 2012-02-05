@@ -6,8 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home Page</title>
+
 </head>
 <body>
+
+<p>
+<img src="resources/images/banner.jpg" />
+</p>
+
 Login
 
 <form:form method="POST" commandName="user" action="login.htm">
