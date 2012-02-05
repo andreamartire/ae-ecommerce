@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+BODY {
+/* 	background-color: #F5F6CE; */
+/* 	margin: 0% 15% 0% 15%; */
+	width: 900px; /*la larghezza dell’elemento*/
+	margin:auto; /*margine destra e sinistra in modo automatico*/ 
+}
+
+FONT {
+	color: #FF8000;
+}
+
+a:link {
+	color: #CC6600;
+	text-decoration:none;
+}
+
+a:visited {
+	color: #CC6600;
+	text-decoration:none;
+}
+
+a:active {
+	background-color: yellow;
+	font-weight: bold;
+	text-decoration:none;
+}
+
+a:hover {
+	color: #FF8000;
+	font-weight: bold;
+	text-decoration:none;
+}
+
+TABLE {
+	table-layout : fixed;
+	border-collapse : collapse;
+	border-spacing : 1px;
+	empty-cells : hide;
+}
+
+TH {
+	background-color: #F5D0A9;
+	font-weight: bold;
+	font-size: 11pt;
+}
+
+TD {
+	font-size: 11pt;
+}
+
+/* horizontal menu */
+.menu {
+	width: 900px;
+	background-color: #F7CB33;
+	padding-bottom: 13px;
+	padding-top: 13px;
+	float: right;
+	font: bold 13px Verdana;
+}
+
+.menu a {
+	overflow: auto; /*force hasLayout in IE7 */
+	text-decoration: none;
+	color: #FFFFFF;
+	padding: 13px;
+	color: #000000;
+}
+
+.menu a:link, .menu a:visited, .menu a:active {
+	background-color: #F7CB33;
+}
+.menu a:hover {
+	background-color: #F01E1E;
+}
+/* end */
+
+/* vertical menu */
+.sidebarmenu ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font: bold 13px Verdana;
+	width: 170px; /* Main Menu Item widths */
+	border-bottom: 1px solid #ccc;
+}
+
+.sidebarmenu ul li {
+	position: relative;
+}
+
+/* Top level menu links style */
+.sidebarmenu ul li a {
+	display: block;
+	overflow: auto; /*force hasLayout in IE7 */
+/* 	color: #CC6600; */
+	color: black;
+	text-decoration: none;
+	padding: 6px;
+	border: 1px solid #778;
+}
+
+.sidebarmenu ul li a:link,.sidebarmenu ul li a:visited,.sidebarmenu ul li a:active {
+/* 	background-color: #F5F6CE; background of tabs (default state) */
+	background-color: #D0D0D0;
+}
+
+.sidebarmenu ul li a:hover {
+	background-color: #CC6600;
+	color: white; /*font color*/
+}
+
+/*Sub level menu items */
+.sidebarmenu ul li ul {
+	position: absolute;
+	width: 170px; /*Sub Menu Items width */
+	top: 0;
+	visibility: hidden;
+}
+
+.sidebarmenu a.subfolderstyle {
+	background: url(right.gif) no-repeat 97% 50%;
+}
+
+/* Holly Hack for IE \*/
+* html .sidebarmenu ul li {
+	float: left;
+	height: 1%;
+}
+
+* html .sidebarmenu ul li a {
+	height: 1%;
+}
+/* End */
