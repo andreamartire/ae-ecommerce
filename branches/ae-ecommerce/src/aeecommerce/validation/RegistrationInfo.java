@@ -5,21 +5,22 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import aeecommerce.pojo.Azienda;
+import aeecommerce.pojo.Privato;
+
 public class RegistrationInfo {
 
 	private String username;
 	private String password;
 	private String confirmPassword;
 
-	enum UserType { PRIVATO, AZIENDA }
-	private UserType type;
+	String type;
 
 	//Privato
 	String nome;
 	String cognome;
 	String codiceFiscale;
-	@Temporal(TemporalType.DATE)
-	Date dataNascita;
+	String dataNascita;
 	String luogoNascita;
 	
 	//Azienda
@@ -48,10 +49,10 @@ public class RegistrationInfo {
 		this.confirmPassword = confirmPassword;
 	}
 
-	public UserType getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(UserType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public String getNome() {
@@ -72,10 +73,10 @@ public class RegistrationInfo {
 	public void setCodiceFiscale(String codiceFiscale) {
 		this.codiceFiscale = codiceFiscale;
 	}
-	public Date getDataNascita() {
+	public String getDataNascita() {
 		return dataNascita;
 	}
-	public void setDataNascita(Date dataNascita) {
+	public void setDataNascita(String dataNascita) {
 		this.dataNascita = dataNascita;
 	}
 	public String getLuogoNascita() {
@@ -95,5 +96,13 @@ public class RegistrationInfo {
 	}
 	public void setRagioneSociale(String ragioneSociale) {
 		this.ragioneSociale = ragioneSociale;
+	}
+
+	public Privato newPrivato() {
+		return new Privato(username,password,cognome,nome,codiceFiscale,luogoNascita,dataNascita);
+	}
+
+	public Azienda newAzienda() {
+		return new Azienda(username,password,piva,ragioneSociale);
 	}
 }
