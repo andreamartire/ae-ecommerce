@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.User;
+import aeecommerce.service.AziendaService;
 import aeecommerce.service.PrivatoService;
 import aeecommerce.service.UserService;
 import aeecommerce.validation.RegistrationInfo;
@@ -26,6 +27,9 @@ public class RegistrationController {
 	
 	@Autowired
 	private PrivatoService privatoService;
+	
+	@Autowired
+	private AziendaService aziendaService;
 
 	@Autowired
 	private UserValidator userValidator;
@@ -73,7 +77,7 @@ public class RegistrationController {
 			// Se è un privato registro un'azienda
 			if(regInfo.getType().equals("Azienda")){
 				Azienda az = regInfo.newAzienda();
-				userService.insert(az);
+				aziendaService.insert(az);
 				System.out.println("added azienda in to db " + user);
 			}
 			System.out.println("----------------------------------");

@@ -34,7 +34,7 @@ public class Privato extends Cliente {
 		setDataNascita(new Date(dataNascita));
 		setCognome(cognome);
 		setNome(nome);
-		setCodiceFiscale(codiceFiscale);
+		setCodiceFiscale(cf);
 	}
 
 	public String getNome() {
