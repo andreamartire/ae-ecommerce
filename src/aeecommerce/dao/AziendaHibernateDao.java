@@ -2,15 +2,23 @@ package aeecommerce.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import aeecommerce.pojo.Azienda;
+import aeecommerce.pojo.User;
 
-
-
+@Component
 public class AziendaHibernateDao extends HibernateDaoSupport implements AziendaDao {
 
+	@Autowired
+	public void init(SessionFactory factory) {
+	    setSessionFactory(factory);
+	}
+	
 	public void insert(Azienda a) {
 		getHibernateTemplate().save(a);
 	}
@@ -27,8 +35,12 @@ public class AziendaHibernateDao extends HibernateDaoSupport implements AziendaD
 	}
 
 	@Transactional
-	public Azienda findByID(int id) {
-		return (Azienda) getHibernateTemplate().get(Azienda.class,id);
+	public Azienda findByUsername(String username) {
+		@SuppressWarnings("unchecked")
+		List<User> userList = getHibernateTemplate().findByExample(new Azienda(username,null,null));
+		if(userList != null && !userList.isEmpty())
+			return (Azienda) userList.get(0);
+		return null;
 	}
 
 	@Transactional

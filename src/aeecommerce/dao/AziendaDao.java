@@ -11,7 +11,7 @@ public interface AziendaDao {
 	public void update(Azienda a);
 	public void delete(Azienda a);
 	public void delete(int id);
-	public Azienda findByID(int id); 
+	public Azienda findByUsername(String username); 
 	public List<Azienda> findAll();  
 	public int count();
 }
