@@ -20,10 +20,10 @@
 	        <td style="border: 0px solid black; background-color: #D8D8D8;" height="450" width="130" valign="top">
 	        	<tiles:insertAttribute name="left" />
 	        </td>
-	        <td style="border: 0px solid black;"  width="520" valign="top">
+	        <td style="border: 0px solid black;" valign="top">
 	        	<tiles:insertAttribute name="body" />
 	        </td>
-	        <td style="border: 0px solid black; background-color: #D8D8D8; padding: 5px;"  width="220" valign="top">
+	        <td style="border: 0px solid black; background-color: #D8D8D8; padding: 5px;"  width="150" valign="top">
 	        	<tiles:insertAttribute name="right" />
 	        </td>
 	    </tr>
