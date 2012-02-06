@@ -12,7 +12,7 @@
 <body>
 	<table style="border: 0px solid black;" cellspacing="5">  
 		<tr>
-	        <td style="border: 0px solid black;" width="940" colspan="3">
+	        <td style="border: 0px solid black;" width="900" colspan="3">
 	         	<tiles:insertAttribute name="header" />
 	        </td>
 	    </tr>
@@ -20,10 +20,10 @@
 	        <td style="border: 0px solid black; background-color: #D8D8D8;" height="450" width="130" valign="top">
 	        	<tiles:insertAttribute name="left" />
 	        </td>
-	        <td style="border: 0px solid black;"  width="640" valign="top">
+	        <td style="border: 0px solid black;"  width="520" valign="top">
 	        	<tiles:insertAttribute name="body" />
 	        </td>
-	        <td style="border: 0px solid black; background-color: #D8D8D8; padding: 5px;"  width="170" valign="top">
+	        <td style="border: 0px solid black; background-color: #D8D8D8; padding: 5px;"  width="220" valign="top">
 	        	<tiles:insertAttribute name="right" />
 	        </td>
 	    </tr>
