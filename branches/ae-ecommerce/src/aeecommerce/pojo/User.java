@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -13,6 +14,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.context.annotation.Lazy;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,10 +32,10 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	Date dataRegistrazione;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	Set<Recapito> recapiti = new HashSet<Recapito>();
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
 	Set<Indirizzo> indirizzi = new HashSet<Indirizzo>();
 
 	public User() {}
@@ -42,7 +45,6 @@ public class User {
 		this.password = password;
 		this.dataRegistrazione = dataRegistrazione;
 	}
-
 
 	public User(int id) {
 		setId(id);

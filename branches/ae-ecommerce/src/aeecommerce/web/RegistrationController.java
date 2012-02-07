@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Indirizzo;
@@ -20,6 +21,7 @@ import aeecommerce.validation.UserValidator;
 
 
 @Controller
+@SessionAttributes("userId")
 public class RegistrationController {
 
 	@Autowired

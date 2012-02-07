@@ -12,7 +12,7 @@ function checkFields(){
 <hr/> <p>Debug info = {userId=${userId}}</p> <hr/>
 Inserisci il tuo indirizzo
 
-<form:form method="POST" commandName="indirizzo">
+<form:form method="POST" onsubmit="return checkFields()" commandName="indirizzo">
 	<table>
 		<tr>
 			<td>Via :</td>

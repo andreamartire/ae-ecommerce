@@ -45,6 +45,69 @@ function checkUsername() {
 		}
 	});
 }
+function checkPassword() {
+	$(".error").html('');
+	if( $('#password').val().length < 8){
+		$('#passwordError').html("<h5 style=\"color: red;\">Debole</h5>");
+		return;
+	}
+	if( $('#password').val().length < 13){
+		$('#passwordError').html("<h5 style=\"color: yellow;\">Media</h5>");
+		return;
+	}
+	if( $('#password').val().length < 20){
+		$('#passwordError').html("<h5 style=\"color: green;\">Forte</h5>");
+		return;
+	}
+}
+function checkConfirmPassword() {
+	$(".error").html('');
+	if( $('#password').val() != $('#confirmPassword').val()){
+		$('#confirmPasswordError').html("<h5 style=\"color: red;\">Non coincide</h5>");
+		return;
+	}
+	$('#confirmPasswordError').html("<h5 style=\"color: green;\">Coincide</h5>");
+	return;
+}
+function checkEmail() {
+	$(".error").html('');
+	var mailRegExp = /^[a-z|0-9|\.|\-|_]+@\w+\.[a-z]+$/i;
+	if( !$('#email').val().match(mailRegExp)){
+		$('#emailError').html("<h5 style=\"color: red;\">Non e' valida</h5>");
+		return;
+	}
+	$('#emailError').html("<h5 style=\"color: green;\">Ok</h5>");
+	return;
+}
+function checkConfirmEmail() {
+	$(".error").html('');
+	if( $('#email').val() != $('#confirmEmail').val()){
+		$('#confirmEmailError').html("<h5 style=\"color: red;\">Non coincide</h5>");
+		return;
+	}
+	$('#confirmEmailError').html("<h5 style=\"color: green;\">Coincide</h5>");
+	return;
+}
+function checkPiva() {
+	$(".error").html('');
+	var e = /^\d\d\d\d\d\d\d\d\d\d\d$/;
+	if( !$('#piva').val().match(e)){
+		$('#pivaError').html("<h5 style=\"color: red;\">Non corretta</h5>");
+		return;
+	}
+	$('#pivaError').html("<h5 style=\"color: green;\">Corretta</h5>");
+	return;
+}
+function checkRagSociale() {
+	$(".error").html('');
+	var e = /^\w+/;
+	if( !$('#ragioneSociale').val().match(e)){
+		$('#ragSocialeError').html("<h5 style=\"color: red;\">Vuota</h5>");
+		return;
+	}
+	$('#ragSocialeError').html("<h5 style=\"color: green;\">Ok</h5>");
+	return;
+}
 function checkDate(date) {
 	$(".error").html('');
 	var dataRegExp = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
@@ -73,23 +136,27 @@ Inserisci i tuoi dati
 		</tr>
 		<tr>
 			<td>Password </td>
-			<td><form:password path="password" /></td>
+			<td><form:password path="password" onkeyup="checkPassword()"/></td>
 			<td><form:errors path="password" cssClass="error" /></td>
+			<td><div id="passwordError"></div></td>
 		</tr>
 		<tr>
 			<td>Confirm Password </td>
-			<td><form:password path="confirmPassword" /></td>
+			<td><form:password path="confirmPassword" onkeyup="checkConfirmPassword()"/></td>
 			<td><form:errors path="confirmPassword" cssClass="error" /></td>
+			<td><div id="confirmPasswordError"></div></td>
 		</tr>
 		<tr>
-			<td>email </td>
-			<td><form:input path="email" /></td>
+			<td>eMail </td>
+			<td><form:input path="email" onkeyup="checkEmail()"/></td>
 			<td><form:errors path="email" cssClass="error" /></td>
+			<td><div id="emailError"></div></td>
 		</tr>
 		<tr>
-			<td>Confirm email </td>
-			<td><form:input path="confirmEmail" /></td>
+			<td>Confirm eMail </td>
+			<td><form:input path="confirmEmail" onkeyup="checkConfirmEmail()"/></td>
 			<td><form:errors path="confirmEmail" cssClass="error" /></td>
+			<td><div id="confirmEmailError"></div></td>
 		</tr>
 		<tr>
 			<td>Type </td>
@@ -100,13 +167,15 @@ Inserisci i tuoi dati
 <!-- 			Azienda -->
 		<tr class="azienda hide">
 			<td>Partita IVA </td>
-			<td><form:input path="piva"/></td>
+			<td><form:input path="piva" onkeyup="checkPiva()"/></td>
 			<td><form:errors path="piva" cssClass="error" /></td>
+			<td><div id="pivaError"></div></td>
 		</tr>
 		<tr class="azienda hide">
 			<td>Ragione Sociale </td>
-			<td><form:input path="ragioneSociale"/></td>
+			<td><form:input path="ragioneSociale" onkeyup="checkRagSociale()"/></td>
 			<td><form:errors path="ragioneSociale" cssClass="error" /></td>
+			<td><div id="ragSocialeError"></div></td>
 		</tr>
 		<tr class="privato hide">
 			<td>Cognome </td>
