@@ -1,3 +1,16 @@
+<script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$.ajax({
+		url : 'listCategorie',
+		type: "GET",
+		success : function(list) {
+			alert(list);
+		}
+	});
+})
+</script>
+
 <script type="text/javascript">
 	//Nested Side Bar Menu (Mar 20th, 09)
 	//By Dynamic Drive: http://www.dynamicdrive.com/style/
