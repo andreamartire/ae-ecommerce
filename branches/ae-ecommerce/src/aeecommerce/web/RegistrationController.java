@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Indirizzo;
@@ -79,5 +80,12 @@ public class RegistrationController {
 			model.addAttribute("indirizzo", new Indirizzo());
 			return "addAddress";
 		}
+	}
+	
+	@RequestMapping(value={"/addAddress.htm"}, method = RequestMethod.POST)
+	public String addAddress(ModelMap model)
+	{
+		System.out.println("Address controller get");
+		return "addAddress";
 	}
 }
