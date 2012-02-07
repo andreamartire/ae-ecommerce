@@ -82,6 +82,16 @@ Inserisci i tuoi dati
 			<td><form:errors path="confirmPassword" cssClass="error" /></td>
 		</tr>
 		<tr>
+			<td>email </td>
+			<td><form:password path="email" /></td>
+			<td><form:errors path="email" cssClass="error" /></td>
+		</tr>
+		<tr>
+			<td>Confirm email </td>
+			<td><form:password path="confirmEmail" /></td>
+			<td><form:errors path="confirmEmail" cssClass="error" /></td>
+		</tr>
+		<tr>
 			<td>Type </td>
 			<td><form:radiobutton id="radioPrivato" path="type" value="Privato" label="Privato" onclick="add(this.value)"/>
 				<form:radiobutton id="radioAzienda" path="type" value="Azienda" label="Azienda" onclick="add(this.value)"/>
@@ -125,7 +135,7 @@ Inserisci i tuoi dati
 			<td><form:errors path="codiceFiscale" cssClass="error" /></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input id="submit" class="hide" type="submit"></td>
+			<td colspan="2"><input id="submit" type="submit"></td>
 		</tr>
 	</table>
 </form:form>

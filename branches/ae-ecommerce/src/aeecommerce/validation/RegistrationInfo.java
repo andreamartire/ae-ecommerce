@@ -1,18 +1,16 @@
 package aeecommerce.validation;
 
-import java.util.Date;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
+import aeecommerce.pojo.Recapito;
 
 public class RegistrationInfo {
 
 	private String username;
 	private String password;
 	private String confirmPassword;
+	private String email;
+	private String confirmEmail;
 
 	String type;
 
@@ -47,6 +45,22 @@ public class RegistrationInfo {
 
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getConfirmEmail() {
+		return confirmEmail;
+	}
+
+	public void setConfirmEmail(String confirmEmail) {
+		this.confirmEmail = confirmEmail;
 	}
 
 	public String getType() {
@@ -99,10 +113,14 @@ public class RegistrationInfo {
 	}
 
 	public Privato newPrivato() {
-		return new Privato(username,password,cognome,nome,codiceFiscale,luogoNascita,dataNascita);
+		Privato pvt = new Privato(username,password,cognome,nome,codiceFiscale,luogoNascita,dataNascita);
+		pvt.getRecapiti().add(new Recapito(getEmail(), Recapito.EMAIL));
+		return pvt;
 	}
 
 	public Azienda newAzienda() {
-		return new Azienda(username,password,piva,ragioneSociale);
+		Azienda az = new Azienda(username,password,piva,ragioneSociale);
+		az.getRecapiti().add(new Recapito(getEmail(), Recapito.EMAIL));
+		return az;
 	}
 }
