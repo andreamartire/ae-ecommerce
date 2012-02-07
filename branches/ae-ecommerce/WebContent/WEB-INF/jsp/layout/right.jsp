@@ -27,14 +27,23 @@
 				location.reload();
 			}
 		});
-	}
+	}	
 	function startup() {
 		var session = document.getElementById("session")
 		var user = session.getAttribute("data-user");
+		var type = session.getAttribute("data-type");
 		if (user != null && user != "") {
 			$('#loginForm').hide();
 			$('#logoutButton').show();
 			$('#message').html("Bentornato " + user);
+			if (type == "admin") {
+				alert("Accesso Amministratore");
+				$('#accountCliente').hide();
+				$('#accountAdmin').show();
+			} else {
+				$('#accountCliente').show();
+				$('#accountAdmin').hide();
+			}
 		} else {
 			$('#logoutButton').hide();
 			$('#loginForm').show();
@@ -51,7 +60,20 @@
 	</tr>
 </table>
 
-<div id="session" data-user="${sessionScope.user}" ></div>
+<div id="session" data-user="${sessionScope.user}" data-type="${sessionScope.type}" ></div>
+
+<div id="accountCliente" style="display: none; padding: 5px">
+	<a href="#">I miei ordini</a> <br/>
+	<a href="#">Il mio account</a> <br/>
+</div>
+
+<div id="accountAdmin" style="display: none; padding: 5px">
+	<a href="#">Banner e dati azienda</a> <br/>
+	<a href="#">Categorie e Prodotti</a> <br/>
+	<a href="#">Spedizioni e Pagamenti</a> <br/>
+	<a href="#">F.A.Q.</a> <br/>
+	<a href="#">Utenti</a> <br/>
+</div>
 
 <div id="loginForm">
 	<table>
