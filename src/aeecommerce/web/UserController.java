@@ -15,14 +15,13 @@ import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 @Controller
-@RequestMapping("/ajaxLogin.htm")
 @SessionAttributes("user")
-public class AjaxLoginController {
+public class UserController {
 
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/ajaxLogin.htm", method = RequestMethod.POST)
 	public @ResponseBody String ajaxLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
 		
 		User userDB = userService.findByUsername(username);
@@ -44,6 +43,13 @@ public class AjaxLoginController {
 		
 		String result = "Bentornato " + userDB.getUsername();
 		return result;
+	}
+	
+	@RequestMapping(value = "/logout.htm", method = RequestMethod.GET)
+	public @ResponseBody String logout(ModelMap model) {
+		String user = (String) model.get("user");
+		model.put("user", "");
+		return user;
 	}
 	
 	@RequestMapping(value = {"/checkUsername.htm"}, method = RequestMethod.POST)
