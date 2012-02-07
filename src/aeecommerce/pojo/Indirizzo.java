@@ -3,8 +3,6 @@ package aeecommerce.pojo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Indirizzo {	
@@ -79,5 +77,10 @@ public class Indirizzo {
 
 	public void setCap(String cap) {
 		this.cap = cap;
+	}
+	
+	@Override
+	public String toString(){
+		return via + "," + numero + "," + citta + "," + provincia + "," + cap;
 	}
 }

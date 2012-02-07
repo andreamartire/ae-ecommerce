@@ -10,29 +10,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Indirizzo;
+import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 @Controller
 @SessionAttributes("userId")
 public class AddressController {
-	
+
 	@Autowired
 	UserService userService;
 	
 	@RequestMapping(value={"/addAddress.htm"}, method = RequestMethod.GET)
-	public String addressForm(@ModelAttribute("indirizzo") Indirizzo ind, BindingResult result, ModelMap model)
+	public String addressForm(ModelMap model)
 	{
 		System.out.println("Address controller get");
 		model.addAttribute("indirizzo", new Indirizzo());
-		System.out.println(model);
 		return "addAddress";
 	}
 	
 	@RequestMapping(value={"/addAddress.htm"}, method = RequestMethod.POST)
-	public String addAddress(@ModelAttribute("indirizzo") Indirizzo ind, BindingResult result, ModelMap model)
+	public String addAddress(@ModelAttribute("indirizzo") Indirizzo ind, @ModelAttribute("userId") int userId)
 	{
 		System.out.println("Address controller post");
-		
-		return "addAddress";
+		System.out.println("userId " + userId);
+		System.out.println("Indirizzo " + ind);
+		User u = userService.findById(userId);
+		u.getIndirizzi().add(ind);
+		userService.update(u);
+		return "redirect:home.htm";
 	}
 }
