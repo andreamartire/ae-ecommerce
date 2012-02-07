@@ -26,6 +26,7 @@ public class LoginController {
 		System.out.println(userDB);
 		if(userDB == null || !userDB.getPassword().equals(user.getPassword()) )
 			return "loginFailed";
+		model.addAttribute("userId", userDB.getId());
 		return "userHome";
 	}
 }
