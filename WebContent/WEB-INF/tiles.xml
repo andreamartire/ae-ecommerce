@@ -19,9 +19,9 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/home.jsp" />
 	</definition>
 	
-	<definition name="registration2" extends="baseLayout">
-	  	<put-attribute name="title" value="Registrazione  - Indirizzi" />
-	  	<put-attribute name="body" value="/WEB-INF/jsp/registration2.jsp" />
+	<definition name="addAddress" extends="baseLayout">
+	  	<put-attribute name="title" value="Registrazione Indirizzo" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/addAddress.jsp" />
 	</definition>
 	
 	<definition name="registration" extends="baseLayout">

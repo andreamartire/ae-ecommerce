@@ -83,12 +83,12 @@ Inserisci i tuoi dati
 		</tr>
 		<tr>
 			<td>email </td>
-			<td><form:password path="email" /></td>
+			<td><form:input path="email" /></td>
 			<td><form:errors path="email" cssClass="error" /></td>
 		</tr>
 		<tr>
 			<td>Confirm email </td>
-			<td><form:password path="confirmEmail" /></td>
+			<td><form:input path="confirmEmail" /></td>
 			<td><form:errors path="confirmEmail" cssClass="error" /></td>
 		</tr>
 		<tr>
