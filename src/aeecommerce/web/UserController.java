@@ -15,7 +15,7 @@ import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes(value = {"user","type"})
 public class UserController {
 
 	@Autowired
@@ -31,15 +31,19 @@ public class UserController {
 		if(!userDB.getPassword().equals(password))
 			return "badPassword";
 		
-		String name;
+		String name, type;
 		if (userDB instanceof Privato) {
 			name = ((Privato) userDB).getNome() + " " + ((Privato) userDB).getCognome();
+			type = "privato";
 		} else if (userDB instanceof Azienda) {
 			name = ((Azienda) userDB).getRagioneSociale();
+			type = "azienda";
 		} else {
 			name = username;
+			type = "admin";
 		}
 		model.addAttribute("user", name);
+		model.addAttribute("type", type);
 		
 		String result = "Bentornato " + userDB.getUsername();
 		return result;

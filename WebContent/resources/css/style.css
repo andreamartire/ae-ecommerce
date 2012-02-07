@@ -11,12 +11,12 @@ FONT {
 }
 
 a:link {
-	color: #CC6600;
+/* 	color: #CC6600; */
 	text-decoration:none;
 }
 
 a:visited {
-	color: #CC6600;
+/* 	color: #CC6600; */
 	text-decoration:none;
 }
 
@@ -27,7 +27,7 @@ a:active {
 }
 
 a:hover {
-	color: #FF8000;
+/* 	color: #FF8000; */
 	font-weight: bold;
 	text-decoration:none;
 }
