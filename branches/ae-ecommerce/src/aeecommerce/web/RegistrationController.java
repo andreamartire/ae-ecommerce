@@ -78,14 +78,7 @@ public class RegistrationController {
 			System.out.println("----------------------------------");
 			
 			model.addAttribute("indirizzo", new Indirizzo());
-			return "addAddress";
+			return "redirect:addAddress.htm";
 		}
-	}
-	
-	@RequestMapping(value={"/addAddress.htm"}, method = RequestMethod.POST)
-	public String addAddress(ModelMap model)
-	{
-		System.out.println("Address controller get");
-		return "addAddress";
 	}
 }
