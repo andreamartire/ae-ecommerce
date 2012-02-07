@@ -18,6 +18,8 @@ public class PrivatoValidator implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		System.out.println("Privato validation");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "nome.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cognome", "cognome.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiceFiscale", "cf.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataNascita", "dataNascita.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "luogoNascita", "username.required");

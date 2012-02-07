@@ -22,6 +22,12 @@ function add(value){
 	$(".error").text('');
 }
 function checkUsername() {
+	var userRegExp = /^\w/;
+	if( !$('#username').val().match(userRegExp) || $('#username').val() == ""){
+		$('#userError').html("<h5 style=\"color: red;\">Non disponibile</h5>");
+		return;
+	}
+	$(".error").html('');
 	$.ajax({
 		url : 'checkUsername.htm',
 		type: "POST",
@@ -39,6 +45,20 @@ function checkUsername() {
 		}
 	});
 }
+function checkDate(date) {
+	$(".error").html('');
+	var dataRegExp = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)\d\d$/;
+	
+	if( !date.match( dataRegExp ) ) {
+		$("#submit").addClass("hide");
+		$("#dateError").html("<h5 style=\"color: red;\">Richiesto formato dd/MM/yyyy (es. 04-03-2011)</h5>");
+		return false;
+	}
+	else {
+		$("#dateError").html("<h5 style=\"color: green;\">Ok</h5>");
+		$("#submit").removeClass("hide");
+	}
+}
 </script>
 
 Inserisci i tuoi dati
@@ -46,65 +66,66 @@ Inserisci i tuoi dati
 <form:form method="POST" commandName="registrationInfo">
 	<table>
 		<tr>
-			<td>User Name :</td>
-			<td><form:input path="username" onBlur="checkUsername()"/></td>
+			<td>User Name </td>
+			<td><form:input path="username" onkeyup="checkUsername()"/></td>
 			<td><form:errors path="username" cssClass="error" /></td>
 			<td><div id="userError"></div></td>
 		</tr>
 		<tr>
-			<td>Password :</td>
+			<td>Password </td>
 			<td><form:password path="password" /></td>
 			<td><form:errors path="password" cssClass="error" /></td>
 		</tr>
 		<tr>
-			<td>Confirm Password :</td>
+			<td>Confirm Password </td>
 			<td><form:password path="confirmPassword" /></td>
 			<td><form:errors path="confirmPassword" cssClass="error" /></td>
 		</tr>
 		<tr>
-			<td>Type :</td>
+			<td>Type </td>
 			<td><form:radiobutton id="radioPrivato" path="type" value="Privato" label="Privato" onclick="add(this.value)"/>
 				<form:radiobutton id="radioAzienda" path="type" value="Azienda" label="Azienda" onclick="add(this.value)"/>
 				<form:errors path="type" cssClass="error" /></td>
 		</tr>
 <!-- 			Azienda -->
 		<tr class="azienda hide">
-			<td>Partita IVA :</td>
+			<td>Partita IVA </td>
 			<td><form:input path="piva"/></td>
 			<td><form:errors path="piva" cssClass="error" /></td>
 		</tr>
 		<tr class="azienda hide">
-			<td>Ragione Sociale :</td>
+			<td>Ragione Sociale </td>
 			<td><form:input path="ragioneSociale"/></td>
 			<td><form:errors path="ragioneSociale" cssClass="error" /></td>
 		</tr>
 		<tr class="privato hide">
-			<td>Cognome :</td>
+			<td>Cognome </td>
 			<td><form:input path="cognome"/></td>
 			<td><form:errors path="cognome" cssClass="error" /></td>
 		</tr>
 		<tr class="privato hide">
-			<td>Nome :</td>
+			<td>Nome </td>
 			<td><form:input path="nome"/></td>
 			<td><form:errors path="nome" cssClass="error" /></td>
 		</tr>
 		<tr class="privato hide">
-			<td>Data di Nascita :</td>
-			<td><form:input path="dataNascita"/></td>
-			<td><form:errors path="dataNascita" cssClass="error" /></td>
+			<td>Data di Nascita </td>
+			<td><form:input path="dataNascita" onkeyup="checkDate(this.value)"/></td>
+			<td><form:errors path="dataNascita" cssClass="error"/></td>
+			<td><div id="dateError"></div></td>
 		</tr>
 		<tr class="privato hide">
-			<td>Luogo di Nascita :</td>
+			<td>Luogo di Nascita </td>
 			<td><form:input path="luogoNascita"/></td>
 			<td><form:errors path="luogoNascita" cssClass="error" /></td>
 		</tr>
 		<tr class="privato hide">
-			<td>Codice Fiscale :</td>
+			<td>Codice Fiscale </td>
 			<td><form:input path="codiceFiscale"/></td>
 			<td><form:errors path="codiceFiscale" cssClass="error" /></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit"></td>
+			<td colspan="2"><input id="submit" class="hide" type="submit"></td>
 		</tr>
 	</table>
 </form:form>
