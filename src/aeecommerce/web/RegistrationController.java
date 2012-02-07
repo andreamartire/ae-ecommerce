@@ -7,25 +7,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
-import aeecommerce.pojo.User;
 import aeecommerce.service.AziendaService;
 import aeecommerce.service.PrivatoService;
-import aeecommerce.service.UserService;
 import aeecommerce.validation.RegistrationInfo;
 import aeecommerce.validation.UserValidator;
-
 
 @Controller
 @RequestMapping("\registration.htm")
 public class RegistrationController {
-
-	@Autowired
-	private UserService userService;
 	
 	@Autowired
 	private PrivatoService privatoService;
@@ -74,7 +66,7 @@ public class RegistrationController {
 				System.out.println("added azienda in to db " + az);
 			}
 			System.out.println("----------------------------------");
-			return "userCreated";
+			return "sdad";
 		}
 	}
 }

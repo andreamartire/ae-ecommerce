@@ -19,19 +19,19 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/home.jsp" />
 	</definition>
 	
+	<definition name="registration2" extends="baseLayout">
+	  	<put-attribute name="title" value="Registrazione  - Indirizzi" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/registration2.jsp" />
+	</definition>
+	
 	<definition name="registration" extends="baseLayout">
-	  	<put-attribute name="title" value="Registrazione" />
+	  	<put-attribute name="title" value="Registrazione"/>
 	  	<put-attribute name="body" value="/WEB-INF/jsp/registration.jsp" />
 	</definition>
 	
 	<definition name="loginFailed" extends="baseLayout">
 	  	<put-attribute name="title" value="Login Failed" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/loginFailed.jsp" />
-	</definition>
-	
-	<definition name="userAlreadyExists" extends="baseLayout">
-	  	<put-attribute name="title" value="User already exists" />
-	  	<put-attribute name="body" value="/WEB-INF/jsp/userAlreadyExists.jsp" />
 	</definition>
 	
 	<definition name="userCreated" extends="baseLayout">
