@@ -29,10 +29,10 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	Date dataRegistrazione;
 
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
+	@OneToMany(cascade=CascadeType.ALL)
 	Set<Recapito> recapiti = new HashSet<Recapito>();
 
-	@OneToMany(cascade=CascadeType.ALL, mappedBy = "user")
+	@OneToMany(cascade=CascadeType.ALL)
 	Set<Indirizzo> indirizzi = new HashSet<Indirizzo>();
 
 	public User() {}
@@ -97,12 +97,10 @@ public class User {
 	}
 
 	public void addIndirizzo(Indirizzo ind) {
-		ind.setUser(this);
 		getIndirizzi().add(ind);
 	}
 
 	public void addRecapito(Recapito rec) {
-		rec.setUser(this);
 		getRecapiti().add(rec);
 	}
 

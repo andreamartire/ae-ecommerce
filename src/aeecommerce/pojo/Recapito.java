@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="recapito")
 public class Recapito {
 
 	public static String TELEFONO_FISSO = "Telefono Fisso";
@@ -24,10 +23,6 @@ public class Recapito {
 	String valore;
 	
 	String tipo;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	User user;
 	
 	public Recapito(){}
 	
@@ -58,13 +53,5 @@ public class Recapito {
 
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 }

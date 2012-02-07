@@ -23,10 +23,6 @@ public class Indirizzo {
 	
 	String cap;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	User user;
-	
 	public Indirizzo(){}
 
 	public Indirizzo(String via, String numero, String citta, String provincia, String cap) {
@@ -83,13 +79,5 @@ public class Indirizzo {
 
 	public void setCap(String cap) {
 		this.cap = cap;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 }

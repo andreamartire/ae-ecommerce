@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
+import aeecommerce.pojo.Recapito;
 import aeecommerce.pojo.User;
 import aeecommerce.service.AziendaService;
 import aeecommerce.service.PrivatoService;

@@ -46,6 +46,12 @@ public class UserValidator implements Validator{
 		if(!regInfo.getPassword().equals(regInfo.getConfirmPassword()))
 			errors.rejectValue("confirmPassword", "confirmPassword.different");
 		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmEmail", "confirmEmail.required");
+		
+		if(!regInfo.getEmail().equals(regInfo.getConfirmEmail()))
+			errors.rejectValue("confirmEmail", "confirmEmail.different");
+		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "type", "type.required");
 		System.out.println("type: " + regInfo.getType());
 		if(regInfo.getType() != null){
