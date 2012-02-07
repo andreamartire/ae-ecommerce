@@ -3,7 +3,6 @@
 	.hide { display: none; }
 </style>
 <script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
-
 <script type="text/javascript">
 $(document).ready(function() {
 	if(document.getElementById("radioPrivato").checked)
@@ -22,16 +21,35 @@ function add(value){
 	}
 	$(".error").text('');
 }
+function checkUsername() {
+	$.ajax({
+		url : 'checkUsername.htm',
+		type: "POST",
+		data : ({
+			username : $('#username').val()
+		}),
+		success : function(res) {
+			if (res == "available") {
+				$('#userError').html("<h5 style=\"color: green;\">Disponibile</h5>");
+			} else if (res == "notAvailable") {
+				$('#userError').html("<h5 style=\"color: red;\">Gia' in uso</h5>");
+			} else {
+				location.reload(); 
+			}
+		}
+	});
+}
 </script>
 
-Insert your data
+Inserisci i tuoi dati
 
 <form:form method="POST" commandName="registrationInfo">
 	<table>
 		<tr>
 			<td>User Name :</td>
-			<td><form:input path="username" /></td>
+			<td><form:input path="username" onBlur="checkUsername()"/></td>
 			<td><form:errors path="username" cssClass="error" /></td>
+			<td><div id="userError"></div></td>
 		</tr>
 		<tr>
 			<td>Password :</td>
