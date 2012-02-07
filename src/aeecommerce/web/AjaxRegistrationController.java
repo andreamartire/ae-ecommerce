@@ -21,8 +21,7 @@ import aeecommerce.validation.UserValidator;
 
 
 @Controller
-@RequestMapping("\registration.htm")
-public class RegistrationController {
+public class AjaxRegistrationController {
 
 	@Autowired
 	private UserService userService;
@@ -36,7 +35,7 @@ public class RegistrationController {
 	@Autowired
 	private UserValidator userValidator;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value={"/registration.htm"}, method = RequestMethod.GET)
 	public String registrationForm(ModelMap model)
 	{
 		// Aggiungo oggetto intermedio per raccogliere info sulla registrazione
@@ -49,29 +48,38 @@ public class RegistrationController {
 		return "registration";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value={"/registration.htm"}, method = RequestMethod.POST)
 	public String registrateUser(
 			@ModelAttribute("registrationInfo") RegistrationInfo regInfo, BindingResult result)
 	{
 		System.out.println("Registration controller post");
-		
+
 		// Applico validazione alle info recuperate
 		userValidator.validate(regInfo, result);
 		if (result.hasErrors())
 			// Se fallisce la validazione rimando indietro l'oggetto alla jsp
 			return "registration";
 		else {
+			// Altrimento estrapolo le informazione che mi servono e controllo se già esiste
+			User user = new User( regInfo.getUsername(), regInfo.getPassword(), null );
+			System.out.println("Check existence " + user);
+			User userDB = userService.findByUsername(user.getUsername());
+			System.out.println(user);
+			System.out.println(userDB);
+			if(userDB != null )
+				return "userAlreadyExists";
+
 			// Se è un privato registro un privato
 			if(regInfo.getType().equals("Privato")){
 				Privato pvt = regInfo.newPrivato();
 				privatoService.insert(pvt);
-				System.out.println("added privato in to db " + pvt);
+				System.out.println("added privato in to db " + user);
 			}
 			// Se è un privato registro un'azienda
 			if(regInfo.getType().equals("Azienda")){
 				Azienda az = regInfo.newAzienda();
 				aziendaService.insert(az);
-				System.out.println("added azienda in to db " + az);
+				System.out.println("added azienda in to db " + user);
 			}
 			System.out.println("----------------------------------");
 			return "userCreated";
