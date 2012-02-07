@@ -40,33 +40,4 @@ public class RegistrationController {
 		System.out.println("----------------------------------");
 		return "registration";
 	}
-
-	@RequestMapping(method = RequestMethod.POST)
-	public String registrateUser(
-			@ModelAttribute("registrationInfo") RegistrationInfo regInfo, BindingResult result)
-	{
-		System.out.println("Registration controller post");
-		
-		// Applico validazione alle info recuperate
-		userValidator.validate(regInfo, result);
-		if (result.hasErrors())
-			// Se fallisce la validazione rimando indietro l'oggetto alla jsp
-			return "registration";
-		else {
-			// Se è un privato registro un privato
-			if(regInfo.getType().equals("Privato")){
-				Privato pvt = regInfo.newPrivato();
-				privatoService.insert(pvt);
-				System.out.println("added privato in to db " + pvt);
-			}
-			// Se è un privato registro un'azienda
-			if(regInfo.getType().equals("Azienda")){
-				Azienda az = regInfo.newAzienda();
-				aziendaService.insert(az);
-				System.out.println("added azienda in to db " + az);
-			}
-			System.out.println("----------------------------------");
-			return "sdad";
-		}
-	}
 }

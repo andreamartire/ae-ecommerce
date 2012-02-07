@@ -82,7 +82,7 @@ public class AjaxRegistrationController {
 				System.out.println("added azienda in to db " + user);
 			}
 			System.out.println("----------------------------------");
-			return "userCreated";
+			return "registration2";
 		}
 	}
 }
