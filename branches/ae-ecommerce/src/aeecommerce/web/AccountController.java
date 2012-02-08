@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
-import aeecommerce.service.AziendaService;
-import aeecommerce.service.PrivatoService;
+import aeecommerce.pojo.User;
+import aeecommerce.service.UserService;
 import aeecommerce.validation.RegistrationInfo;
 
 @Controller
@@ -19,10 +19,7 @@ import aeecommerce.validation.RegistrationInfo;
 public class AccountController {
 
 	@Autowired
-	PrivatoService privatoService;
-	
-	@Autowired
-	AziendaService aziendaService;
+	UserService userService;
 	 
 	@RequestMapping(value={"/account.htm"}, method = RequestMethod.GET)
 	public String addressForm(@ModelAttribute("user") String username, ModelMap model)
@@ -42,15 +39,14 @@ public class AccountController {
 	
 	public RegistrationInfo getRegInfo(String username){
 		System.out.println("Get reg info");
-		Privato pvt = privatoService.findByUsername(username);
-		if(pvt != null){
+		User u = userService.findByUsername(username);
+		if(u.getClass() == Privato.class){
 			System.out.println("E' un privato");
-			return pvt.toRegInfo();
+			return ((Privato)u).toRegInfo();
 		}
-		Azienda az = aziendaService.findByUsername(username);
-		if(az != null) {
+		if(u.getClass() == Azienda.class){
 			System.out.println("E' un'azienda");
-			return az.toRegInfo();
+			return ((Azienda)u).toRegInfo();
 		}
 		return null;
 	}
