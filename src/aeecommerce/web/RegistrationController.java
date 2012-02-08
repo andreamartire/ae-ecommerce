@@ -9,29 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Indirizzo;
-import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.User;
-import aeecommerce.service.AziendaService;
-import aeecommerce.service.PrivatoService;
 import aeecommerce.service.UserService;
 import aeecommerce.validation.RegistrationInfo;
 import aeecommerce.validation.UserValidator;
 
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes("user")
 public class RegistrationController {
 
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private PrivatoService privatoService;
-	
-	@Autowired
-	private AziendaService aziendaService;
 
 	@Autowired
 	private UserValidator userValidator;
@@ -67,19 +57,18 @@ public class RegistrationController {
 			// Se è un privato registro un privato
 			if(regInfo.getType().equals("Privato")){
 				u = regInfo.newPrivato();
-				privatoService.insert((Privato) u);
-				System.out.println("added privato in to db " + u);
+				
+				System.out.println("adding privato in to db " + u);
 				
 			}
 			// Se è un'azienda registro un'azienda
 			if(regInfo.getType().equals("Azienda")){
 				u = regInfo.newAzienda();
-				aziendaService.insert((Azienda) u);
-				System.out.println("added azienda in to db " + u);
+				System.out.println("adding azienda in to db " + u);
 			}
+			userService.insert(u);
 			System.out.println("----------------------------------");
-			model.addAttribute("user", u.getUsername());
-			model.addAttribute("indirizzo", new Indirizzo());
+			model.addAttribute("user", u);
 			return "redirect:addAddress.htm";
 		}
 	}

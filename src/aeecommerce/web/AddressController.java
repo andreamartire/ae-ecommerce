@@ -13,7 +13,7 @@ import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes("userId")
+@SessionAttributes(value = {"indirizzo", "user"} )
 public class AddressController {
 
 	@Autowired
@@ -28,14 +28,13 @@ public class AddressController {
 	}
 	
 	@RequestMapping(value={"/addAddress.htm"}, method = RequestMethod.POST)
-	public String addAddress(@ModelAttribute("indirizzo") Indirizzo ind, @ModelAttribute("userId") int userId)
+	public String addAddress(@ModelAttribute("indirizzo") Indirizzo ind, @ModelAttribute("user") User user)
 	{
 		System.out.println("Address controller post");
-		System.out.println("userId " + userId);
+		System.out.println("user " + user.getUsername());
 		System.out.println("Indirizzo " + ind);
-		User u = userService.findById(userId);
-		u.getIndirizzi().add(ind);
-		userService.update(u);
+		user.getIndirizzi().add(ind);
+		userService.update(user);
 		return "redirect:home.htm";
 	}
 }
