@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.springframework.context.annotation.Lazy;
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {

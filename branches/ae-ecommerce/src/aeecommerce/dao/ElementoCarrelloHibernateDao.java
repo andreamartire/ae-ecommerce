@@ -2,20 +2,12 @@ package aeecommerce.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
 import aeecommerce.pojo.ElementoCarrello;
 
 @Component
-public class ElementoCarrelloHibernateDao extends HibernateDaoSupport implements ElementoCarrelloDao {
-
-	@Autowired
-	public void init(SessionFactory factory) {
-	    setSessionFactory(factory);
-	}
+public class ElementoCarrelloHibernateDao extends MasterDao implements ElementoCarrelloDao {
 	
 	public void insert(ElementoCarrello entity) {
 		getHibernateTemplate().saveOrUpdate(entity);

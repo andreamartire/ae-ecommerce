@@ -4,16 +4,14 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.User;
 
 @Component
-public class PrivatoHibernateDao extends HibernateDaoSupport implements PrivatoDao {
+public class PrivatoHibernateDao extends MasterDao implements PrivatoDao {
 
 	@Autowired
 	public void init(SessionFactory factory) {

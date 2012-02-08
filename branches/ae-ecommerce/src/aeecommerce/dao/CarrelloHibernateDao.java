@@ -2,21 +2,13 @@ package aeecommerce.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
 import aeecommerce.pojo.Carrello;
 
 @Component
-public class CarrelloHibernateDao extends HibernateDaoSupport implements CarrelloDao {
+public class CarrelloHibernateDao extends MasterDao implements CarrelloDao {
 
-	@Autowired
-	public void init(SessionFactory factory) {
-	    setSessionFactory(factory);
-	}
-	
 	public void insert(Carrello entity) {
 		getHibernateTemplate().saveOrUpdate(entity);
 	}

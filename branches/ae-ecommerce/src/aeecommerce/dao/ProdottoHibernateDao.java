@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
 import aeecommerce.pojo.Prodotto;
 
 @Component
-public class ProdottoHibernateDao extends HibernateDaoSupport implements ProdottoDao {
+public class ProdottoHibernateDao extends MasterDao implements ProdottoDao {
 	
 	@Autowired
 	public void init(SessionFactory factory) {

@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
 import aeecommerce.pojo.TipoSpedizione;
 
 @Component
-public class TipoSpedizioneHibernateDao extends HibernateDaoSupport implements TipoSpedizioneDao {
+public class TipoSpedizioneHibernateDao extends MasterDao implements TipoSpedizioneDao {
 
 	@Autowired
 	public void init(SessionFactory factory) {

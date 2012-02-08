@@ -2,7 +2,7 @@ package aeecommerce.dao;
 
 import java.util.List;
 
-import aeecommerce.pojo.ElementoCarrello;;
+import aeecommerce.pojo.ElementoCarrello;
 
 public interface ElementoCarrelloDao {
 	public void insert(ElementoCarrello u);

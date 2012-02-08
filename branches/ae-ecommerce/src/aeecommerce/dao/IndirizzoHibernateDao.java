@@ -2,20 +2,12 @@ package aeecommerce.dao;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Component;
 
 import aeecommerce.pojo.Indirizzo;
 
 @Component
-public class IndirizzoHibernateDao extends HibernateDaoSupport implements IndirizzoDao{
-
-	@Autowired
-	public void init(SessionFactory factory) {
-	    setSessionFactory(factory);
-	}
+public class IndirizzoHibernateDao extends MasterDao implements IndirizzoDao{
 	
 	public void update(Indirizzo r) {
 		getHibernateTemplate().update(r);
