@@ -8,6 +8,15 @@ function checkFields(){
 		return false;
 	}
 }
+function checkValue(campo,error,espr) {
+	$(".error").html('');
+	if( !$(campo).val().match(espr)){
+		$(error).html("<h5 style=\"color: red;\">Non corretto</h5>");
+		return;
+	}
+	$(error).html("<h5 style=\"color: green;\">Ok</h5>");
+	return;
+}
 </script>
 <hr/> <p>Debug info = {userId=${userId}}</p> <hr/>
 Inserisci il tuo indirizzo
@@ -16,23 +25,28 @@ Inserisci il tuo indirizzo
 	<table>
 		<tr>
 			<td>Via :</td>
-			<td><form:input path="via" type="text"/></td>
+			<td><form:input path="via" type="text" onkeyup="checkValue('#via','#viaError',/^[a-zA-Z\s]+$/)"/></td>
+			<td><div id="viaError"></div></td>
 		</tr>
 		<tr>
 			<td>Numero :</td>
-			<td><form:input path="numero" type="text"/></td>
+			<td><form:input path="numero" type="text" onkeyup="checkValue('#numero','#numeroError',/^\d+$/)"/></td>
+			<td><div id="numeroError"></div></td>
 		</tr>
 		<tr>
 			<td>Citta' :</td>
-			<td><form:input path="citta" type="text"/></td>
+			<td><form:input path="citta" type="text" onkeyup="checkValue('#citta','#cittaError',/^\w+/)"/></td>
+			<td><div id="cittaError"></div></td>
 		</tr>
 		<tr>
 			<td>Provincia :</td>
-			<td><form:input path="provincia" type="text"/></td>
+			<td><form:input path="provincia" type="text" onkeyup="checkValue('#provincia','#provinciaError',/^[A-Za-z]{2}$/)"/></td>
+			<td><div id="provinciaError"></div></td>
 		</tr>
 		<tr>
 			<td>CAP :</td>
-			<td><form:input path="cap" type="text"/></td>
+			<td><form:input path="cap" type="text" onkeyup="checkValue('#cap','#capError',/^\d{5}$/)"/></td>
+			<td><div id="capError"></div></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit"></td>
