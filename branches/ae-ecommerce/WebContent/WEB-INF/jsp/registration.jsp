@@ -71,7 +71,7 @@ function checkConfirmPassword() {
 }
 function checkEmail() {
 	$(".error").html('');
-	var mailRegExp = /^[a-z|0-9|\.|\-|_]+@\w+\.[a-z]+$/i;
+	var mailRegExp = /^[a-z|A-Z|0-9|\.|\-|_]+@\w+\.[a-z|A-Z]+$/i;
 	if( !$('#email').val().match(mailRegExp)){
 		$('#emailError').html("<h5 style=\"color: red;\">Non e' valida</h5>");
 		return;
@@ -90,7 +90,7 @@ function checkConfirmEmail() {
 }
 function checkPiva() {
 	$(".error").html('');
-	var e = /^\d\d\d\d\d\d\d\d\d\d\d$/;
+	var e = /^\d{11}$/;
 	if( !$('#piva').val().match(e)){
 		$('#pivaError').html("<h5 style=\"color: red;\">Non corretta</h5>");
 		return;
@@ -98,14 +98,24 @@ function checkPiva() {
 	$('#pivaError').html("<h5 style=\"color: green;\">Corretta</h5>");
 	return;
 }
-function checkRagSociale() {
+function checkValue(campo,error) {
 	$(".error").html('');
-	var e = /^\w+/;
-	if( !$('#ragioneSociale').val().match(e)){
-		$('#ragSocialeError').html("<h5 style=\"color: red;\">Vuota</h5>");
+	var e = /^[a-zA-Z\s]+$/;
+	if( !$(campo).val().match(e)){
+		$(error).html("<h5 style=\"color: red;\">Errato</h5>");
 		return;
 	}
-	$('#ragSocialeError').html("<h5 style=\"color: green;\">Ok</h5>");
+	$(error).html("<h5 style=\"color: green;\">Ok</h5>");
+	return;
+}
+function checkCF() {
+	$(".error").html('');
+	var e = /^[a-zA-Z]{6}\d{2}[a-zA-Z]{1}\d{2}[a-zA-Z]{1}\d{3}[a-zA-Z]{1}$/;
+	if( !$('#codiceFiscale').val().match(e)){
+		$('#codiceFiscaleError').html("<h5 style=\"color: red;\">Non valido</h5>");
+		return;
+	}
+	$('#codiceFiscaleError').html("<h5 style=\"color: green;\">Ok</h5>");
 	return;
 }
 function checkDate(date) {
@@ -114,7 +124,7 @@ function checkDate(date) {
 	
 	if( !date.match( dataRegExp ) ) {
 		$("#submit").addClass("hide");
-		$("#dateError").html("<h5 style=\"color: red;\">Richiesto formato dd/MM/yyyy (es. 04-03-2011)</h5>");
+		$("#dateError").html("<h5 style=\"color: red;\">Richiesto formato dd/MM/yyyy (es. 04/03/2011)</h5>");
 		return false;
 	}
 	else {
@@ -173,19 +183,21 @@ Inserisci i tuoi dati
 		</tr>
 		<tr class="azienda hide">
 			<td>Ragione Sociale </td>
-			<td><form:input path="ragioneSociale" onkeyup="checkRagSociale()"/></td>
+			<td><form:input path="ragioneSociale" onkeyup="checkValue('#ragioneSociale','#ragSocialeError')"/></td>
 			<td><form:errors path="ragioneSociale" cssClass="error" /></td>
 			<td><div id="ragSocialeError"></div></td>
 		</tr>
 		<tr class="privato hide">
 			<td>Cognome </td>
-			<td><form:input path="cognome"/></td>
+			<td><form:input path="cognome" onkeyup="checkValue('#cognome','#cognomeError')"/></td>
 			<td><form:errors path="cognome" cssClass="error" /></td>
+			<td><div id="cognomeError"></div></td>
 		</tr>
 		<tr class="privato hide">
 			<td>Nome </td>
-			<td><form:input path="nome"/></td>
+			<td><form:input path="nome" onkeyup="checkValue('#nome','#nomeError')"/></td>
 			<td><form:errors path="nome" cssClass="error" /></td>
+			<td><div id="nomeError"></div></td>
 		</tr>
 		<tr class="privato hide">
 			<td>Data di Nascita </td>
@@ -195,13 +207,15 @@ Inserisci i tuoi dati
 		</tr>
 		<tr class="privato hide">
 			<td>Luogo di Nascita </td>
-			<td><form:input path="luogoNascita"/></td>
+			<td><form:input path="luogoNascita" onkeyup="checkValue('#luogoNascita','#luogoNascitaError')"/></td>
 			<td><form:errors path="luogoNascita" cssClass="error" /></td>
+			<td><div id="luogoNascitaError"></div></td>
 		</tr>
 		<tr class="privato hide">
 			<td>Codice Fiscale </td>
-			<td><form:input path="codiceFiscale"/></td>
+			<td><form:input path="codiceFiscale" onkeyup="checkCF()"/></td>
 			<td><form:errors path="codiceFiscale" cssClass="error" /></td>
+			<td><div id="codiceFiscaleError"></div></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input id="submit" type="submit"></td>
