@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import aeecommerce.pojo.Indirizzo;
 import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 import aeecommerce.validation.RegistrationInfo;
