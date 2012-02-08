@@ -57,4 +57,9 @@ public class AziendaHibernateDao extends HibernateDaoSupport implements AziendaD
 	public void delete(Azienda a) {
 		getHibernateTemplate().delete(a);
 	}
+
+	@Override
+	public Azienda findById(int id) {
+		return getHibernateTemplate().get(Azienda.class, id);
+	}
 }

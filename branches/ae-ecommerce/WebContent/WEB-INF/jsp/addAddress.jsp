@@ -18,7 +18,6 @@ function checkValue(campo,error,espr) {
 	return;
 }
 </script>
-<hr/> <p>Debug info = {userId=${userId}}</p> <hr/>
 Inserisci il tuo indirizzo
 
 <form:form method="POST" onsubmit="return checkFields()" commandName="indirizzo">

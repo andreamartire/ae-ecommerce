@@ -32,7 +32,7 @@ public class PrivatoHibernateDao extends HibernateDaoSupport implements PrivatoD
 
 	@Transactional
 	public void delete(int id) {
-		Azienda a = (Azienda) getHibernateTemplate().get(Azienda.class, id);
+		Privato a = (Privato) getHibernateTemplate().get(Privato.class, id);
 		getHibernateTemplate().delete(a);
 	}
 
@@ -44,7 +44,7 @@ public class PrivatoHibernateDao extends HibernateDaoSupport implements PrivatoD
 			return (Privato) userList.get(0);
 		return null;
 	}
-
+	
 	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<Privato> findAll() {
@@ -54,5 +54,10 @@ public class PrivatoHibernateDao extends HibernateDaoSupport implements PrivatoD
 	@Transactional
 	public int count() {
 		return findAll().size();
+	}
+
+	@Override
+	public Privato findById(int id) {
+		return getHibernateTemplate().get(Privato.class, id);
 	}
 }

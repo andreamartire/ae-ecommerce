@@ -64,7 +64,7 @@
 
 <div id="accountCliente" style="display: none; padding: 5px">
 	<a href="#">I miei ordini</a> <br/>
-	<a href="#">Il mio account</a> <br/>
+	<a href="account.htm">Il mio account</a> <br/>
 </div>
 
 <div id="accountAdmin" style="display: none; padding: 5px">

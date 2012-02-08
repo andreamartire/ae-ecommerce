@@ -43,4 +43,9 @@ public class PrivatoServiceImpl implements PrivatoService {
 		System.out.println("find Privato " + username);
 		return privatoDao.findByUsername(username);
 	}
+
+	@Override
+	public Privato findById(int userId) {
+		return privatoDao.findById(userId);
+	}
 }

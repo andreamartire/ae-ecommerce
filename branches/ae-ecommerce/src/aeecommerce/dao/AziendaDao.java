@@ -14,4 +14,5 @@ public interface AziendaDao {
 	public Azienda findByUsername(String username); 
 	public List<Azienda> findAll();  
 	public int count();
+	public Azienda findById(int userId);
 }

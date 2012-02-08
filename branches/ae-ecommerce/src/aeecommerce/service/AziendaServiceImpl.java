@@ -45,4 +45,9 @@ public class AziendaServiceImpl implements AziendaService {
 		System.out.println("find Azienda " + username);
 		return aziendaDao.findByUsername(username);
 	}
+
+	@Override
+	public Azienda findById(int userId) {
+		return aziendaDao.findById(userId);
+	}
 }
