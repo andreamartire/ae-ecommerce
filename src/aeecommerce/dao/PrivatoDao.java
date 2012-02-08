@@ -13,4 +13,5 @@ public interface PrivatoDao {
 	public Privato findByUsername(String username); 
 	public List<Privato> findAll();  
 	public int count();
+	public Privato findById(int id);
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import aeecommerce.utils.DateUtils;
+import aeecommerce.validation.RegistrationInfo;
 
 @Entity
 public class Azienda extends Cliente {
@@ -44,5 +45,14 @@ public class Azienda extends Cliente {
 	@Override
 	public String toString() {
 		return id + " " + ragioneSociale + " " + piva;
+	}
+	
+	public RegistrationInfo toRegInfo(){
+		RegistrationInfo r = new RegistrationInfo();
+		r.setUsername(username);
+		r.setPassword(password);
+		r.setPiva(piva);
+		r.setRagioneSociale(ragioneSociale);
+		return r;
 	}
 }

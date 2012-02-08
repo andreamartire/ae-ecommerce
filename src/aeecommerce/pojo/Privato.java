@@ -7,6 +7,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import aeecommerce.utils.DateUtils;
+import aeecommerce.validation.RegistrationInfo;
 
 @Entity
 public class Privato extends Cliente {
@@ -80,5 +81,17 @@ public class Privato extends Cliente {
 	@Override
 	public String toString() {
 		return super.toString() + "\n" + nome + " " + cognome + " " + codiceFiscale;
+	}
+	
+	public RegistrationInfo toRegInfo(){
+		RegistrationInfo r = new RegistrationInfo();
+		r.setUsername(username);
+		r.setPassword(password);
+		r.setNome(nome);
+		r.setCognome(cognome);
+		r.setCodiceFiscale(codiceFiscale);
+		r.setDataNascita(dataNascita.toString());
+		r.setLuogoNascita(luogoNascita);
+		return r;
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Indirizzo;
 import aeecommerce.pojo.Privato;
+import aeecommerce.pojo.User;
 import aeecommerce.service.AziendaService;
 import aeecommerce.service.PrivatoService;
 import aeecommerce.service.UserService;
@@ -63,22 +64,22 @@ public class RegistrationController {
 			return "registration";
 		}
 		else {
+			User u = null;
 			// Se è un privato registro un privato
 			if(regInfo.getType().equals("Privato")){
-				Privato pvt = regInfo.newPrivato();
-				privatoService.insert(pvt);
-				System.out.println("added privato in to db " + pvt);
-				model.addAttribute("userId", userService.findByUsername(pvt.getUsername()).getId());
+				u = regInfo.newPrivato();
+				privatoService.insert((Privato) u);
+				System.out.println("added privato in to db " + u);
+				
 			}
 			// Se è un'azienda registro un'azienda
 			if(regInfo.getType().equals("Azienda")){
-				Azienda az = regInfo.newAzienda();
-				aziendaService.insert(az);
-				System.out.println("added azienda in to db " + az);
-				model.addAttribute("userId", userService.findByUsername(az.getUsername()).getId());
+				u = regInfo.newAzienda();
+				aziendaService.insert((Azienda) u);
+				System.out.println("added azienda in to db " + u);
 			}
 			System.out.println("----------------------------------");
-			
+			model.addAttribute("user", u.getUsername());
 			model.addAttribute("indirizzo", new Indirizzo());
 			return "redirect:addAddress.htm";
 		}

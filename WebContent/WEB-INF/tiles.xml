@@ -44,4 +44,9 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/userHome.jsp" />
 	</definition>
 	
+	<definition name="account" extends="baseLayout">
+	  	<put-attribute name="title" value="Account Info" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/account.jsp" />
+	</definition>
+	
 </tiles-definitions>
