@@ -34,7 +34,7 @@ Inserisci il tuo indirizzo
 		</tr>
 		<tr>
 			<td>Citta' :</td>
-			<td><form:input path="citta" type="text" onkeyup="checkValue('#citta','#cittaError',/^\w+/)"/></td>
+			<td><form:input path="citta" type="text" onkeyup="checkValue('#citta','#cittaError',/^[a-zA-Z\s]+$/)"/></td>
 			<td><div id="cittaError"></div></td>
 		</tr>
 		<tr>
