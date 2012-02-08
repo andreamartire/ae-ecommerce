@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import aeecommerce.dao.AziendaDao;
-import aeecommerce.dao.PrivatoDao;
 import aeecommerce.pojo.Azienda;
-import aeecommerce.pojo.Privato;
 
 @Service
 public class AziendaServiceImpl implements AziendaService {
