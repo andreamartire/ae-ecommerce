@@ -19,4 +19,5 @@ public interface UserDao {
 	public List<Azienda> findAllAzienda();
 	public int countPrivato();
 	public int countAzienda();
+	public boolean isPrivato(String username);
 }

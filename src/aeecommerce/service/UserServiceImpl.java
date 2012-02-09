@@ -39,4 +39,14 @@ public class UserServiceImpl implements UserService {
 	public User findById(int id) {
 		return userDao.findByID(id);
 	}
+
+	@Override
+	public boolean isPrivato(String username) {
+		return userDao.isPrivato(username);
+	}
+
+	@Override
+	public boolean isAzienda(String username) {
+		return !userDao.isPrivato(username);
+	}
 }
