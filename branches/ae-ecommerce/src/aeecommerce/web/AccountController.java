@@ -25,6 +25,7 @@ public class AccountController {
 	public String addressForm(@ModelAttribute("user") String username, ModelMap model)
 	{
 		System.out.println("Account controller get");
+		System.out.println("Cerco utente ." + username + ".");
 		model.addAttribute("regInfo", getRegInfo(username));
 		return "account";
 	}
@@ -40,6 +41,7 @@ public class AccountController {
 	public RegistrationInfo getRegInfo(String username){
 		System.out.println("Get reg info");
 		User u = userService.findByUsername(username);
+		System.out.println("trovato utente " + u);
 		if(u.getClass() == Privato.class){
 			System.out.println("E' un privato");
 			return ((Privato)u).toRegInfo();

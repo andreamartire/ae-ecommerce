@@ -32,16 +32,14 @@ public class UserController {
 			return "badPassword";
 		
 		String name, type;
-		if (userDB instanceof Privato) {
-			name = ((Privato) userDB).getNome() + " " + ((Privato) userDB).getCognome();
+		if (userDB instanceof Privato)
 			type = "privato";
-		} else if (userDB instanceof Azienda) {
-			name = ((Azienda) userDB).getRagioneSociale();
+		else if (userDB instanceof Azienda)
 			type = "azienda";
-		} else {
-			name = username;
+		else
 			type = "admin";
-		}
+		name = username;
+		
 		model.addAttribute("user", name);
 		model.addAttribute("type", type);
 		

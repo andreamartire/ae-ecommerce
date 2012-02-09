@@ -92,6 +92,7 @@ public class Privato extends Cliente {
 		r.setCodiceFiscale(codiceFiscale);
 		r.setDataNascita(dataNascita.toString());
 		r.setLuogoNascita(luogoNascita);
+		r.setType("Privato");
 		return r;
 	}
 }

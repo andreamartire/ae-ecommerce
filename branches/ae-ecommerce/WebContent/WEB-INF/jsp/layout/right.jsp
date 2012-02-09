@@ -23,8 +23,7 @@
 		$.ajax({
 			url : 'logout.htm',
 			success : function(res) {
-				alert("Logout effettuato");
-				location.reload();
+				location.replace('home.htm');
 			}
 		});
 	}	

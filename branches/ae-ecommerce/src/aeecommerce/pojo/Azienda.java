@@ -53,6 +53,7 @@ public class Azienda extends Cliente {
 		r.setPassword(password);
 		r.setPiva(piva);
 		r.setRagioneSociale(ragioneSociale);
+		r.setType("Azienda");
 		return r;
 	}
 }
