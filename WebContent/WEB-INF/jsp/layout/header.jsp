@@ -1,7 +1,7 @@
 <img src="resources/images/banner.jpg" />
 
 <div class="menu">
-	<a href="#">Home</a>
+	<a href="home.htm">Home</a>
 	<a href="#">Condizioni</a>
 	<a href="#">Spedizioni</a>
 	<a href="#">Pagamenti</a>
