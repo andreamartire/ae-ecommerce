@@ -4,6 +4,7 @@
 $(document).ready(function() {
 	$(".privato").hide('fast');
 	$(".azienda").hide('fast');
+	$(".type").hide('fast');
 	if($("#type").val() == "Privato")
 		$(".privato").show('fast');
 	else
@@ -43,6 +44,10 @@ I tuoi dati
 			<td>New Password </td>
 			<td><form:input path="password" type="password" /></td>
 			<td><div id="passwordError"></div></td>
+		</tr>
+		<tr class="type" >
+			<td>Type </td>
+			<td><form:input path="type" type="text" id="type"/></td>
 		</tr>
 		<tr class="privato">
 			<td>Nome </td>
