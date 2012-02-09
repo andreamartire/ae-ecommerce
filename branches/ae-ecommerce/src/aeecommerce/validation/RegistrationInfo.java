@@ -1,5 +1,7 @@
 package aeecommerce.validation;
 
+import java.util.Date;
+
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.Recapito;
@@ -19,7 +21,7 @@ public class RegistrationInfo {
 	String nome;
 	String cognome;
 	String codiceFiscale;
-	String dataNascita;
+	Date dataNascita;
 	String luogoNascita;
 	
 	//Azienda
@@ -88,10 +90,10 @@ public class RegistrationInfo {
 	public void setCodiceFiscale(String codiceFiscale) {
 		this.codiceFiscale = codiceFiscale;
 	}
-	public String getDataNascita() {
+	public Date getDataNascita() {
 		return dataNascita;
 	}
-	public void setDataNascita(String dataNascita) {
+	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
 	}
 	public String getLuogoNascita() {

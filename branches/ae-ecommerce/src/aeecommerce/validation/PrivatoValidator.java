@@ -22,7 +22,7 @@ public class PrivatoValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cognome", "cognome.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "codiceFiscale", "cf.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataNascita", "dataNascita.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "luogoNascita", "username.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "luogoNascita", "luogoNascita.required");
 
 	}
 

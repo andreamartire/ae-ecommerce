@@ -1,9 +1,15 @@
 package aeecommerce.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +22,7 @@ import aeecommerce.validation.UserValidator;
 
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes(value = {"user","registrationInfo"})
 public class RegistrationController {
 
 	@Autowired
@@ -25,13 +31,19 @@ public class RegistrationController {
 	@Autowired
 	private UserValidator userValidator;
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String registrationForm(ModelMap model)
 	{
 		// Aggiungo oggetto intermedio per raccogliere info sulla registrazione
 		System.out.println("Registration controller get");
-		RegistrationInfo uv = new RegistrationInfo();
-		model.addAttribute("registrationInfo", uv);
+		model.addAttribute("registrationInfo", new RegistrationInfo());
 
 		System.out.println("initialize user for registration form");
 		System.out.println("----------------------------------");
