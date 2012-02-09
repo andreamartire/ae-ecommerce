@@ -29,12 +29,12 @@ function checkFields(){
 	<table>
 		<tr class="azienda">
 			<td>Partita IVA :</td>
-			<td><form:input path="piva" type="text" class="azienda" onkeyup="checkFields()"/></td>
+			<td><form:input path="piva" type="text" class="azienda" onkeyup="checkFields()" onkeypress="return event.keyCode!=13"/></td>
 			<td><div id="pivaError"></div></td>
 		</tr>
 		<tr class="azienda">
 			<td>Ragione Sociale :</td>
-			<td><form:input path="ragioneSociale" type="text" onkeyup="checkFields()"/></td>
+			<td><form:input path="ragioneSociale" type="text" onkeyup="checkFields()" onkeypress="return event.keyCode!=13"/></td>
 			<td><div id="ragioneSocialeError"></div></td>
 		</tr>
 		<tr id="submit">

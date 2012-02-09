@@ -28,10 +28,10 @@ public class Privato extends Cliente {
 		super(username, password, dataRegistrazione);
 	}
 	
-	public Privato(String username, String password, String cognome, String nome, String cf, String luogoNascita, String dataNascita) {
+	public Privato(String username, String password, String cognome, String nome, String cf, String luogoNascita, Date dataNascita) {
 		super(username, password, DateUtils.now());
 		setLuogoNascita(luogoNascita);
-		setDataNascita(new Date(dataNascita));
+		setDataNascita(dataNascita);
 		setCognome(cognome);
 		setNome(nome);
 		setCodiceFiscale(cf);
@@ -89,7 +89,7 @@ public class Privato extends Cliente {
 		r.setNome(nome);
 		r.setCognome(cognome);
 		r.setCodiceFiscale(codiceFiscale);
-		r.setDataNascita(dataNascita.toString());
+		r.setDataNascita(dataNascita);
 		r.setLuogoNascita(luogoNascita);
 		r.setType("Privato");
 		return r;
