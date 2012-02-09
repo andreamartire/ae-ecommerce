@@ -26,7 +26,7 @@ function checkConfirmPassword() {
 	return;
 }
 </script>
-<a href="account.htm">Gestione Account</a> > Cambio Password
+<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > Cambio Password
 
 <form:form method="POST" commandName="info">
 	<table>
@@ -50,4 +50,3 @@ function checkConfirmPassword() {
 		</tr>
 	</table>
 </form:form>
-<a href="home.htm"><button>Home</button></a>

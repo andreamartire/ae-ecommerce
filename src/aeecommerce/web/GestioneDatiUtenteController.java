@@ -12,7 +12,7 @@ import aeecommerce.service.UserService;
 
 @Controller
 @SessionAttributes(value = {"user","regInfo"})
-public class DatiUtenteController {
+public class GestioneDatiUtenteController {
 
 	@Autowired
 	UserService userService;
