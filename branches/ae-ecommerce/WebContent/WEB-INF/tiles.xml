@@ -49,4 +49,34 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/user/account.jsp" />
 	</definition>
 	
+	<definition name="changePassword" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Password" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/changePassword.jsp" />
+	</definition>
+	
+	<definition name="passwordSuccess" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Password" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/passwordSuccess.jsp" />
+	</definition>
+	
+	<definition name="passwordError" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Password" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/passwordError.jsp" />
+	</definition>
+	
+	<definition name="gestioneDatiUtente" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Dati Utente" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/gestioneDatiUtente.jsp" />
+	</definition>
+	
+	<definition name="gestioneIndirizzi" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Indirizzi" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/gestioneIndirizzi.jsp" />
+	</definition>
+	
+	<definition name="gestioneRecapiti" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Recapiti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/gestioneRecapiti.jsp" />
+	</definition>
+	
 </tiles-definitions>

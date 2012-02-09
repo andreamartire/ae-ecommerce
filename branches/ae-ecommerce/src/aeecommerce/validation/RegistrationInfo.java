@@ -3,6 +3,7 @@ package aeecommerce.validation;
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.Recapito;
+import aeecommerce.pojo.User;
 
 public class RegistrationInfo {
 
@@ -112,15 +113,27 @@ public class RegistrationInfo {
 		this.ragioneSociale = ragioneSociale;
 	}
 
-	public Privato newPrivato() {
+	public Privato toPrivato() {
 		Privato pvt = new Privato(username,password,cognome,nome,codiceFiscale,luogoNascita,dataNascita);
 		pvt.getRecapiti().add(new Recapito(getEmail(), Recapito.EMAIL));
 		return pvt;
 	}
 
-	public Azienda newAzienda() {
+	public Azienda toAzienda() {
 		Azienda az = new Azienda(username,password,piva,ragioneSociale);
 		az.getRecapiti().add(new Recapito(getEmail(), Recapito.EMAIL));
 		return az;
+	}
+	
+	public User objByType(){
+		if(getType().equals("Privato")){
+			System.out.println("objByType - Privato");
+			return toAzienda();
+		}
+		else if(getType().equals("Azienda")){
+			System.out.println("objByType - Azienda");
+			return toPrivato();
+		}
+		return null;
 	}
 }
