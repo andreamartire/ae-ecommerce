@@ -84,4 +84,11 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 	public int countAzienda() {
 		return findAllAzienda().size();
 	}
+
+	@Override
+	public boolean isPrivato(String username) {
+		if(getHibernateTemplate().get(Privato.class, findByUsername(username).getId()) != null)
+			return true;
+		return false;
+	}
 }

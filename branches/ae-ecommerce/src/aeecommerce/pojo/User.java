@@ -27,7 +27,6 @@ public class User {
 
 	String password;
 
-	@Temporal(TemporalType.DATE)
 	Date dataRegistrazione;
 
 	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)

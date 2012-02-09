@@ -18,7 +18,6 @@ public class Privato extends Cliente {
 	
 	String codiceFiscale;
 	
-	@Temporal(TemporalType.DATE)
 	Date dataNascita;
 	
 	String luogoNascita;
@@ -80,7 +79,7 @@ public class Privato extends Cliente {
 	
 	@Override
 	public String toString() {
-		return super.toString() + "\n" + nome + " " + cognome + " " + codiceFiscale;
+		return super.toString() + "\n" + nome + " " + cognome + " " + codiceFiscale + " " + dataNascita + " " + luogoNascita;
 	}
 	
 	public RegistrationInfo toRegInfo(){
