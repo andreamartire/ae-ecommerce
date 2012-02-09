@@ -44,11 +44,11 @@
 			$('#emailError').html("<h5 style=\"color: green;\">Ok</h5>");
 
 		//confirm email
-		/*if ($('#email').val() != $('#confirmEmail').val()) {
+		if ($('#email').val() != $('#confirmEmail').val()) {
 			$('#confirmEmailError').html("<h5 style=\"color: red;\">Non coincide</h5>");
 			error = true;
 		} else
-			$('#confirmEmailError').html("<h5 style=\"color: green;\">Coincide</h5>");*/
+			$('#confirmEmailError').html("<h5 style=\"color: green;\">Coincide</h5>");
 
 		var value = $("input[@name=type]:checked").val();
 
@@ -153,6 +153,7 @@
 		} else {
 			$(".privato").addClass("hide");
 			$(".azienda").removeClass("hide");
+			$("#dataNascita").val("1900-01-01");
 		}
 	}
 </script>
