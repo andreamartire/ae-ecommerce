@@ -55,14 +55,14 @@ public class RegistrationController {
 			User u = null;
 			// Se è un privato registro un privato
 			if(regInfo.getType().equals("Privato")){
-				u = regInfo.newPrivato();
+				u = regInfo.toPrivato();
 				
 				System.out.println("adding privato in to db " + u);
 				
 			}
 			// Se è un'azienda registro un'azienda
 			if(regInfo.getType().equals("Azienda")){
-				u = regInfo.newAzienda();
+				u = regInfo.toAzienda();
 				System.out.println("adding azienda in to db " + u);
 			}
 			userService.insert(u);
