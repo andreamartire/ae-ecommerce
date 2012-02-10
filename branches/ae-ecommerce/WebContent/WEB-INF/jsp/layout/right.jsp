@@ -36,7 +36,6 @@
 			$('#logoutButton').show();
 			$('#message').html("Bentornato " + user);
 			if (type == "admin") {
-				alert("Accesso Amministratore");
 				$('#accountCliente').hide();
 				$('#accountAdmin').show();
 			} else {
@@ -67,11 +66,11 @@
 </div>
 
 <div id="accountAdmin" style="display: none; padding: 5px">
-	<a href="#">Banner e dati azienda</a> <br/>
-	<a href="#">Categorie e Prodotti</a> <br/>
-	<a href="#">Spedizioni e Pagamenti</a> <br/>
-	<a href="#">F.A.Q.</a> <br/>
-	<a href="#">Utenti</a> <br/>
+	<a href="gestioneAzienda">Banner e dati azienda</a> <br/>
+	<a href="gestioneCategorie">Categorie e Prodotti</a> <br/>
+	<a href="spedizioniPagamenti">Spedizioni e Pagamenti</a> <br/>
+	<a href="gestioneFAQ">F.A.Q.</a> <br/>
+	<a href="gestioneUtenti.htm">Utenti</a> <br/>
 </div>
 
 <div id="loginForm">

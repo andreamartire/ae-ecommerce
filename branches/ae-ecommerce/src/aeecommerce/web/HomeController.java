@@ -17,7 +17,6 @@ public class HomeController {
 	{
 		User user = new User();
 		model.addAttribute("user", user);
-		System.out.println("HOME CONTROLLER GET");
 		return "home";
 	}
 	

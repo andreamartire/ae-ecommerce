@@ -12,4 +12,5 @@ public interface CategoriaDao {
 	public Categoria findByID(int id); 
 	public List<Categoria> findAll();  
 	public int count();
+	public Categoria findByName(String parentString);
 }

@@ -1,5 +1,8 @@
 package aeecommerce.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +41,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findById(int id) {
 		return userDao.findByID(id);
+	}
+
+	@Override
+	public List<User> findAll() {
+		List<User> users = new ArrayList<User>();
+		users.addAll(userDao.findAllPrivato());
+		users.addAll(userDao.findAllAzienda());
+		return users;
 	}
 
 	@Override

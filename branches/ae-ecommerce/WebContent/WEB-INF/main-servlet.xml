@@ -23,12 +23,13 @@
 	<!-- tiles -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass">
+		<property name="viewClass">	
 			<value>
 				org.springframework.web.servlet.view.tiles2.TilesView
 			</value>
 		</property>
 	</bean>
+	
 	<bean id="tilesConfigurer"
 		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		<property name="definitions">
