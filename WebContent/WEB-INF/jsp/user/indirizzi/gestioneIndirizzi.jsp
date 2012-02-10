@@ -12,15 +12,15 @@ function elimina(id){
 </script>
 <a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > Gestione Indirizzi
 
-<form:form method="post" commandName="indirizzi">
+<form:form method="post" commandName="userdb">
 	<table>
-		<c:forEach items="${indirizzi}" var="i" >
+		<c:forEach items="${userdb.indirizzi}" var="i" varStatus="row">
 			<tr><td colspan="2"><hr></hr></td></tr>
-			<tr><td>Via</td><td><input type="text" name="via" value="${i.via}" /></td></tr>
-			<tr><td>Numero</td><td><input type="text" name="via" value="${i.numero}" /></td></tr>
-			<tr><td>Citta</td><td><input type="text" name="via" value="${i.citta}" /></td></tr>
-			<tr><td>Provincia</td><td><input type="text" name="via" value="${i.provincia}" /></td></tr>
-			<tr><td>CAP</td><td><input type="text" name="via" value="${i.cap}" /></td></tr>
+			<tr><td>Via</td><td><form:input path="indirizzi[${row.index}].via" /></td></tr>
+			<tr><td>Numero</td><td><form:input path="indirizzi[${row.index}].numero" /></td></tr>
+			<tr><td>Citta</td><td><form:input path="indirizzi[${row.index}].citta" /></td></tr>
+			<tr><td>Provincia</td><td><form:input path="indirizzi[${row.index}].provincia" /></td></tr>
+			<tr><td>CAP</td><td><form:input path="indirizzi[${row.index}].cap" /></td></tr>
 			<tr><td><input type="button" value="Elimina" onclick="elimina(${i.id})"></input></td></tr>
 		</c:forEach>
 		<tr><td colspan="2"><input type="submit" value="Salva Modifiche"></td></tr>

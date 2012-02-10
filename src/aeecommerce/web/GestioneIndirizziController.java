@@ -1,11 +1,13 @@
 package aeecommerce.web;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +20,7 @@ import aeecommerce.service.IndirizzoService;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","type","indirizzi"})
+@SessionAttributes(value = {"user","type","userdb", "indirizzo"})
 public class GestioneIndirizziController {
 
 	@Autowired
@@ -28,7 +30,7 @@ public class GestioneIndirizziController {
 	IndirizzoService indirizzoService;
 	
 	@RequestMapping(value={"/gestioneIndirizzi.htm"}, method = RequestMethod.GET)
-	public String addressFormGet(@ModelAttribute("user") String username,  Map<String,Object> model)
+	public String addressFormGet(@ModelAttribute("user") String username,  Map<String, User> model)
 	{
 		System.out.println("gestione indirizzi controller get");
 		Set<Indirizzo> ind = userService.findByUsername(username).getIndirizzi();
@@ -36,20 +38,20 @@ public class GestioneIndirizziController {
 			Indirizzo indirizzo = (Indirizzo) i.next();
 			System.out.println(indirizzo);
 		}
-		model.put("indirizzi",userService.findByUsername(username).getIndirizzi());
+		model.put("userdb",userService.findByUsername(username));
 		return "gestioneIndirizzi";
 	}
 
 	@RequestMapping(value={"/gestioneIndirizzi.htm"}, method = RequestMethod.POST)
-	public String addressFormPost(@ModelAttribute("user") String username, @ModelAttribute("indirizzi") Set<Indirizzo> indirizzi,  Map<String,Object> model)
+	public String addressFormPost(@ModelAttribute("user") String username, @ModelAttribute("userdb") User user,  Map<String,User> model)
 	{
 		System.out.println("gestione indirizzi controller post");
-		for (Iterator i = indirizzi.iterator(); i.hasNext();) {
+		for (Iterator i = user.getIndirizzi().iterator(); i.hasNext();) {
 			Indirizzo indirizzo = (Indirizzo) i.next();
 			System.out.println(indirizzo);
 		}
 		User u = userService.findByUsername(username);
-		u.setIndirizzi(indirizzi);
+		u.setIndirizzi(user.getIndirizzi());
 		userService.update(u);
 		Set<Indirizzo> ind = userService.findByUsername(username).getIndirizzi();
 		for (Iterator i = ind.iterator(); i.hasNext();) {
