@@ -14,7 +14,7 @@ import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user"})
+@SessionAttributes(value = {"user","type"})
 public class GestioneDatiUtenteController {
 
 	@Autowired
