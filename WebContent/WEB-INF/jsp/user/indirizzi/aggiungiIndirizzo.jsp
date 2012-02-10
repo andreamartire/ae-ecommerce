@@ -22,6 +22,7 @@ function checkValue(campo,error,espr) {
 
 <form:form method="POST" onsubmit="return checkFields()" commandName="indirizzo">
 	<table>
+		<tr><td colspan="2"><hr></hr></td></tr>
 		<tr>
 			<td>Via :</td>
 			<td><form:input path="via" type="text" onkeyup="checkValue('#via','#viaError',/^[a-zA-Z\s]+$/)"/></td>
@@ -52,4 +53,3 @@ function checkValue(campo,error,espr) {
 		</tr>
 	</table>
 </form:form>
-<a href="home.htm"><button>Back</button></a>

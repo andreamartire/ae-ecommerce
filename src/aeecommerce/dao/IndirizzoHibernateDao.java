@@ -34,4 +34,9 @@ public class IndirizzoHibernateDao extends MasterDao implements IndirizzoDao{
 	public void delete(Indirizzo r) {
 		getHibernateTemplate().delete(r);
 	}
+
+	@Override
+	public void insert(Indirizzo i) {
+		getHibernateTemplate().save(i);
+	}
 }

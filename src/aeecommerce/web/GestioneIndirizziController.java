@@ -6,14 +6,15 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Indirizzo;
 import aeecommerce.pojo.User;
+import aeecommerce.service.IndirizzoService;
 import aeecommerce.service.UserService;
 
 @Controller
@@ -22,6 +23,9 @@ public class GestioneIndirizziController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	IndirizzoService indirizzoService;
 	
 	@RequestMapping(value={"/gestioneIndirizzi.htm"}, method = RequestMethod.GET)
 	public String addressFormGet(@ModelAttribute("user") String username,  Map<String,Object> model)
@@ -52,7 +56,7 @@ public class GestioneIndirizziController {
 			Indirizzo indirizzo = (Indirizzo) i.next();
 			System.out.println(indirizzo);
 		}
-		return "gestioneIndirizzi";
+		return "redirect:gestioneIndirizzi.htm";
 	}
 	
 	@RequestMapping(value={"/aggiungiIndirizzo.htm"}, method = RequestMethod.GET)
@@ -69,6 +73,13 @@ public class GestioneIndirizziController {
 		User u = userService.findByUsername(username);
 		u.getIndirizzi().add(indirizzo);
 		userService.update(u);
-		return "gestioneIndirizzi";
+		return "redirect:gestioneIndirizzi.htm";
+	}
+	
+	@RequestMapping(value={"/eliminaIndirizzo.htm"}, params="id")
+	public String removeAddressGet(@RequestParam(value="id") int id,  Map<String,Object> model)
+	{
+		indirizzoService.delete(id);
+		return "redirect:gestioneIndirizzi.htm";
 	}
 }
