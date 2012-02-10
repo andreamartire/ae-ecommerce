@@ -41,4 +41,9 @@ public class RecapitoHibernateDao extends MasterDao implements RecapitoDao {
 	public void delete(Recapito r) {
 		getHibernateTemplate().delete(r);
 	}
+
+	@Override
+	public void insert(Recapito i) {
+		getHibernateTemplate().save(i);
+	}
 }

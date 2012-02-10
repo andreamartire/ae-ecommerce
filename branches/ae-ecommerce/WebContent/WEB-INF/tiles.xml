@@ -99,6 +99,11 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/user/recapiti/gestioneRecapiti.jsp" />
 	</definition>
 	
+	<definition name="aggiungiRecapito" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Recapiti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/recapiti/aggiungiRecapito.jsp" />
+	</definition>
+	
 	<definition name="userManagement" extends="baseLayout">
 	  	<put-attribute name="title" value="Gestione utenti" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/userManagement.jsp" />
