@@ -13,4 +13,5 @@ public interface RecapitoDao {
 	public Recapito findById(int id);
 	public List<Recapito> findAll();
 	public int count();
+	public void insert(Recapito i);
 }
