@@ -19,4 +19,34 @@ public class CategoriaServiceImpl implements CategoriaService {
 		return categoriaDao.findAll();
 	}
 
+	@Override
+	public void insert(Categoria c) {
+		categoriaDao.insert(c);
+	}
+
+	@Override
+	public Categoria findByName(String parentString) {
+		return categoriaDao.findByName(parentString);
+	}
+
+	@Override
+	public void delete(Categoria c) {
+		categoriaDao.delete(c);
+	}
+
+	@Override
+	public void update(Categoria c) {
+		categoriaDao.update(c);
+	}
+
+	@Override
+	public void delete(int id) {
+		categoriaDao.delete(id);
+	}
+
+	@Override
+	public Categoria findById(int id) {
+		return categoriaDao.findByID(id);
+	}
+
 }

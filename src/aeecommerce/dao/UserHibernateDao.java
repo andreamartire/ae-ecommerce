@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import aeecommerce.pojo.Amministratore;
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.User;
@@ -57,10 +58,12 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 		List<User> userList = getHibernateTemplate().findByExample(new User(username,null,null));
 		if(userList != null && !userList.isEmpty()){
 			int id = userList.get(0).getId();
+			System.out.println("******** "+ id + " **************" );
 			if(getHibernateTemplate().get(Privato.class, id) != null)
 				return getHibernateTemplate().get(Privato.class,id);
 			if(getHibernateTemplate().get(Azienda.class, id) != null)
 				return getHibernateTemplate().get(Azienda.class,id);
+			return getHibernateTemplate().get(Amministratore.class, id);		
 		}
 		return null;
 	}

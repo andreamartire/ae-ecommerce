@@ -38,4 +38,9 @@ public class CategoriaHibernateDao extends MasterDao implements CategoriaDao {
 	public int count() {
 		return findAll().size();
 	}
+
+	@Override
+	public Categoria findByName(String parentString) {
+		return (Categoria) getHibernateTemplate().find("from Categoria where nome="+parentString).get(0);
+	}
 }
