@@ -89,6 +89,11 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/user/indirizzi/gestioneIndirizzi.jsp" />
 	</definition>
 	
+	<definition name="aggiungiIndirizzo" extends="baseLayout">
+	  	<put-attribute name="title" value="Aggiungi Indirizzo" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/indirizzi/aggiungiIndirizzo.jsp" />
+	</definition>
+	
 	<definition name="gestioneRecapiti" extends="baseLayout">
 	  	<put-attribute name="title" value="Gestione Recapiti" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/user/recapiti/gestioneRecapiti.jsp" />

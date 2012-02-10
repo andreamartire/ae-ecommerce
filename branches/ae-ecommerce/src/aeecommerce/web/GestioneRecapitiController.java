@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","regInfo"})
+@SessionAttributes(value = {"user","type"})
 public class GestioneRecapitiController {
 
 	@Autowired
