@@ -4,7 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
-
+<script type="text/javascript">
+function elimina(id){
+	if (confirm("Confermi eliminazione?"))
+		location.href = "eliminaIndirizzo.htm?id=" + id;
+}
+</script>
 <a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > Gestione Indirizzi
 
 <form:form method="post" commandName="indirizzi">
@@ -16,6 +21,7 @@
 			<tr><td>Citta</td><td><input type="text" name="via" value="${i.citta}" /></td></tr>
 			<tr><td>Provincia</td><td><input type="text" name="via" value="${i.provincia}" /></td></tr>
 			<tr><td>CAP</td><td><input type="text" name="via" value="${i.cap}" /></td></tr>
+			<tr><td><input type="button" value="Elimina" onclick="elimina(${i.id})"></input></td></tr>
 		</c:forEach>
 		<tr><td colspan="2"><input type="submit" value="Salva Modifiche"></td></tr>
    </table>

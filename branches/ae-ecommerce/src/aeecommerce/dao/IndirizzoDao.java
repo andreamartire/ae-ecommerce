@@ -13,4 +13,5 @@ public interface IndirizzoDao {
 	public Indirizzo findById(int id);
 	public List<Indirizzo> findAll();
 	public int count();
+	public void insert(Indirizzo i);
 }
