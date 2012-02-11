@@ -17,6 +17,8 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 			getHibernateTemplate().save((Privato) u);
 		if(Azienda.class == u.getClass())
 			getHibernateTemplate().save((Azienda) u);
+		if(Amministratore.class == u.getClass())
+			getHibernateTemplate().save((Amministratore) u);
 	}
 
 	public void update(User u) {
@@ -24,6 +26,8 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 			getHibernateTemplate().update((Privato) u);
 		if(Azienda.class == u.getClass())
 			getHibernateTemplate().update((Azienda) u);
+		if(Amministratore.class == u.getClass())
+			getHibernateTemplate().save((Amministratore) u);
 	}
 	
 	public void delete(User u){
@@ -31,6 +35,8 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 			getHibernateTemplate().delete((Privato) u);
 		if(Azienda.class == u.getClass())
 			getHibernateTemplate().delete((Azienda) u);
+		if(Amministratore.class == u.getClass())
+			getHibernateTemplate().delete((Amministratore) u);
 	}
 
 	public void delete(int id) {
@@ -43,6 +49,10 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 			getHibernateTemplate().delete((Azienda) user);
 			System.out.println("delete azienda");
 		}
+		if(getHibernateTemplate().get(Amministratore.class, id) != null){
+			getHibernateTemplate().delete((Amministratore) user);
+			System.out.println("delete amministratore");
+		}
 	}
 
 	public User findByID(int id) {
@@ -50,7 +60,7 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 			return getHibernateTemplate().get(Privato.class,id);
 		if(getHibernateTemplate().get(Azienda.class, id) != null)
 			return getHibernateTemplate().get(Azienda.class,id);
-		return null;
+		return getHibernateTemplate().get(Amministratore.class, id);
 	}
 	
 	public User findByUsername(String username) {

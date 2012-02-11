@@ -1,22 +1,33 @@
 package aeecommerce.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import aeecommerce.pojo.Amministratore;
 import aeecommerce.pojo.User;
+import aeecommerce.service.UserService;
 
 
 @Controller
 @RequestMapping("/home.htm")
 public class HomeController {
 	
+	@Autowired
+	UserService userService;
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getHome(ModelMap model)
 	{
-		User user = new User();
-		model.addAttribute("user", user);
+		Amministratore admin = new Amministratore();
+		admin.setUsername("admin");
+		admin.setPassword("admin");
+		if (userService.findByUsername("admin") == null) {
+			userService.insert(admin);
+		}
+		
 		return "home";
 	}
 	
