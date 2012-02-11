@@ -86,11 +86,6 @@
 								" - <a onclick='elimina("+subcat.id+")'>Elimina</a>" +
 								"</span>" +
 							"</span>";
-// 							"<li><span>" + 
-// 								"<b>" + subcat.nome + "</b>" +
-// 								" - <a onclick=\"modifica("+subcat.id+")\">Modifica</a>" +
-// 								" - <a onclick=\"elimina("+subcat.id+")\">Elimina</a>" +
-// 							"</span></li>";
 					});
 				}
 				html += "</ul>";
