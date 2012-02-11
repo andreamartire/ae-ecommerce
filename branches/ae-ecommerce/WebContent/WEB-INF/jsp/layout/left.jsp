@@ -1,20 +1,39 @@
 <script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {
-	$.ajax({
-		url : 'listCategorie',
-		type: "GET",
-		success : function(list) {
-			alert(list);
-		}
-	});
-})
-</script>
 
 <script type="text/javascript">
+	$(document).ready(function () {
+		$.ajax({
+			url: 'listCategorie.htm',
+			dataType: 'json',
+			success: creaMenuCategorie,
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
+			}
+		});
+	// 	$.getJSON('listCategorie.htm', creaMenuCategorie);
+	});
+	
+	function creaMenuCategorie(data) {
+		$.each(data.categorie, function(key, categoria) {
+			var html = "<li><a href=\"#\">"+categoria.nome+"</a>";
+			if (categoria.children != "")
+			{
+				html += "<ul id=\""+categoria.nome+"\">";
+				$.each(categoria.children, function(key, subcat) {
+					html += "<li><a href=\"#\">"+subcat.nome+"</a></li>";
+				});
+				html += "</ul>";
+			}
+			html += "</li>";
+			
+			$("#sidebarmenu1").append(html);
+		});
+		initsidebarmenu();
+	}
+	
 	//Nested Side Bar Menu (Mar 20th, 09)
 	//By Dynamic Drive: http://www.dynamicdrive.com/style/
-
+	
 	var menuids = [ "sidebarmenu1" ] //Enter id(s) of each Side Bar Menu's main UL, separated by commas
 
 	function initsidebarmenu() {
@@ -44,53 +63,10 @@ $(document).ready(function () {
 			}
 		}
 	}
-
-	if (window.addEventListener)
-		window.addEventListener("load", initsidebarmenu, false)
-	else if (window.attachEvent)
-		window.attachEvent("onload", initsidebarmenu)
 </script>
-
-
-<!-- qua andrebbe creato tutto dinamicamente dalla tabella categoria -->
 
 <div class="sidebarmenu">
 	<ul id="sidebarmenu1">
-		<li><a href="#">Hardware</a>
-			<ul>
-				<li><a href="#">Cpu</a>
-					<ul>
-						<li><a href="#">Intel</a></li>
-						<li><a href="#">Amd</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Alimentatori</a></li>
-				<li><a href="#">Schede grafiche</a></li>
-				<li><a href="#">Motherboard</a></li>
-			</ul>
-		</li>
-		<li><a href="#">Periferiche</a>
-			<ul>
-				<li><a href="#">Stampanti</a></li>
-				<li><a href="#">Monitor</a>
-					<ul>
-						<li><a href="#">LCD</a></li>
-						<li><a href="#">LED</a></li>
-						<li><a href="#">OLED</a></li>
-						<li><a href="#">Professionali</a></li>
-					</ul>
-				</li>
-			</ul>
-		</li>
-		<li><a href="#">Software</a>
-			<ul>
-				<li><a href="#">Antivirus</a></li>
-				<li><a href="#">Sistemi Operativi</a></li>
-				<li><a href="#">Manageriali</a></li>
-				<li><a href="#">Grafica</a></li>
-			</ul>
-		</li>
-		<li><a href="#">Servizi</a></li>
-		<li><a href="#">Last Minute</a></li>
+		<!-- contenuto caricato da jquery -->
 	</ul>
 </div>

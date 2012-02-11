@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -21,10 +22,10 @@ public class Categoria {
 	
 	String descrizione;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	Categoria parent;
 	
-	@OneToMany(mappedBy="parent")
+	@OneToMany(mappedBy="parent", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	List<Categoria> children;
 	
 	@OneToMany(mappedBy="categoria")
@@ -65,6 +66,7 @@ public class Categoria {
 
 	public void setParent(Categoria parent) {
 		this.parent = parent;
+		parent.addSubCat(this);
 	}
 
 	public List<Categoria> getChildren() {

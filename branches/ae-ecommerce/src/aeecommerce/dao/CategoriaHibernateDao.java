@@ -14,7 +14,7 @@ public class CategoriaHibernateDao extends MasterDao implements CategoriaDao {
 	}
 
 	public void update(Categoria entity) {
-		getHibernateTemplate().save(entity);
+		getHibernateTemplate().saveOrUpdate(entity);
 	}
 
 	public void delete(Categoria entity) {
