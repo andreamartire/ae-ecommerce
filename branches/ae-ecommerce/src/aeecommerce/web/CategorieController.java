@@ -32,7 +32,16 @@ public class CategorieController {
 				if (c.getChildren() != null && !c.getChildren().isEmpty()) {
 					for (Categoria s1 : c.getChildren()) {
 						json += "{\"id\":\"" + s1.getId() + "\",";
-						json += "\"nome\":\"" + s1.getNome() + "\"},";
+						json += "\"nome\":\"" + s1.getNome() + "\",";
+						json += "\"children\":[";
+						if (s1.getChildren() != null && !s1.getChildren().isEmpty()) {
+							for (Categoria s11 : s1.getChildren()) {
+								json += "{\"id\":\"" + s11.getId() + "\",";
+								json += "\"nome\":\"" + s11.getNome() + "\"},";
+							}
+							json = json.substring(0, json.length()-1);
+						} 
+						json += "]},";
 					}
 					json = json.substring(0, json.length()-1);
 				}

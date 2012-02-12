@@ -18,9 +18,18 @@
 			var html = "<li><a href=\"#\">"+categoria.nome+"</a>";
 			if (categoria.children != "")
 			{
-				html += "<ul id=\""+categoria.nome+"\">";
+				html += "<ul>";
 				$.each(categoria.children, function(key, subcat) {
-					html += "<li><a href=\"#\">"+subcat.nome+"</a></li>";
+					html += "<li><a href=\"#\">"+subcat.nome+"</a>";
+					if (subcat.children != "")
+					{
+						html += "<ul>";
+						$.each(subcat.children, function(key, subsubcat) {
+							html += "<li><a href=\"#\">"+subsubcat.nome+"</a></li>";
+						});
+						html += "</ul>";
+					}
+					html += "</li>";
 				});
 				html += "</ul>";
 			}
