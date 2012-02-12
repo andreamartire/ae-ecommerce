@@ -109,6 +109,26 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/userManagement.jsp" />
 	</definition>
 	
+	<definition name="gestioneAdminDatiAzienda" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Dati Azienda" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/gestioneAdminDatiAzienda.jsp" />
+	</definition>
+	
+	<definition name="gestioneAdminDatiPrivato" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Dati Privato" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/gestioneAdminDatiPrivato.jsp" />
+	</definition>
+	
+	<definition name="gestioneAdminDatiError" extends="baseLayout">
+	  	<put-attribute name="title" value="Error Gestione Dati" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/gestioneAdminDatiError.jsp" />
+	</definition>
+	
+	<definition name="gestioneAdminDatiSuccess" extends="baseLayout">
+	  	<put-attribute name="title" value="Ok Gestione Dati" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/gestioneAdminDatiSuccess.jsp" />
+	</definition>
+	
 	<definition name="categoriesManagement" extends="baseLayout">
 	  	<put-attribute name="title" value="Gestione utenti" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/categoriesManagement.jsp" />

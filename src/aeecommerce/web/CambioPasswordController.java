@@ -14,7 +14,7 @@ import aeecommerce.validation.RegistrationInfo;
 
 @Controller
 @SessionAttributes(value = {"user","info"})
-public class GestioneCambioPasswordController {
+public class CambioPasswordController {
 
 	@Autowired
 	UserService userService;

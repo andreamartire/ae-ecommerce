@@ -5,19 +5,11 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <script type="text/javascript">
-	function elimina(idUtente) {
-		$.ajax({
-			url : 'eliminaUtente.htm',
-			type: "POST",
-			data : ({
-				id : idUtente,
-			}),
-			success : function(res) {
-				$("#"+idUtente).hide();
-			}
-		});
+	function modifica(idUtente) {
+		location.href="modificaUtente.htm?id="+idUtente;
 	}
 </script>
+<a href="home.htm">Home</a> > Gestione Utenti
 
 <table cellpadding=3>
 	<tr>
@@ -26,7 +18,8 @@
 	<c:forEach var="user" items="${users}">
 		<tr id="${user.id}">
 			<td><c:out value="${user.username}" /></td>
-			<td><input type="button" value="Elimina" onclick="elimina(${user.id})">
+			<td><input type="button" value="Modifica" onclick="modifica(${user.id})"></td>
+			<td><input type="button" value="Elimina" onclick="elimina(${user.id})"></td>
 		</tr>
 	</c:forEach>
 </table>

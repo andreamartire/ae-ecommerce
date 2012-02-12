@@ -23,6 +23,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	// User
+	
 	@RequestMapping(value = "/ajaxLogin.htm", method = RequestMethod.POST)
 	public @ResponseBody String ajaxLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
 		
@@ -64,27 +66,5 @@ public class UserController {
 		if(userDB == null)
 			return "available";
 		return "notAvailable";
-	}
-	
-	@RequestMapping(value = {"/gestioneUtenti.htm"}, method = RequestMethod.GET)
-	public String listUsers(ModelMap model) {
-		List<User> users = userService.findAll();
-        model.put("users", users);
-        
-        return "userManagement";
-	}
-	
-	@RequestMapping(value = {"/modificaUtente.htm"}, method = RequestMethod.GET)
-	public @ResponseBody String modifyUser(@RequestParam int id, ModelMap model) {
-		model.put("userDB",userService.findById(id));
-		
-		return "singleUserManagement";
-	}
-	
-	@RequestMapping(value = {"/eliminaUtente.htm"}, method = RequestMethod.POST)
-	public @ResponseBody String deleteUser(@RequestParam int id) {
-		userService.delete(id);
-		
-		return "ok";
 	}
 }
