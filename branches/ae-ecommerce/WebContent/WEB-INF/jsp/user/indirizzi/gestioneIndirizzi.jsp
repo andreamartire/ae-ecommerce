@@ -7,24 +7,24 @@
 <script type="text/javascript">
 function elimina(id){
 	if (confirm("Confermi eliminazione?"))
-		location.href = "eliminaIndirizzo.htm?id=" + id;
-}
+		location.href = "eliminaIndirizzoAdmin.htm?idAddress=" + id;
+} 
 </script>
-<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > Gestione Indirizzi
-
+<a href="home.htm">Home</a> > <a href="gestioneUtenti.htm">Gestione Utenti</a> > <a href="gestioneUtente.htm?id=${userdb.id}">Gestione Utente</a> > Gestione Indirizzi
+<hr></hr>
 <form:form method="post" commandName="userdb">
 	<table>
 		<c:forEach items="${userdb.indirizzi}" var="i" varStatus="row">
-			<tr><td colspan="2"><hr></hr></td></tr>
 			<tr><td>Via</td><td><form:input path="indirizzi[${row.index}].via" /></td></tr>
 			<tr><td>Numero</td><td><form:input path="indirizzi[${row.index}].numero" /></td></tr>
 			<tr><td>Citta</td><td><form:input path="indirizzi[${row.index}].citta" /></td></tr>
 			<tr><td>Provincia</td><td><form:input path="indirizzi[${row.index}].provincia" /></td></tr>
 			<tr><td>CAP</td><td><form:input path="indirizzi[${row.index}].cap" /></td></tr>
 			<tr><td><input type="button" value="Elimina" onclick="elimina(${i.id})"></input></td></tr>
+			<tr><td colspan="2"><hr></hr></td></tr>
 		</c:forEach>
 		<tr><td colspan="2"><input type="submit" value="Salva Modifiche"></td></tr>
    </table>
 </form:form>
 
-<a href="aggiungiIndirizzo.htm"><button>Aggiungi Indirizzo</button></a>
+<a href="aggiungiIndirizzoAdmin.htm"><button>Aggiungi Indirizzo</button></a>

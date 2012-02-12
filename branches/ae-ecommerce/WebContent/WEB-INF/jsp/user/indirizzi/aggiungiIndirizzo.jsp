@@ -18,11 +18,10 @@ function checkValue(campo,error,espr) {
 	return;
 }
 </script>
-<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > <a href="gestioneIndirizzi.htm">Gestione Indirizzi</a> > Aggiungi Indirizzo
-
+<a href="home.htm">Home</a> > <a href="gestioneUtenti.htm">Gestione Utenti</a> > <a href="gestioneUtente.htm?id=${id}">Gestione Utente</a> > <a href="gestioneIndirizziAdmin.htm?id=${id}">Gestione Indirizzi</a> > Aggiungi Indirizzo
+<hr></hr>
 <form:form method="POST" onsubmit="return checkFields()" commandName="indirizzo">
 	<table>
-		<tr><td colspan="2"><hr></hr></td></tr>
 		<tr>
 			<td>Via :</td>
 			<td><form:input path="via" type="text" onkeyup="checkValue('#via','#viaError',/^[a-zA-Z\s]+$/)"/></td>
@@ -48,6 +47,7 @@ function checkValue(campo,error,espr) {
 			<td><form:input path="cap" type="text" onkeyup="checkValue('#cap','#capError',/^\d{5}$/)"/></td>
 			<td><div id="capError"></div></td>
 		</tr>
+		<tr><td colspan="2"><hr></hr></td></tr>
 		<tr>
 			<td colspan="2"><input type="submit"></td>
 		</tr>
