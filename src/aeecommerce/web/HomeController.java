@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import aeecommerce.pojo.Amministratore;
-import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 

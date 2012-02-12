@@ -8,6 +8,10 @@
 	function modifica(idUtente) {
 		location.href="modificaUtente.htm?id="+idUtente;
 	}
+	function elimina(id){
+		if (confirm("Confermi eliminazione?"))
+			location.href = "eliminaUtente.htm?id=" + id;
+	}
 </script>
 <a href="home.htm">Home</a> > Gestione Utenti
 
