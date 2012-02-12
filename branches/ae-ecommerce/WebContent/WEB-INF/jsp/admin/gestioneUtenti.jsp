@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
 	function modifica(idUtente) {
-		location.href="modificaUtente.htm?id="+idUtente;
+		location.href="gestioneUtente.htm?id="+idUtente;
 	}
 	function elimina(id){
 		if (confirm("Confermi eliminazione?"))
@@ -14,7 +14,7 @@
 	}
 </script>
 <a href="home.htm">Home</a> > Gestione Utenti
-
+<hr></hr>
 <table cellpadding=3>
 	<tr>
 		<th>Username</th>
