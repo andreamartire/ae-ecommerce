@@ -104,9 +104,14 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/user/recapiti/aggiungiRecapito.jsp" />
 	</definition>
 	
-	<definition name="userManagement" extends="baseLayout">
+	<definition name="gestioneUtenti" extends="baseLayout">
 	  	<put-attribute name="title" value="Gestione utenti" />
-	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/userManagement.jsp" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/gestioneUtenti.jsp" />
+	</definition>
+	
+	<definition name="gestioneUtente" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione utenti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/gestioneUtente.jsp" />
 	</definition>
 	
 	<definition name="gestioneAdminDatiAzienda" extends="baseLayout">
@@ -127,6 +132,16 @@
 	<definition name="gestioneAdminDatiSuccess" extends="baseLayout">
 	  	<put-attribute name="title" value="Ok Gestione Dati" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/gestioneAdminDatiSuccess.jsp" />
+	</definition>
+	
+	<definition name="gestioneIndirizziAdmin" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Indirizzi" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/indirizzi/gestioneIndirizzi.jsp" />
+	</definition>
+	
+	<definition name="aggiungiIndirizzoAdmin" extends="baseLayout">
+	  	<put-attribute name="title" value="Aggiungi Indirizzo" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/indirizzi/aggiungiIndirizzo.jsp" />
 	</definition>
 	
 	<definition name="categoriesManagement" extends="baseLayout">
