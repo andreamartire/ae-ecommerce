@@ -21,8 +21,12 @@ public class CategorieController {
 	
 	@RequestMapping(value = "/listCategorie.htm", method=RequestMethod.GET)
 	public @ResponseBody String listCategorie(ModelMap model) {
-		String json = "{\"categorie\":[";
 		List<Categoria> categorie = catService.list();
+		
+		if (categorie.isEmpty())
+			return "";
+		
+		String json = "{\"categorie\":[";
 		
 		for (Categoria c : categorie) {
 			if (c.getParent() == null) {
