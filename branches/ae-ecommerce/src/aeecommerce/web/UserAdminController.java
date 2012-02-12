@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import aeecommerce.pojo.Azienda;
-import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
@@ -68,10 +65,9 @@ public class UserAdminController {
 		return "gestioneAdminDatiSuccess";
 	}
 	
-	@RequestMapping(value = {"/eliminaUtente.htm"}, method = RequestMethod.POST)
-	public @ResponseBody String deleteUser(@RequestParam int id) {
+	@RequestMapping(value = {"/eliminaUtente.htm"}, method = RequestMethod.GET)
+	public String deleteUser(@RequestParam int id) {
 		userService.delete(id);
-		
-		return "ok";
+		return "redirect:gestioneUtenti.htm";
 	}
 }
