@@ -7,21 +7,22 @@
 <script type="text/javascript">
 function elimina(id){
 	if (confirm("Confermi eliminazione?"))
-		location.href = "eliminaRecapito.htm?id=" + id;
+		location.href = "eliminaRecapitoAdmin.htm?idRecapito=" + id;
 }
 </script>
-<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > Gestione Recapiti
+<a href="home.htm">Home</a> > <a href="gestioneUtenti.htm">Gestione Utenti</a> > <a href="gestioneUtente.htm?id=${userdb.id}">Gestione Utente</a> > Gestione Recapiti
+<hr></hr>
 
 <form:form method="post" commandName="userdb">
 	<table>
 		<c:forEach items="${userdb.recapiti}" var="i" varStatus="row">
-			<tr><td colspan="2"><hr></hr></td></tr>
 			<tr><td>Tipo</td><td><form:input path="recapiti[${row.index}].tipo" /></td></tr>
 			<tr><td>Valore</td><td><form:input path="recapiti[${row.index}].valore" /></td></tr>
 			<tr><td><input type="button" value="Elimina" onclick="elimina(${i.id})"></input></td></tr>
+			<tr><td colspan="2"><hr></hr></td></tr>
 		</c:forEach>
 		<tr><td colspan="2"><input type="submit" value="Salva Modifiche"></td></tr>
    </table>
 </form:form>
 
-<a href="aggiungiRecapito.htm"><button>Aggiungi Recapito</button></a>
+<a href="aggiungiRecapitoAdmin.htm"><button>Aggiungi Recapito</button></a>

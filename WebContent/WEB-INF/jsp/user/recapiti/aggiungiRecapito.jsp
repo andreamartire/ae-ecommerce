@@ -17,11 +17,10 @@ function checkValue(campo,error,espr) {
 	return;
 }
 </script>
-<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > <a href="gestioneRecapiti.htm">Gestione Recapiti</a> > Aggiungi Recapito
-
+<a href="home.htm">Home</a> > <a href="gestioneUtenti.htm">Gestione Utenti</a> > <a href="gestioneUtente.htm?id=${id}">Gestione Utente</a> > <a href="gestioneRecapitiAdmin.htm?id=${id}">Gestione Recapiti</a> > Aggiungi Recapito
+<hr></hr>
 <form:form method="POST" onsubmit="return checkFields()" commandName="recapito">
 	<table>
-		<tr><td colspan="2"><hr></hr></td></tr>
 		<tr>
 			<td>Tipo :</td>
 			<td><form:input path="tipo" type="text" /></td>
@@ -32,6 +31,7 @@ function checkValue(campo,error,espr) {
 			<td><form:input path="valore" type="text" onkeyup="checkFields()"/></td>
 			<td><div id="valoreError"></div></td>
 		</tr>
+		<tr><td colspan="2"><hr></hr></td></tr>
 		<tr>
 			<td colspan="2"><input type="submit"></td>
 		</tr>
