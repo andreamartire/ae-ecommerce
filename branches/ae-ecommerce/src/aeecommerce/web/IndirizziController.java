@@ -19,7 +19,7 @@ import aeecommerce.service.UserService;
 
 @Controller
 @SessionAttributes(value = {"user","type","userdb", "indirizzo"})
-public class GestioneIndirizziController {
+public class IndirizziController {
 
 	@Autowired
 	UserService userService;
