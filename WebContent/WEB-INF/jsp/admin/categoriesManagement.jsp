@@ -11,29 +11,37 @@
 
 <script type="text/javascript">
 	function elimina(idCategoria) {
-		$.ajax({
-			url : 'eliminaCategoria.htm',
-			type: "POST",
-			data : ({
-				id : idCategoria,
-			}),
-			success : function(res) {
-				location.reload();
-			}
-		});
+		if (confirm("Confermi eliminazione?")) {
+			$.ajax({
+				url : 'eliminaCategoria.htm',
+				type: "POST",
+				data : ({
+					id : idCategoria,
+				}),
+				success : function(res) {
+					location.reload();
+				}
+			});
+		}
 	}
-	function modifica(idCategoria) {
-		$.ajax({
-			url : 'modificaCategoria.htm',
-			type: "POST",
-			data : ({
-				id : idCategoria,
-			}),
-			success : function(res) {
-				alert("modifica " + idCategoria);
-			}
-		});
+	function modifica(idCategoria, nome) {
+		var name = prompt("Inserisci il nuovo nome", nome);
+		if (name!=null && name!="")
+		{
+			$.ajax({
+				url : 'modificaCategoria.htm',
+				type: "POST",
+				data : ({
+					id : idCategoria,
+					nome : name
+				}),
+				success : function(res) {
+					location.reload();
+				}
+			});
+		}
 	}
+
 	function aggiungi(idCategoria) {
 		if ($('#'+idCategoria).val() != "") {
 			$.ajax({
@@ -66,7 +74,7 @@
 					"<span>" +
 						"<b>" + categoria.nome + "</b>" +
 						"<span id='span"+categoria.id+"' style='display: none'>" +
-						" - <a onclick='modifica("+categoria.id+")'>Modifica</a>" +
+						" - <a onclick='modifica("+categoria.id+",\""+categoria.nome+"\")'>Modifica</a>" +
 						" - <a onclick='elimina("+categoria.id+")'>Elimina</a>" +
 						"</span>" +
 					"</span>";
@@ -84,7 +92,7 @@
 							"<span>" +
 								"<b>" + subcat.nome + "</b>" +
 								"<span id='span"+subcat.id+"' style='display: none'>" +
-								" - <a onclick='modifica("+subcat.id+")'>Modifica</a>" +
+								" - <a onclick='modifica("+subcat.id+","+subcat.nome+")'>Modifica</a>" +
 								" - <a onclick='elimina("+subcat.id+")'>Elimina</a>" +
 								"</span>" +
 							"</span>";
@@ -102,7 +110,7 @@
 									"<span>" +
 										"<b>" + subsubcat.nome + "</b>" +
 										"<span id='span"+subsubcat.id+"' style='display: none'>" +
-										" - <a onclick='modifica("+subsubcat.id+")'>Modifica</a>" +
+										" - <a onclick='modifica("+subsubcat.id+","+subsubcat.nome+")'>Modifica</a>" +
 										" - <a onclick='elimina("+subsubcat.id+")'>Elimina</a>" +
 										"</span>" +
 									"</span>";
@@ -128,6 +136,13 @@
 		}
 	});
 </script>
+
+<div id="popupDialog" title="Input a new widget name" style="display: none">
+	<p>
+		<label for="widgetName">Please input a new widget name:</label> 
+		<input type="text" id="widgetName" />
+	</p>
+</div>
 
 <h4>Gestione Categorie</h4>
 

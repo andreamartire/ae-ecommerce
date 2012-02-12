@@ -92,6 +92,16 @@ public class CategorieController {
 		return "aggiungiCategoria";
 	}
 	
+	@RequestMapping(value = "/modificaCategoria", method = RequestMethod.POST)
+	public @ResponseBody String editCategoria(@RequestParam int id, @RequestParam String nome) {
+		
+		Categoria categoria = catService.findById(id);
+		categoria.setNome(nome);
+		catService.update(categoria);
+		
+		return "ok";
+	}
+	
 	@RequestMapping(value = "/eliminaCategoria")
 	public @ResponseBody String eliminaCategoria(@RequestParam int id) {
 		catService.delete(id);
