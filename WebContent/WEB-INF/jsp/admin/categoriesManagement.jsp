@@ -35,17 +35,19 @@
 		});
 	}
 	function aggiungi(idCategoria) {
-		$.ajax({
-			url : 'aggiungiCategoria.htm',
-			type: "POST",
-			data : ({
-				parentId : idCategoria,
-				nome : $('#'+idCategoria).val()
-			}),
-			success : function(res) {
-				location.reload();
-			}
-		});
+		if ($('#'+idCategoria).val() != "") {
+			$.ajax({
+				url : 'aggiungiCategoria.htm',
+				type: "POST",
+				data : ({
+					parentId : idCategoria,
+					nome : $('#'+idCategoria).val()
+				}),
+				success : function(res) {
+					location.reload();
+				}
+			});
+		}
 	}
 	$(document).ready(function(){
 		$.ajax({
@@ -70,8 +72,8 @@
 					"</span>";
 				html += 
 					"<ul><li>" +
-						"<a onclick=\"aggiungi("+categoria.id+")\">Aggiungi sottocategoria</a>: " +
-						"<input id=\""+categoria.id+"\" type=\"text\" name=\"newcat\" />" +
+						"<a onclick='aggiungi("+categoria.id+")'>Aggiungi</a>: " +
+						"<input id='"+categoria.id+"'type='text' style='width: 150px' />" +
 					"</li>";
 				if (categoria.children != "")
 				{
@@ -86,6 +88,27 @@
 								" - <a onclick='elimina("+subcat.id+")'>Elimina</a>" +
 								"</span>" +
 							"</span>";
+						html += 
+							"<ul><li>" +
+							"<a onclick='aggiungi("+subcat.id+")'>Aggiungi</a>: " +
+							"<input id='"+subcat.id+"'type='text' style='width: 150px' />" +
+							"</li>";
+						if (subcat.children != "")
+						{
+							$.each(subcat.children, function(key, subsubcat) {
+								html += 
+									"<li onmouseover='$(\"#span"+subsubcat.id+"\").show()'" +
+											"onmouseout='$(\"#span"+subsubcat.id+"\").hide()'>" +
+									"<span>" +
+										"<b>" + subsubcat.nome + "</b>" +
+										"<span id='span"+subsubcat.id+"' style='display: none'>" +
+										" - <a onclick='modifica("+subsubcat.id+")'>Modifica</a>" +
+										" - <a onclick='elimina("+subsubcat.id+")'>Elimina</a>" +
+										"</span>" +
+									"</span>";
+							});
+						}
+						html += "</ul>";
 					});
 				}
 				html += "</ul>";
@@ -109,33 +132,13 @@
 <h4>Gestione Categorie</h4>
 
 <p>
-<a onclick="aggiungi(-1)">Aggiungi Categoria</a>: <input type="text" id="-1" />
+<a onclick='$("#add").fadeIn();'>Aggiungi Categoria</a><br/>
+<span id="add" style="display: none">
+	<input type="text" style="width: 150px" id="-1" /> 
+	<a onclick='aggiungi(-1); $("#add").hide(); $("#-1").val("")'>Add</a>
+</span>	
 </p>
 
 <ul id="listaCategorie" class="treeview-gray">
 	<!-- contenuto dinamico -->
 </ul>
-
-<!-- <ul type="circle"> -->
-<%-- <c:forEach var="categoria" items="${categorie}"> --%>
-<%-- 	<c:if test="${categoria.parent == null}"> --%>
-<%-- 		<li id="${categoria.id}"> --%>
-<%-- 			<c:out value="${categoria.nome}" /> --%>
-<%-- 			<button onclick="mostraSottocat(${categoria.id})">+</button> --%>
-<%-- 			<button onclick="nascondiSottocat(${categoria.id})">-</button> --%>
-<%-- 			<a href="aggiungiCategoria?parentId=${categoria.id}">Aggiungi</a> -  --%>
-<%-- 			<a onclick="modifica(${categoria.id})">Modifica</a> -  --%>
-<%-- 			<a onclick="elimina(${categoria.id})">Elimina</a> --%>
-<!-- 		</li> -->
-<!-- 		<ul> -->
-<%-- 		<c:forEach var="sottocat" items="${categoria.children}"> --%>
-<%-- 			<li id="sottocat${categoria.id}" style="display: none;"> --%>
-<%-- 				<c:out value="${sottocat.nome}" /> --%>
-<%-- 				<a onclick="modifica(${sottocat.id})">Modifica</a> --%>
-<%-- 				<a onclick="elimina(${sottocat.id})">Elimina</a> --%>
-<!-- 			</li> -->
-<%-- 		</c:forEach> --%>
-<!-- 		</ul> -->
-<%-- 	</c:if> --%>
-<%-- </c:forEach> --%>
-<!-- </ul> -->
