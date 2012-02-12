@@ -11,13 +11,12 @@ import aeecommerce.service.UserService;
 
 
 @Controller
-@RequestMapping("/home.htm")
-public class HomeController {
+public class MenuController {
 	
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value={"/home.htm"}, method = RequestMethod.GET)
 	public String getHome(ModelMap model)
 	{
 		Amministratore admin = new Amministratore();
@@ -30,11 +29,23 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value={"/home.htm"}, method = RequestMethod.POST)
 	public String getLogin(ModelMap model)
 	{
 		System.out.println("Home controller post " + model.get("user"));
 		return "login";
+	}
+	
+	@RequestMapping(value={"/faq.htm"}, method = RequestMethod.GET)
+	public String getFaq(ModelMap model)
+	{
+		return "faq";
+	}
+	
+	@RequestMapping(value={"/condizioni.htm"}, method = RequestMethod.GET)
+	public String getCondition(ModelMap model)
+	{
+		return "condizioni";
 	}
 //	
 //	@Override

@@ -68,6 +68,7 @@
 	<a href="gestioneAzienda">Banner e dati azienda</a> <br/>
 	<a href="gestioneCategorie">Categorie e Prodotti</a> <br/>
 	<a href="spedizioniPagamenti">Spedizioni e Pagamenti</a> <br/>
+	<a href="gestioneCondizioni">Condizioni</a> <br/>
 	<a href="gestioneFAQ">F.A.Q.</a> <br/>
 	<a href="gestioneUtenti.htm">Utenti</a> <br/>
 </div>
