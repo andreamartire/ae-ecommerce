@@ -144,6 +144,16 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/indirizzi/aggiungiIndirizzo.jsp" />
 	</definition>
 	
+	<definition name="gestioneRecapitiAdmin" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Recapiti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/recapiti/gestioneRecapiti.jsp" />
+	</definition>
+	
+	<definition name="aggiungiRecapitoAdmin" extends="baseLayout">
+	  	<put-attribute name="title" value="Aggiungi Recapito" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/recapiti/aggiungiRecapito.jsp" />
+	</definition>
+	
 	<definition name="categoriesManagement" extends="baseLayout">
 	  	<put-attribute name="title" value="Gestione utenti" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/categoriesManagement.jsp" />
