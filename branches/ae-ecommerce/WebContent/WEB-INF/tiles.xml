@@ -164,4 +164,14 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/aggiungiCategoria.jsp" />
 	</definition>
 	
+	<definition name="faq" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione utenti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/static/faq.jsp" />
+	</definition>
+	
+	<definition name="condizioni" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione utenti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/static/condizioni.jsp" />
+	</definition>
+	
 </tiles-definitions>
