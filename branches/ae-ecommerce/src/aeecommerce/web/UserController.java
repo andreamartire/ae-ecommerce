@@ -74,6 +74,13 @@ public class UserController {
         return "userManagement";
 	}
 	
+	@RequestMapping(value = {"/modificaUtente.htm"}, method = RequestMethod.GET)
+	public @ResponseBody String modifyUser(@RequestParam int id, ModelMap model) {
+		model.put("userDB",userService.findById(id));
+		
+		return "singleUserManagement";
+	}
+	
 	@RequestMapping(value = {"/eliminaUtente.htm"}, method = RequestMethod.POST)
 	public @ResponseBody String deleteUser(@RequestParam int id) {
 		userService.delete(id);
