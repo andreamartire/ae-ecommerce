@@ -2,8 +2,25 @@
 
 <script type="text/javascript">
 	function modifica(idProdotto) {
-		alert("modifica " + idProdotto);
-// 		location.href="gestioneUtente.htm?id="+idUtente;
+		$.ajax({
+			url : 'modificaProdotto.htm',
+			type: "POST",
+			data : ({
+				idCategoria : $('#idCategoria').html(),
+				idProdotto : idProdotto,
+				nome : $('#nomeProdotto'+idProdotto).val(),
+				prezzo : $('#prezzoProdotto'+idProdotto).val(),
+				descrizione : $('#descrizioneProdotto'+idProdotto).val(),
+				iva : $('#ivaProdotto'+idProdotto).val(),
+				peso : $('#pesoProdotto'+idProdotto).val()
+			}),
+			success : function(res) {
+				alert("Modifiche salvate");
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
+			}			
+		});
 	}
 	
 	function elimina(idProdotto){
@@ -16,7 +33,7 @@
 					idProdotto : idProdotto
 				}),
 				success : function(res) {
-					$('#prodotto'+idProdotto).hide();
+					$('.prodotto'+idProdotto).hide();
 				},
 				error: function (xhr, ajaxOptions, thrownError) {
 					alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.requestText );
@@ -29,7 +46,11 @@
 		$('#aggiungiProdotto').fadeIn('slow');
 	}
 	
-	function aggiungi(nomeProdotto) {
+	function annulla() {
+		$('#aggiungiProdotto').fadeOut('slow');
+	}
+	
+	function aggiungi() {
 		$.ajax({
 			url : 'aggiungiProdotto.htm',
 			type: "POST",
@@ -57,38 +78,69 @@
 
 <a onclick="showAggiungi()">Aggiungi Prodotto</a>
 <div style="display: none" id="aggiungiProdotto">
-	<table style="padding: 3px">
+	<table style="padding: 6px">
 		<tr>
-			<td><label for="nome">Nome</label> <input type="text" name="nome" id="nomeProdotto"/></td>
-			<td><label for="prezzo">Prezzo</label> <input type="number" name="prezzo" id="prezzoProdotto"/></td>
+			<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto"/></td>
+			<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto" style="width: 50px"/> Euro</td>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<label for="descrizione">Descrizione</label> 
-				<textarea rows="4" cols="40" name="descrizione" id="descrizioneProdotto"></textarea>
+			<td colspan="2"><b>Descrizione</b></td>
+		</tr>
+		<tr>
+			<td colspan="2" width="510">
+				<textarea rows="4" cols="60" name="descrizione" id="descrizioneProdotto"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<td><label for="peso">Peso</label> <input type="number" name="peso" id="pesoProdotto"/></td>
-			<td><label for="iva">IVA</label> <input type="number" name="iva" id="ivaProdotto"/></td>
+			<td><b>Peso</b><input type="number" name="peso" id="pesoProdotto" style="width: 30px"> Kg</td>
+			<td><b>IVA</b><input type="number" name="iva" id="ivaProdotto" style="width: 30px"/>%</td>
 		</tr>
 		<tr>
-			<td>
+			<td> </td>
+			<td align="right">
 				<input type="button" value="Aggiungi" onclick="aggiungi()"/>
+				<input type="button" value="Annulla" onclick="annulla()"/>
 			</td>
-			<td></td>
 		</tr>
 	</table>
 </div>
 
 <hr/>
 
-<table style="padding: 3px">
+<!-- <table style="padding: 3px"> -->
 	<c:forEach var="prodotto" items="${prodotti}">
-		<tr id="prodotto${prodotto.id}">
-			<td><c:out value="${prodotto.nome}" /></td>
-			<td><input type="button" value="Modifica" onclick="modifica(${prodotto.id})"></td>
-			<td><input type="button" value="Elimina" onclick="elimina(${prodotto.id})"></td>
-		</tr>
+		<div class="prodotto${prodotto.id}">
+			<table style="padding: 6px">
+				<tr>
+					<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto${prodotto.id}" value="${prodotto.nome}" /></td>
+					<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto${prodotto.id}" style="width: 50px" value="${prodotto.prezzoUnitario}" /> Euro</td>
+				</tr>
+				<tr>
+					<td colspan="2"><b>Descrizione</b></td>
+				</tr>
+				<tr>
+					<td colspan="2" width="510">
+						<textarea rows="4" cols="60" name="descrizione" id="descrizioneProdotto${prodotto.id}">${prodotto.descrizione}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td><b>Peso</b><input type="number" name="peso" id="pesoProdotto${prodotto.id}" style="width: 30px" value="${prodotto.pesoApprossimato}" /> Kg</td>
+					<td><b>IVA</b><input type="number" name="iva" id="ivaProdotto${prodotto.id}" style="width: 30px" value="${prodotto.percentualeIVA}" />%</td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td align="right">
+						<input type="button" value="Salva" onclick="modifica(${prodotto.id})"/>
+						<input type="button" value="Elimina" onclick="elimina(${prodotto.id})"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<hr class="prodotto${prodotto.id}"/>
+<%-- 		<tr id="prodotto${prodotto.id}"> --%>
+<%-- 			<td><c:out value="${prodotto.nome}" /></td> --%>
+<%-- 			<td><input type="button" value="Modifica" onclick="modifica(${prodotto.id})"></td> --%>
+<%-- 			<td><input type="button" value="Elimina" onclick="elimina(${prodotto.id})"></td> --%>
+<!-- 		</tr> -->
 	</c:forEach>
-</table>
+<!-- </table> -->
