@@ -159,6 +159,11 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/categoriesManagement.jsp" />
 	</definition>
 	
+	<definition name="productsManagement" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione prodotti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/productsManagement.jsp" />
+	</definition>
+	
 	<definition name="aggiungiCategoria" extends="baseLayout">
 	  	<put-attribute name="title" value="Gestione utenti" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/aggiungiCategoria.jsp" />

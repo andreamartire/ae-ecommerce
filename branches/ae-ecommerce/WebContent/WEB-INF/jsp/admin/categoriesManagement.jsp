@@ -13,7 +13,7 @@
 			}),
 			dataType: 'json',
 			success: function (data) {
-				var html = "";
+				var html = "<li><span><a href='gestioneProdotti.htm?idCategoria="+idCategoria+"'>Gestione prodotti</a></span></li>";
 				$.each(data.prodotti, function(key, prod) {
 					html += "<li><span>"+prod.nome+"</span></li>";
 				});
@@ -25,22 +25,6 @@
 			}
 		});
 	}
-	
-	function addProdotto(idCategoria, nome) {
-		$.ajax({
-			url : 'aggiungiProdotto.htm',
-			type: "POST",
-			data : ({
-				idCategoria : idCategoria,
-				nome : nome
-			}),
-			success: function (data) {
-				alert("ok");
-				listProdotti(idCategoria);
-			},
-		});
-	}
-
 
 	function elimina(idCategoria) {
 		if (confirm("Confermi eliminazione?")) {
