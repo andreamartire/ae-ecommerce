@@ -91,11 +91,15 @@ public class ProdottiController {
 	}
 	
 	@RequestMapping(value = "/modificaProdotto.htm", method = RequestMethod.POST)
-	public @ResponseBody String modificaProdotto(@RequestParam int idCategoria, @RequestParam int idProdotto) {
+	public @ResponseBody String modificaProdotto(HttpServletRequest model) {
 		
-		Prodotto p = prodService.findById(idProdotto);
+		Prodotto p = prodService.findById(Integer.parseInt(model.getParameter("idProdotto")));
 		
-		// TODO set nuovi dati
+		p.setNome((String) model.getParameter("nome"));
+		p.setPercentualeIVA(Double.parseDouble(model.getParameter("iva")));
+		p.setPesoApprossimato(Integer.parseInt(model.getParameter("peso")));
+		p.setPrezzoUnitario(Double.parseDouble(model.getParameter("prezzo")));
+		p.setDescrizione(model.getParameter("descrizione"));
 		
 		prodService.update(p);
 		

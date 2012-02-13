@@ -19,7 +19,7 @@ public class ProdottoHibernateDao extends MasterDao implements ProdottoDao {
 	@Transactional
 	@Override
 	public void update(Prodotto entity) {
-		getHibernateTemplate().save(entity);
+		getHibernateTemplate().saveOrUpdate(entity);
 	}
 
 	@Transactional
