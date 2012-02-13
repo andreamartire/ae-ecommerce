@@ -1,15 +1,47 @@
-<%-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %> --%>
-
-<%-- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
-<%-- <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> --%>
-<%-- <%@ page pageEncoding="UTF-8" %> --%>
-
 <link rel="stylesheet" href="resources/css/jquery.treeview.css" />
 	
 <script src="resources/js/jquery.cookie.js" type="text/javascript"></script>
 <script src="resources/js/jquery.treeview.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+	function listProdotti(idCategoria) {
+		$.ajax({
+			url : 'listProdotti.htm',
+			type: "GET",
+			data : ({
+				idCategoria : idCategoria
+			}),
+			dataType: 'json',
+			success: function (data) {
+				var html = "";
+				$.each(data.prodotti, function(key, prod) {
+					html += "<li><span>"+prod.nome+"</span></li>";
+				});
+				$('#prodotti'+idCategoria).append(html);
+				refreshTree();
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
+			}
+		});
+	}
+	
+	function addProdotto(idCategoria, nome) {
+		$.ajax({
+			url : 'aggiungiProdotto.htm',
+			type: "POST",
+			data : ({
+				idCategoria : idCategoria,
+				nome : nome
+			}),
+			success: function (data) {
+				alert("ok");
+				listProdotti(idCategoria);
+			},
+		});
+	}
+
+
 	function elimina(idCategoria) {
 		if (confirm("Confermi eliminazione?")) {
 			$.ajax({
@@ -19,13 +51,14 @@
 					id : idCategoria,
 				}),
 				success : function(res) {
-					location.reload();
+// 					location.reload();
+					$('#li'+idCategoria).hide();
 				}
 			});
 		}
 	}
-	function modifica(idCategoria, nome) {
-		var name = prompt("Inserisci il nuovo nome", nome);
+	function modifica(idCategoria) {
+		var name = prompt("Inserisci il nuovo nome", $('#nome'+idCategoria).text());
 		if (name!=null && name!="")
 		{
 			$.ajax({
@@ -36,7 +69,8 @@
 					nome : name
 				}),
 				success : function(res) {
-					location.reload();
+// 					location.reload();
+					$('#nome'+idCategoria).text(name);
 				}
 			});
 		}
@@ -57,6 +91,19 @@
 			});
 		}
 	}
+	
+	function refreshTree() {
+		$("#listaCategorie").treeview({
+			animated: "fast",
+			collapsed: true,
+			unique: true,
+			persist: "cookie",
+			toggle: function() {
+				window.console && console.log("%o was toggled", this);
+			}
+		});
+	}
+	
 	$(document).ready(function(){
 		$.ajax({
 			url: 'listCategorie.htm',
@@ -68,81 +115,78 @@
 		});
 		function creaListaCategorie(data) {
 			$.each(data.categorie, function(key, categoria) {
+					// categoria
 				var html = 
-					"<li onmouseover='$(\"#span"+categoria.id+"\").show()'" +
-							"onmouseout='$(\"#span"+categoria.id+"\").hide()'>" +
-					"<span>" +
-						"<b>" + categoria.nome + "</b>" +
-						"<span id='span"+categoria.id+"' style='display: none'>" +
-						" - <a onclick='modifica("+categoria.id+",\""+categoria.nome+"\")'>Modifica</a>" +
-						" - <a onclick='elimina("+categoria.id+")'>Elimina</a>" +
-						"</span>" +
-					"</span>";
-				html += 
-					"<ul><li>" +
-						"<a onclick='aggiungi("+categoria.id+")'>Aggiungi</a>: " +
-						"<input id='"+categoria.id+"'type='text' style='width: 150px' />" +
-					"</li>";
-				if (categoria.children != "")
-				{
+					"<li id='li"+categoria.id+"'" +
+						"onmouseover='$(\"#span"+categoria.id+"\").show()'" +
+						"onmouseout='$(\"#span"+categoria.id+"\").hide()'>" +
+						"<span>" +
+							"<b id='nome"+categoria.id+"'>" + categoria.nome + "</b>" +
+							"<span id='span"+categoria.id+"' style='display: none'>" +
+							" - <a onclick='modifica("+categoria.id+")'>Modifica</a>" +
+							" - <a onclick='elimina("+categoria.id+")'>Elimina</a>" +
+							"</span>" +
+						"</span>";
+				html += "<ul id='prodotti"+categoria.id+"'>" +
+							"<li>" +
+								"<a onclick='aggiungi("+categoria.id+")'>Aggiungi sottocategoria</a>: " +
+								"<input id='"+categoria.id+"'type='text' style='width: 150px' /> - ";
+				if (categoria.children == "") {
+					html += 	"<a onclick='listProdotti("+categoria.id+")'>Elenca prodotti</a>" +
+							"</li>";
+				} else {
 					$.each(categoria.children, function(key, subcat) {
+							// sotto categoria
 						html += 
+							"</li>" +
 							"<li onmouseover='$(\"#span"+subcat.id+"\").show()'" +
 									"onmouseout='$(\"#span"+subcat.id+"\").hide()'>" +
-							"<span>" +
-								"<b>" + subcat.nome + "</b>" +
-								"<span id='span"+subcat.id+"' style='display: none'>" +
-								" - <a onclick='modifica("+subcat.id+","+subcat.nome+")'>Modifica</a>" +
-								" - <a onclick='elimina("+subcat.id+")'>Elimina</a>" +
-								"</span>" +
-							"</span>";
-						html += 
-							"<ul><li>" +
-							"<a onclick='aggiungi("+subcat.id+")'>Aggiungi</a>: " +
-							"<input id='"+subcat.id+"'type='text' style='width: 150px' />" +
-							"</li>";
+								"<span>" +
+									"<b id='nome"+subcat.id+"'>" + subcat.nome + "</b>" +
+									"<span id='span"+subcat.id+"' style='display: none'>" +
+									" - <a onclick='modifica("+subcat.id+")'>Modifica</a>" +
+									" - <a onclick='elimina("+subcat.id+")'>Elimina</a>" +
+									"</span>" +
+								"</span>";
+								// sotto sotto categoria
+						html += "<ul>" +
+									"<li>" +
+										"<a onclick='aggiungi("+subcat.id+")'>Aggiungi</a>: " +
+										"<input id='"+subcat.id+"'type='text' style='width: 150px' />" +
+									"</li>";
 						if (subcat.children != "")
 						{
 							$.each(subcat.children, function(key, subsubcat) {
 								html += 
 									"<li onmouseover='$(\"#span"+subsubcat.id+"\").show()'" +
 											"onmouseout='$(\"#span"+subsubcat.id+"\").hide()'>" +
-									"<span>" +
-										"<b>" + subsubcat.nome + "</b>" +
-										"<span id='span"+subsubcat.id+"' style='display: none'>" +
-										" - <a onclick='modifica("+subsubcat.id+","+subsubcat.nome+")'>Modifica</a>" +
-										" - <a onclick='elimina("+subsubcat.id+")'>Elimina</a>" +
+										"<span>" +
+											"<b id='nome"+subsubcat.id+"'>" + subsubcat.nome + "</b>" +
+											"<span id='span"+subsubcat.id+"' style='display: none'>" +
+											" - <a onclick='modifica("+subsubcat.id+")'>Modifica</a>" +
+											" - <a onclick='elimina("+subsubcat.id+")'>Elimina</a>" +
+											"</span>" +
 										"</span>" +
-									"</span>";
+									"</li>";
 							});
 						}
 						html += "</ul>";
+								// fine sotto sotto categoria
+						html += 
+							"</li>";
+							// fine sotto categoria
 					});
-				}
-				html += "</ul>";
-				html += "</li>";
+				} 
+				html += "</ul>" +
+					"</li>";
+					// fine categoria
 				
 				$("#listaCategorie").append(html);
 			});
-			$("#listaCategorie").treeview({
-				animated: "fast",
-				collapsed: true,
-				unique: true,
-				persist: "cookie",
-				toggle: function() {
-					window.console && console.log("%o was toggled", this);
-				}
-			});
+			refreshTree();
 		}
 	});
 </script>
-
-<div id="popupDialog" title="Input a new widget name" style="display: none">
-	<p>
-		<label for="widgetName">Please input a new widget name:</label> 
-		<input type="text" id="widgetName" />
-	</p>
-</div>
 
 <h4>Gestione Categorie</h4>
 
