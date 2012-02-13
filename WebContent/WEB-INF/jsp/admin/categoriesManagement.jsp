@@ -4,6 +4,32 @@
 <script src="resources/js/jquery.treeview.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+	function load(jsonProdotti, idCategoria) {
+		$.ajax({
+			url: 'listCategorie.htm',
+			dataType: 'json',
+			success: function(categorie) {
+				$("#listaCategorie").empty();
+				
+				creaListaCategorie(categorie);
+				
+				var html = 
+					"<li><span>" +
+						"<a href='gestioneProdotti.htm?idCategoria="+idCategoria+"'><b>Gestione prodotti</b></a>" +
+					"</span></li>";
+				$.each(jsonProdotti.prodotti, function(key, prod) {
+					html += "<li><span>"+prod.nome+"</span></li>";
+				});
+				$('#prodotti'+idCategoria).append(html);
+				
+				refreshTree();
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
+			}
+		});
+	}
+
 	function listProdotti(idCategoria) {
 		$.ajax({
 			url : 'listProdotti.htm',
@@ -12,13 +38,8 @@
 				idCategoria : idCategoria
 			}),
 			dataType: 'json',
-			success: function (data) {
-				var html = "<li><span><a href='gestioneProdotti.htm?idCategoria="+idCategoria+"'>Gestione prodotti</a></span></li>";
-				$.each(data.prodotti, function(key, prod) {
-					html += "<li><span>"+prod.nome+"</span></li>";
-				});
-				$('#prodotti'+idCategoria).append(html);
-				refreshTree();
+			success: function (jsonProdotti) {
+				load(jsonProdotti, idCategoria);
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
@@ -35,7 +56,6 @@
 					id : idCategoria,
 				}),
 				success : function(res) {
-// 					location.reload();
 					$('#li'+idCategoria).hide();
 				}
 			});
@@ -53,7 +73,6 @@
 					nome : name
 				}),
 				success : function(res) {
-// 					location.reload();
 					$('#nome'+idCategoria).text(name);
 				}
 			});
@@ -88,87 +107,99 @@
 		});
 	}
 	
+	function creaListaCategorie(data) {
+		$.each(data.categorie, function(key, categoria) {
+				// categoria
+			var html = 
+				"<li id='li"+categoria.id+"'" +
+					"onmouseover='$(\"#span"+categoria.id+"\").show()'" +
+					"onmouseout='$(\"#span"+categoria.id+"\").hide()'>" +
+					"<span>" +
+						"<b id='nome"+categoria.id+"'>" + categoria.nome + "</b>" +
+						"<span id='span"+categoria.id+"' style='display: none'>" +
+						" - <a onclick='modifica("+categoria.id+")'>Modifica</a>" +
+						" - <a onclick='elimina("+categoria.id+")'>Elimina</a>" +
+						"</span>" +
+					"</span>";
+			html += "<ul id='prodotti"+categoria.id+"'>" +
+						"<li>" +
+							"<a onclick='aggiungi("+categoria.id+")'>Aggiungi sottocategoria</a>: " +
+							"<input id='"+categoria.id+"'type='text' style='width: 150px' />";
+			if (categoria.children == "") {
+				html += 	" - <a onclick='listProdotti("+categoria.id+")'>Elenca prodotti</a>" +
+						"</li>";
+			} else {
+				$.each(categoria.children, function(key, subcat) {
+						// sotto categoria
+					html += 
+						"</li>" +
+						"<li onmouseover='$(\"#span"+subcat.id+"\").show()'" +
+								"onmouseout='$(\"#span"+subcat.id+"\").hide()'>" +
+							"<span>" +
+								"<b id='nome"+subcat.id+"'>" + subcat.nome + "</b>" +
+								"<span id='span"+subcat.id+"' style='display: none'>" +
+								" - <a onclick='modifica("+subcat.id+")'>Modifica</a>" +
+								" - <a onclick='elimina("+subcat.id+")'>Elimina</a>" +
+								"</span>" +
+							"</span>";
+					html += "<ul id='prodotti"+subcat.id+"'>" +
+								"<li>" +
+									"<a onclick='aggiungi("+subcat.id+")'>Aggiungi</a>: " +
+									"<input id='"+subcat.id+"'type='text' style='width: 150px' />";
+					if (subcat.children == "") {
+						html += 	" - <a onclick='listProdotti("+subcat.id+")'>Elenca prodotti</a>" +
+								"</li>";
+					} else {
+						$.each(subcat.children, function(key, subsubcat) {
+								// sotto sotto categoria
+							html += 
+								"</li>" +
+								"<li onmouseover='$(\"#span"+subsubcat.id+"\").show()'" +
+										"onmouseout='$(\"#span"+subsubcat.id+"\").hide()'>" +
+									"<span>" +
+										"<b id='nome"+subsubcat.id+"'>" + subsubcat.nome + "</b>" +
+										"<span id='span"+subsubcat.id+"' style='display: none'>" +
+										" - <a onclick='modifica("+subsubcat.id+")'>Modifica</a>" +
+										" - <a onclick='elimina("+subsubcat.id+")'>Elimina</a>" +
+										"</span>" +
+									"</span>" +
+									"<ul id='prodotti"+subsubcat.id+"'>" +
+										"<li>" +
+											"<a onclick='aggiungi("+subcat.id+")'>Aggiungi</a>: " +
+											"<input id='"+subcat.id+"'type='text' style='width: 150px' />" +
+											" - <a onclick='listProdotti("+subsubcat.id+")'>Elenca prodotti</a>" +
+										"</li>" +
+									"</ul>" +
+								"</li>";
+						});
+					}
+					html += "</ul>";
+							// fine sotto sotto categoria
+					html += 
+						"</li>";
+						// fine sotto categoria
+				});
+			} 
+			html += "</ul>" +
+				"</li>";
+				// fine categoria
+			
+			$("#listaCategorie").append(html);
+		});
+	}
+	
 	$(document).ready(function(){
 		$.ajax({
 			url: 'listCategorie.htm',
 			dataType: 'json',
-			success: creaListaCategorie,
+			success: function(data) {
+				creaListaCategorie(data);
+				refreshTree();
+			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
 			}
 		});
-		function creaListaCategorie(data) {
-			$.each(data.categorie, function(key, categoria) {
-					// categoria
-				var html = 
-					"<li id='li"+categoria.id+"'" +
-						"onmouseover='$(\"#span"+categoria.id+"\").show()'" +
-						"onmouseout='$(\"#span"+categoria.id+"\").hide()'>" +
-						"<span>" +
-							"<b id='nome"+categoria.id+"'>" + categoria.nome + "</b>" +
-							"<span id='span"+categoria.id+"' style='display: none'>" +
-							" - <a onclick='modifica("+categoria.id+")'>Modifica</a>" +
-							" - <a onclick='elimina("+categoria.id+")'>Elimina</a>" +
-							"</span>" +
-						"</span>";
-				html += "<ul id='prodotti"+categoria.id+"'>" +
-							"<li>" +
-								"<a onclick='aggiungi("+categoria.id+")'>Aggiungi sottocategoria</a>: " +
-								"<input id='"+categoria.id+"'type='text' style='width: 150px' /> - ";
-				if (categoria.children == "") {
-					html += 	"<a onclick='listProdotti("+categoria.id+")'>Elenca prodotti</a>" +
-							"</li>";
-				} else {
-					$.each(categoria.children, function(key, subcat) {
-							// sotto categoria
-						html += 
-							"</li>" +
-							"<li onmouseover='$(\"#span"+subcat.id+"\").show()'" +
-									"onmouseout='$(\"#span"+subcat.id+"\").hide()'>" +
-								"<span>" +
-									"<b id='nome"+subcat.id+"'>" + subcat.nome + "</b>" +
-									"<span id='span"+subcat.id+"' style='display: none'>" +
-									" - <a onclick='modifica("+subcat.id+")'>Modifica</a>" +
-									" - <a onclick='elimina("+subcat.id+")'>Elimina</a>" +
-									"</span>" +
-								"</span>";
-								// sotto sotto categoria
-						html += "<ul>" +
-									"<li>" +
-										"<a onclick='aggiungi("+subcat.id+")'>Aggiungi</a>: " +
-										"<input id='"+subcat.id+"'type='text' style='width: 150px' />" +
-									"</li>";
-						if (subcat.children != "")
-						{
-							$.each(subcat.children, function(key, subsubcat) {
-								html += 
-									"<li onmouseover='$(\"#span"+subsubcat.id+"\").show()'" +
-											"onmouseout='$(\"#span"+subsubcat.id+"\").hide()'>" +
-										"<span>" +
-											"<b id='nome"+subsubcat.id+"'>" + subsubcat.nome + "</b>" +
-											"<span id='span"+subsubcat.id+"' style='display: none'>" +
-											" - <a onclick='modifica("+subsubcat.id+")'>Modifica</a>" +
-											" - <a onclick='elimina("+subsubcat.id+")'>Elimina</a>" +
-											"</span>" +
-										"</span>" +
-									"</li>";
-							});
-						}
-						html += "</ul>";
-								// fine sotto sotto categoria
-						html += 
-							"</li>";
-							// fine sotto categoria
-					});
-				} 
-				html += "</ul>" +
-					"</li>";
-					// fine categoria
-				
-				$("#listaCategorie").append(html);
-			});
-			refreshTree();
-		}
 	});
 </script>
 

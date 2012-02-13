@@ -15,17 +15,17 @@
 	
 	function creaMenuCategorie(data) {
 		$.each(data.categorie, function(key, categoria) {
-			var html = "<li><a href=\"#\">"+categoria.nome+"</a>";
+			var html = "<li><a href=\"elencoProdotti.htm?idCategoria="+categoria.id+"\">"+categoria.nome+"</a>";
 			if (categoria.children != "")
 			{
 				html += "<ul>";
 				$.each(categoria.children, function(key, subcat) {
-					html += "<li><a href=\"#\">"+subcat.nome+"</a>";
+					html += "<li><a href=\"elencoProdotti.htm?idCategoria="+subcat.id+"\">"+subcat.nome+"</a>";
 					if (subcat.children != "")
 					{
 						html += "<ul>";
 						$.each(subcat.children, function(key, subsubcat) {
-							html += "<li><a href=\"#\">"+subsubcat.nome+"</a></li>";
+							html += "<li><a href=\"elencoProdotti.htm?idCategoria="+subsubcat.id+"\">"+subsubcat.nome+"</a></li>";
 						});
 						html += "</ul>";
 					}

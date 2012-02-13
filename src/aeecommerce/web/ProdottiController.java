@@ -34,16 +34,32 @@ public class ProdottiController {
 		
 		List<Prodotto> prodotti = prodService.list();
 		
-		if (!prodotti.isEmpty()) {
-			for (Prodotto p : prodotti) {
-				if (p.getCategoria().getId() == idCategoria) 
-					list += "{\"id\":\""+p.getId()+"\",\"nome\":\""+p.getNome()+"\"},";
-			}
-			list = list.substring(0, list.length()-1);
+		for (Prodotto p : prodotti) {
+			if (p.getCategoria().getId() == idCategoria) 
+				list += "{\"id\":\""+p.getId()+"\",\"nome\":\""+p.getNome()+"\"},";
 		}
+		if (list.endsWith(","))
+			list = list.substring(0, list.length()-1);
 		list += "]}";
 		
 		return list;
+	}
+	
+	@RequestMapping(value = "/elencoProdotti.htm", method = RequestMethod.GET)
+	public String elencoProdotti(@RequestParam int idCategoria, ModelMap model) {
+		
+		List<Prodotto> prodotti = prodService.list();
+		List<Prodotto> list = new ArrayList<Prodotto>();
+		
+		for (Prodotto p : prodotti) {
+			if (p.getCategoria().getId() == idCategoria) 
+				list.add(p);
+		}
+		
+		model.put("categoria", catService.findById(idCategoria));
+		model.put("prodotti", list);
+		
+		return "elencoProdotti";
 	}
 	
 	@RequestMapping(value = "/gestioneProdotti.htm", method = RequestMethod.GET)
