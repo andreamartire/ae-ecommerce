@@ -166,12 +166,17 @@
 	
 	<definition name="faq" extends="baseLayout">
 	  	<put-attribute name="title" value="FAQ" />
-	  	<put-attribute name="body" value="/WEB-INF/jsp/files/faq.jsp" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/faq.jsp" />
 	</definition>
 	
 	<definition name="faqEditor" extends="baseLayout">
-	  	<put-attribute name="title" value="Gestione utenti" />
+	  	<put-attribute name="title" value="Gestione FAQ" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/faqEditor.jsp" />
+	</definition>
+	
+	<definition name="conditionsEditor" extends="baseLayout">
+	  	<put-attribute name="title" value="Gestione Condizioni" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/conditionsEditor.jsp" />
 	</definition>
 	
 	<definition name="condizioni" extends="baseLayout">
