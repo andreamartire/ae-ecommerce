@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import aeecommerce.pojo.Amministratore;
+import aeecommerce.service.DocumentService;
 import aeecommerce.service.UserService;
 
 
@@ -15,6 +17,9 @@ public class MenuController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	DocumentService documentService;
 	
 	@RequestMapping(value={"/home.htm"}, method = RequestMethod.GET)
 	public String getHome(ModelMap model)
@@ -39,19 +44,14 @@ public class MenuController {
 	@RequestMapping(value={"/faq.htm"}, method = RequestMethod.GET)
 	public String getFaq(ModelMap model)
 	{
+		model.put("data", documentService.load().toDocumentForm().getFaq());
 		return "faq";
 	}
 	
 	@RequestMapping(value={"/condizioni.htm"}, method = RequestMethod.GET)
 	public String getCondition(ModelMap model)
 	{
-		return "condizioni";
+		model.put("data", documentService.load().toDocumentForm().getConditions());
+		return "faq";
 	}
-//	
-//	@Override
-//	protected ModelAndView onSubmit(Object command) {
-//		User user = (User) command;
-//		System.out.println("Home controller on submit " + user);
-//		return new ModelAndView("userSuccess","user",user);
-//	}
 }
