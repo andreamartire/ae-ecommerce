@@ -28,7 +28,7 @@ public class Categoria {
 	@OneToMany(mappedBy="parent", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	List<Categoria> children;
 	
-	@OneToMany(mappedBy="categoria")
+	@OneToMany(mappedBy="categoria", cascade=CascadeType.ALL)
 	List<Prodotto> prodotti;
 	
 	public Categoria() {
