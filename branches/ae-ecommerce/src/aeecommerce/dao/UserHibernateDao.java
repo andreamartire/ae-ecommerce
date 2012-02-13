@@ -3,6 +3,7 @@ package aeecommerce.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import aeecommerce.pojo.Amministratore;
 import aeecommerce.pojo.Azienda;
@@ -12,6 +13,8 @@ import aeecommerce.pojo.User;
 @Component
 public class UserHibernateDao extends MasterDao implements UserDao {
 
+	@Transactional
+	@Override
 	public void insert(User u) {
 		if(Privato.class == u.getClass())
 			getHibernateTemplate().save((Privato) u);
@@ -21,6 +24,8 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 			getHibernateTemplate().save((Amministratore) u);
 	}
 
+	@Transactional
+	@Override
 	public void update(User u) {
 		if(Privato.class == u.getClass())
 			getHibernateTemplate().update((Privato) u);
@@ -30,6 +35,8 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 			getHibernateTemplate().save((Amministratore) u);
 	}
 	
+	@Transactional
+	@Override
 	public void delete(User u){
 		if(Privato.class == u.getClass())
 			getHibernateTemplate().delete((Privato) u);
@@ -39,6 +46,8 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 			getHibernateTemplate().delete((Amministratore) u);
 	}
 
+	@Transactional
+	@Override
 	public void delete(int id) {
 		User user = (User) getHibernateTemplate().get(User.class, id);
 		if(getHibernateTemplate().get(Privato.class, id) != null){
@@ -55,6 +64,8 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 		}
 	}
 
+	@Transactional
+	@Override
 	public User findByID(int id) {
 		if(getHibernateTemplate().get(Privato.class, id) != null)
 			return getHibernateTemplate().get(Privato.class,id);
@@ -63,6 +74,8 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 		return getHibernateTemplate().get(Amministratore.class, id);
 	}
 	
+	@Transactional
+	@Override
 	public User findByUsername(String username) {
 		@SuppressWarnings("unchecked")
 		List<User> userList = getHibernateTemplate().findByExample(new User(username,null,null));
@@ -78,26 +91,33 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 		return null;
 	}
 
+	@Transactional
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Privato> findAllPrivato() {
 		return getHibernateTemplate().find("from Privato");
 	}
 	
+	@Transactional
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Azienda> findAllAzienda() {
 		return getHibernateTemplate().find("from Azienda");
 	}
 
+	@Transactional
 	@Override
 	public int countPrivato() {
 		return findAllPrivato().size();
 	}
 	
+	@Transactional
 	@Override
 	public int countAzienda() {
 		return findAllAzienda().size();
 	}
 
+	@Transactional
 	@Override
 	public boolean isPrivato(String username) {
 		if(getHibernateTemplate().get(Privato.class, findByUsername(username).getId()) != null)
