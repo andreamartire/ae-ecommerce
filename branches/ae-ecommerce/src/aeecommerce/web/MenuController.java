@@ -44,14 +44,20 @@ public class MenuController {
 	@RequestMapping(value={"/faq.htm"}, method = RequestMethod.GET)
 	public String getFaq(ModelMap model)
 	{
-		model.put("data", documentService.load().toDocumentForm().getFaq());
+		if(documentService.load() == null)
+			model.put("data", "Non specificate");
+		else
+			model.put("data", documentService.load().toDocumentForm().getFaq());
 		return "faq";
 	}
 	
 	@RequestMapping(value={"/condizioni.htm"}, method = RequestMethod.GET)
 	public String getCondition(ModelMap model)
 	{
-		model.put("data", documentService.load().toDocumentForm().getConditions());
+		if(documentService.load() == null)
+			model.put("data", "Non specificate");
+		else
+			model.put("data", documentService.load().toDocumentForm().getConditions());
 		return "faq";
 	}
 }
