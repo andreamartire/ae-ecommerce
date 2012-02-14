@@ -10,9 +10,10 @@ function elimina(id){
 		location.href = "eliminaIndirizzoAdmin.htm?idAddress=" + id;
 } 
 </script>
-<a href="home.htm">Home</a> > <a href="gestioneUtenti.htm">Gestione Utenti</a> > <a href="gestioneUtente.htm?id=${userdb.id}">Gestione Utente</a> > Gestione Indirizzi
-<hr></hr>
+
 <form:form method="post" commandName="userdb">
+	<a href="home.htm">Home</a> > Gestione Indirizzi
+	<hr></hr>
 	<table>
 		<c:forEach items="${userdb.indirizzi}" var="i" varStatus="row">
 			<tr><td>Via</td><td><form:input path="indirizzi[${row.index}].via" /></td></tr>
@@ -27,4 +28,4 @@ function elimina(id){
    </table>
 </form:form>
 
-<a href="aggiungiIndirizzoAdmin.htm"><button>Aggiungi Indirizzo</button></a>
+<a href="aggiungiIndirizzo.htm"><button>Aggiungi Indirizzo</button></a>
