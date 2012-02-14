@@ -32,6 +32,8 @@ public class CategoriaHibernateDao extends MasterDao implements CategoriaDao {
 	@Override
 	public void delete(int id) {
 		Categoria entity = (Categoria) getHibernateTemplate().get(Categoria.class, id);
+		entity.getParent().removeSubCat(entity);
+		entity.setParent(null);
 		getHibernateTemplate().delete(entity);
 	}
 

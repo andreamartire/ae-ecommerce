@@ -66,7 +66,8 @@ public class Categoria {
 
 	public void setParent(Categoria parent) {
 		this.parent = parent;
-		parent.addSubCat(this);
+		if (parent != null) 
+			parent.addSubCat(this);
 	}
 
 	public List<Categoria> getChildren() {
