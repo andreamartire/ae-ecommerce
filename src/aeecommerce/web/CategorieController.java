@@ -102,18 +102,10 @@ public class CategorieController {
 		return "ok";
 	}
 	
-	@RequestMapping(value = "/eliminaCategoria")
+	@RequestMapping(value = "/eliminaCategoria", method = RequestMethod.POST)
 	public @ResponseBody String eliminaCategoria(@RequestParam int id) {
 		catService.delete(id);
 		
-		return "added";
-	}
-	
-	@RequestMapping(value = "/modificaCategoria")
-	public @ResponseBody String modificaCategoria(@RequestParam int id) {
-		Categoria c = catService.findById(id);
-		catService.update(c);
-		
-		return "update";
+		return "ok";
 	}
 }

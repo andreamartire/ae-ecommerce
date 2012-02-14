@@ -133,7 +133,8 @@
 						// sotto categoria
 					html += 
 						"</li>" +
-						"<li onmouseover='$(\"#span"+subcat.id+"\").show()'" +
+						"<li id='li"+subcat.id+"'" +
+								"onmouseover='$(\"#span"+subcat.id+"\").show()'" +
 								"onmouseout='$(\"#span"+subcat.id+"\").hide()'>" +
 							"<span>" +
 								"<b id='nome"+subcat.id+"'>" + subcat.nome + "</b>" +
@@ -154,7 +155,8 @@
 								// sotto sotto categoria
 							html += 
 								"</li>" +
-								"<li onmouseover='$(\"#span"+subsubcat.id+"\").show()'" +
+								"<li id='li"+subsubcat.id+"'" +
+										"onmouseover='$(\"#span"+subsubcat.id+"\").show()'" +
 										"onmouseout='$(\"#span"+subsubcat.id+"\").hide()'>" +
 									"<span>" +
 										"<b id='nome"+subsubcat.id+"'>" + subsubcat.nome + "</b>" +
