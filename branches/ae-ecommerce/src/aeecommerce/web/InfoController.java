@@ -15,10 +15,10 @@ public class InfoController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value={"/gestioneInfo.htm"}, method = RequestMethod.GET)
+	@RequestMapping(value={"/gestioneInfoOLD.htm"}, method = RequestMethod.GET)
 	public String getInfo(@ModelAttribute("user") String user)
 	{
 		System.out.println("Gestione Info get user " + user);
-		return "home";
+		return "adminInfo";
 	}
 }
