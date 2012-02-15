@@ -32,7 +32,7 @@ public class RecapitiAdminController {
 	{
 		System.out.println("gestione recapiti admin controller get");
 		Set<Recapito> ind = userService.findById(id).getRecapiti();
-		for (Iterator i = ind.iterator(); i.hasNext();) {
+		for (Iterator<Recapito> i = ind.iterator(); i.hasNext();) {
 			Recapito recapito = (Recapito) i.next();
 			System.out.println(recapito);
 		}
@@ -41,10 +41,10 @@ public class RecapitiAdminController {
 	}
 
 	@RequestMapping(value={"/gestioneRecapitiAdmin.htm"}, method = RequestMethod.POST)
-	public String addressFormPost(@ModelAttribute("id") int id, @ModelAttribute("userdb") User user,  Map<String,User> model)
+	public String addressFormPost(@ModelAttribute("id") int id, @ModelAttribute("userdb") User user)
 	{
 		System.out.println("gestione Recapiti controller post");
-		for (Iterator i = user.getRecapiti().iterator(); i.hasNext();) {
+		for (Iterator<Recapito> i = user.getRecapiti().iterator(); i.hasNext();) {
 			Recapito Recapito = (Recapito) i.next();
 			System.out.println(Recapito);
 		}
@@ -52,7 +52,7 @@ public class RecapitiAdminController {
 		u.setRecapiti(user.getRecapiti());
 		userService.update(u);
 		Set<Recapito> ind = userService.findById(id).getRecapiti();
-		for (Iterator i = ind.iterator(); i.hasNext();) {
+		for (Iterator<Recapito> i = ind.iterator(); i.hasNext();) {
 			Recapito Recapito = (Recapito) i.next();
 			System.out.println(Recapito);
 		}
@@ -68,16 +68,16 @@ public class RecapitiAdminController {
 	}
 	
 	@RequestMapping(value={"/aggiungiRecapitoAdmin.htm"}, method = RequestMethod.POST)
-	public String addRecapitoPost(@ModelAttribute("id") int id, @ModelAttribute("Recapito") Recapito Recapito,  Map<String,Object> model)
+	public String addRecapitoPost(@ModelAttribute("id") int id, @ModelAttribute("Recapito") Recapito recapito)
 	{
 		User u = userService.findById(id);
-		u.getRecapiti().add(Recapito);
+		u.getRecapiti().add(recapito);
 		userService.update(u);
 		return "redirect:gestioneRecapitiAdmin.htm";
 	}
 	
 	@RequestMapping(value={"/eliminaRecapitoAdmin.htm"}, params="idRecapito")
-	public String removeRecapitoGet(@RequestParam(value="idRecapito") int id,  Map<String,Object> model)
+	public String removeRecapitoGet(@RequestParam(value="idRecapito") int id)
 	{
 		recapitoService.delete(id);
 		return "redirect:gestioneRecapitiAdmin.htm";

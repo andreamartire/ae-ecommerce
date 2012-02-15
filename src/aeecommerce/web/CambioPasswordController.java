@@ -13,7 +13,7 @@ import aeecommerce.service.UserService;
 import aeecommerce.validation.RegistrationInfo;
 
 @Controller
-@SessionAttributes(value = {"user","info"})
+@SessionAttributes(value ={"info","user"})
 public class CambioPasswordController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class CambioPasswordController {
 	}
 	
 	@RequestMapping(value={"/changePassword.htm"}, method = RequestMethod.POST)
-	public String changePassord(@ModelAttribute("info") RegistrationInfo info, @ModelAttribute("user") String username, ModelMap model)
+	public String changePassord(@ModelAttribute("info") RegistrationInfo info, @ModelAttribute("user") String username)
 	{
 		System.out.println("Change password controller post");
 		User u = userService.findByUsername(username);

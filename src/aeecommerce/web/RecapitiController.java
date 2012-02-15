@@ -18,7 +18,7 @@ import aeecommerce.service.RecapitoService;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","type","userdb", "recapito"})
+@SessionAttributes(value = {"user","type","userdb", "recapito", "idRecapito"})
 public class RecapitiController {
 
 	@Autowired
@@ -32,7 +32,7 @@ public class RecapitiController {
 	{
 		System.out.println("gestione recapiti controller get");
 		Set<Recapito> ind = userService.findByUsername(username).getRecapiti();
-		for (Iterator i = ind.iterator(); i.hasNext();) {
+		for (Iterator<Recapito> i = ind.iterator(); i.hasNext();) {
 			Recapito rec = (Recapito) i.next();
 			System.out.println(rec);
 		}
@@ -41,10 +41,10 @@ public class RecapitiController {
 	}
 
 	@RequestMapping(value={"/gestioneRecapiti.htm"}, method = RequestMethod.POST)
-	public String addressFormPost(@ModelAttribute("user") String username, @ModelAttribute("userdb") User user,  Map<String,User> model)
+	public String addressFormPost(@ModelAttribute("user") String username, @ModelAttribute("userdb") User user)
 	{
 		System.out.println("gestione recapiti controller post");
-		for (Iterator i = user.getRecapiti().iterator(); i.hasNext();) {
+		for (Iterator<Recapito> i = user.getRecapiti().iterator(); i.hasNext();) {
 			Recapito rec = (Recapito) i.next();
 			System.out.println(rec);
 		}
@@ -52,7 +52,7 @@ public class RecapitiController {
 		u.setRecapiti(user.getRecapiti());
 		userService.update(u);
 		Set<Recapito> ind = userService.findByUsername(username).getRecapiti();
-		for (Iterator i = ind.iterator(); i.hasNext();) {
+		for (Iterator<Recapito> i = ind.iterator(); i.hasNext();) {
 			Recapito rec = (Recapito) i.next();
 			System.out.println(rec);
 		}
@@ -67,8 +67,8 @@ public class RecapitiController {
 		return "aggiungiRecapito";
 	}
 	
-	@RequestMapping(value={"/aggiungiRecapito.htm"}, method = RequestMethod.POST)
-	public String addAddressPost(@ModelAttribute("user") String username, @ModelAttribute("recapito") Recapito recapito,  Map<String,Object> model)
+	@RequestMapping(value="/aggiungiRecapito.htm", method = RequestMethod.POST)
+	public String addAddressPost(@ModelAttribute("user") String username, @ModelAttribute("recapito") Recapito recapito)
 	{
 		User u = userService.findByUsername(username);
 		u.getRecapiti().add(recapito);
@@ -76,10 +76,10 @@ public class RecapitiController {
 		return "redirect:gestioneRecapiti.htm";
 	}
 	
-	@RequestMapping(value={"/eliminaRecapito.htm"}, params="id")
-	public String removeAddressGet(@RequestParam(value="id") int id,  Map<String,Object> model)
+	@RequestMapping(value= "/eliminaRecapito.htm")
+	public String removeAddressGet(@RequestParam int idRecapito)
 	{
-		recapitoService.delete(id);
+		recapitoService.delete(idRecapito);
 		return "redirect:gestioneRecapiti.htm";
 	}
 }

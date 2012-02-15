@@ -9,5 +9,4 @@
 	<a href="#">Contattaci</a>
 	<a href="faq.htm">F.A.Q.</a>
 	<a href="#">Carrello</a>
-	<a href="#">Login</a>
 </div>
