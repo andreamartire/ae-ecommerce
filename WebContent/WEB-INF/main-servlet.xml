@@ -17,33 +17,6 @@
         http://www.springframework.org/schema/webflow-config
 		http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd">
 
-	<flow:flow-executor id="flowExecutor" flow-registry="flowRegistry" />
-
-	<flow:flow-registry id="flowRegistry" base-path="/WEB-INF/flows" flow-builder-services="flowBuilderServices">
-		<flow:flow-location id="registration" path="registration-flow.xml" />
-	</flow:flow-registry>
-
-	<!-- Gestisce il flusso -->
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-		<property name="flowRegistry" ref="flowRegistry" />
-	</bean>
-
-	<!-- Gestisce gli stati del flusso -->
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
-		<property name="flowExecutor" ref="flowExecutor" />
-	</bean>
-
-	<!-- Plugs in a custom creator for Web Flow views -->
-	<webflow:flow-builder-services id="flowBuilderServices"
-		view-factory-creator="mvcViewFactoryCreator" />
-
-	<!-- Configures Web Flow to use Tiles to create views for rendering; Tiles 
-		allows for applying consistent layouts to your views -->
-	<bean id="mvcViewFactoryCreator"
-		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
-		<property name="viewResolvers" ref="viewResolver" />
-	</bean>
-
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources/ directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
@@ -106,4 +79,37 @@
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
+	<!-- Configure the multipart resolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="100000"/>
+    </bean>
+	
+<!-- 	<flow:flow-executor id="flowExecutor" flow-registry="flowRegistry" /> -->
+
+<!-- 	<flow:flow-registry id="flowRegistry" base-path="/WEB-INF/flows" flow-builder-services="flowBuilderServices"> -->
+<!-- 		<flow:flow-location id="registration" path="registration-flow.xml" /> -->
+<!-- 	</flow:flow-registry> -->
+
+<!-- 	Gestisce il flusso  -->
+<!-- 	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping"> -->
+<!-- 		<property name="flowRegistry" ref="flowRegistry" /> -->
+<!-- 	</bean> -->
+
+<!-- 	 Gestisce gli stati del flusso -->
+<!-- 	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter"> -->
+<!-- 		<property name="flowExecutor" ref="flowExecutor" /> -->
+<!-- 	</bean> -->
+
+<!-- 	 Plugs in a custom creator for Web Flow views -->
+<!-- 	<webflow:flow-builder-services id="flowBuilderServices" -->
+<!-- 		view-factory-creator="mvcViewFactoryCreator" /> -->
+
+<!-- 	 Configures Web Flow to use Tiles to create views for rendering; Tiles  -->
+<!-- 		allows for applying consistent layouts to your views -->
+<!-- 	<bean id="mvcViewFactoryCreator" -->
+<!-- 		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator"> -->
+<!-- 		<property name="viewResolvers" ref="viewResolver" /> -->
+<!-- 	</bean> -->
 </beans>
