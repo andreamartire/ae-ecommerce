@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+			    http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
+
+	<start-state idref="datiAnagraficiRegistration" />
+
+	<view-state id="datiAnagraficiRegistration" view="registration1">
+		<transition on="submit" to="indirizzoRegistration" />
+	</view-state>
+
+	<view-state id="indirizzoRegistration" view="registration2">
+		<transition on="submit" to="endState" />
+	</view-state>
+
+	<view-state id="endState" view="home"></view-state>
+
+	<global-transitions>
+		<transition on="cancel" to="endState" />
+	</global-transitions>
+
+</flow>

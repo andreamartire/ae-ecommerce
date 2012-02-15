@@ -194,4 +194,14 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/files/condizioni.jsp" />
 	</definition>
 	
+	<definition name="registration1" extends="baseLayout">
+	  	<put-attribute name="title" value="Reg 1" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/registration/registration1.jsp" />
+	</definition>
+	
+	<definition name="registration2" extends="baseLayout">
+	  	<put-attribute name="title" value="Reg 2" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/registration/registration2.jsp" />
+	</definition>
+	
 </tiles-definitions>
