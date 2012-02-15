@@ -1,5 +1,6 @@
 package aeecommerce.pojo;
 
+import java.sql.Blob;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -7,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class Amministratore extends User {
 	
-	String banner;
+	Blob banner;
 	
 	String googleMap;
 
@@ -19,11 +20,11 @@ public class Amministratore extends User {
 		super(username, password, dataRegistrazione);
 	}
 
-	public String getBanner() {
+	public Blob getBanner() {
 		return banner;
 	}
 
-	public void setBanner(String banner) {
+	public void setBanner(Blob banner) {
 		this.banner = banner;
 	}
 

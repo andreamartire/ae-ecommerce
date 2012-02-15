@@ -26,7 +26,7 @@ public class DatiUtenteController {
 	UserService userService;
 	 
 	@RequestMapping(value={"/gestioneDatiUtente.htm"}, method = RequestMethod.GET)
-	public String addressForm(@ModelAttribute("user") String username, ModelMap model)
+	public String addressForm(@ModelAttribute("user") String username)
 	{
 		System.out.println("dati utente controller get");
 		if(userService.isPrivato(username))
@@ -50,7 +50,7 @@ public class DatiUtenteController {
 	}
 
 	@RequestMapping(value={"/gestioneDatiPrivato.htm"}, method = RequestMethod.POST)
-	public String gestioneDatiPrivatoPost(@ModelAttribute("userInfo") Privato u, ModelMap model)
+	public String gestioneDatiPrivatoPost(@ModelAttribute("userInfo") Privato u)
 	{
 		System.out.println("dati privato controller post");
 		System.out.println(u);
@@ -72,7 +72,7 @@ public class DatiUtenteController {
 	}
 	
 	@RequestMapping(value={"/gestioneDatiAzienda.htm"}, method = RequestMethod.POST)
-	public String gestioneDatiAziendaPost(@ModelAttribute("userInfo") Azienda u, ModelMap model)
+	public String gestioneDatiAziendaPost(@ModelAttribute("userInfo") Azienda u)
 	{
 		System.out.println("dati azienda controller post");
 		System.out.println(u);

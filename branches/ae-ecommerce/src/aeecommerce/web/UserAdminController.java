@@ -59,7 +59,7 @@ public class UserAdminController {
 	}
 	
 	@RequestMapping(value={"/modificaUtente.htm"}, method = RequestMethod.POST)
-	public String gestioneDatiPrivatoPost(@ModelAttribute("userInfo") User u, ModelMap model)
+	public String gestioneDatiPrivatoPost(@ModelAttribute("userInfo") User u)
 	{
 		System.out.println("gestione utente admin post");
 		System.out.println(u);

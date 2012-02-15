@@ -7,7 +7,7 @@
 <script type="text/javascript">
 function elimina(id){
 	if (confirm("Confermi eliminazione?"))
-		location.href = "eliminaRecapitoAdmin.htm?idRecapito=" + id;
+		location.href = "eliminaRecapito.htm?idRecapito=" + id;
 }
 </script>
 <a href="home.htm">Home</a> > Gestione Recapiti

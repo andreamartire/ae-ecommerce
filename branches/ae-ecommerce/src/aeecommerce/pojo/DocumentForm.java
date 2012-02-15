@@ -1,13 +1,8 @@
 package aeecommerce.pojo;
 
-import java.sql.Blob;
-import java.sql.Clob;
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 import org.hibernate.Hibernate;
 

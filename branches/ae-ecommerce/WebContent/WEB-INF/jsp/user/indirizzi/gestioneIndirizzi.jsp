@@ -7,7 +7,7 @@
 <script type="text/javascript">
 function elimina(id){
 	if (confirm("Confermi eliminazione?"))
-		location.href = "eliminaIndirizzoAdmin.htm?idAddress=" + id;
+		location.href = "eliminaIndirizzo.htm?idAddress=" + id;
 } 
 </script>
 

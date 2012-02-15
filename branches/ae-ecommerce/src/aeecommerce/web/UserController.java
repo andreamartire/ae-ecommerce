@@ -57,7 +57,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = {"/checkUsername.htm"}, method = RequestMethod.POST)
-	public @ResponseBody String ajaxCheckUsername(@RequestParam String username, ModelMap model) {
+	public @ResponseBody String ajaxCheckUsername(@RequestParam String username) {
 		
 		User userDB = userService.findByUsername(username);
 		System.out.println(userDB);

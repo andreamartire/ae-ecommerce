@@ -20,7 +20,7 @@ public class CategorieController {
 	CategoriaService catService;
 	
 	@RequestMapping(value = "/listCategorie.htm", method=RequestMethod.GET)
-	public @ResponseBody String listCategorie(ModelMap model) {
+	public @ResponseBody String listCategorie() {
 		List<Categoria> categorie = catService.list();
 		
 		if (categorie.isEmpty())
@@ -62,7 +62,6 @@ public class CategorieController {
 	public String gestioneCategorie(ModelMap model) {
 		List<Categoria> categorie = catService.list();
 		model.put("categorie", categorie);
-		
 		return "categoriesManagement";
 	}
 	

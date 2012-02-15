@@ -13,7 +13,7 @@ import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"indirizzo", "user", "type"} )
+@SessionAttributes(value = "indirizzo" )
 public class AddressController {
 
 	@Autowired

@@ -27,7 +27,7 @@ public class IndirizziController {
 	@Autowired
 	IndirizzoService indirizzoService;
 	
-	@RequestMapping(value={"/gestioneIndirizzi.htm"}, method = RequestMethod.GET)
+	@RequestMapping(value="/gestioneIndirizzi.htm", method = RequestMethod.GET)
 	public String addressFormGet(@ModelAttribute("user") String username,  Map<String, User> model)
 	{
 		System.out.println("gestione indirizzi controller get");
@@ -40,11 +40,11 @@ public class IndirizziController {
 		return "gestioneIndirizzi";
 	}
 
-	@RequestMapping(value={"/gestioneIndirizzi.htm"}, method = RequestMethod.POST)
-	public String addressFormPost(@ModelAttribute("user") String username, @ModelAttribute("userdb") User user,  Map<String,User> model)
+	@RequestMapping(value="/gestioneIndirizzi.htm", method = RequestMethod.POST)
+	public String addressFormPost(@ModelAttribute("user") String username, @ModelAttribute("userdb") User user)
 	{
 		System.out.println("gestione indirizzi controller post");
-		for (Iterator i = user.getIndirizzi().iterator(); i.hasNext();) {
+		for (Iterator<Indirizzo> i = user.getIndirizzi().iterator(); i.hasNext();) {
 			Indirizzo indirizzo = (Indirizzo) i.next();
 			System.out.println(indirizzo);
 		}
@@ -52,14 +52,14 @@ public class IndirizziController {
 		u.setIndirizzi(user.getIndirizzi());
 		userService.update(u);
 		Set<Indirizzo> ind = userService.findByUsername(username).getIndirizzi();
-		for (Iterator i = ind.iterator(); i.hasNext();) {
+		for (Iterator<Indirizzo> i = ind.iterator(); i.hasNext();) {
 			Indirizzo indirizzo = (Indirizzo) i.next();
 			System.out.println(indirizzo);
 		}
 		return "redirect:gestioneIndirizzi.htm";
 	}
 	
-	@RequestMapping(value={"/aggiungiIndirizzo.htm"}, method = RequestMethod.GET)
+	@RequestMapping(value="/aggiungiIndirizzo.htm", method = RequestMethod.GET)
 	public String addAddressGet(@ModelAttribute("user") String username,  Map<String,Object> model)
 	{
 		System.out.println("aggiungi indirizzo controller get");
@@ -67,8 +67,8 @@ public class IndirizziController {
 		return "aggiungiIndirizzo";
 	}
 	
-	@RequestMapping(value={"/aggiungiIndirizzo.htm"}, method = RequestMethod.POST)
-	public String addAddressPost(@ModelAttribute("user") String username, @ModelAttribute("indirizzo") Indirizzo indirizzo,  Map<String,Object> model)
+	@RequestMapping(value="/aggiungiIndirizzo.htm", method = RequestMethod.POST)
+	public String addAddressPost(@ModelAttribute("user") String username, @ModelAttribute("indirizzo") Indirizzo indirizzo)
 	{
 		User u = userService.findByUsername(username);
 		u.getIndirizzi().add(indirizzo);
@@ -76,10 +76,10 @@ public class IndirizziController {
 		return "redirect:gestioneIndirizzi.htm";
 	}
 	
-	@RequestMapping(value={"/eliminaIndirizzo.htm"}, params="id")
-	public String removeAddressGet(@RequestParam(value="id") int id,  Map<String,Object> model)
+	@RequestMapping(value="/eliminaIndirizzo.htm")
+	public String removeAddressGet(@RequestParam int idAddress)
 	{
-		indirizzoService.delete(id);
+		indirizzoService.delete(idAddress);
 		return "redirect:gestioneIndirizzi.htm";
 	}
 }
