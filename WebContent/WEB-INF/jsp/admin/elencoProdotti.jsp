@@ -19,12 +19,8 @@
 				<td>Prezzo: <b id="prezzoProdotto${prodotto.id}" style="width: 50px">${prodotto.prezzoUnitario}</b> Euro</td>
 			</tr>
 			<tr>
-				<td colspan="2">Descrizione:</td>
-			</tr>
-			<tr>
-				<td colspan="2" width="510">
-					<textarea rows="4" cols="60" name="descrizione" id="descrizioneProdotto${prodotto.id}">${prodotto.descrizione}</textarea>
-				</td>
+				<td>Descrizione:</td>
+				<td>${prodotto.descrizione}</td>
 			</tr>
 			<tr>
 				<td>Peso: <b id="pesoProdotto${prodotto.id}" style="width: 30px">${prodotto.pesoApprossimato}</b> Kg</td>
