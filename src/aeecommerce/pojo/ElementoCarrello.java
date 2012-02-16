@@ -13,7 +13,7 @@ public class ElementoCarrello {
 	@GeneratedValue
 	int id;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	Prodotto prodotto;
 	
 	int quantita;

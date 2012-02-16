@@ -95,4 +95,13 @@ public class Carrello {
 			System.err.println("remove elemento carrello");
 		}
 	}
+
+	public void removeElementoCarrello(int elementoCarrello) {
+		for (ElementoCarrello e : elementiCarrello) {
+			if (e.getId() == elementoCarrello) {
+				elementiCarrello.remove(e);
+				break;
+			}
+		}
+	}
 }
