@@ -1,6 +1,5 @@
 package aeecommerce.pojo;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,12 +17,17 @@ public class ElementoCarrello {
 	
 	int quantita;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	Carrello carrello;
 	
 	public ElementoCarrello() {
 	}
 
+	@Override
+	public String toString() {
+		return quantita + "x '"+ prodotto.getNome() + "'";
+	}
+	
 	public int getId() {
 		return id;
 	}

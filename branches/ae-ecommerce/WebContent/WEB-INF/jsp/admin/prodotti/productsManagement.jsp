@@ -78,7 +78,7 @@
 
 <a onclick="showAggiungi()">Aggiungi Prodotto</a>
 <div style="display: none" id="aggiungiProdotto">
-	<table style="padding: 6px">
+	<table style="width: 500px; padding: 5px">
 		<tr>
 			<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto"/></td>
 			<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto" style="width: 50px"/> Euro</td>
@@ -107,40 +107,33 @@
 
 <hr/>
 
-<!-- <table style="padding: 3px"> -->
-	<c:forEach var="prodotto" items="${prodotti}">
-		<div class="prodotto${prodotto.id}">
-			<table style="padding: 6px">
-				<tr>
-					<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto${prodotto.id}" value="${prodotto.nome}" /></td>
-					<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto${prodotto.id}" style="width: 50px" value="${prodotto.prezzoUnitario}" /> Euro</td>
-				</tr>
-				<tr>
-					<td colspan="2"><b>Descrizione</b></td>
-				</tr>
-				<tr>
-					<td colspan="2" width="510">
-						<textarea rows="4" cols="60" name="descrizione" id="descrizioneProdotto${prodotto.id}">${prodotto.descrizione}</textarea>
-					</td>
-				</tr>
-				<tr>
-					<td><b>Peso</b><input type="number" name="peso" id="pesoProdotto${prodotto.id}" style="width: 30px" value="${prodotto.pesoApprossimato}" /> Kg</td>
-					<td><b>IVA</b><input type="number" name="iva" id="ivaProdotto${prodotto.id}" style="width: 30px" value="${prodotto.percentualeIVA}" />%</td>
-				</tr>
-				<tr>
-					<td> </td>
-					<td align="right">
-						<input type="button" value="Salva" onclick="modifica(${prodotto.id})"/>
-						<input type="button" value="Elimina" onclick="elimina(${prodotto.id})"/>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<hr class="prodotto${prodotto.id}"/>
-<%-- 		<tr id="prodotto${prodotto.id}"> --%>
-<%-- 			<td><c:out value="${prodotto.nome}" /></td> --%>
-<%-- 			<td><input type="button" value="Modifica" onclick="modifica(${prodotto.id})"></td> --%>
-<%-- 			<td><input type="button" value="Elimina" onclick="elimina(${prodotto.id})"></td> --%>
-<!-- 		</tr> -->
-	</c:forEach>
-<!-- </table> -->
+<c:forEach var="prodotto" items="${prodotti}">
+	<div class="prodotto${prodotto.id}">
+		<table style="width: 500px; padding: 5px">
+			<tr>
+				<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto${prodotto.id}" value="${prodotto.nome}" /></td>
+				<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto${prodotto.id}" style="width: 50px" value="${prodotto.prezzoUnitario}" /> Euro</td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Descrizione</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" width="510">
+					<textarea rows="4" cols="59" name="descrizione" id="descrizioneProdotto${prodotto.id}">${prodotto.descrizione}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Peso</b><input type="number" name="peso" id="pesoProdotto${prodotto.id}" style="width: 30px" value="${prodotto.pesoApprossimato}" /> Kg</td>
+				<td><b>IVA</b><input type="number" name="iva" id="ivaProdotto${prodotto.id}" style="width: 30px" value="${prodotto.percentualeIVA}" />%</td>
+			</tr>
+			<tr>
+				<td> </td>
+				<td align="right">
+					<input type="button" value="Salva" onclick="modifica(${prodotto.id})"/>
+					<input type="button" value="Elimina" onclick="elimina(${prodotto.id})"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<hr class="prodotto${prodotto.id}"/>
+</c:forEach>

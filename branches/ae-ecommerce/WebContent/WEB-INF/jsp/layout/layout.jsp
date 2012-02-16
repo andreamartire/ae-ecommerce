@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 <script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
 
-<!-- style="border-bottom: 1px solid black;" -->
+<!-- style="border-bottom: 0px solid black;" -->
 
 </head>
 <body>
@@ -18,10 +18,10 @@
 	        </td>
 	    </tr>
 	    <tr>
-	        <td style="border: 0px solid black; background-color: #D8D8D8;" height="450" width="130" valign="top">
+	        <td style="border: 0px solid black; background-color: #D8D8D8;" height="600" width="130" valign="top">
 	        	<tiles:insertAttribute name="left" />
 	        </td>
-	        <td style="border: 0px solid black;" width="520" valign="top">
+	        <td style="border: 0px solid black;" valign="top">
 	        	<tiles:insertAttribute name="body" />
 	        </td>
 	        <td style="border: 0px solid black; background-color: #D8D8D8; padding: 5px;"  width="230" valign="top">

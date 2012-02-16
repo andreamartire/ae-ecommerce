@@ -22,6 +22,11 @@ public abstract class Cliente extends User {
 		super(username, password, dataRegistrazione);
 		carrelli = new ArrayList<Carrello>();
 	}
+	
+	@Override
+	public String toString() {
+		return username;
+	}
 
 	public List<Carrello> getCarrelli() {
 		return carrelli;

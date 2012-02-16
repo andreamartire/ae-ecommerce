@@ -27,6 +27,16 @@ public class ProdottiController {
 	@Autowired
 	CategoriaService catService;
 	
+	@RequestMapping(value = "/prodotti", method = RequestMethod.GET)
+	public String prodotti(@RequestParam int id, ModelMap model) {
+		
+		Prodotto p = prodService.findById(id);
+		
+		model.put("prodotto",p);
+		
+		return "prodotti";
+	}
+	
 	@RequestMapping(value = "/listProdotti.htm")
 	public @ResponseBody String listProdotti(@RequestParam int idCategoria) {
 		

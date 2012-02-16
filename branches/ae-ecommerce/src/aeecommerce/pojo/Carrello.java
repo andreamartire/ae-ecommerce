@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Carrello {
 	@Temporal(TemporalType.DATE)
 	Date dataCreazione;
 	
-	@OneToMany(mappedBy="carrello")
+	@OneToMany(mappedBy="carrello", cascade = CascadeType.ALL)
 	List<ElementoCarrello> elementiCarrello;
 	
 	/**
@@ -40,6 +41,14 @@ public class Carrello {
 		this.elementiCarrello = new ArrayList<ElementoCarrello>();
 	}
 
+	@Override
+	public String toString() {
+		return 	"id = " + id + "\n" +
+				"cliente = " + cliente + "\n" +
+				"dataCreazione = " + dataCreazione + "\n" +
+				"prodotti = " + elementiCarrello;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -90,12 +99,12 @@ public class Carrello {
 	
 	public void removeElementoCarrello(ElementoCarrello ec) {
 		try {
-			this.elementiCarrello.remove(ec);
+			elementiCarrello.remove(ec);
 		} catch (Exception e) {
-			System.err.println("remove elemento carrello");
+			System.out.println("remove elemento carrello error");
 		}
 	}
-
+	
 	public void removeElementoCarrello(int elementoCarrello) {
 		for (ElementoCarrello e : elementiCarrello) {
 			if (e.getId() == elementoCarrello) {
