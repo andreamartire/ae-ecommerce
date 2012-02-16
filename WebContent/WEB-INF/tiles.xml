@@ -205,33 +205,42 @@
 	</definition>
 
 	<definition name="elencoProdotti" extends="baseLayout">
-	  	<put-attribute name="title" value="Gestione utenti" />
-	  	<put-attribute name="body" value="/WEB-INF/jsp/elencoProdotti.jsp" />
+		<put-attribute name="title" value="Gestione utenti" />
+		<put-attribute name="body" value="/WEB-INF/jsp/elencoProdotti.jsp" />
+	</definition>
+
+	<!-- Outuput jsp -->
+	<definition name="output" extends="baseLayout">
+		<put-attribute name="title" value="Info" />
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/output.jsp" />
 	</definition>
 
 	<!-- FAQ -->
-	<definition name="faq" extends="baseLayout">
-		<put-attribute name="title" value="FAQ" />
-		<put-attribute name="body" value="/WEB-INF/jsp/admin/faq/faq.jsp" />
-	</definition>
-
 	<definition name="faqEditor" extends="baseLayout">
 		<put-attribute name="title" value="Gestione FAQ" />
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/admin/faq/faqEditor.jsp" />
+			value="/WEB-INF/jsp/admin/faqEditor.jsp" />
 	</definition>
 
 	<!-- Condizioni -->
 	<definition name="condizioniEditor" extends="baseLayout">
 		<put-attribute name="title" value="Gestione Condizioni" />
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/admin/condizioni/condizioniEditor.jsp" />
+			value="/WEB-INF/jsp/admin/condizioniEditor.jsp" />
 	</definition>
-
-	<definition name="condizioni" extends="baseLayout">
-		<put-attribute name="title" value="Condizioni" />
+	
+	<!-- Dove Siamo -->
+	<definition name="doveSiamoEditor" extends="baseLayout">
+		<put-attribute name="title" value="Gestione Pagina DoveSiamo" />
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/admin/condizioni/condizioni.jsp" />
+			value="/WEB-INF/jsp/admin/doveSiamoEditor.jsp" />
+	</definition>
+	
+	<!-- Contattaci -->
+	<definition name="contattaciEditor" extends="baseLayout">
+		<put-attribute name="title" value="Gestione Pagina Contattaci" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/contattaciEditor.jsp" />
 	</definition>
 
 	<!-- Usati nel web flow -->
@@ -248,8 +257,8 @@
 	</definition>
 
 	<definition name="carrello" extends="baseLayout">
-	  	<put-attribute name="title" value="Carrello" />
-	  	<put-attribute name="body" value="/WEB-INF/jsp/carrello.jsp" />
+		<put-attribute name="title" value="Carrello" />
+		<put-attribute name="body" value="/WEB-INF/jsp/carrello.jsp" />
 	</definition>
-	
+
 </tiles-definitions>

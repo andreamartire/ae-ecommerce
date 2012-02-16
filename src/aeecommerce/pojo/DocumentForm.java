@@ -16,11 +16,17 @@ public class DocumentForm {
     private String faq;
     
     private String conditions;
+    
+    private String doveSiamo;
+    
+    private String contattaci;
 
-	public DocumentForm(int id, String faq, String conditions) {
+	public DocumentForm(int id, String faq, String conditions, String doveSiamo, String contattaci) {
 		this.id = id;
 		this.faq = faq;
 		this.conditions = conditions;
+		this.doveSiamo = doveSiamo;
+		this.contattaci = contattaci;
 	}
 
 	public int getId() {
@@ -47,15 +53,31 @@ public class DocumentForm {
 		this.conditions = conditions;
 	}
 
+	public String getDoveSiamo() {
+		return doveSiamo;
+	}
+
+	public void setDoveSiamo(String doveSiamo) {
+		this.doveSiamo = doveSiamo;
+	}
+
+	public String getContattaci() {
+		return contattaci;
+	}
+
+	public void setContattaci(String contattaci) {
+		this.contattaci = contattaci;
+	}
+
 	@Override
 	public String toString(){
-		return id + " " + faq + " " + conditions;
+		return id + " " + faq + " " + conditions + " " + doveSiamo + " " + contattaci;
 	}
 	
 	public Document toDocument(){
 		Document d = new Document(id,
-								Hibernate.createClob(faq),
-								Hibernate.createClob(conditions));
+								Hibernate.createClob(faq),Hibernate.createClob(conditions),
+								Hibernate.createClob(doveSiamo),Hibernate.createClob(contattaci));
 		return d;
 	}
 }

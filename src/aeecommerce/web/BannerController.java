@@ -17,12 +17,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
 import aeecommerce.pojo.Amministratore;
+import aeecommerce.pojo.UploadItem;
 import aeecommerce.service.UserService;
 
 
 @Controller
 @RequestMapping(value = "/gestioneInfo.htm")
-public class InfoController
+public class BannerController
 {
 	@Autowired
 	UserService userService;
