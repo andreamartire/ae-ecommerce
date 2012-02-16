@@ -205,7 +205,8 @@
 	});
 </script>
 
-<h4>Gestione Categorie</h4>
+<a href="home.htm">Home</a> > Gestione Categorie
+<hr></hr>
 
 <p>
 <a onclick='$("#add").fadeIn();'>Aggiungi Categoria</a><br/>

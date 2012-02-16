@@ -58,7 +58,7 @@ public class CategorieController {
 		return json;
 	}
 
-	@RequestMapping(value = "/gestioneCategorie")
+	@RequestMapping(value = "/gestioneCategorie.htm")
 	public String gestioneCategorie(ModelMap model) {
 		List<Categoria> categorie = catService.list();
 		model.put("categorie", categorie);

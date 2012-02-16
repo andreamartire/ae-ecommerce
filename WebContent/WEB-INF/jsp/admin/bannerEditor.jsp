@@ -2,7 +2,8 @@
 <%@page pageEncoding="UTF-8"%>
 <%@ page session="false"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<a href="home.htm">Home</a> > Gestione Banner
+<hr></hr>
 <form:form modelAttribute="uploadItem" method="post"
 	enctype="multipart/form-data">
 	<fieldset>
