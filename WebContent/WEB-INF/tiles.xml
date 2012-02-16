@@ -261,4 +261,9 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/carrello.jsp" />
 	</definition>
 
+	<definition name="prodotti" extends="baseLayout">
+	  	<put-attribute name="title" value="Prodotti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/prodotti.jsp" />
+	</definition>
+	
 </tiles-definitions>

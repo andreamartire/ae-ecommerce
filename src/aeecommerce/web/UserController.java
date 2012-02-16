@@ -15,7 +15,7 @@ import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","type","users","go"})
+@SessionAttributes(value = {"user","type"})
 public class UserController {
 
 	@Autowired
@@ -42,8 +42,8 @@ public class UserController {
 			type = "admin";
 		name = username;
 		
-		model.addAttribute("user", name);
-		model.addAttribute("type", type);
+		model.put("user", name);
+		model.put("type", type);
 		
 		String result = "Bentornato " + userDB.getUsername();
 		return result;
