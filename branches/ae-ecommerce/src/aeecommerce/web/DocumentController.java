@@ -43,7 +43,7 @@ public class DocumentController{
 			documentsService.save(new Document());
 		System.out.println("Sent " + documentsService.load());
 		model.put("document", documentsService.load().toDocumentForm());
-		return "conditionsEditor";
+		return "condizioniEditor";
 	}
 	
 	@RequestMapping(value={"/gestioneCondizioni.htm"}, method = RequestMethod.POST)

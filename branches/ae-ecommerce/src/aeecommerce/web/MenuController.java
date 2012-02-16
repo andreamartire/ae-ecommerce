@@ -59,6 +59,6 @@ public class MenuController {
 			model.put("data", "Non specificate");
 		else
 			model.put("data", documentService.load().toDocumentForm().getConditions());
-		return "faq";
+		return "condizioni";
 	}
 }
