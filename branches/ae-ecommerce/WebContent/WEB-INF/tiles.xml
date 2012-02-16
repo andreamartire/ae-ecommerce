@@ -205,9 +205,8 @@
 	</definition>
 
 	<definition name="elencoProdotti" extends="baseLayout">
-		<put-attribute name="title" value="Gestione utenti" />
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/admin/prodotti/elencoProdotti.jsp" />
+	  	<put-attribute name="title" value="Gestione utenti" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/elencoProdotti.jsp" />
 	</definition>
 
 	<!-- FAQ -->
@@ -248,4 +247,9 @@
 			value="/WEB-INF/jsp/registration/registration2.jsp" />
 	</definition>
 
+	<definition name="carrello" extends="baseLayout">
+	  	<put-attribute name="title" value="Carrello" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/carrello.jsp" />
+	</definition>
+	
 </tiles-definitions>
