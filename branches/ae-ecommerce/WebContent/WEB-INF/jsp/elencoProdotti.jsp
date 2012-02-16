@@ -3,7 +3,19 @@
 <script type="text/javascript">
 	function aggiungiACarrello(idProdotto) {
 		var qnt = $('#quantita').val();
-		alert("Hai aggiunto al carrello " + qnt + " prodotti con id " + idProdotto);
+		
+		$.ajax({
+			url : 'addToCart.htm',
+			type: "POST",
+			data : ({
+				idProdotto : idProdotto,
+				qnt : qnt
+			}),
+			success : function(prod) {
+				alert("Hai aggiunto al carrello " + qnt + "x " + prod);
+				/* location.reload(); */
+			}
+		});
 	}
 </script>
 
@@ -37,3 +49,4 @@
 	</div>
 	<hr class="prodotto${prodotto.id}"/>
 </c:forEach>
+

@@ -26,6 +26,7 @@
 			}
 		});
 	}	
+	
 	function startup() {
 		var session = document.getElementById("session")
 		var user = session.getAttribute("data-user");
@@ -46,6 +47,16 @@
 			$('#loginForm').show();
 			$('#message').html("Accedi o registrati");
 		}
+		var carrello = session.getAttribute("data-carrello");
+		var html = "";
+		if (carrello.elementiCarrello == null || carrello.elementiCarrello == "") {
+			html += "<li>Nessun elemento nel carrello</li>";
+		} else {
+			$.each(carrello.elementiCarrello, function(key, e) {
+				html += "<li>e.nome - e.prezzo</li>";
+			});
+		} 
+		$('#carrello').append(html);
 	}
 	$(document).ready(startup);
 </script>
@@ -57,7 +68,7 @@
 	</tr>
 </table>
 
-<div id="session" data-user="${sessionScope.user}" data-type="${sessionScope.type}" ></div>
+<div id="session" data-user="${sessionScope.user}" data-type="${sessionScope.type}" data-carrello="${sessionScope.carrello}"></div>
 
 <div id="accountCliente" style="display: none; padding: 5px">
 	<a href="#">I miei ordini</a> <br/>
@@ -93,6 +104,6 @@
 <hr/>
 
 <p>Il tuo carrello:</p>
-<ul style="list-style-type: none; margin: 0; padding: 0">
-	<li>Nessun elemento nel carrello</li>
+<ul id="carrello" style="list-style-type: none; margin: 0; padding: 0">
+	
 </ul>
