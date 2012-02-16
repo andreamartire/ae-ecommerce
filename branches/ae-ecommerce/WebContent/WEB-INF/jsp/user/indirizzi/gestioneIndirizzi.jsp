@@ -12,7 +12,7 @@ function elimina(id){
 </script>
 
 <form:form method="post" commandName="userdb">
-	<a href="home.htm">Home</a> > Gestione Indirizzi
+	<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > Gestione Indirizzi
 	<hr></hr>
 	<table>
 		<c:forEach items="${userdb.indirizzi}" var="i" varStatus="row">

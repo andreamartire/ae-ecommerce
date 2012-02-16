@@ -1,5 +1,6 @@
 <script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
 <a href="home.htm">Home</a> > Gestione Account
+<hr></hr>
 <table>
 	<tr>
 		<td><a href="gestioneDatiUtente.htm">Gestione Dati Utente</a></td>

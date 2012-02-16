@@ -24,7 +24,7 @@
 	        <td style="border: 0px solid black;" width="520" valign="top">
 	        	<tiles:insertAttribute name="body" />
 	        </td>
-	        <td style="border: 0px solid black; background-color: #D8D8D8; padding: 5px;"  width="230" valign="top">
+	        <td style="border: 0px solid black; background-color: #D8D8D8; padding: 5px;"  width="150" valign="top">
 	        	<tiles:insertAttribute name="right" />
 	        </td>
 	    </tr>

@@ -92,7 +92,7 @@ public class RegistrationController {
 			model.addAttribute("user", u.getUsername());
 			model.addAttribute("type", type);
 			
-			return "redirect:addAddress.htm";
+			return "redirect:aggiungiIndirizzo.htm";
 		}
 	}
 }
