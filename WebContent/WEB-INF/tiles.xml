@@ -114,9 +114,9 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/users/gestioneUtente.jsp" />
 	</definition>
 	
-	<definition name="adminInfo" extends="baseLayout">
-	  	<put-attribute name="title" value="Gestione Dati Azienda" />
-	  	<put-attribute name="body" value="/WEB-INF/jsp/adminInfo.jsp" />
+	<definition name="bannerEditor" extends="baseLayout">
+	  	<put-attribute name="title" value="Banner Editor" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/bannerEditor.jsp" />
 	</definition>
 	
 	<definition name="gestioneAdminDatiAzienda" extends="baseLayout">
