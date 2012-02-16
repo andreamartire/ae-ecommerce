@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Amministratore;
+import aeecommerce.pojo.Document;
 import aeecommerce.service.DocumentService;
 import aeecommerce.service.UserService;
 
 
 @Controller
 @SessionAttributes(value = {"user","type"})
-public class MenuController {
+public class MenuStandardController {
 	
 	@Autowired
 	UserService userService;
@@ -45,20 +46,36 @@ public class MenuController {
 	@RequestMapping(value={"/faq.htm"}, method = RequestMethod.GET)
 	public String getFaq(ModelMap model)
 	{
-		if(documentService.load() == null)
-			model.put("data", "Non specificate");
-		else
-			model.put("data", documentService.load().toDocumentForm().getFaq());
-		return "faq";
+		if( documentService.load() == null )
+			documentService.save(new Document());
+		model.put("data", documentService.load().toDocumentForm().getFaq());
+		return "output";
 	}
 	
 	@RequestMapping(value={"/condizioni.htm"}, method = RequestMethod.GET)
 	public String getCondition(ModelMap model)
 	{
-		if(documentService.load() == null)
-			model.put("data", "Non specificate");
-		else
-			model.put("data", documentService.load().toDocumentForm().getConditions());
-		return "condizioni";
+		if( documentService.load() == null )
+			documentService.save(new Document());
+		model.put("data", documentService.load().toDocumentForm().getConditions());
+		return "output";
+	}
+	
+	@RequestMapping(value={"/doveSiamo.htm"}, method = RequestMethod.GET)
+	public String getDoveSiamo(ModelMap model)
+	{
+		if( documentService.load() == null )
+			documentService.save(new Document());
+		model.put("data", documentService.load().toDocumentForm().getDoveSiamo());
+		return "output";
+	}
+	
+	@RequestMapping(value={"/contattaci.htm"}, method = RequestMethod.GET)
+	public String getContattaci(ModelMap model)
+	{
+		if( documentService.load() == null )
+			documentService.save(new Document());
+		model.put("data", documentService.load().toDocumentForm().getContattaci());
+		return "output";
 	}
 }

@@ -15,7 +15,7 @@ import aeecommerce.service.DocumentService;
 
 @Controller
 @SessionAttributes("document")
-public class DocumentController{
+public class MenuAdminController{
 	
 	@Autowired
 	DocumentService documentsService;
@@ -52,5 +52,39 @@ public class DocumentController{
 		System.out.println("received " + d);
 		documentsService.update(d.toDocument());
 		return "redirect:gestioneCondizioni.htm";
+	}
+	
+	@RequestMapping(value={"/gestioneDoveSiamo.htm"}, method = RequestMethod.GET)
+	public String getDoveSiamo(ModelMap model){
+		if( documentsService.load() == null )
+			documentsService.save(new Document());
+		System.out.println("Sent " + documentsService.load());
+		model.put("document", documentsService.load().toDocumentForm());
+		return "doveSiamoEditor";
+	}
+	
+	@RequestMapping(value={"/gestioneDoveSiamo.htm"}, method = RequestMethod.POST)
+	public String getDoveSiamoPost(@ModelAttribute("document") DocumentForm d){
+		System.out.println("Update DoveSiamo");
+		System.out.println("received " + d);
+		documentsService.update(d.toDocument());
+		return "redirect:gestioneDoveSiamo.htm";
+	}
+	
+	@RequestMapping(value={"/gestioneContattaci.htm"}, method = RequestMethod.GET)
+	public String getContattaci(ModelMap model){
+		if( documentsService.load() == null )
+			documentsService.save(new Document());
+		System.out.println("Sent " + documentsService.load());
+		model.put("document", documentsService.load().toDocumentForm());
+		return "contattaciEditor";
+	}
+	
+	@RequestMapping(value={"/gestioneContattaci.htm"}, method = RequestMethod.POST)
+	public String getContattaciPost(@ModelAttribute("document") DocumentForm d){
+		System.out.println("Update Contattaci");
+		System.out.println("received " + d);
+		documentsService.update(d.toDocument());
+		return "redirect:gestioneContattaci.htm";
 	}
 }

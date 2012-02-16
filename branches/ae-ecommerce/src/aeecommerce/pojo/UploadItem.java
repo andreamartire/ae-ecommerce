@@ -1,4 +1,4 @@
-package aeecommerce.web;
+package aeecommerce.pojo;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 

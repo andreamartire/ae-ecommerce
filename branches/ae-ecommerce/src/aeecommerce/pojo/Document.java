@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.Hibernate;
+
 @Entity
 public class Document {
 
@@ -16,14 +18,25 @@ public class Document {
 
 	private Clob faq;
 
-	private Clob conditions;
+	private Clob condizioni;
+	
+	private Clob doveSiamo;
+	
+	private Clob contattaci;
+	
+	public Document() {
+		this.faq = Hibernate.createClob("FAQ non specificate");
+		this.condizioni = Hibernate.createClob("Condizioni non specificate");
+		this.doveSiamo = Hibernate.createClob("DoveSiamo non specificato");
+		this.contattaci = Hibernate.createClob("Contatti non specificati");
+	}
 
-	public Document() {}
-
-	public Document(int id, Clob faq, Clob conditions) {
+	public Document(int id, Clob faq, Clob conditions, Clob doveSiamo, Clob contattaci) {
 		this.id = id;
 		this.faq = faq;
-		this.conditions = conditions;
+		this.condizioni = conditions;
+		this.doveSiamo = doveSiamo;
+		this.contattaci = contattaci;
 	}
 
 	public int getId() {
@@ -43,16 +56,32 @@ public class Document {
 	}
 
 	public Clob getConditions() {
-		return conditions;
+		return condizioni;
 	}
 
 	public void setConditions(Clob conditions) {
-		this.conditions = conditions;
+		this.condizioni = conditions;
+	}
+
+	public Clob getDoveSiamo() {
+		return doveSiamo;
+	}
+
+	public void setDoveSiamo(Clob doveSiamo) {
+		this.doveSiamo = doveSiamo;
+	}
+
+	public Clob getContattaci() {
+		return contattaci;
+	}
+
+	public void setContattaci(Clob contattaci) {
+		this.contattaci = contattaci;
 	}
 
 	@Override
 	public String toString(){
-		return id + " " + faq + " " + conditions;
+		return id + " " + faq + " " + condizioni + " " + doveSiamo + " " + contattaci;
 	}
 
 	public String ClobToString(Clob clob){
@@ -71,6 +100,7 @@ public class Document {
 	}
 
 	public DocumentForm toDocumentForm(){
-		return new DocumentForm(id, ClobToString(faq), ClobToString(conditions));
+		return new DocumentForm(id, ClobToString(faq), ClobToString(condizioni),
+				ClobToString(doveSiamo), ClobToString(contattaci));
 	}
 }
