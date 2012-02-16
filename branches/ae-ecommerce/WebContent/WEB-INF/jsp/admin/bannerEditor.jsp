@@ -6,17 +6,10 @@
 <form:form modelAttribute="uploadItem" method="post"
 	enctype="multipart/form-data">
 	<fieldset>
-		<legend>Upload Fields</legend>
+		<legend>Banner</legend>
 
 		<p>
-			<form:label for="name" path="name">Name</form:label>
-			<br />
-			<form:input path="name" />
-		</p>
-
-		<p>
-			<form:label for="fileData" path="fileData">File</form:label>
-			<br />
+			<form:label for="fileData" path="fileData">Banner: </form:label>
 			<form:input path="fileData" type="file" />
 		</p>
 
