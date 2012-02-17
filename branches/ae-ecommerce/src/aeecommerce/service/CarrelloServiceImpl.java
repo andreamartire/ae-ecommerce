@@ -1,5 +1,8 @@
 package aeecommerce.service;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,15 +29,16 @@ public class CarrelloServiceImpl implements CarrelloService {
 	public void save(Carrello c) {
 		carrelloDao.insert(c);
 	}
-	
+
 	@Override
 	public void aggiungi(int idProdotto, int qnt, Carrello c) {
+		System.out.println("Aggiungo " + idProdotto + " a " + c);
 		ElementoCarrello e = new ElementoCarrello();
 		e.setCarrello(c);
 		e.setQuantita(qnt);
 		Prodotto p = prodottoDao.findByID(idProdotto);
 		e.setProdotto(p);
-		c.addElementoCarrello(e);
+//		c.addElementoCarrello(e);
 		
 		ecDao.insert(e);
 	}
@@ -42,8 +46,7 @@ public class CarrelloServiceImpl implements CarrelloService {
 	@Override
 	public void remove(int elementoCarrello, Carrello c) {
 		ElementoCarrello e = ecDao.findByID(elementoCarrello);
-		System.out.println(e);
-		c.removeElementoCarrello(elementoCarrello);
+//		c.removeElementoCarrello(elementoCarrello);
 		ecDao.delete(e);
 	}
 
@@ -54,4 +57,16 @@ public class CarrelloServiceImpl implements CarrelloService {
 		ecDao.update(e);
 	}
 
+	@Override
+	public List<ElementoCarrello> list(Carrello carrello) {
+		List<ElementoCarrello> list = new LinkedList<ElementoCarrello>();
+		List<ElementoCarrello> all = ecDao.findAll();
+		for (ElementoCarrello e : all) {
+			System.out.println(e + " - " + e.getCarrello());
+			if (e.getCarrello().equals(carrello)) {
+				list.add(e);
+			}
+		}
+		return list;
+	}
 }

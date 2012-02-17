@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
@@ -13,7 +14,7 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Cliente extends User {
 
-	@OneToMany(mappedBy="cliente")
+	@OneToMany(mappedBy="cliente", fetch = FetchType.EAGER)
 	List<Carrello> carrelli;
 	
 	public Cliente() {}
