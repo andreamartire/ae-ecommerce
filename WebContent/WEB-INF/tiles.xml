@@ -205,8 +205,15 @@
 	</definition>
 
 	<definition name="elencoProdotti" extends="baseLayout">
-		<put-attribute name="title" value="Gestione utenti" />
+		<put-attribute name="title" value="Gestione prodotti" />
 		<put-attribute name="body" value="/WEB-INF/jsp/elencoProdotti.jsp" />
+	</definition>
+	
+	<!-- Gestione tipoSpedizione -->
+	<definition name="tipoSpedizioneManagement" extends="baseLayout">
+		<put-attribute name="title" value="Gestione TipoSpedizione" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/tipoSpedizione/tipoSpedizioneManagement.jsp" />
 	</definition>
 
 	<!-- Outuput jsp -->
