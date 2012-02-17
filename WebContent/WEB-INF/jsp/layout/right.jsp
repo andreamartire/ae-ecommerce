@@ -58,18 +58,7 @@
 			$('#loginDiv').show();
 			$('#message').html("Accedi o registrati");
 		}
-// 		var carrello = session.getAttribute("data-carrello");
-// 		var html = "";
-// 		if (carrello.elementiCarrello == null || carrello.elementiCarrello == "") {
-// 			html += "<li>Nessun elemento nel carrello</li>";
-// 		} else {
-// 			$.each(carrello.elementiCarrello, function(key, e) {
-// 				html += "<li>e.nome - e.prezzo</li>";
-// 			});
-// 		} 
-// 		$('#carrello').append(html);
 		
-
 		$('#loginForm').submit(function(e) {
 			e.preventDefault();
 			login();
@@ -84,10 +73,34 @@
 			if ($('#password').val() == "password")
 				$('#password').val("");
 		});
+		
+		$.getJSON('carrelloJSON.htm', function(data) {
+			var carrello = data.carrello;
+			var html = "";
+			if (carrello == "") {
+				html += "<tr><td>Nessun elemento nel carrello</td></tr>";
+			} else {
+				var tot = 0;
+				$.each(carrello, function(key, e) {
+					tot += parseFloat(e.prezzo)*parseFloat(e.qnt);
+					html += "<tr>"+
+								"<td>-</td>" +
+								"<td>"+ e.qnt +"x <a href='prodotti?id="+ e.id +"'>" + e.nome + "</a></td>" +
+								"<td align='right'><b>" + e.prezzo + "</b></td>" +
+							"</tr>";
+				});
+				tot = tot.toFixed(2);
+				html += "<tr><td height='40' align='right' colspan='3'>Totale: <b>"+ tot +"</b></td></tr>";
+			} 
+			$('#carrello').append(html);
+		});
 	}
 	$(document).ready(startup);
 </script>
 
+<style type="text/css">
+TABLE#carrello TD{font-family: times; font-size: 10pt;}
+</style>
 
 <div id="message"></div>
 
@@ -141,6 +154,5 @@
 <hr/>
 
 <p>Il tuo carrello:</p>
-<ul id="carrello" style="list-style-type: none; margin: 0; padding: 0">
-	
-</ul>
+<table id="carrello" style="width: 180px; border: 0px solid black">
+</table>

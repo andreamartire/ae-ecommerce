@@ -89,6 +89,7 @@
 					nome : $('#'+idCategoria).val()
 				}),
 				success : function(res) {
+					$('#'+idCategoria).val("");
 					location.reload();
 				}
 			});
@@ -123,8 +124,9 @@
 					"</span>";
 			html += "<ul id='prodotti"+categoria.id+"'>" +
 						"<li>" +
-							"<a onclick='aggiungi("+categoria.id+")'>Aggiungi sottocategoria</a>: " +
-							"<input id='"+categoria.id+"'type='text' style='width: 150px' />";
+							"Aggiungi sottocategoria: " +
+							"<input id='"+categoria.id+"'type='text' style='width: 150px' />" +
+							"<button onclick='aggiungi("+categoria.id+")'>Ok</button>";
 			if (categoria.children == "") {
 				html += 	" - <a onclick='listProdotti("+categoria.id+")'>Elenca prodotti</a>" +
 						"</li>";
@@ -145,8 +147,9 @@
 							"</span>";
 					html += "<ul id='prodotti"+subcat.id+"'>" +
 								"<li>" +
-									"<a onclick='aggiungi("+subcat.id+")'>Aggiungi</a>: " +
-									"<input id='"+subcat.id+"'type='text' style='width: 150px' />";
+									"Aggiungi sottocategoria: " +
+									"<input id='"+subcat.id+"'type='text' style='width: 150px' />" +
+									"<button onclick='aggiungi("+subcat.id+")'>Ok</button>";
 					if (subcat.children == "") {
 						html += 	" - <a onclick='listProdotti("+subcat.id+")'>Elenca prodotti</a>" +
 								"</li>";
@@ -167,9 +170,7 @@
 									"</span>" +
 									"<ul id='prodotti"+subsubcat.id+"'>" +
 										"<li>" +
-											"<a onclick='aggiungi("+subcat.id+")'>Aggiungi</a>: " +
-											"<input id='"+subcat.id+"'type='text' style='width: 150px' />" +
-											" - <a onclick='listProdotti("+subsubcat.id+")'>Elenca prodotti</a>" +
+											"<a onclick='listProdotti("+subsubcat.id+")'>Elenca prodotti</a>" +
 										"</li>" +
 									"</ul>" +
 								"</li>";
@@ -208,14 +209,11 @@
 <a href="home.htm">Home</a> > Gestione Categorie
 <hr></hr>
 
-<p>
-<a onclick='$("#add").fadeIn();'>Aggiungi Categoria</a><br/>
-<span id="add" style="display: none">
-	<input type="text" style="width: 150px" id="-1" /> 
-	<a onclick='aggiungi(-1); $("#add").hide(); $("#-1").val("")'>Add</a>
-</span>	
-</p>
-
 <ul id="listaCategorie" class="treeview-gray">
+	<li>
+		Aggingi Categoria: 
+		<input type="text" style="width: 150px" id="-1" /> 
+		<button onclick='aggiungi(-1)'>Ok</button>
+	</li>
 	<!-- contenuto dinamico -->
 </ul>

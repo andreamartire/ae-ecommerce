@@ -34,7 +34,7 @@
 
 <c:forEach var="elementoCarrello" items="${carrello}">
 	<div class="${elementoCarrello.id}" >
-		<table style="width: 500px; padding: 5px">
+		<table style="width: 600px; padding: 5px">
 			<tr>
 				<td><a href="prodotti?id=${elementoCarrello.prodotto.id}"><b>${elementoCarrello.prodotto.nome}</b></a></td>
 				<td align="right"><b>${elementoCarrello.prodotto.prezzoUnitario}</b> Euro</td>

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <script type="text/javascript" src="resources/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="resources/js/ckeditor/mytoolbar.js"></script>
 
 <a href="home.htm">Home</a> > Gestione Pagina Contattaci
 <hr></hr>

@@ -84,7 +84,7 @@
 
 <a onclick="showAggiungi()"><button>Aggiungi Prodotto</button></a>
 <div style="display: none" id="aggiungiProdotto">
-	<table style="width: 500px; padding: 5px">
+	<table style="width: 600px; padding: 5px">
 		<tr>
 			<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto"/></td>
 			<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto" style="width: 50px"/> Euro</td>
@@ -93,8 +93,8 @@
 			<td colspan="2"><b>Descrizione</b></td>
 		</tr>
 		<tr>
-			<td colspan="2" width="510">
-				<textarea rows="4" cols="60" name="descrizione" id="descrizioneProdotto"></textarea>
+			<td colspan="2" width="600">
+				<textarea rows="4" cols="70" name="descrizione" id="descrizioneProdotto"></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -115,7 +115,7 @@
 
 <c:forEach var="prodotto" items="${prodotti}">
 	<div class="prodotto${prodotto.id}">
-		<table style="width: 500px; padding: 5px">
+		<table style="width: 600px; padding: 5px">
 			<tr>
 				<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto${prodotto.id}" value="${prodotto.nome}" /></td>
 				<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto${prodotto.id}" style="width: 50px" value="${prodotto.prezzoUnitario}" /> Euro</td>
@@ -124,8 +124,8 @@
 				<td colspan="2"><b>Descrizione</b></td>
 			</tr>
 			<tr>
-				<td colspan="2" width="510">
-					<textarea rows="4" cols="59" name="descrizione" id="descrizioneProdotto${prodotto.id}">${prodotto.descrizione}</textarea>
+				<td colspan="2" width="600">
+					<textarea rows="4" cols="70" name="descrizione" id="descrizioneProdotto${prodotto.id}">${prodotto.descrizione}</textarea>
 				</td>
 			</tr>
 			<tr>
