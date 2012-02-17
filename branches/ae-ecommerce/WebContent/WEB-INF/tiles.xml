@@ -215,6 +215,13 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/tipoSpedizione/tipoSpedizioneManagement.jsp" />
 	</definition>
+	
+	<!-- Gestione tipoSpedizione -->
+	<definition name="modalitaPagamentoManagement" extends="baseLayout">
+		<put-attribute name="title" value="Gestione TipoSpedizione" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/modalitaPagamento/modalitaPagamentoManagement.jsp" />
+	</definition>
 
 	<!-- Outuput jsp -->
 	<definition name="output" extends="baseLayout">
