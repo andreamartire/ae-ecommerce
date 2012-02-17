@@ -34,7 +34,7 @@ public class TipoSpedizione {
 	double prezzoBase;
 	
 	/**
-	 * Tutti gli ordini pagati con questa modalit� di pagamento
+	 * Tutti gli ordini pagati con questa modalita' di pagamento
 	 */
 	@OneToMany(mappedBy = "tipoSpedizione")
 	List<Ordine> ordini;

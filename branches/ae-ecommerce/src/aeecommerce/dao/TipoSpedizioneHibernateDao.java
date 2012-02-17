@@ -45,7 +45,7 @@ public class TipoSpedizioneHibernateDao extends MasterDao implements TipoSpedizi
 	@Transactional
 	@Override
 	public void insert(TipoSpedizione m) {
-		getHibernateTemplate().saveOrUpdate(m);
+		getHibernateTemplate().save(m);
 	}
 
 	@Transactional

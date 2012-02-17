@@ -72,11 +72,12 @@
 	}
 </script>
 
-<h3>Gestione prodotti - Categoria: <b>${categoria.nome}</b></h3>
+<a href="home.htm">Home</a> > Gestione prodotti - Categoria: <b>${categoria.nome}</b>
+<hr></hr> 
 
 <div style="display: none" id="idCategoria">${categoria.id}</div>
 
-<a onclick="showAggiungi()">Aggiungi Prodotto</a>
+<a onclick="showAggiungi()"><button>Aggiungi Prodotto</button></a>
 <div style="display: none" id="aggiungiProdotto">
 	<table style="width: 500px; padding: 5px">
 		<tr>
