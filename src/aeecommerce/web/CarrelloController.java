@@ -1,6 +1,9 @@
 package aeecommerce.web;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Carrello;
-import aeecommerce.pojo.Cliente;
+import aeecommerce.pojo.ElementoCarrello;
 import aeecommerce.service.CarrelloService;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","carrello"})
 public class CarrelloController {
 
 	@Autowired
@@ -27,23 +29,13 @@ public class CarrelloController {
 	UserService userService;
 	
 	@RequestMapping(value = "addToCart.htm", method = RequestMethod.POST)
-	public @ResponseBody String addToCart(@RequestParam int idProdotto, @RequestParam int qnt, ModelMap model) {
+	public @ResponseBody String addToCart(@RequestParam int idProdotto, @RequestParam int qnt, HttpSession session) {
 		
-		Carrello c = (Carrello) model.get("carrello");
+		Carrello c = (Carrello) session.getAttribute("carrello");
 		
 		if (c == null) {
-			c = new Carrello();
-			c.setDataCreazione(new Date());
-
-			if (model.get("user") != null) {
-				System.out.println(model.get("user"));
-				c.setCliente((Cliente) userService.findByUsername((String) model.get("user")));
-			}
-			
-			carrelloService.save(c);
-			model.put("carrello", c);
-			
-			System.out.println("carrello: " + c);
+			System.out.println("CARRELLO NULL");
+			return "";
 		}
 		
 		carrelloService.aggiungi(idProdotto, qnt, c);
@@ -52,21 +44,19 @@ public class CarrelloController {
 	}
 	
 	@RequestMapping(value = "updateCart.htm", method = RequestMethod.POST)
-	public @ResponseBody String updateCart(@RequestParam int elementoCarrello, @RequestParam int qnt, ModelMap model) {
+	public @ResponseBody String updateCart(@RequestParam int elementoCarrello, @RequestParam int qnt, HttpSession session) {
 	
-		Carrello c = (Carrello) model.get("carrello");
-		
 		carrelloService.update(elementoCarrello, qnt);
 		
 		return "added";
 	}
 	
 	@RequestMapping(value = "delFromCart.htm", method = RequestMethod.POST)
-	public @ResponseBody String delFromCart(@RequestParam int elementoCarrello, ModelMap model) {
+	public @ResponseBody String delFromCart(@RequestParam int elementoCarrello, HttpSession session) {
 		
 		System.out.println("remove " + elementoCarrello);
 		
-		Carrello c = (Carrello) model.get("carrello");
+		Carrello c = (Carrello) session.getAttribute("carrello");
 		
 		carrelloService.remove(elementoCarrello, c);
 		
@@ -74,7 +64,12 @@ public class CarrelloController {
 	}
 	
 	@RequestMapping(value = "carrello.htm", method = RequestMethod.GET)
-	public String carrello(ModelMap model) {
+	public String carrello(ModelMap model, HttpSession session) {
+		List<ElementoCarrello> list = new ArrayList<ElementoCarrello>();
+		if (session.getAttribute("carrello") instanceof Carrello) {
+			list = carrelloService.list((Carrello) session.getAttribute("carrello"));
+		}
+		model.put("carrello", list);
 		
 		return "carrello";
 	}

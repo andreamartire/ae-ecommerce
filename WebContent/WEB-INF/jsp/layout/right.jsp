@@ -3,17 +3,27 @@
 		$.ajax({
 			url : 'ajaxLogin.htm',
 			type: "POST",
+			dataType: 'json',
 			data : ({
 				username : $('#username').val(),
 				password : $('#password').val(),
 			}),
 			success : function(res) {
-				if (res == "noUser") {
+				if (res.name == "noUser") {
 					$('#message').html("<font color=red>Username non esistente</font>");
-				} else if (res == "badPassword") {
+				} else if (res.name == "badPassword") {
 					$('#message').html("<font color=red>Password non valida</font>");
 				} else {
-					location.reload();
+					$('#loginDiv').hide();
+					$('#logoutButton').show();
+					$('#message').html("Bentornato " + res.name);
+					if (res.type == "admin") {
+						$('#accountCliente').hide();
+						$('#accountAdmin').show();
+					} else {
+						$('#accountCliente').show();
+						$('#accountAdmin').hide();
+					}
 				}
 			}
 		});
@@ -30,11 +40,12 @@
 	function startup() {
 		var session = document.getElementById("session")
 		var user = session.getAttribute("data-user");
+		var name = session.getAttribute("data-name");
 		var type = session.getAttribute("data-type");
 		if (user != null && user != "") {
 			$('#loginDiv').hide();
 			$('#logoutButton').show();
-			$('#message').html("Bentornato " + user);
+			$('#message').html("Bentornato " + name);
 			if (type == "admin") {
 				$('#accountCliente').hide();
 				$('#accountAdmin').show();
@@ -47,16 +58,16 @@
 			$('#loginDiv').show();
 			$('#message').html("Accedi o registrati");
 		}
-		var carrello = session.getAttribute("data-carrello");
-		var html = "";
-		if (carrello.elementiCarrello == null || carrello.elementiCarrello == "") {
-			html += "<li>Nessun elemento nel carrello</li>";
-		} else {
-			$.each(carrello.elementiCarrello, function(key, e) {
-				html += "<li>e.nome - e.prezzo</li>";
-			});
-		} 
-		$('#carrello').append(html);
+// 		var carrello = session.getAttribute("data-carrello");
+// 		var html = "";
+// 		if (carrello.elementiCarrello == null || carrello.elementiCarrello == "") {
+// 			html += "<li>Nessun elemento nel carrello</li>";
+// 		} else {
+// 			$.each(carrello.elementiCarrello, function(key, e) {
+// 				html += "<li>e.nome - e.prezzo</li>";
+// 			});
+// 		} 
+// 		$('#carrello').append(html);
 		
 
 		$('#loginForm').submit(function(e) {
@@ -80,7 +91,12 @@
 
 <div id="message"></div>
 
-<div id="session" data-user="${sessionScope.user}" data-type="${sessionScope.type}" data-carrello="${sessionScope.carrello}"></div>
+<div id="session" 
+	data-user="${sessionScope.user}" 
+	data-name="${sessionScope.name}" 
+	data-type="${sessionScope.type}" 
+	data-carrello="${sessionScope.carrello}">
+</div>
 
 <div style="width: 180px;">
 	<div id="accountCliente" style="display: none; padding: 5px">

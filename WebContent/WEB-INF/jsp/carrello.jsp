@@ -32,7 +32,7 @@
 
 <h3>Carrello della spesa</h3>
 
-<c:forEach var="elementoCarrello" items="${carrello.elementiCarrello}">
+<c:forEach var="elementoCarrello" items="${carrello}">
 	<div class="${elementoCarrello.id}" >
 		<table style="width: 500px; padding: 5px">
 			<tr>

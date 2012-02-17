@@ -28,8 +28,8 @@ public class Carrello {
 	List<ElementoCarrello> elementiCarrello;
 	
 	/**
-	 * Non � necessario che ad ogni carrello sia associato un ordine, mentre
-	 * lo � il viceversa (ad un ordine deve essere associato un carrello..)
+	 * Non e' necessario che ad ogni carrello sia associato un ordine, mentre
+	 * lo e' il viceversa (ad un ordine deve essere associato un carrello..)
 	 */
 	@OneToOne(mappedBy="carrello", optional=true)
 	Ordine ordine;
@@ -43,10 +43,9 @@ public class Carrello {
 
 	@Override
 	public String toString() {
-		return 	"id = " + id + "\n" +
-				"cliente = " + cliente + "\n" +
-				"dataCreazione = " + dataCreazione + "\n" +
-				"prodotti = " + elementiCarrello;
+		if (cliente != null)
+			return 	"Carrello " + id + " di " + cliente.getUsername() + " - " + dataCreazione;
+		return "carrello " + id + " associato a nessuno";
 	}
 	
 	public int getId() {
@@ -93,7 +92,7 @@ public class Carrello {
 		try {
 			this.elementiCarrello.add(ec);
 		} catch (Exception e) {
-			System.err.println("add elemento carrello");
+			System.err.println("add elemento carrello errore");
 		}
 	}
 	
@@ -112,5 +111,10 @@ public class Carrello {
 				break;
 			}
 		}
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.id == ((Carrello) obj).id;
 	}
 }

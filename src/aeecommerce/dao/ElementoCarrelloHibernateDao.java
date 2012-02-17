@@ -19,7 +19,7 @@ public class ElementoCarrelloHibernateDao extends MasterDao implements ElementoC
 	@Transactional
 	@Override
 	public void update(ElementoCarrello entity) {
-		getHibernateTemplate().save(entity);
+		getHibernateTemplate().saveOrUpdate(entity);
 	}
 
 	@Transactional
