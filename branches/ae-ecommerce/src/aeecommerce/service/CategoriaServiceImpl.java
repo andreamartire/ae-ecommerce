@@ -41,7 +41,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 
 	@Override
 	public void delete(int id) {
-		categoriaDao.delete(id);
+		categoriaDao.delete(categoriaDao.findByID(id));
 	}
 
 	@Override

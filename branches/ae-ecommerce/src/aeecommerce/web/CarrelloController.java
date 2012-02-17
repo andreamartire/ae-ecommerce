@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Carrello;
 import aeecommerce.pojo.ElementoCarrello;
@@ -72,5 +71,26 @@ public class CarrelloController {
 		model.put("carrello", list);
 		
 		return "carrello";
+	}
+	
+	@RequestMapping(value = "carrelloJSON", method = RequestMethod.GET)
+	public @ResponseBody String carrelloJSON(ModelMap model, HttpSession session) {
+		List<ElementoCarrello> list = new ArrayList<ElementoCarrello>();
+		if (session.getAttribute("carrello") instanceof Carrello) {
+			list = carrelloService.list((Carrello) session.getAttribute("carrello"));
+		}
+		String carrelloJSON = "{\"carrello\":[";
+		
+		if (!list.isEmpty()) {
+			for (ElementoCarrello e : list) {
+				carrelloJSON += "{\"qnt\":\""+ e.getQuantita() +"\",\"id\":\""+e.getProdotto().getId()+"\",\"nome\":\""+ e.getProdotto().getNome() +"\",\"prezzo\":\""+ e.getProdotto().getPrezzoUnitario() +"\"},";
+			}
+			carrelloJSON = carrelloJSON.substring(0, carrelloJSON.length()-1);
+		}
+		
+		carrelloJSON += "]}";
+		System.out.println(carrelloJSON);
+		
+		return carrelloJSON;
 	}
 }
