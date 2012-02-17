@@ -69,6 +69,11 @@
 				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
 			}			
 		});
+		$('#nomeProdotto').val('');
+		$('#prezzoProdotto').val('');
+		$('#descrizioneProdotto').val('');
+		$('#ivaProdotto').val('');
+		$('#pesoProdotto').val('');
 	}
 </script>
 

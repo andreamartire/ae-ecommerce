@@ -22,47 +22,6 @@ public class TipoSpedizioneController {
 	@Autowired
 	TipoSpedizioneService tipoSpedizioneService;
 	
-	@RequestMapping(value = "/spedizioni", method = RequestMethod.GET)
-	public String prodotti(@RequestParam int id, ModelMap model) {
-		
-		TipoSpedizione p = tipoSpedizioneService.findById(id);
-		
-		model.put("spedizione",p);
-		
-		return "prodotti";
-	}
-	
-	@RequestMapping(value = "/listTipoSpedizione.htm")
-	public @ResponseBody String listTipoSpedizione() {
-		
-		String list = "{\"TipoSpedizione\":[";
-		
-		List<TipoSpedizione> tipoSpedizione = tipoSpedizioneService.list();
-		
-		for (TipoSpedizione p : tipoSpedizione)
-			list += "{\"id\":\""+p.getId()+"\",\"nome\":\""+p.getNome()+"\",\"descrizione\":\""+p.getDescrizione()+"\",\"prezzoBase\":\""+p.getPrezzoBase()+"\"},";
-
-		if (list.endsWith(","))
-			list = list.substring(0, list.length()-1);
-		list += "]}";
-		
-		return list;
-	}
-	
-	@RequestMapping(value = "/elencoTipoSpedizione.htm", method = RequestMethod.GET)
-	public String elencoTipoSpedizione(ModelMap model) {
-		
-		List<TipoSpedizione> spedizioni = tipoSpedizioneService.list();
-		List<TipoSpedizione> list = new ArrayList<TipoSpedizione>();
-		
-		for (TipoSpedizione p : spedizioni)
-			list.add(p);
-
-		model.put("prodotti", list);
-		
-		return "elencoProdotti";
-	}
-	
 	@RequestMapping(value = "/gestioneTipoSpedizione.htm", method = RequestMethod.GET)
 	public String gestioneSpedizioni(ModelMap model) {
 		

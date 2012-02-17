@@ -62,6 +62,9 @@
 				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
 			}			
 		});
+		$('#nomeTipoSpedizione').val('');
+		$('#descrizioneTipoSpedizione').val('');
+		$('#prezzoBaseTipoSpedizione').val('');
 	}
 </script>
 
