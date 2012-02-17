@@ -20,7 +20,7 @@ import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","type","users","go","userInfo", "id"})
+@SessionAttributes(value = {"user","type","users","go","userInfo", "id", "userManaged"})
 public class UserAdminController {
 
 	@Autowired
@@ -45,6 +45,7 @@ public class UserAdminController {
 	public String gestioneUtente(@RequestParam int id, ModelMap model) {
 		System.out.println("Gestione utente " + id);
 		model.put("id", id);
+		model.put("userManaged", userService.findById(id).getUsername());
 		return "gestioneUtente";
 	}
 	

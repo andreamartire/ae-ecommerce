@@ -2,20 +2,24 @@
 <script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
 <script type="text/javascript">
 function checkFields(){
-	if($("#via").val() == "" || $("#numero").val() == "" || $("#citta").val() == ""
-			|| $("#provincia").val() == "" || $("#cap").val() == "" ){
-		alert("Alcuni campi sono vuoti");
-		return false;
+	if(checkValue('#via','#viaError',/^[a-zA-Z\s]+$/) && 
+			checkValue('#numero','#numeroError',/^\d+$/) &&
+			checkValue('#citta','#cittaError',/^[a-zA-Z\s]+$/) &&
+			checkValue('#provincia','#provinciaError',/^[A-Za-z]{2}$/) &&
+			checkValue('#cap','#capError',/^\d{5}$/) ){
+		return true;
 	}
+	alert("Alcuni campi non sono corretti");
+	return false;
 }
 function checkValue(campo,error,espr) {
 	$(".error").html('');
 	if( !$(campo).val().match(espr)){
 		$(error).html("<h5 style=\"color: red;\">Non corretto</h5>");
-		return;
+		return false;
 	}
 	$(error).html("<h5 style=\"color: green;\">Ok</h5>");
-	return;
+	return true;
 }
 </script>
 <a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > <a href="gestioneIndirizzi.htm?id=${id}">Gestione Indirizzi</a> > Aggiungi Indirizzo
