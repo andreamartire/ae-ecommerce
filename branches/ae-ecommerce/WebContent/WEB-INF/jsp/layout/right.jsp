@@ -32,7 +32,7 @@
 		var user = session.getAttribute("data-user");
 		var type = session.getAttribute("data-type");
 		if (user != null && user != "") {
-			$('#loginForm').hide();
+			$('#loginDiv').hide();
 			$('#logoutButton').show();
 			$('#message').html("Bentornato " + user);
 			if (type == "admin") {
@@ -44,7 +44,7 @@
 			}
 		} else {
 			$('#logoutButton').hide();
-			$('#loginForm').show();
+			$('#loginDiv').show();
 			$('#message').html("Accedi o registrati");
 		}
 		var carrello = session.getAttribute("data-carrello");
@@ -57,52 +57,68 @@
 			});
 		} 
 		$('#carrello').append(html);
+		
+
+		$('#loginForm').submit(function(e) {
+			e.preventDefault();
+			login();
+		});
+		
+		$('#username').focusin(function () {
+			if ($('#username').val() == "username")
+				$('#username').val("");
+		});
+
+		$('#password').focusin(function () {
+			if ($('#password').val() == "password")
+				$('#password').val("");
+		});
 	}
 	$(document).ready(startup);
 </script>
 
-<table>
-	<tr>
-		<td width="180"><div id="message"></div></td>
-		<td align="right"><input id="logoutButton" type="button" value="Logout" onclick="logout()"></td>
-	</tr>
-</table>
+
+<div id="message"></div>
 
 <div id="session" data-user="${sessionScope.user}" data-type="${sessionScope.type}" data-carrello="${sessionScope.carrello}"></div>
 
-<div id="accountCliente" style="display: none; padding: 5px">
-	<a href="#">I miei ordini</a> <br/>
-	<a href="account.htm">Il mio account</a> <br/>
+<div style="width: 180px;">
+	<div id="accountCliente" style="display: none; padding: 5px">
+		<a href="#">I miei ordini</a> <br/>
+		<a href="account.htm">Il mio account</a> <br/>
+		<a id="logoutButton" onclick="logout()">Logout</a>
+	</div>
+	
+	<div id="accountAdmin" style="display: none; padding: 5px">
+		<a href="gestioneUtenti.htm">Utenti</a> <br/>
+		<a href="gestioneCategorie.htm">Categorie e Prodotti</a> <br/>
+		<a href="#">Spedizioni e Pagamenti</a> <br/>
+		<a href="gestioneFAQ.htm">F.A.Q.</a> <br/>
+		<a href="gestioneCondizioni.htm">Condizioni</a> <br/>
+		<a href="gestioneDoveSiamo.htm">DoveSiamo</a> <br/>
+		<a href="gestioneContattaci.htm">Contattaci</a> <br/>
+		<a href="gestioneInfo.htm">Banner</a> <br/>
+		<a href="" id="logoutButton" onclick="logout()">Logout</a>
+	</div>
+	
+	<div id="loginDiv">
+	<form id="loginForm">
+		<table>
+			<tr>
+				<td><input id="username" style="width: 150px" type="text" name="username" value="username" /></td>
+			</tr>
+			<tr>
+				<td><input id="password" style="width: 150px" type="password" name="password" value="password" /></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Login"></td>
+			</tr>
+		</table>
+	</form>
+	
+	<p>Se non sei gia' registrato: <a href="registration.htm">Registrati</a></p>
+	</div>
 </div>
-
-<div id="accountAdmin" style="display: none; padding: 5px">
-	<a href="gestioneUtenti.htm">Utenti</a> <br/>
-	<a href="gestioneCategorie.htm">Categorie e Prodotti</a> <br/>
-	<a href="#">Spedizioni e Pagamenti</a> <br/>
-	<a href="gestioneFAQ.htm">F.A.Q.</a> <br/>
-	<a href="gestioneCondizioni.htm">Condizioni</a> <br/>
-	<a href="gestioneDoveSiamo.htm">DoveSiamo</a> <br/>
-	<a href="gestioneContattaci.htm">Contattaci</a> <br/>
-	<a href="gestioneInfo.htm">Banner</a> <br/>
-</div>
-
-<div id="loginForm">
-	<table>
-		<tr>
-			<td><i>Username</i></td>
-			<td><input id="username" type="text" name="username" /></td>
-		</tr>
-		<tr>
-			<td><i>Password</i></td>
-			<td><input id="password" type="password" name="password" /></td>
-		</tr>
-		<tr>
-			<td><input type="button" value="Login" onclick="login()"></td>
-			<td><a href="registration.htm"><button>Registrati</button></a>
-		</tr>
-	</table>
-</div>
-
 <hr/>
 
 <p>Il tuo carrello:</p>
