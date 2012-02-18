@@ -15,10 +15,10 @@ function checkFields(){
 function checkValue(campo,error,espr) {
 	$(".error").html('');
 	if( !$(campo).val().match(espr)){
-		$(error).html("<h5 style=\"color: red;\">Non corretto</h5>");
+		$(error).html("<font style=\"color: red;\">Non corretto</font>");
 		return false;
 	}
-	$(error).html("<h5 style=\"color: green;\">Ok</h5>");
+	$(error).html("<font style=\"color: green;\">Ok</font>");
 	return true;
 }
 </script>

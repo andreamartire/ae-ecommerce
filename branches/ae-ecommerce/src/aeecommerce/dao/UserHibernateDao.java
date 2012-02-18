@@ -19,11 +19,11 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 	@Override
 	public void insert(User u) {
 		if(u instanceof Privato)
-			getHibernateTemplate().save((Privato) u);
+			getHibernateTemplate().saveOrUpdate((Privato) u);
 		if(u instanceof Azienda)
-			getHibernateTemplate().save((Azienda) u);
+			getHibernateTemplate().saveOrUpdate((Azienda) u);
 		if(u instanceof Amministratore)
-			getHibernateTemplate().save((Amministratore) u);
+			getHibernateTemplate().saveOrUpdate((Amministratore) u);
 	}
 
 	@Transactional
@@ -31,15 +31,15 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 	public void update(User u) {
 		if(u instanceof Privato){
 			System.out.println("Update privato");
-			getHibernateTemplate().update((Privato) u);
+			getHibernateTemplate().saveOrUpdate((Privato) u);
 		}
 		if(u instanceof Azienda){
 			System.out.println("Update azienda");
-			getHibernateTemplate().update((Azienda) u);
+			getHibernateTemplate().saveOrUpdate((Azienda) u);
 		}
 		if(u instanceof Amministratore){
 			System.out.println("Update amministratore");
-			getHibernateTemplate().save((Amministratore) u);
+			getHibernateTemplate().saveOrUpdate((Amministratore) u);
 		}
 	}
 	

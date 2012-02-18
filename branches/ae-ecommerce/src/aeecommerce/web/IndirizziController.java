@@ -18,7 +18,7 @@ import aeecommerce.service.IndirizzoService;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","type","userdb", "indirizzo"})
+@SessionAttributes(value = {"reguser","userdb", "indirizzo"})
 public class IndirizziController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class IndirizziController {
 	IndirizzoService indirizzoService;
 	
 	@RequestMapping(value="/gestioneIndirizzi.htm", method = RequestMethod.GET)
-	public String addressFormGet(@ModelAttribute("user") String username,  Map<String, User> model)
+	public String addressFormGet(@ModelAttribute("reguser") String username,  Map<String, User> model)
 	{
 		System.out.println("gestione indirizzi controller get");
 		Set<Indirizzo> ind = userService.findByUsername(username).getIndirizzi();
@@ -41,7 +41,7 @@ public class IndirizziController {
 	}
 
 	@RequestMapping(value="/gestioneIndirizzi.htm", method = RequestMethod.POST)
-	public String addressFormPost(@ModelAttribute("user") String username, @ModelAttribute("userdb") User user)
+	public String addressFormPost(@ModelAttribute("reguser") String username, @ModelAttribute("userdb") User user)
 	{
 		System.out.println("gestione indirizzi controller post");
 		for (Iterator<Indirizzo> i = user.getIndirizzi().iterator(); i.hasNext();) {
@@ -60,7 +60,7 @@ public class IndirizziController {
 	}
 	
 	@RequestMapping(value="/aggiungiIndirizzo.htm", method = RequestMethod.GET)
-	public String addAddressGet(@ModelAttribute("user") String username,  Map<String,Object> model)
+	public String addAddressGet(@ModelAttribute("reguser") String username,  Map<String,Object> model)
 	{
 		System.out.println("aggiungi indirizzo controller get");
 		model.put("indirizzo", new Indirizzo());
@@ -68,7 +68,7 @@ public class IndirizziController {
 	}
 	
 	@RequestMapping(value="/aggiungiIndirizzo.htm", method = RequestMethod.POST)
-	public String addAddressPost(@ModelAttribute("user") String username, @ModelAttribute("indirizzo") Indirizzo indirizzo)
+	public String addAddressPost(@ModelAttribute("reguser") String username, @ModelAttribute("indirizzo") Indirizzo indirizzo)
 	{
 		User u = userService.findByUsername(username);
 		u.getIndirizzi().add(indirizzo);
