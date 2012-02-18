@@ -211,7 +211,7 @@
 
 <ul id="listaCategorie" class="treeview-gray">
 	<li>
-		Aggingi Categoria: 
+		Aggiungi Categoria: 
 		<input type="text" style="width: 150px" id="-1" /> 
 		<a  onclick='aggiungi(-1)'><img src="resources/images/add.png" /></a>
 	</li>

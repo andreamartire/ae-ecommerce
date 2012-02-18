@@ -22,8 +22,8 @@
 	<c:forEach var="user" items="${users}">
 		<tr id="${user.id}">
 			<td><c:out value="${user.username}" /></td>
-			<td><input type="button" value="Modifica" onclick="modifica(${user.id})"></td>
-			<td><input type="button" value="Elimina" onclick="elimina(${user.id})"></td>
+			<td><a onclick='modifica(${user.id})'><img src='resources/images/edit.png'/></a></td>
+			<td><a onclick='elimina(${user.id})'><img src='resources/images/delete.png'/></a></td>
 		</tr>
 	</c:forEach>
 </table>
