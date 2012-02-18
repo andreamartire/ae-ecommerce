@@ -89,8 +89,8 @@
 		<tr>
 			<td> </td>
 			<td align="right">
-				<input type="button" value="Aggiungi" onclick="aggiungi()"/>
-				<input type="button" value="Annulla" onclick="annulla()"/>
+				<button onclick="aggiungi()"><img src="resources/images/add.png"/></button>
+				<button onclick="annulla()"><img src="resources/images/cancel.png"/></button>
 			</td>
 		</tr>
 	</table>
@@ -116,8 +116,8 @@
 			<tr>
 				<td> </td>
 				<td align="right">
-					<input type="button" value="Salva" onclick="modifica(${ModalitaPagamento.id})"/>
-					<input type="button" value="Elimina" onclick="elimina(${ModalitaPagamento.id})"/>
+					<button onclick="modifica(${ModalitaPagamento.id})"><img src="resources/images/ok.png"/></button>
+					<button onclick="elimina(${ModalitaPagamento.id})"><img src="resources/images/delete.png"/></button>
 				</td>
 			</tr>
 		</table>
