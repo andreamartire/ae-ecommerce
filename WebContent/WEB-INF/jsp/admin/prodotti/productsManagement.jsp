@@ -104,8 +104,8 @@
 		<tr>
 			<td> </td>
 			<td align="right">
-				<input type="button" value="Aggiungi" onclick="aggiungi()"/>
-				<input type="button" value="Annulla" onclick="annulla()"/>
+				<button onclick="aggiungi()"><img src="resources/images/ok.png"/></button>
+				<button onclick="annulla()"><img src="resources/images/cancel.png"/></button>
 			</td>
 		</tr>
 	</table>
@@ -135,8 +135,8 @@
 			<tr>
 				<td> </td>
 				<td align="right">
-					<input type="button" value="Salva" onclick="modifica(${prodotto.id})"/>
-					<input type="button" value="Elimina" onclick="elimina(${prodotto.id})"/>
+					<button onclick="modifica(${prodotto.id})"><img src="resources/images/ok.png"/></button>
+					<button onclick="elimina(${prodotto.id})"><img src="resources/images/delete.png"/></button>
 				</td>
 			</tr>
 		</table>
