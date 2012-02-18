@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import aeecommerce.pojo.Azienda;
-import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
 import aeecommerce.validation.RegistrationInfo;
@@ -24,7 +22,7 @@ import aeecommerce.validation.UserValidator;
 
 
 @Controller
-@SessionAttributes(value = {"user","registrationInfo"})
+@SessionAttributes(value = {"reguser"})
 public class RegistrationController {
 
 	@Autowired
@@ -53,8 +51,7 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value={"/registration.htm"}, method = RequestMethod.POST)
-	public String registrateUser(
-			@ModelAttribute("registrationInfo") RegistrationInfo regInfo, BindingResult result, ModelMap model)
+	public String registrateUser(@ModelAttribute("registrationInfo") RegistrationInfo regInfo, BindingResult result, ModelMap model)
 	{
 		System.out.println("Registration controller post");
 
@@ -67,30 +64,22 @@ public class RegistrationController {
 		}
 		else {
 			User u = null;
-			// Se è un privato registro un privato
+			
 			if(regInfo.getType().equals("Privato")){
 				u = regInfo.toPrivato();
-				
 				System.out.println("adding privato in to db " + u);
 				
-			}
-			// Se è un'azienda registro un'azienda
-			if(regInfo.getType().equals("Azienda")){
+			} else if(regInfo.getType().equals("Azienda")){
 				u = regInfo.toAzienda();
 				System.out.println("adding azienda in to db " + u);
+				
+			} else {
+				System.out.println("?????? che user e'?");
 			}
 			userService.insert(u);
 			System.out.println("----------------------------------");
 			
-			String type;
-			if (u instanceof Privato)
-				type = "privato";
-			else if (u instanceof Azienda)
-				type = "azienda";
-			else
-				type = "admin";
-			model.addAttribute("user", u.getUsername());
-			model.addAttribute("type", type);
+			model.put("reguser", regInfo.getUsername());
 			
 			return "redirect:aggiungiIndirizzo.htm";
 		}

@@ -39,15 +39,16 @@ public class CarrelloController {
 	
 	@RequestMapping(value = "addToCart.htm", method = RequestMethod.POST)
 	public @ResponseBody String addToCart(@RequestParam int idProdotto, @RequestParam int qnt, HttpSession session) {
+		Carrello c = null;
+		if (session.getAttribute("carrello") instanceof Carrello)
+			c = (Carrello) session.getAttribute("carrello");
 		
-		Carrello c = (Carrello) session.getAttribute("carrello");
-		
-		if (c == null) {
+		if (c != null) {
+			carrelloService.aggiungi(idProdotto, qnt, c);
+		} else {
 			System.out.println("CARRELLO NULL");
 			return "";
 		}
-		
-		carrelloService.aggiungi(idProdotto, qnt, c);
 		
 		return "ok";
 	}
