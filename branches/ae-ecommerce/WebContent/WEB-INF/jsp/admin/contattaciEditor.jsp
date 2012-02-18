@@ -3,7 +3,7 @@
 <script type="text/javascript" src="resources/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="resources/js/ckeditor/mytoolbar.js"></script>
 
-<a href="home.htm">Home</a> > Gestione Pagina Contattaci
+<a href="home.htm">Home</a> &gt; Gestione Pagina Contattaci
 <hr></hr>
 <form:form method="POST" commandName="document">
 	<table>

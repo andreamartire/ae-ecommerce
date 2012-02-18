@@ -21,7 +21,7 @@ function checkValue(campo,error,espr) {
 	return true;
 }
 </script>
-<a href="home.htm">Home</a> > <a href="gestioneUtenti.htm">Gestione Utenti</a> > <a href="gestioneUtente.htm?id=${id}">Gestione Utente ${userManaged}</a> > <a href="gestioneIndirizziAdmin.htm?id=${id}">Gestione Indirizzi</a> > Aggiungi Indirizzo
+<a href="home.htm">Home</a> &gt; <a href="gestioneUtenti.htm">Gestione Utenti</a> &gt; <a href="gestioneUtente.htm?id=${id}">Gestione Utente ${userManaged}</a> &gt; <a href="gestioneIndirizziAdmin.htm?id=${id}">Gestione Indirizzi</a> &gt; Aggiungi Indirizzo
 <hr></hr>
 <form:form method="POST" onsubmit="return checkFields()" commandName="indirizzo">
 	<table>

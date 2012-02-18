@@ -1,5 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<a href="home.htm">Home</a> > Registrazione
+<a href="home.htm">Home</a> &gt; Registrazione
 <br />
 <style type="text/css">
 .hide {

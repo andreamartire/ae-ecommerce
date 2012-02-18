@@ -206,7 +206,7 @@
 	});
 </script>
 
-<a href="home.htm">Home</a> > Gestione Categorie
+<a href="home.htm">Home</a> &gt; Gestione Categorie
 <hr></hr>
 
 <ul id="listaCategorie" class="treeview-gray">

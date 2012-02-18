@@ -13,9 +13,9 @@
 			location.href = "eliminaUtente.htm?id=" + id;
 	}
 </script>
-<a href="home.htm">Home</a> > Gestione Utenti
+<a href="home.htm">Home</a> &gt; Gestione Utenti
 <hr></hr>
-<table cellpadding=3>
+<table style="padding: 3px">
 	<tr>
 		<th>Username</th>
 	</tr>

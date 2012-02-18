@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import aeecommerce.pojo.Carrello;
 import aeecommerce.pojo.ElementoCarrello;
+import aeecommerce.pojo.ModalitaPagamento;
+import aeecommerce.pojo.TipoSpedizione;
 import aeecommerce.service.CarrelloService;
+import aeecommerce.service.ModalitaPagamentoService;
+import aeecommerce.service.TipoSpedizioneService;
 import aeecommerce.service.UserService;
 
 @Controller
@@ -26,6 +30,12 @@ public class CarrelloController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	TipoSpedizioneService spedizioneService;
+	
+	@Autowired
+	ModalitaPagamentoService pagamentoService;
 	
 	@RequestMapping(value = "addToCart.htm", method = RequestMethod.POST)
 	public @ResponseBody String addToCart(@RequestParam int idProdotto, @RequestParam int qnt, HttpSession session) {
@@ -69,6 +79,12 @@ public class CarrelloController {
 			list = carrelloService.list((Carrello) session.getAttribute("carrello"));
 		}
 		model.put("carrello", list);
+		
+		List<TipoSpedizione> listSpedizioni = spedizioneService.list();
+		List<ModalitaPagamento> listPagamenti = pagamentoService.list();
+		
+		model.put("spedizioni", listSpedizioni);
+		model.put("pagamenti", listPagamenti);
 		
 		return "carrello";
 	}
