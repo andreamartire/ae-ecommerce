@@ -222,6 +222,20 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/modalitaPagamento/modalitaPagamentoManagement.jsp" />
 	</definition>
+	
+	<!-- Gestione Vetrina -->
+	<definition name="gestioneVetrina" extends="baseLayout">
+		<put-attribute name="title" value="Gestione Vetrina" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/vetrina/gestioneVetrina.jsp" />
+	</definition>
+	
+	<!-- Gestione Offerte -->
+	<definition name="gestioneOfferte" extends="baseLayout">
+		<put-attribute name="title" value="Gestione Vetrina" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/offerte/gestioneOfferte.jsp" />
+	</definition>
 
 	<!-- Outuput jsp -->
 	<definition name="output" extends="baseLayout">

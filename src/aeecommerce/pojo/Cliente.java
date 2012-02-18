@@ -1,5 +1,6 @@
 package aeecommerce.pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Cliente extends User {
+public abstract class Cliente extends User implements Serializable{
 
 	@OneToMany(mappedBy="cliente", fetch = FetchType.EAGER)
 	List<Carrello> carrelli;

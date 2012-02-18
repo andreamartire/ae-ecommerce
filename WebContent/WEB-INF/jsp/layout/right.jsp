@@ -115,8 +115,8 @@ TABLE#carrello TD{font-family: times; font-size: 10pt;}
 		<a href="gestioneCategorie.htm">Categorie e Prodotti</a> <br/>
 		<a href="gestioneTipoSpedizione.htm">Tipo Spedizione</a> <br/>
 		<a href="gestioneModalitaPagamento.htm">Modalita' Pagamento</a> <br/>
-		<a href="#">Vetrina</a> <br/>
-		<a href="#">Offerte</a> <br/>
+		<a href="gestioneVetrina.htm">Vetrina</a> <br/>
+		<a href="gestioneOfferte.htm">Offerte</a> <br/>
 		<a href="gestioneFAQ.htm">F.A.Q.</a> <br/>
 		<a href="gestioneCondizioni.htm">Condizioni</a> <br/>
 		<a href="gestioneDoveSiamo.htm">DoveSiamo</a> <br/>
