@@ -22,9 +22,9 @@ function checkValue(campo,error,espr) {
 	return true;
 }
 </script>
-<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > <a href="gestioneIndirizzi.htm?id=${id}">Gestione Indirizzi</a> > Aggiungi Indirizzo
+<a href="home.htm">Home</a> &gt; <a href="account.htm">Gestione Account</a> &gt; <a href="gestioneIndirizzi.htm?id=${id}">Gestione Indirizzi</a> &gt; Aggiungi Indirizzo
 <hr></hr>
-<form:form method="POST" onsubmit="return checkFields()" commandName="indirizzo">
+<form:form method="POST" onsubmit="checkFields()" commandName="indirizzo">
 	<table>
 		<tr>
 			<td>Via :</td>

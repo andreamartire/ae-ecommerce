@@ -77,7 +77,7 @@
 	}
 </script>
 
-<a href="home.htm">Home</a> > Gestione prodotti - Categoria: <b>${categoria.nome}</b>
+<a href="home.htm">Home</a> &gt; Gestione prodotti - Categoria: <b>${categoria.nome}</b>
 <hr></hr> 
 
 <div style="display: none" id="idCategoria">${categoria.id}</div>

@@ -68,7 +68,7 @@
 	}
 </script>
 
-<a href="home.htm">Home</a> > Gestione TipoSpedizione
+<a href="home.htm">Home</a> &gt; Gestione TipoSpedizione
 <hr></hr> 
 
 <a onclick="showAggiungi()"><button>Aggiungi TipoSpedizione</button></a>

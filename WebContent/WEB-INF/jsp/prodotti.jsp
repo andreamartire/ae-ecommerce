@@ -9,7 +9,7 @@
 	</tr>
 	<tr>
 		<td colspan="2" align="right">
-			Quantita': <input id="quantita" type="number" style="width: 20px" value="1")"/>
+			Quantita': <input id="quantita" type="number" style="width: 20px" value="1"/>
 			<input type="button" value="Aggiungi" onclick="aggiungiACarrello(${prodotto.id})"/>
 		</td>
 	</tr>

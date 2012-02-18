@@ -17,9 +17,9 @@ function checkValue(campo,error,espr) {
 	return;
 }
 </script>
-<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > <a href="gestioneRecapiti.htm?id=${id}">Gestione Recapiti</a> > Aggiungi Recapito
+<a href="home.htm">Home</a> &gt; <a href="account.htm">Gestione Account</a> &gt; <a href="gestioneRecapiti.htm?id=${id}">Gestione Recapiti</a> &gt; Aggiungi Recapito
 <hr></hr>
-<form:form method="POST" onsubmit="return checkFields()" commandName="recapito">
+<form:form method="POST" onsubmit="checkFields()" commandName="recapito">
 	<table>
 		<tr>
 			<td>Tipo :</td>

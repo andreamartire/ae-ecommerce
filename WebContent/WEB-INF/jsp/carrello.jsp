@@ -1,5 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <style type="text/css">
 	#carrelloTable {
 		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -24,12 +26,47 @@
 		padding-top: 5px;
 		padding-bottom: 4px;
 		background-color: orange;
-		color: #ffffff;
+		color: black;
 	}
 	
-	#carrelloTable tr.alt td {
-		color: #000000;
-		background-color: #EAF2D3;
+
+	#spedTable {
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		width: 600px;
+		border-spacing: 0px 5px;
+	}
+	
+	#spedTable td {
+		font-size: 1em;
+		border: 1px solid #6699FF;
+		padding: 3px 7px 2px 7px;
+	}
+	
+	#spedTable tfoot {
+		background-color: #66FFFF;
+		text-align: right;
+	}
+	
+	#spedTable thead {
+		font-size: 10pt;
+		font-weight: bold;
+		text-align: center;
+		padding-top: 5px;
+		padding-bottom: 4px;
+		background-color: #D1F0FF;
+		color: #3366CC;
+	}
+	
+	
+	#totaleDiv {
+		width: 600px;
+		font-size: 14pt;
+		font-weight: bold;
+		text-align: center;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		color: white;
+		background-color: #FF9900;
 	}
 </style>
 
@@ -62,6 +99,24 @@
 			}
 		});
 	}
+	
+	function aggiornaTotale() {
+		var totaleCarrello = parseFloat($('#totaleCarrello').text());
+		var costoSpedizione = parseFloat($("input[name='spedizione']:checked").val());
+		var costoPagamento = parseFloat($("input[name='pagamento']:checked").val());
+		var totale = totaleCarrello + costoPagamento + costoSpedizione;
+		$('#totale').text(totale);
+	}
+	
+	$(document).ready( function() {
+		
+		aggiornaTotale();
+		
+		$("input").click( function(event) {
+			aggiornaTotale();
+		});
+	});
+
 </script>
 
 <h3>Carrello della spesa</h3>
@@ -77,7 +132,8 @@
 		</tr>
 	</thead>
 	<tbody>
-	<c:set var="totale" value="0" />
+	<c:set var="totaleCarrello" value="0" />
+	<c:set var="pesoTotale" value="0" />
 	<c:forEach var="elementoCarrello" items="${carrello}">
 		<tr>
 			<td><a href="prodotti?id=${elementoCarrello.prodotto.id}"><b>${elementoCarrello.prodotto.nome}</b></a></td>
@@ -89,13 +145,57 @@
 				<button onclick="elimina(${elementoCarrello.id})"><img src="resources/images/delete.png" /></button>
 			</td>
 		</tr>
-		<c:set var="totale" value="${totale + elementoCarrello.prodotto.prezzoUnitario * elementoCarrello.quantita}" />
+		<c:set var="totaleCarrello" value="${totaleCarrello + elementoCarrello.prodotto.prezzoUnitario * elementoCarrello.quantita}" />
+		<c:set var="pesoTotale" value="${pesoTotale + elementoCarrello.prodotto.pesoApprossimato * elementoCarrello.quantita}" />
 	</c:forEach>
 	</tbody>
-		<tfoot>
+	<tfoot>
 		<tr>
-			<td colspan='5'>Totale carrello: <b>${totale}</b></td>
+			<td colspan='5'>Peso Totale: ${pesoTotale}Kg - Totale carrello: <b id='totaleCarrello'>${totaleCarrello} &euro;</b></td>
 		</tr>
 	</tfoot>
 </table>
 
+<table id='spedTable'>
+	<thead>
+		<tr>
+			<td>Seleziona</td>
+			<td width="450">Tipo di Spedizione</td>
+			<td>Costo</td>
+		</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="spedizione" items="${spedizioni}">
+		<tr>
+			<td align="center">
+				<input type="radio" checked="checked" name="spedizione" value="${spedizione.prezzoBase}"/>
+			</td>
+			<td><b>${spedizione.nome}</b></td>
+			<td>${spedizione.prezzoBase}</td>
+		</tr>
+	</c:forEach>
+</table>
+
+<table id='spedTable'>
+	<thead>
+		<tr>
+			<td>Seleziona</td>
+			<td width="450">Tipo di Pagamento</td>
+			<td>Costo</td>
+		</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="pagamento" items="${pagamenti}">
+		<tr>
+			<td align="center">
+				<input type="radio" checked="checked" name="pagamento" value="${pagamento.commissioni}"/>
+			</td>
+			<td><b>${pagamento.nome}</b></td>
+			<td>${pagamento.commissioni}</td>
+		</tr>
+	</c:forEach>
+</table>
+
+<div id='totaleDiv'>
+	Totale: <b><span id='totale'></span> &euro;</b>
+</div>

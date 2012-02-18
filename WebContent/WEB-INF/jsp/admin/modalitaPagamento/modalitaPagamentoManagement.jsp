@@ -68,7 +68,7 @@
 	}
 </script>
 
-<a href="home.htm">Home</a> > Gestione ModalitaPagamento
+<a href="home.htm">Home</a> &gt; Gestione ModalitaPagamento
 <hr></hr> 
 
 <a onclick="showAggiungi()"><button>Aggiungi ModalitaPagamento</button></a>

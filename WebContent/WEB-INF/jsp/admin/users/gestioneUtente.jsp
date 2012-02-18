@@ -5,7 +5,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <script type="text/javascript"></script>
-<a href="home.htm">Home</a> > <a href="gestioneUtenti.htm">Gestione Utenti</a> > Gestione Utente ${userManaged}
+<a href="home.htm">Home</a> &gt; <a href="gestioneUtenti.htm">Gestione Utenti</a> > Gestione Utente ${userManaged}
 <hr></hr>
 <table>
 	<tr>

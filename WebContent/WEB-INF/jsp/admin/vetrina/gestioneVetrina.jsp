@@ -4,5 +4,5 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<a href="home.htm">Home</a> > Gestione Vetrina
+<a href="home.htm">Home</a> &gt; Gestione Vetrina
 <hr></hr>

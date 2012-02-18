@@ -10,7 +10,7 @@ function elimina(id){
 		location.href = "eliminaRecapito.htm?idRecapito=" + id;
 }
 </script>
-<a href="home.htm">Home</a> > <a href="account.htm">Gestione Account</a> > Gestione Recapiti
+<a href="home.htm">Home</a> &gt; <a href="account.htm">Gestione Account</a> &gt; Gestione Recapiti
 <hr></hr>
 
 <form:form method="post" commandName="userdb">
