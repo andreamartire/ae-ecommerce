@@ -14,16 +14,7 @@
 				} else if (res.name == "badPassword") {
 					$('#message').html("<font color=red>Password non valida</font>");
 				} else {
-					$('#loginDiv').hide();
-					$('#logoutButton').show();
-					$('#message').html("Bentornato " + res.name);
-					if (res.type == "admin") {
-						$('#accountCliente').hide();
-						$('#accountAdmin').show();
-					} else {
-						$('#accountCliente').show();
-						$('#accountAdmin').hide();
-					}
+					location.reload();
 				}
 			}
 		});
@@ -82,11 +73,12 @@
 			} else {
 				var tot = 0;
 				$.each(carrello, function(key, e) {
-					tot += parseFloat(e.prezzo)*parseFloat(e.qnt);
+					var totParziale = parseFloat(e.prezzo)*parseFloat(e.qnt);
+					tot += totParziale;
 					html += "<tr>"+
 								"<td>-</td>" +
 								"<td>"+ e.qnt +"x <a href='prodotti?id="+ e.id +"'>" + e.nome + "</a></td>" +
-								"<td align='right'><b>" + e.prezzo + "</b></td>" +
+								"<td align='right'><b>" + totParziale.toFixed(2) + "</b></td>" +
 							"</tr>";
 				});
 				tot = tot.toFixed(2);

@@ -39,7 +39,7 @@ public class CarrelloController {
 		
 		carrelloService.aggiungi(idProdotto, qnt, c);
 		
-		return "added";
+		return "ok";
 	}
 	
 	@RequestMapping(value = "updateCart.htm", method = RequestMethod.POST)
@@ -47,7 +47,7 @@ public class CarrelloController {
 	
 		carrelloService.update(elementoCarrello, qnt);
 		
-		return "added";
+		return "update";
 	}
 	
 	@RequestMapping(value = "delFromCart.htm", method = RequestMethod.POST)

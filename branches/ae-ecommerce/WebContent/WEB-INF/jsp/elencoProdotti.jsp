@@ -3,6 +3,7 @@
 <script type="text/javascript">
 	function aggiungiACarrello(idProdotto) {
 		var qnt = $('#quantita').val();
+		var nomeProd = $('#nomeProdotto'+idProdotto).text();
 		
 		$.ajax({
 			url : 'addToCart.htm',
@@ -12,8 +13,8 @@
 				qnt : qnt
 			}),
 			success : function(prod) {
-				alert("Hai aggiunto al carrello " + qnt + "x " + prod);
-				/* location.reload(); */
+				alert("Hai aggiunto al carrello " + qnt + "x " + nomeProd);
+				location.reload();
 			}
 		});
 	}
@@ -25,9 +26,9 @@
 
 <c:forEach var="prodotto" items="${prodotti}">
 	<div class="prodotto${prodotto.id}">
-		<table style="width: 600px; padding: 5px">
+		<table style="width: 600px; border-spacing: 5px">
 			<tr>
-				<td width="400">
+				<td width="500">
 					<a href="prodotti?id=${prodotto.id}">
 						<b id="nomeProdotto${prodotto.id}">${prodotto.nome}</b>
 					</a>
@@ -35,9 +36,11 @@
 				<td align="right"><b id="prezzoProdotto${prodotto.id}">${prodotto.prezzoUnitario}</b> Euro</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="right">
-					Quantita': <input id="quantita" type="number" style="width: 20px" value="1")"/>
-					<input type="button" value="Aggiungi" onclick="aggiungiACarrello(${prodotto.id})"/>
+				<td align="right" valign="middle">
+					<a onclick="aggiungiACarrello(${prodotto.id})"><img src="resources/images/addToCart.gif" /></a>
+				</td>
+				<td>
+					<input id="quantita" type="number" style="width: 40px" value="1"/>
 				</td>
 			</tr>
 		</table>

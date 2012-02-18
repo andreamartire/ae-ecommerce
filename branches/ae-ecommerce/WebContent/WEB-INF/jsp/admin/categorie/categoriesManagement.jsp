@@ -118,15 +118,15 @@
 					"<span>" +
 						"<b id='nome"+categoria.id+"'>" + categoria.nome + "</b>" +
 						"<span id='span"+categoria.id+"' style='display: none'>" +
-						" - <a onclick='modifica("+categoria.id+")'>Modifica</a>" +
-						" - <a onclick='elimina("+categoria.id+")'>Elimina</a>" +
+						" - <a onclick='modifica("+categoria.id+")'><img src='resources/images/edit.png'/></a>" +
+						" - <a onclick='elimina("+categoria.id+")'><img src='resources/images/delete.png'/></a>" +
 						"</span>" +
 					"</span>";
 			html += "<ul id='prodotti"+categoria.id+"'>" +
 						"<li>" +
 							"Aggiungi sottocategoria: " +
 							"<input id='"+categoria.id+"'type='text' style='width: 150px' />" +
-							"<button onclick='aggiungi("+categoria.id+")'>Ok</button>";
+							"<a onclick='aggiungi("+categoria.id+")'><img src='resources/images/add.png'/></a>";
 			if (categoria.children == "") {
 				html += 	" - <a onclick='listProdotti("+categoria.id+")'>Elenca prodotti</a>" +
 						"</li>";
@@ -141,15 +141,15 @@
 							"<span>" +
 								"<b id='nome"+subcat.id+"'>" + subcat.nome + "</b>" +
 								"<span id='span"+subcat.id+"' style='display: none'>" +
-								" - <a onclick='modifica("+subcat.id+")'>Modifica</a>" +
-								" - <a onclick='elimina("+subcat.id+")'>Elimina</a>" +
+								" - <a onclick='modifica("+subcat.id+")'><img src='resources/images/edit.png'/></a>" +
+								" - <a onclick='elimina("+subcat.id+")'><img src='resources/images/delete.png'/></a>" +
 								"</span>" +
 							"</span>";
 					html += "<ul id='prodotti"+subcat.id+"'>" +
 								"<li>" +
 									"Aggiungi sottocategoria: " +
 									"<input id='"+subcat.id+"'type='text' style='width: 150px' />" +
-									"<button onclick='aggiungi("+subcat.id+")'>Ok</button>";
+									"<a onclick='aggiungi("+subcat.id+")'><img src='resources/images/add.png'/></a>";
 					if (subcat.children == "") {
 						html += 	" - <a onclick='listProdotti("+subcat.id+")'>Elenca prodotti</a>" +
 								"</li>";
@@ -164,8 +164,8 @@
 									"<span>" +
 										"<b id='nome"+subsubcat.id+"'>" + subsubcat.nome + "</b>" +
 										"<span id='span"+subsubcat.id+"' style='display: none'>" +
-										" - <a onclick='modifica("+subsubcat.id+")'>Modifica</a>" +
-										" - <a onclick='elimina("+subsubcat.id+")'>Elimina</a>" +
+										" - <a onclick='modifica("+subsubcat.id+")'><img src='resources/images/edit.png'/></a>" +
+										" - <a onclick='elimina("+subsubcat.id+")'><img src='resources/images/delete.png'/></a>" +
 										"</span>" +
 									"</span>" +
 									"<ul id='prodotti"+subsubcat.id+"'>" +
@@ -213,7 +213,7 @@
 	<li>
 		Aggingi Categoria: 
 		<input type="text" style="width: 150px" id="-1" /> 
-		<button onclick='aggiungi(-1)'>Ok</button>
+		<a  onclick='aggiungi(-1)'><img src="resources/images/add.png" /></a>
 	</li>
 	<!-- contenuto dinamico -->
 </ul>
