@@ -6,7 +6,37 @@
 	display: none;
 }
 </style>
-<script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
+<link rel="stylesheet" href="resources/css/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" href="resources/css/ui.theme.css" type="text/css" media="all" />
+<script src="resources/js/jquery-ui.min.js" type="text/javascript"></script>
+
+<script>
+	$(function() {
+		$( "#datepicker" ).datepicker();
+		jQuery(function($){
+			$.datepicker.regional['it'] = {
+				closeText: 'Chiudi',
+				prevText: '&#x3c;Prec',
+				nextText: 'Succ&#x3e;',
+				currentText: 'Oggi',
+				monthNames: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno',
+					'Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+				monthNamesShort: ['Gen','Feb','Mar','Apr','Mag','Giu',
+					'Lug','Ago','Set','Ott','Nov','Dic'],
+				dayNames: ['Domenica','Luned&#236','Marted&#236','Mercoled&#236','Gioved&#236','Venerd&#236','Sabato'],
+				dayNamesShort: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
+				dayNamesMin: ['Do','Lu','Ma','Me','Gi','Ve','Sa'],
+				weekHeader: 'Sm',
+				dateFormat: 'yy-mm-dd',
+				firstDay: 1,
+				isRTL: false,
+				showMonthAfterYear: false,
+				yearSuffix: ''};
+			$.datepicker.setDefaults($.datepicker.regional['it']);
+		});
+	});
+</script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		// All'avvio usa di default i campi del privato
@@ -242,7 +272,7 @@
 		</tr>
 		<tr class="privato hide">
 			<td>Data di Nascita</td>
-			<td><form:input path="dataNascita" onkeyup="checkPrivato(this)" /></td>
+			<td><form:input path="dataNascita" id="datepicker" type="text" onkeyup="checkPrivato(this)" /></td>
 			<td><form:errors path="dataNascita" cssClass="error" /><div id="dataNascitaError"></div></td>
 		</tr>
 		<tr class="privato hide">
