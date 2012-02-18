@@ -2,6 +2,8 @@ package aeecommerce.dao;
 
 import java.util.List;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,33 +18,39 @@ public class UserHibernateDao extends MasterDao implements UserDao {
 	@Transactional
 	@Override
 	public void insert(User u) {
-		if(Privato.class == u.getClass())
+		if(u instanceof Privato)
 			getHibernateTemplate().save((Privato) u);
-		if(Azienda.class == u.getClass())
+		if(u instanceof Azienda)
 			getHibernateTemplate().save((Azienda) u);
-		if(Amministratore.class == u.getClass())
+		if(u instanceof Amministratore)
 			getHibernateTemplate().save((Amministratore) u);
 	}
 
 	@Transactional
 	@Override
 	public void update(User u) {
-		if(Privato.class == u.getClass())
+		if(u instanceof Privato){
+			System.out.println("Update privato");
 			getHibernateTemplate().update((Privato) u);
-		if(Azienda.class == u.getClass())
+		}
+		if(u instanceof Azienda){
+			System.out.println("Update azienda");
 			getHibernateTemplate().update((Azienda) u);
-		if(Amministratore.class == u.getClass())
+		}
+		if(u instanceof Amministratore){
+			System.out.println("Update amministratore");
 			getHibernateTemplate().save((Amministratore) u);
+		}
 	}
 	
 	@Transactional
 	@Override
 	public void delete(User u){
-		if(Privato.class == u.getClass())
+		if(u instanceof Privato)
 			getHibernateTemplate().delete((Privato) u);
-		if(Azienda.class == u.getClass())
+		if(u instanceof Azienda)
 			getHibernateTemplate().delete((Azienda) u);
-		if(Amministratore.class == u.getClass())
+		if(u instanceof Amministratore)
 			getHibernateTemplate().delete((Amministratore) u);
 	}
 

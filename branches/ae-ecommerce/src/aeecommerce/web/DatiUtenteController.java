@@ -44,7 +44,7 @@ public class DatiUtenteController {
 	@RequestMapping(value={"/gestioneDatiPrivato.htm"}, method = RequestMethod.GET)
 	public String gestioneDatiPrivatoGet(@ModelAttribute("user") String username, ModelMap model)
 	{
-		System.out.println("dati privato controller post");
+		System.out.println("dati privato controller get");
 		model.addAttribute("userInfo", userService.findByUsername(username));
 		return "gestioneDatiPrivato";
 	}
