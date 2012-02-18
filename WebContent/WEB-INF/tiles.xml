@@ -242,6 +242,18 @@
 		<put-attribute name="title" value="Info" />
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/output.jsp" />
 	</definition>
+	
+	<!-- Spedizioni jsp -->
+	<definition name="spedizioni" extends="baseLayout">
+		<put-attribute name="title" value="Info Spedizioni" />
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/spedizioni.jsp" />
+	</definition>
+	
+	<!-- Pagamenti jsp -->
+	<definition name="pagamenti" extends="baseLayout">
+		<put-attribute name="title" value="Info Pagamenti" />
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/pagamenti.jsp" />
+	</definition>
 
 	<!-- FAQ -->
 	<definition name="faqEditor" extends="baseLayout">

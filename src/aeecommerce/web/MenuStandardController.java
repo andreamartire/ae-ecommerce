@@ -1,5 +1,8 @@
 package aeecommerce.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,7 +12,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Amministratore;
 import aeecommerce.pojo.Document;
+import aeecommerce.pojo.ModalitaPagamento;
+import aeecommerce.pojo.Prodotto;
+import aeecommerce.pojo.TipoSpedizione;
 import aeecommerce.service.DocumentService;
+import aeecommerce.service.ModalitaPagamentoService;
+import aeecommerce.service.SpedizioniService;
 import aeecommerce.service.UserService;
 
 
@@ -22,6 +30,12 @@ public class MenuStandardController {
 	
 	@Autowired
 	DocumentService documentService;
+	
+	@Autowired
+	SpedizioniService spedizioniService;
+	
+	@Autowired
+	ModalitaPagamentoService modalitaPagamentoService;
 	
 	@RequestMapping(value={"/home.htm"}, method = RequestMethod.GET)
 	public String getHome(ModelMap model)
@@ -41,6 +55,24 @@ public class MenuStandardController {
 	{
 		System.out.println("Home controller post " + model.get("user"));
 		return "login";
+	}
+	
+	@RequestMapping(value={"/spedizioni.htm"}, method = RequestMethod.GET)
+	public String getSpedizioni(ModelMap model)
+	{
+		List<TipoSpedizione> list = spedizioniService.findAll();
+		
+		model.put("spedizioni", list);
+		return "spedizioni";
+	}
+	
+	@RequestMapping(value={"/pagamenti.htm"}, method = RequestMethod.GET)
+	public String getPagamenti(ModelMap model)
+	{
+		List<ModalitaPagamento> list = modalitaPagamentoService.list();
+		
+		model.put("pagamenti", list);
+		return "pagamenti";
 	}
 	
 	@RequestMapping(value={"/faq.htm"}, method = RequestMethod.GET)
