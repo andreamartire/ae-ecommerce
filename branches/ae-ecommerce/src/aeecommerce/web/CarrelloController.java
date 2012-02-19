@@ -3,15 +3,15 @@ package aeecommerce.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Carrello;
 import aeecommerce.pojo.ElementoCarrello;
@@ -23,6 +23,7 @@ import aeecommerce.service.TipoSpedizioneService;
 import aeecommerce.service.UserService;
 
 @Controller
+@SessionAttributes(value = {"user","type","name","carrello"})
 public class CarrelloController {
 
 	@Autowired
@@ -38,23 +39,21 @@ public class CarrelloController {
 	ModalitaPagamentoService pagamentoService;
 	
 	@RequestMapping(value = "addToCart.htm", method = RequestMethod.POST)
-	public @ResponseBody String addToCart(@RequestParam int idProdotto, @RequestParam int qnt, HttpSession session) {
-		Carrello c = null;
-		if (session.getAttribute("carrello") instanceof Carrello)
-			c = (Carrello) session.getAttribute("carrello");
-		
-		if (c != null) {
-			carrelloService.aggiungi(idProdotto, qnt, c);
+	public @ResponseBody String addToCart(@ModelAttribute("user") String username, @ModelAttribute("carrello") Object c,
+			@RequestParam int idProdotto, @RequestParam int qnt) {
+				
+		if (c != null && c instanceof Carrello) {
+			carrelloService.aggiungi(idProdotto, qnt, (Carrello) c);
 		} else {
 			System.out.println("CARRELLO NULL");
-			return "";
+			return "nop";
 		}
 		
 		return "ok";
 	}
 	
 	@RequestMapping(value = "updateCart.htm", method = RequestMethod.POST)
-	public @ResponseBody String updateCart(@RequestParam int elementoCarrello, @RequestParam int qnt, HttpSession session) {
+	public @ResponseBody String updateCart(@RequestParam int elementoCarrello, @RequestParam int qnt) {
 	
 		carrelloService.update(elementoCarrello, qnt);
 		
@@ -62,24 +61,22 @@ public class CarrelloController {
 	}
 	
 	@RequestMapping(value = "delFromCart.htm", method = RequestMethod.POST)
-	public @ResponseBody String delFromCart(@RequestParam int elementoCarrello, HttpSession session) {
+	public @ResponseBody String delFromCart(@RequestParam int elementoCarrello, @ModelAttribute("carrello") Object c) {
 		
-		System.out.println("remove " + elementoCarrello);
-		
-		Carrello c = (Carrello) session.getAttribute("carrello");
-		
-		carrelloService.remove(elementoCarrello, c);
+		if (c != null && c instanceof Carrello)
+			carrelloService.remove(elementoCarrello, (Carrello) c);
 		
 		return "remove";
 	}
 	
 	@RequestMapping(value = "carrello.htm", method = RequestMethod.GET)
-	public String carrello(ModelMap model, HttpSession session) {
+	public String carrello(ModelMap model, @ModelAttribute("carrello") Object c) {
 		List<ElementoCarrello> list = new ArrayList<ElementoCarrello>();
-		if (session.getAttribute("carrello") instanceof Carrello) {
-			list = carrelloService.list((Carrello) session.getAttribute("carrello"));
-		}
-		model.put("carrello", list);
+		
+		if (c != null && c instanceof Carrello)
+			list = carrelloService.list((Carrello) c);
+		
+		model.put("carrelloList", list);
 		
 		List<TipoSpedizione> listSpedizioni = spedizioneService.list();
 		List<ModalitaPagamento> listPagamenti = pagamentoService.list();
@@ -91,11 +88,12 @@ public class CarrelloController {
 	}
 	
 	@RequestMapping(value = "carrelloJSON", method = RequestMethod.GET)
-	public @ResponseBody String carrelloJSON(ModelMap model, HttpSession session) {
+	public @ResponseBody String carrelloJSON(ModelMap model, @ModelAttribute("carrello") Object c) {
 		List<ElementoCarrello> list = new ArrayList<ElementoCarrello>();
-		if (session.getAttribute("carrello") instanceof Carrello) {
-			list = carrelloService.list((Carrello) session.getAttribute("carrello"));
-		}
+		
+		if (c != null && c instanceof Carrello)
+			list = carrelloService.list((Carrello) c);
+		
 		String carrelloJSON = "{\"carrello\":[";
 		
 		if (!list.isEmpty()) {
@@ -106,7 +104,6 @@ public class CarrelloController {
 		}
 		
 		carrelloJSON += "]}";
-		System.out.println(carrelloJSON);
 		
 		return carrelloJSON;
 	}

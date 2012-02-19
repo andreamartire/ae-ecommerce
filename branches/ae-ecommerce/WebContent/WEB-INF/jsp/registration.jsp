@@ -288,7 +288,7 @@
 		<tr class="privato hide">
 			<td>Data di Nascita</td>
 			<td><form:input path="dataNascita" id="datepicker" type="text"
-					onblur="checkDataNascita(this)" /></td>
+					onblur="checkDataNascita(this)" value="1980-01-01" /></td>
 			<td><form:errors path="dataNascita" cssClass="error" />
 				<div id="dataNascitaError"></div></td>
 		</tr>

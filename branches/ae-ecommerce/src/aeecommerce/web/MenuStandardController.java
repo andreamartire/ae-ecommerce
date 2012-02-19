@@ -1,6 +1,5 @@
 package aeecommerce.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import aeecommerce.pojo.Amministratore;
 import aeecommerce.pojo.Document;
 import aeecommerce.pojo.ModalitaPagamento;
-import aeecommerce.pojo.Prodotto;
 import aeecommerce.pojo.TipoSpedizione;
 import aeecommerce.service.DocumentService;
 import aeecommerce.service.ModalitaPagamentoService;
@@ -22,7 +20,7 @@ import aeecommerce.service.UserService;
 
 
 @Controller
-@SessionAttributes(value = {"user","type"})
+@SessionAttributes(value = {"user","type","name","carrello"})
 public class MenuStandardController {
 	
 	@Autowired
@@ -45,6 +43,13 @@ public class MenuStandardController {
 		admin.setPassword("admin");
 		if (userService.findByUsername("admin") == null) {
 			userService.insert(admin);
+		}
+		
+		if (model.get("user") == null) {
+			model.put("user", "");
+			model.put("name", "");
+			model.put("type", "");
+			model.put("carrello", "");
 		}
 		
 		return "home";

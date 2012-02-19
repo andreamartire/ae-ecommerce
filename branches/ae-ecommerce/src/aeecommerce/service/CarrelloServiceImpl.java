@@ -62,7 +62,6 @@ public class CarrelloServiceImpl implements CarrelloService {
 		List<ElementoCarrello> list = new LinkedList<ElementoCarrello>();
 		List<ElementoCarrello> all = ecDao.findAll();
 		for (ElementoCarrello e : all) {
-			System.out.println(e + " - " + e.getCarrello());
 			if (e.getCarrello().equals(carrello)) {
 				list.add(e);
 			}

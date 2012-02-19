@@ -12,9 +12,13 @@
 				idProdotto : idProdotto,
 				qnt : qnt
 			}),
-			success : function(prod) {
-				alert("Hai aggiunto al carrello " + qnt + "x " + nomeProd);
-				location.reload();
+			success : function(res) {
+				if (res == "ok") {
+					alert("Hai aggiunto al carrello " + qnt + "x " + nomeProd);
+					location.reload();
+				} else {
+					alert("Accedi per poter creare un carrello");
+				}
 			}
 		});
 	}
