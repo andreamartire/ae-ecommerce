@@ -7,10 +7,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Carrello;
@@ -21,6 +23,7 @@ import aeecommerce.service.CarrelloService;
 import aeecommerce.service.UserService;
 
 @Controller
+@SessionAttributes(value = {"user","type","name"})
 public class UserController {
 
 	@Autowired
@@ -30,7 +33,7 @@ public class UserController {
 	private CarrelloService carrelloService;
 	
 	@RequestMapping(value = "/ajaxLogin.htm", method = RequestMethod.POST)
-	public @ResponseBody String ajaxLogin(@RequestParam String username, @RequestParam String password, HttpSession model) {
+	public @ResponseBody String ajaxLogin(@RequestParam String username, @RequestParam String password, ModelMap model, HttpSession session) {
 		
 		User userDB = userService.findByUsername(username);
 		
@@ -74,14 +77,18 @@ public class UserController {
 			}
 			
 			System.out.println(c);
-			model.setAttribute("carrello", c);
+			session.setAttribute("carrello", c);
 		} else {
-			model.setAttribute("carrello", new Carrello());
+			session.setAttribute("carrello", new Carrello());
 		}
 		
-		model.setAttribute("user", username);
-		model.setAttribute("name", name);
-		model.setAttribute("type", type);
+		session.setAttribute("user", username);
+		session.setAttribute("name", name);
+		session.setAttribute("type", type);
+		
+		model.put("user", username);
+		model.put("name", name);
+		model.put("type", type);
 		
 		System.out.println("login: " + username + " effettuato");
 		
@@ -89,13 +96,18 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/logout.htm", method = RequestMethod.GET)
-	public @ResponseBody String logout(HttpSession model) {
-		String user = (String) model.getAttribute("user");
+	public @ResponseBody String logout(ModelMap model, HttpSession session) {
+		String user = (String) session.getAttribute("user");
 		System.out.println("logout " + user);
-		model.setAttribute("user", "");
-		model.setAttribute("name", "");
-		model.setAttribute("type", "");
-		model.setAttribute("carrello", "");
+		session.setAttribute("user", "");
+		session.setAttribute("name", "");
+		session.setAttribute("type", "");
+		session.setAttribute("carrello", "");
+		
+		model.put("user", "");
+		model.put("name", "");
+		model.put("type", "");
+		
 		return user;
 	}
 	
