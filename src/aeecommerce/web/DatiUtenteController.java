@@ -45,7 +45,9 @@ public class DatiUtenteController {
 	public String gestioneDatiPrivatoGet(@ModelAttribute("user") String username, ModelMap model)
 	{
 		System.out.println("dati privato controller get");
-		model.addAttribute("userInfo", userService.findByUsername(username));
+		Privato a = (Privato) userService.findByUsername(username);
+		System.out.println("put " + a);
+		model.addAttribute("userInfo", a);
 		return "gestioneDatiPrivato";
 	}
 
@@ -67,7 +69,9 @@ public class DatiUtenteController {
 	public String gestioneDatiAziendaGet(@ModelAttribute("user") String username, ModelMap model)
 	{
 		System.out.println("dati azienda controller post");
-		model.addAttribute("userInfo", userService.findByUsername(username));
+		Azienda a = (Azienda) userService.findByUsername(username);
+		System.out.println("put " + a);
+		model.addAttribute("userInfo", a);
 		return "gestioneDatiAzienda";
 	}
 	
@@ -77,6 +81,12 @@ public class DatiUtenteController {
 		System.out.println("dati azienda controller post");
 		System.out.println(u);
 		userService.update(u);
+		try {
+			userService.update(u);
+		}
+		catch (Exception e) {
+			return "gestioneDatiError";
+		}
 		return "gestioneDatiSuccess";
 	}
 }

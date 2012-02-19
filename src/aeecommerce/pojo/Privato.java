@@ -82,6 +82,7 @@ public class Privato extends Cliente {
 	
 	public RegistrationInfo toRegInfo(){
 		RegistrationInfo r = new RegistrationInfo();
+		r.setId(id);
 		r.setUsername(username);
 		r.setPassword(password);
 		r.setNome(nome);

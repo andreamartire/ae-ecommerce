@@ -7,19 +7,19 @@
 function checkFields(){
 	var error = false;
 	if(!$("#piva").val().match(/^\d{11}$/)){
-		$("#pivaError").html("<h5 style=\"color: red;\">Non valida</h5>");
+		$("#pivaError").html("<font style=\"color: red;\">Non valida</font>");
 		$("#submit").hide('fast');
 		error = true;
 	}
 	else
-		$("#pivaError").html("<h5 style=\"color: green;\">Ok</h5>");
+		$("#pivaError").html("<font style=\"color: green;\">Ok</font>");
 	if(!$("#ragioneSociale").val().match(/^[a-zA-Z\s]+$/)){
-		$("#ragioneSocialeError").html("<h5 style=\"color: red;\">Non valida</h5>");
+		$("#ragioneSocialeError").html("<font style=\"color: red;\">Non valida</font>");
 		$("#submit").hide('fast');
 		error = true;
 	}
 	else
-		$("#ragioneSocialeError").html("<h5 style=\"color: green;\">Ok</h5>");
+		$("#ragioneSocialeError").html("<font style=\"color: green;\">Ok</font>");
 	if(error)
 		$("#submit").hide('fast');
 	else

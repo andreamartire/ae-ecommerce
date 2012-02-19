@@ -25,6 +25,7 @@ public class Ordine {
 	
 	/** dove spedire il pacco
 	 */
+	@OneToOne
 	Indirizzo destinazione;
 	
 	/**
