@@ -24,7 +24,7 @@ public class CategorieController {
 		List<Categoria> categorie = catService.list();
 		
 		if (categorie.isEmpty())
-			return "";
+			return  "{\"categorie\":[]}";
 		
 		String json = "{\"categorie\":[";
 		

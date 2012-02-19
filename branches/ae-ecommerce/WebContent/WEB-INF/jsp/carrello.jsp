@@ -55,93 +55,104 @@
 		$("input").click( function(event) {
 			aggiornaTotale();
 		});
+		
+		if ($("#pesoTot").text() == 0) {
+			$('#carrelloDiv').hide();
+			$('#emptyCart').show();
+		}
 	});
 
 </script>
 
 <h3>Carrello della spesa</h3>
 
-<table id='carrelloTable'>
-	<thead>
-		<tr>
-			<td width="250">Prodotto</td>
-			<td>Prezzo</td>
-			<td>Quantita'</td>
-			<td>Totale</td>
-			<td></td>
-		</tr>
-	</thead>
-	<tbody>
-	<c:set var="totaleCarrello" value="0" />
-	<c:set var="pesoTotale" value="0" />
-	<c:forEach var="elementoCarrello" items="${carrelloList}">
-		<tr>
-			<td><a href="prodotti?id=${elementoCarrello.prodotto.id}"><b>${elementoCarrello.prodotto.nome}</b></a></td>
-			<td align="center"><b>${elementoCarrello.prodotto.prezzoUnitario}</b></td>
-			<td align="center"><input id="quantita${elementoCarrello.id}" type="number" style="width: 30px" value="${elementoCarrello.quantita}"/>
-			<td align="center"><b>${elementoCarrello.prodotto.prezzoUnitario * elementoCarrello.quantita}</b></td>
-			<td>
-				<button onclick="aggiorna(${elementoCarrello.id})"><img src="resources/images/refresh.png" /></button>
-				<button onclick="elimina(${elementoCarrello.id})"><img src="resources/images/delete.png" /></button>
-			</td>
-		</tr>
-		<c:set var="totaleCarrello" value="${totaleCarrello + elementoCarrello.prodotto.prezzoUnitario * elementoCarrello.quantita}" />
-		<c:set var="pesoTotale" value="${pesoTotale + elementoCarrello.prodotto.pesoApprossimato * elementoCarrello.quantita}" />
-	</c:forEach>
-	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan='5'>Peso Totale: <span id="pesoTot">${pesoTotale}</span>Kg - Totale carrello: <b id='totaleCarrello'>${totaleCarrello} &euro;</b></td>
-		</tr>
-	</tfoot>
-</table>
-
-<table id='spedTable'>
-	<thead>
-		<tr>
-			<td>Seleziona</td>
-			<td width="450">Tipo di Spedizione</td>
-			<td>Costo</td>
-		</tr>
-	</thead>
-	<tbody>
-	<c:forEach var="spedizione" items="${spedizioni}">
-		<tr>
-			<td align="center">
-				<input type="radio" checked="checked" name="spedizione" value="${spedizione.id}"/>
-			</td>
-			<td><b>${spedizione.nome}</b></td>
-			<td id="${spedizione.id}">${spedizione.prezzoBase}</td>
-		</tr>
-	</c:forEach>
-</table>
-
-<table id='spedTable'>
-	<thead>
-		<tr>
-			<td>Seleziona</td>
-			<td width="450">Tipo di Pagamento</td>
-			<td>Costo</td>
-		</tr>
-	</thead>
-	<tbody>
-	<c:forEach var="pagamento" items="${pagamenti}">
-		<tr>
-			<td align="center">
-				<input type="radio" checked="checked" name="pagamento" value="${pagamento.id}"/>
-			</td>
-			<td><b>${pagamento.nome}</b></td>
-			<td id="${pagamento.id}">${pagamento.commissioni}</td>
-		</tr>
-	</c:forEach>
-</table>
-
-<div id='totaleDiv'>
-	Totale: <b><span id='totale'></span> &euro;</b>
+<div id="emptyCart" style="display: none; text-align: center; font-size: 14pt; font-weight: bold; width: 600px; background-color: orange; color: blue; padding: 10px">
+Carrello vuoto
 </div>
 
-<div style="text-align: center; margin: 30px; width: 540px">
-	<button onclick='ordina()'>Ordina</button>
+<div id="carrelloDiv">
+	<table id='carrelloTable'>
+		<thead>
+			<tr>
+				<td width="250">Prodotto</td>
+				<td>Prezzo</td>
+				<td>Quantita'</td>
+				<td>Totale</td>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+		<c:set var="totaleCarrello" value="0" />
+		<c:set var="pesoTotale" value="0" />
+		<c:forEach var="elementoCarrello" items="${carrelloList}">
+			<tr>
+				<td><a href="prodotti?id=${elementoCarrello.prodotto.id}"><b>${elementoCarrello.prodotto.nome}</b></a></td>
+				<td align="center"><b>${elementoCarrello.prodotto.prezzoUnitario}</b></td>
+				<td align="center"><input id="quantita${elementoCarrello.id}" type="number" style="width: 30px" value="${elementoCarrello.quantita}"/>
+				<td align="center"><b>${elementoCarrello.prodotto.prezzoUnitario * elementoCarrello.quantita}</b></td>
+				<td>
+					<button onclick="aggiorna(${elementoCarrello.id})"><img src="resources/images/refresh.png" /></button>
+					<button onclick="elimina(${elementoCarrello.id})"><img src="resources/images/delete.png" /></button>
+				</td>
+			</tr>
+			<c:set var="totaleCarrello" value="${totaleCarrello + elementoCarrello.prodotto.prezzoUnitario * elementoCarrello.quantita}" />
+			<c:set var="pesoTotale" value="${pesoTotale + elementoCarrello.prodotto.pesoApprossimato * elementoCarrello.quantita}" />
+		</c:forEach>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan='5'>Peso Totale: <span id="pesoTot">${pesoTotale}</span>Kg - Totale carrello: <b id='totaleCarrello'>${totaleCarrello} &euro;</b></td>
+			</tr>
+		</tfoot>
+	</table>
+	
+	<table id='spedTable'>
+		<thead>
+			<tr>
+				<td>Seleziona</td>
+				<td width="450">Tipo di Spedizione</td>
+				<td>Costo</td>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach var="spedizione" items="${spedizioni}">
+			<tr>
+				<td align="center">
+					<input type="radio" checked="checked" name="spedizione" value="${spedizione.id}"/>
+				</td>
+				<td><b>${spedizione.nome}</b></td>
+				<td id="${spedizione.id}">${spedizione.prezzoBase}</td>
+			</tr>
+		</c:forEach>
+	</table>
+	
+	<table id='spedTable'>
+		<thead>
+			<tr>
+				<td>Seleziona</td>
+				<td width="450">Tipo di Pagamento</td>
+				<td>Costo</td>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach var="pagamento" items="${pagamenti}">
+			<tr>
+				<td align="center">
+					<input type="radio" checked="checked" name="pagamento" value="${pagamento.id}"/>
+				</td>
+				<td><b>${pagamento.nome}</b></td>
+				<td id="${pagamento.id}">${pagamento.commissioni}</td>
+			</tr>
+		</c:forEach>
+	</table>
+	
+	<div id='totaleDiv'>
+		Totale: <b><span id='totale'></span> &euro;</b>
+	</div>
+	
+	<div style="text-align: center; margin: 30px; width: 540px">
+		<button onclick='ordina()'>Ordina</button>
+	</div>
 </div>
 
 <div style="display: none">

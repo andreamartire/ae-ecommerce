@@ -76,13 +76,16 @@ public class UserController {
 				System.out.println("carrello gia esistente");
 			}
 			
-			System.out.println(c);
+			model.put("carrello", c);
+		} else {
+			// se l'utente è admin non ha carrello
+			model.put("carrello", "");
 		}
 		
 		model.put("user", username);
 		model.put("name", name);
 		model.put("type", type);
-		model.put("carrello", c);
+		
 		
 		System.out.println("login: " + username + " effettuato");
 		

@@ -65,27 +65,31 @@
 				$('#password').val("");
 		});
 		
-		$.getJSON('carrelloJSON.htm', function(data) {
-			var carrello = data.carrello;
-			var html = "";
-			if (carrello == "") {
-				html += "<tr><td>Nessun elemento nel carrello</td></tr>";
-			} else {
-				var tot = 0;
-				$.each(carrello, function(key, e) {
-					var totParziale = parseFloat(e.prezzo)*parseFloat(e.qnt);
-					tot += totParziale;
-					html += "<tr>"+
-								"<td>-</td>" +
-								"<td>"+ e.qnt +"x <a href='prodotti?id="+ e.id +"'>" + e.nome + "</a></td>" +
-								"<td align='right'><b>" + totParziale.toFixed(2) + "</b></td>" +
-							"</tr>";
-				});
-				tot = tot.toFixed(2);
-				html += "<tr><td height='40' align='right' colspan='3'>Totale: <b>"+ tot +"</b></td></tr>";
-			} 
-			$('#carrello').append(html);
-		});
+		var html = "";
+		if (user != "null" && user != "" && user != "admin") {
+			$.getJSON('carrelloJSON.htm', function(data) {
+				var carrello = data.carrello;
+				if (carrello == "") {
+					html += "<tr><td>Nessun elemento nel carrello</td></tr>";
+				} else {
+					var tot = 0;
+					$.each(carrello, function(key, e) {
+						var totParziale = parseFloat(e.prezzo)*parseFloat(e.qnt);
+						tot += totParziale;
+						html += "<tr>"+
+									"<td>-</td>" +
+									"<td>"+ e.qnt +"x <a href='prodotti?id="+ e.id +"'>" + e.nome + "</a></td>" +
+									"<td align='right'><b>" + totParziale.toFixed(2) + "</b></td>" +
+								"</tr>";
+					});
+					tot = tot.toFixed(2);
+					html += "<tr><td height='40' align='right' colspan='3'>Totale: <b>"+ tot +"</b></td></tr>";
+				} 
+			});
+		} else {
+			html += "<tr><td>Nessun elemento nel carrello</td></tr>";
+		}
+		$('#carrello').append(html);
 	}
 	$(document).ready(startup);
 </script>
