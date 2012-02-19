@@ -1,5 +1,52 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
+<link rel="stylesheet" href="resources/css/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" href="resources/css/ui-lightness/jquery-ui-style.css" type="text/css" media="all" />
+
+<script src="resources/js/jquery-ui-1.8.17.min.js" type="text/javascript"></script>
+
+<style type="text/css">
+	.ui-datepicker {
+		font-family: monospace; 
+		font-size: 10pt; 
+	} 
+	.hide {
+		display: none;
+	}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	// inizializza il datepicker
+	$("#datepicker").datepicker({
+		changeMonth : true,
+		changeYear : true
+	});
+	
+	$.datepicker.regional['it'] = {
+		closeText : 'Chiudi',
+		prevText : '&#x3c;Prec',
+		nextText : 'Succ&#x3e;',
+		currentText : 'Oggi',
+		monthNames : [ 'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio',
+				'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre',
+				'Novembre', 'Dicembre' ],
+		monthNamesShort : [ 'Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu',
+				'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic' ],
+		dayNames : [ 'Domenica', 'Luned&#236', 'Marted&#236',
+				'Mercoled&#236', 'Gioved&#236', 'Venerd&#236', 'Sabato' ],
+		dayNamesShort : [ 'Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab' ],
+		dayNamesMin : [ 'Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa' ],
+		weekHeader : 'Sm',
+		dateFormat : 'yy-mm-dd',
+		firstDay : 1,
+		isRTL : false,
+		showMonthAfterYear : false,
+		yearSuffix : ''
+	};
+	$.datepicker.setDefaults($.datepicker.regional['it']);
+});
+</script>
 
 <a href="home.htm">Home</a> &gt; <a href="gestioneUtenti.htm">Gestione Utenti</a> &gt; <a href="gestioneUtente.htm?id=${userdb.id}">Gestione Utente ${userManaged}</a> &gt; Gestione Dati Privato
 <hr></hr>
@@ -7,40 +54,40 @@
 function checkFields(){
 	var error = false;
 	if(!$("#nome").val().match(/^[a-zA-Z\s]+$/)){
-		$("#nomeError").html("<h5 style=\"color: red;\">Non valido</h5>");
+		$("#nomeError").html("<font style=\"color: red;\">Non valido</font>");
 		error = true;
 	}
 	else
-		$("#nomeError").html("<h5 style=\"color: green;\">Ok</h5>");
+		$("#nomeError").html("<font style=\"color: green;\">Ok</font>");
 	
 	if(!$("#cognome").val().match(/^[a-zA-Z\s]+$/)){
-		$("#cognomeError").html("<h5 style=\"color: red;\">Non valido</h5>");
+		$("#cognomeError").html("<font style=\"color: red;\">Non valido</font>");
 		error = true;
 	}
 	else
-		$("#cognomeError").html("<h5 style=\"color: green;\">Ok</h5>");
+		$("#cognomeError").html("<font style=\"color: green;\">Ok</font>");
 	
 	var e = /^[a-zA-Z]{6}\d{2}[a-zA-Z]{1}\d{2}[a-zA-Z]{1}\d{3}[a-zA-Z]{1}$/;
 	if(!$("#codiceFiscale").val().match(e)){
-		$("#codiceFiscaleError").html("<h5 style=\"color: red;\">Non valido</h5>");
+		$("#codiceFiscaleError").html("<font style=\"color: red;\">Non valido</font>");
 		error = true;
 	}
 	else
-		$("#codiceFiscaleError").html("<h5 style=\"color: green;\">Ok</h5>");
+		$("#codiceFiscaleError").html("<font style=\"color: green;\">Ok</font>");
 	
 	if(!$("#dataNascita").val().match(/^\d{4}\-\d{2}\-\d{2}$/)){
-		$("#dataNascitaError").html("<h5 style=\"color: red;\">Richiesto yyyy-MM-dd</h5>");
+		$("#dataNascitaError").html("<font style=\"color: red;\">Richiesto yyyy-MM-dd</font>");
 		error = true;
 	}
 	else
-		$("#dataNascitaError").html("<h5 style=\"color: green;\">Ok</h5>");
+		$("#dataNascitaError").html("<font style=\"color: green;\">Ok</font>");
 	
 	if(!$("#luogoNascita").val().match(/^[a-zA-Z\s]+$/)){
-		$("#luogoNascitaError").html("<h5 style=\"color: red;\">Non valido</h5>");
+		$("#luogoNascitaError").html("<font style=\"color: red;\">Non valido</font>");
 		error = true;
 	}
 	else
-		$("#luogoNascitaError").html("<h5 style=\"color: green;\">Ok</h5>");
+		$("#luogoNascitaError").html("<font style=\"color: green;\">Ok</font>");
 	
 	if(error)
 		$("#submit").hide('fast');
@@ -67,7 +114,7 @@ function checkFields(){
 		</tr>
 		<tr class="privato">
 			<td>Data Nascita :</td>
-			<td><form:input path="dataNascita" type="text" onkeyup="checkFields()" onkeypress="return event.keyCode!=13"/></td>
+			<td><form:input path="dataNascita" id="datepicker" type="text" onkeyup="checkFields()" onkeypress="return event.keyCode!=13"/></td>
 			<td><div id="dataNascitaError"></div></td>
 		</tr>
 		<tr class="privato">

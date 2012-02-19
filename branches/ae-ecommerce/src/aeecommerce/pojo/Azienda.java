@@ -44,11 +44,12 @@ public class Azienda extends Cliente {
 	
 	@Override
 	public String toString() {
-		return id + " " + ragioneSociale + " " + piva;
+		return super.toString() + "\n" + ragioneSociale + " " + piva;
 	}
 	
 	public RegistrationInfo toRegInfo(){
 		RegistrationInfo r = new RegistrationInfo();
+		r.setId(id);
 		r.setUsername(username);
 		r.setPassword(password);
 		r.setPiva(piva);

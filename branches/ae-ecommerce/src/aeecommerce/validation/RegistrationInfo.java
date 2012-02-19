@@ -9,6 +9,7 @@ import aeecommerce.pojo.User;
 
 public class RegistrationInfo {
 
+	private int id;
 	private String username;
 	private String password;
 	private String confirmPassword;
@@ -30,6 +31,14 @@ public class RegistrationInfo {
 	
 	public RegistrationInfo() {}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -117,12 +126,14 @@ public class RegistrationInfo {
 
 	public Privato toPrivato() {
 		Privato pvt = new Privato(username,password,cognome,nome,codiceFiscale,luogoNascita,dataNascita);
+		pvt.setId(id);
 		pvt.getRecapiti().add(new Recapito(getEmail(), Recapito.EMAIL));
 		return pvt;
 	}
 
 	public Azienda toAzienda() {
 		Azienda az = new Azienda(username,password,piva,ragioneSociale);
+		az.setId(id);
 		az.getRecapiti().add(new Recapito(getEmail(), Recapito.EMAIL));
 		return az;
 	}

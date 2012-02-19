@@ -27,7 +27,7 @@ public abstract class Cliente extends User implements Serializable{
 	
 	@Override
 	public String toString() {
-		return username;
+		return super.toString();
 	}
 
 	public List<Carrello> getCarrelli() {
