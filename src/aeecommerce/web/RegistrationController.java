@@ -80,6 +80,7 @@ public class RegistrationController {
 			System.out.println("----------------------------------");
 			
 			model.put("reguser", regInfo.getUsername());
+			model.addAttribute("name", regInfo.getNome());
 			
 			return "redirect:aggiungiIndirizzo.htm";
 		}
