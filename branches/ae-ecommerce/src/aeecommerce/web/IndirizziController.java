@@ -1,16 +1,16 @@
 package aeecommerce.web;
 
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Indirizzo;
@@ -19,7 +19,7 @@ import aeecommerce.service.IndirizzoService;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"userdb", "indirizzo"})
+@SessionAttributes(value = {"user","type","userdb", "indirizzo"})
 public class IndirizziController {
 
 	@Autowired
@@ -29,43 +29,39 @@ public class IndirizziController {
 	IndirizzoService indirizzoService;
 	
 	@RequestMapping(value="/gestioneIndirizzi.htm", method = RequestMethod.GET)
-	public String addressFormGet(ModelMap model, HttpSession session)
+	public String addressFormGet(@ModelAttribute("user") String username,  Map<String, User> model)
 	{
 		System.out.println("gestione indirizzi controller get");
-		
-		String username = (String) session.getAttribute("user");
-		
-		Set<Indirizzo> indirizzi = userService.findByUsername(username).getIndirizzi();
-		for (Indirizzo indirizzo : indirizzi) {
+		Set<Indirizzo> ind = userService.findByUsername(username).getIndirizzi();
+		for (Iterator i = ind.iterator(); i.hasNext();) {
+			Indirizzo indirizzo = (Indirizzo) i.next();
 			System.out.println(indirizzo);
 		}
-		
 		model.put("userdb",userService.findByUsername(username));
-		
 		return "gestioneIndirizzi";
 	}
 
 	@RequestMapping(value="/gestioneIndirizzi.htm", method = RequestMethod.POST)
-	public String addressFormPost(@ModelAttribute("userdb") User user, HttpSession session)
+	public String addressFormPost(@ModelAttribute("user") String username, @ModelAttribute("userdb") User user)
 	{
-		String username = (String) session.getAttribute("user");
-		
 		System.out.println("gestione indirizzi controller post");
-		
+		for (Iterator<Indirizzo> i = user.getIndirizzi().iterator(); i.hasNext();) {
+			Indirizzo indirizzo = (Indirizzo) i.next();
+			System.out.println(indirizzo);
+		}
 		User u = userService.findByUsername(username);
 		u.setIndirizzi(user.getIndirizzi());
 		userService.update(u);
-		
-		Set<Indirizzo> indirizzi = userService.findByUsername(username).getIndirizzi();
-		for (Indirizzo indirizzo : indirizzi) {
+		Set<Indirizzo> ind = userService.findByUsername(username).getIndirizzi();
+		for (Iterator<Indirizzo> i = ind.iterator(); i.hasNext();) {
+			Indirizzo indirizzo = (Indirizzo) i.next();
 			System.out.println(indirizzo);
 		}
-		
 		return "redirect:gestioneIndirizzi.htm";
 	}
 	
 	@RequestMapping(value="/aggiungiIndirizzo.htm", method = RequestMethod.GET)
-	public String addAddressGet(ModelMap model)
+	public String addAddressGet(@ModelAttribute("user") String username,  Map<String,Object> model)
 	{
 		System.out.println("aggiungi indirizzo controller get");
 		model.put("indirizzo", new Indirizzo());
@@ -73,15 +69,33 @@ public class IndirizziController {
 	}
 	
 	@RequestMapping(value="/aggiungiIndirizzo.htm", method = RequestMethod.POST)
-	public String addAddressPost(@ModelAttribute("indirizzo") Indirizzo indirizzo, HttpSession session)
+	public String addAddressPost(@ModelAttribute("user") String username, @ModelAttribute("indirizzo") Indirizzo indirizzo)
 	{
-		String username = (String) session.getAttribute("user");
-		
 		User u = userService.findByUsername(username);
 		u.getIndirizzi().add(indirizzo);
 		userService.update(u);
 		return "redirect:gestioneIndirizzi.htm";
 	}
+	
+	@RequestMapping(value="/aggiungiIndirizzoAJAX.htm", method = RequestMethod.POST)
+	public @ResponseBody String addAddressAjax(@ModelAttribute("user") String username, 
+			@RequestParam String via, @RequestParam String destinatario,
+			@RequestParam String numero, @RequestParam String citta, 
+			@RequestParam String cap, @RequestParam String provincia)
+	{
+		User u = userService.findByUsername(username);
+		Indirizzo indirizzo = new Indirizzo();
+		indirizzo.setDestinatario(destinatario);
+		indirizzo.setCitta(citta);
+		indirizzo.setCap(cap);
+		indirizzo.setNumero(numero);
+		indirizzo.setProvincia(provincia);
+		indirizzo.setVia(via);
+		u.getIndirizzi().add(indirizzo);
+		userService.update(u);
+		return "ok";
+	}
+	
 	
 	@RequestMapping(value="/eliminaIndirizzo.htm")
 	public String removeAddressGet(@RequestParam int idAddress)

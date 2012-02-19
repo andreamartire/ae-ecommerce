@@ -1,75 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
-<style type="text/css">
-	#carrelloTable {
-		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-		width: 600px;
-		border-spacing: 5px;
-	}
-	
-	#carrelloTable td {
-		font-size: 1em;
-		border: 1px solid green;
-		padding: 3px 7px 2px 7px;
-	}
-	
-	#carrelloTable tfoot {
-		background-color: orange;
-		text-align: right;
-	}
-	
-	#carrelloTable thead {
-		font-size: 10pt;
-		text-align: center;
-		padding-top: 5px;
-		padding-bottom: 4px;
-		background-color: orange;
-		color: black;
-	}
-	
-
-	#spedTable {
-		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-		width: 600px;
-		border-spacing: 0px 5px;
-	}
-	
-	#spedTable td {
-		font-size: 1em;
-		border: 1px solid #6699FF;
-		padding: 3px 7px 2px 7px;
-	}
-	
-	#spedTable tfoot {
-		background-color: #66FFFF;
-		text-align: right;
-	}
-	
-	#spedTable thead {
-		font-size: 10pt;
-		font-weight: bold;
-		text-align: center;
-		padding-top: 5px;
-		padding-bottom: 4px;
-		background-color: #D1F0FF;
-		color: #3366CC;
-	}
-	
-	
-	#totaleDiv {
-		width: 600px;
-		font-size: 14pt;
-		font-weight: bold;
-		text-align: center;
-		padding-top: 5px;
-		padding-bottom: 5px;
-		color: white;
-		background-color: #FF9900;
-	}
-</style>
-
 <script type="text/javascript">
 	function elimina(elementoCarrello) {
 		$.ajax({
@@ -94,7 +24,7 @@
 				qnt : $('#quantita'+elementoCarrello).val()
 			}),
 			success : function(res) {
-				alert("Quantita' aggironata");
+				alert("Quantita' aggiornata");
 				location.reload();
 			}
 		});
@@ -102,10 +32,20 @@
 	
 	function aggiornaTotale() {
 		var totaleCarrello = parseFloat($('#totaleCarrello').text());
-		var costoSpedizione = parseFloat($("input[name='spedizione']:checked").val());
-		var costoPagamento = parseFloat($("input[name='pagamento']:checked").val());
+		var spedID = $("input[name='spedizione']:checked").val();
+		var costoSpedizione = parseFloat($("#"+spedID).text());
+		var pagID = $("input[name='pagamento']:checked").val();
+		var costoPagamento = parseFloat($("#"+pagID).text());
 		var totale = totaleCarrello + costoPagamento + costoSpedizione;
 		$('#totale').text(totale);
+	}
+	
+	function ordina() {
+		$('#idSpedizione').val($("input[name='spedizione']:checked").val());
+		$('#idPagamento').val($("input[name='pagamento']:checked").val());
+		$('#pesoTotale').val($("#pesoTot").text());
+		$('#totaleDaPagare').val($('#totale').text());
+		$('#ordineForm').submit();
 	}
 	
 	$(document).ready( function() {
@@ -151,7 +91,7 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan='5'>Peso Totale: ${pesoTotale}Kg - Totale carrello: <b id='totaleCarrello'>${totaleCarrello} &euro;</b></td>
+			<td colspan='5'>Peso Totale: <span id="pesoTot">${pesoTotale}</span>Kg - Totale carrello: <b id='totaleCarrello'>${totaleCarrello} &euro;</b></td>
 		</tr>
 	</tfoot>
 </table>
@@ -168,10 +108,10 @@
 	<c:forEach var="spedizione" items="${spedizioni}">
 		<tr>
 			<td align="center">
-				<input type="radio" checked="checked" name="spedizione" value="${spedizione.prezzoBase}"/>
+				<input type="radio" checked="checked" name="spedizione" value="${spedizione.id}"/>
 			</td>
 			<td><b>${spedizione.nome}</b></td>
-			<td>${spedizione.prezzoBase}</td>
+			<td id="${spedizione.id}">${spedizione.prezzoBase}</td>
 		</tr>
 	</c:forEach>
 </table>
@@ -188,14 +128,27 @@
 	<c:forEach var="pagamento" items="${pagamenti}">
 		<tr>
 			<td align="center">
-				<input type="radio" checked="checked" name="pagamento" value="${pagamento.commissioni}"/>
+				<input type="radio" checked="checked" name="pagamento" value="${pagamento.id}"/>
 			</td>
 			<td><b>${pagamento.nome}</b></td>
-			<td>${pagamento.commissioni}</td>
+			<td id="${pagamento.id}">${pagamento.commissioni}</td>
 		</tr>
 	</c:forEach>
 </table>
 
 <div id='totaleDiv'>
 	Totale: <b><span id='totale'></span> &euro;</b>
+</div>
+
+<div style="text-align: center; margin: 30px; width: 540px">
+	<button onclick='ordina()'>Ordina</button>
+</div>
+
+<div style="display: none">
+	<form action="ordine.htm" method="post" id="ordineForm">
+		<input type="hidden" id="idSpedizione" name="idSpedizione"/>
+		<input type="hidden" id="idPagamento" name="idPagamento"/>
+		<input type="hidden" id="totaleDaPagare" name="totaleDaPagare"/>
+		<input type="hidden" id="pesoTotale" name="pesoTotale"/>
+	</form>
 </div>

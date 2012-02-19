@@ -1,5 +1,30 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+	function aggiungiACarrello(idProdotto) {
+		var qnt = $('#quantita').val();
+		var nomeProd = $('#nomeProdotto'+idProdotto).text();
+		
+		$.ajax({
+			url : 'addToCart.htm',
+			type: "POST",
+			data : ({
+				idProdotto : idProdotto,
+				qnt : qnt
+			}),
+			success : function(res) {
+				if (res == "ok") {
+					alert("Hai aggiunto al carrello " + qnt + "x " + nomeProd);
+					location.reload();
+				} else {
+					alert("Accedi per poter creare un carrello");
+				}
+			}
+		});
+	}
+</script>
+
+
 <h2>${prodotto.nome}</h2>
 
 <table style="width: 600px; padding: 5px">

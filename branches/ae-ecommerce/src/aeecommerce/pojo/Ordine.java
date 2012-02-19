@@ -23,6 +23,10 @@ public class Ordine {
 	@Temporal(TemporalType.DATE)
 	Date data;
 	
+	/** dove spedire il pacco
+	 */
+	Indirizzo destinazione;
+	
 	/**
 	 * Peso totale (approssimato) dell'ordine
 	 * Necessario per calcolare le spese di spedizione (NON IMPLEMENTATO)
@@ -111,6 +115,14 @@ public class Ordine {
 
 	public void setCarrello(Carrello carrello) {
 		this.carrello = carrello;
+	}
+
+	public Indirizzo getDestinazione() {
+		return destinazione;
+	}
+
+	public void setDestinazione(Indirizzo destinazione) {
+		this.destinazione = destinazione;
 	}
 
 	@Override

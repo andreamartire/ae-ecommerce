@@ -37,12 +37,71 @@ a:hover {
 	text-decoration:none;
 }
 
-/* TABLE { */
-/* 	table-layout : fixed; */
-/* 	border-collapse : collapse; */
-/* 	border-spacing : 1px; */
-/* 	empty-cells : hide; */
-/* } */
+#carrelloTable {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	width: 600px;
+	border-spacing: 5px;
+}
+
+#carrelloTable td {
+	font-size: 1em;
+	border: 1px solid green;
+	padding: 3px 7px 2px 7px;
+}
+
+#carrelloTable tfoot {
+	background-color: orange;
+	text-align: right;
+}
+
+#carrelloTable thead {
+	font-size: 10pt;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: orange;
+	color: black;
+}
+
+
+#spedTable {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	width: 600px;
+	border-spacing: 0px 5px;
+}
+
+#spedTable td {
+	font-size: 1em;
+	border: 1px solid #6699FF;
+	padding: 3px 7px 2px 7px;
+}
+
+#spedTable tfoot {
+	background-color: #66FFFF;
+	text-align: right;
+}
+
+#spedTable thead {
+	font-size: 10pt;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #D1F0FF;
+	color: #3366CC;
+}
+
+
+#totaleDiv {
+	width: 600px;
+	font-size: 14pt;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: white;
+	background-color: #FF9900;
+}
 
 TH {
 /* 	background-color: #F5D0A9; */

@@ -6,7 +6,7 @@
 <tiles-definitions>
 
 	<definition name="baseLayout" template="/WEB-INF/jsp/layout/layout.jsp">
-		<put-attribute name="title" value="SivaLabs" />
+		<put-attribute name="title" value="AE-ECommerce CMS" />
 		<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
 		<put-attribute name="left" value="/WEB-INF/jsp/layout/left.jsp" />
 		<put-attribute name="right" value="/WEB-INF/jsp/layout/right.jsp" />
@@ -15,294 +15,251 @@
 	</definition>
 
 	<definition name="home" extends="baseLayout">
-		<put-attribute name="title" value="Home" />
 		<put-attribute name="body" value="/WEB-INF/jsp/home.jsp" />
 	</definition>
 
 	<definition name="registration" extends="baseLayout">
-		<put-attribute name="title" value="Registrazione" />
 		<put-attribute name="body" value="/WEB-INF/jsp/registration.jsp" />
 	</definition>
 
 	<definition name="loginFailed" extends="baseLayout">
-		<put-attribute name="title" value="Login Failed" />
 		<put-attribute name="body" value="/WEB-INF/jsp/loginFailed.jsp" />
 	</definition>
 
 	<definition name="userCreated" extends="baseLayout">
-		<put-attribute name="title" value="User Created" />
 		<put-attribute name="body" value="/WEB-INF/jsp/userCreated.jsp" />
 	</definition>
 
 	<definition name="userHome" extends="baseLayout">
-		<put-attribute name="title" value="User Home" />
 		<put-attribute name="body" value="/WEB-INF/jsp/userHome.jsp" />
 	</definition>
 
 	<definition name="account" extends="baseLayout">
-		<put-attribute name="title" value="Account Info" />
 		<put-attribute name="body" value="/WEB-INF/jsp/user/account.jsp" />
 	</definition>
 
 	<!-- Password -->
 	<definition name="changePassword" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Password" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/password/changePassword.jsp" />
 	</definition>
 
 	<definition name="passwordSuccess" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Password" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/password/passwordSuccess.jsp" />
 	</definition>
 
 	<definition name="passwordError" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Password" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/password/passwordError.jsp" />
 	</definition>
 
 	<!-- Gestione dati utente (lato utente) -->
 	<definition name="gestioneDatiPrivato" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Dati Utente" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/datiUtente/gestioneDatiPrivato.jsp" />
 	</definition>
 
 	<definition name="gestioneDatiAzienda" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Dati Utente" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/datiUtente/gestioneDatiAzienda.jsp" />
 	</definition>
 
 	<definition name="gestioneDatiSuccess" extends="baseLayout">
-		<put-attribute name="title" value="Dati modificati correttamente" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/datiUtente/gestioneDatiSuccess.jsp" />
 	</definition>
 
 	<definition name="gestioneDatiError" extends="baseLayout">
-		<put-attribute name="title" value="Errore modifica dati" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/datiUtente/gestioneDatiError.jsp" />
 	</definition>
 
 	<!-- Gestione indirizzi (lato utente) -->
 	<definition name="gestioneIndirizzi" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Indirizzi" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/indirizzi/gestioneIndirizzi.jsp" />
 	</definition>
 
 	<definition name="aggiungiIndirizzo" extends="baseLayout">
-		<put-attribute name="title" value="Aggiungi Indirizzo" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/indirizzi/aggiungiIndirizzo.jsp" />
 	</definition>
 
 	<!-- Gestione Recapiti (lato utente) -->
 	<definition name="gestioneRecapiti" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Recapiti" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/recapiti/gestioneRecapiti.jsp" />
 	</definition>
 
 	<definition name="aggiungiRecapito" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Recapiti" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/user/recapiti/aggiungiRecapito.jsp" />
 	</definition>
 
 	<!-- Gestione Utenti -->
 	<definition name="gestioneUtenti" extends="baseLayout">
-		<put-attribute name="title" value="Gestione utenti" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/gestioneUtenti.jsp" />
 	</definition>
 
 	<definition name="gestioneUtente" extends="baseLayout">
-		<put-attribute name="title" value="Gestione utenti" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/gestioneUtente.jsp" />
 	</definition>
 
 	<definition name="bannerEditor" extends="baseLayout">
-		<put-attribute name="title" value="Banner Editor" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/bannerEditor.jsp" />
 	</definition>
 
 	<!-- Gestione Dati utente (lato admin) -->
 	<definition name="gestioneAdminDatiAzienda" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Dati Azienda" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/gestioneAdminDatiAzienda.jsp" />
 	</definition>
 
 	<definition name="gestioneAdminDatiPrivato" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Dati Privato" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/gestioneAdminDatiPrivato.jsp" />
 	</definition>
 
 	<definition name="gestioneAdminDatiError" extends="baseLayout">
-		<put-attribute name="title" value="Error Gestione Dati" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/gestioneAdminDatiError.jsp" />
 	</definition>
 
 	<definition name="gestioneAdminDatiSuccess" extends="baseLayout">
-		<put-attribute name="title" value="Ok Gestione Dati" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/gestioneAdminDatiSuccess.jsp" />
 	</definition>
 
 	<!-- Gestione indirizzi (lato admin) -->
 	<definition name="gestioneIndirizziAdmin" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Indirizzi" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/indirizzi/gestioneIndirizzi.jsp" />
 	</definition>
 
 	<definition name="aggiungiIndirizzoAdmin" extends="baseLayout">
-		<put-attribute name="title" value="Aggiungi Indirizzo" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/indirizzi/aggiungiIndirizzo.jsp" />
 	</definition>
 
 	<!-- Gestione recapiti (lato admin) -->
 	<definition name="gestioneRecapitiAdmin" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Recapiti" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/recapiti/gestioneRecapiti.jsp" />
 	</definition>
 
 	<definition name="aggiungiRecapitoAdmin" extends="baseLayout">
-		<put-attribute name="title" value="Aggiungi Recapito" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/users/recapiti/aggiungiRecapito.jsp" />
 	</definition>
 
 	<!-- Gestione categorie -->
 	<definition name="categoriesManagement" extends="baseLayout">
-		<put-attribute name="title" value="Gestione utenti" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/categorie/categoriesManagement.jsp" />
 	</definition>
 
 	<definition name="aggiungiCategoria" extends="baseLayout">
-		<put-attribute name="title" value="Gestione utenti" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/categorie/aggiungiCategoria.jsp" />
 	</definition>
 
 	<!-- Gestione prodotti -->
 	<definition name="productsManagement" extends="baseLayout">
-		<put-attribute name="title" value="Gestione prodotti" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/prodotti/productsManagement.jsp" />
 	</definition>
 
 	<definition name="elencoProdotti" extends="baseLayout">
-		<put-attribute name="title" value="Gestione prodotti" />
 		<put-attribute name="body" value="/WEB-INF/jsp/elencoProdotti.jsp" />
 	</definition>
 	
 	<!-- Gestione tipoSpedizione -->
 	<definition name="tipoSpedizioneManagement" extends="baseLayout">
-		<put-attribute name="title" value="Gestione TipoSpedizione" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/tipoSpedizione/tipoSpedizioneManagement.jsp" />
 	</definition>
 	
 	<!-- Gestione tipoSpedizione -->
 	<definition name="modalitaPagamentoManagement" extends="baseLayout">
-		<put-attribute name="title" value="Gestione TipoSpedizione" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/modalitaPagamento/modalitaPagamentoManagement.jsp" />
 	</definition>
 	
 	<!-- Gestione Vetrina -->
 	<definition name="gestioneVetrina" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Vetrina" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/vetrina/gestioneVetrina.jsp" />
 	</definition>
 	
 	<!-- Gestione Offerte -->
 	<definition name="gestioneOfferte" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Vetrina" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/offerte/gestioneOfferte.jsp" />
 	</definition>
 
 	<!-- Outuput jsp -->
 	<definition name="output" extends="baseLayout">
-		<put-attribute name="title" value="Info" />
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/output.jsp" />
 	</definition>
 	
 	<!-- Spedizioni jsp -->
 	<definition name="spedizioni" extends="baseLayout">
-		<put-attribute name="title" value="Info Spedizioni" />
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/spedizioni.jsp" />
 	</definition>
 	
 	<!-- Pagamenti jsp -->
 	<definition name="pagamenti" extends="baseLayout">
-		<put-attribute name="title" value="Info Pagamenti" />
 		<put-attribute name="body" value="/WEB-INF/jsp/admin/pagamenti.jsp" />
 	</definition>
 
 	<!-- FAQ -->
 	<definition name="faqEditor" extends="baseLayout">
-		<put-attribute name="title" value="Gestione FAQ" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/faqEditor.jsp" />
 	</definition>
 
 	<!-- Condizioni -->
 	<definition name="condizioniEditor" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Condizioni" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/condizioniEditor.jsp" />
 	</definition>
 	
 	<!-- Dove Siamo -->
 	<definition name="doveSiamoEditor" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Pagina DoveSiamo" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/doveSiamoEditor.jsp" />
 	</definition>
 	
 	<!-- Contattaci -->
 	<definition name="contattaciEditor" extends="baseLayout">
-		<put-attribute name="title" value="Gestione Pagina Contattaci" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/contattaciEditor.jsp" />
 	</definition>
 
 	<!-- Usati nel web flow -->
 	<definition name="registration1" extends="baseLayout">
-		<put-attribute name="title" value="Reg 1" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/registration/registration1.jsp" />
 	</definition>
 
 	<definition name="registration2" extends="baseLayout">
-		<put-attribute name="title" value="Reg 2" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/registration/registration2.jsp" />
 	</definition>
 
 	<definition name="carrello" extends="baseLayout">
-		<put-attribute name="title" value="Carrello" />
 		<put-attribute name="body" value="/WEB-INF/jsp/carrello.jsp" />
 	</definition>
 
+	<definition name="ordine" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ordine.jsp" />
+	</definition>
+	
 	<definition name="prodotti" extends="baseLayout">
-	  	<put-attribute name="title" value="Prodotti" />
 	  	<put-attribute name="body" value="/WEB-INF/jsp/prodotti.jsp" />
 	</definition>
 	
