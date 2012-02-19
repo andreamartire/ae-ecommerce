@@ -259,6 +259,14 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/ordine.jsp" />
 	</definition>
 	
+	<definition name="ordineConfermato" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/ordineConfermato.jsp" />
+	</definition>
+	
+	<definition name="riepilogoOrdine" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/riepilogoOrdine.jsp" />
+	</definition>
+	
 	<definition name="prodotti" extends="baseLayout">
 	  	<put-attribute name="body" value="/WEB-INF/jsp/prodotti.jsp" />
 	</definition>

@@ -62,7 +62,7 @@ public class UserController {
 			if(carrelliCliente.size() > 0)
 				c = carrelliCliente.get(carrelliCliente.size()-1);
 			
-			if (c == null) {
+			if (c == null || c.getOrdine() != null) {
 				System.out.println("creazione nuovo carrello");
 				c = new Carrello();
 				c.setDataCreazione(new Date());

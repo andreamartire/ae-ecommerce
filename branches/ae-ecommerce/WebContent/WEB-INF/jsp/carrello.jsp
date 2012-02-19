@@ -88,7 +88,7 @@ Carrello vuoto
 			<tr>
 				<td><a href="prodotti?id=${elementoCarrello.prodotto.id}"><b>${elementoCarrello.prodotto.nome}</b></a></td>
 				<td align="center"><b>${elementoCarrello.prodotto.prezzoUnitario}</b></td>
-				<td align="center"><input id="quantita${elementoCarrello.id}" type="number" style="width: 30px" value="${elementoCarrello.quantita}"/>
+				<td align="center"><input id="quantita${elementoCarrello.id}" type="number" style="width: 30px" value="${elementoCarrello.quantita}"/></td>
 				<td align="center"><b>${elementoCarrello.prodotto.prezzoUnitario * elementoCarrello.quantita}</b></td>
 				<td>
 					<button onclick="aggiorna(${elementoCarrello.id})"><img src="resources/images/refresh.png" /></button>
