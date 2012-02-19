@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Azienda;
+import aeecommerce.pojo.Carrello;
 import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.User;
 import aeecommerce.service.UserService;
@@ -24,7 +25,7 @@ import aeecommerce.validation.UserValidator;
 
 
 @Controller
-@SessionAttributes(value = {"user","registrationInfo"})
+@SessionAttributes(value = {"user","type","name","registrationInfo"})
 public class RegistrationController {
 
 	@Autowired
@@ -53,8 +54,8 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value={"/registration.htm"}, method = RequestMethod.POST)
-	public String registrateUser(
-			@ModelAttribute("registrationInfo") RegistrationInfo regInfo, BindingResult result, ModelMap model)
+	public String registrateUser(@ModelAttribute("registrationInfo") RegistrationInfo regInfo, 
+			BindingResult result, ModelMap model)
 	{
 		System.out.println("Registration controller post");
 
@@ -89,8 +90,11 @@ public class RegistrationController {
 				type = "azienda";
 			else
 				type = "admin";
+			
 			model.addAttribute("user", u.getUsername());
 			model.addAttribute("type", type);
+			model.addAttribute("name", regInfo.getNome());
+			model.addAttribute("carrello", new Carrello());
 			
 			return "redirect:aggiungiIndirizzo.htm";
 		}

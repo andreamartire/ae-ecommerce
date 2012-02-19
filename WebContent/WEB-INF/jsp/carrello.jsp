@@ -134,7 +134,7 @@
 	<tbody>
 	<c:set var="totaleCarrello" value="0" />
 	<c:set var="pesoTotale" value="0" />
-	<c:forEach var="elementoCarrello" items="${carrello}">
+	<c:forEach var="elementoCarrello" items="${carrelloList}">
 		<tr>
 			<td><a href="prodotti?id=${elementoCarrello.prodotto.id}"><b>${elementoCarrello.prodotto.nome}</b></a></td>
 			<td align="center"><b>${elementoCarrello.prodotto.prezzoUnitario}</b></td>

@@ -33,7 +33,7 @@
 		var user = session.getAttribute("data-user");
 		var name = session.getAttribute("data-name");
 		var type = session.getAttribute("data-type");
-		if (user != null && user != "") {
+		if (user != "null" && user != "") {
 			$('#loginDiv').hide();
 			$('#logoutButton').show();
 			$('#message').html("Bentornato " + name);

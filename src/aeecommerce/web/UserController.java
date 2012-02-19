@@ -23,7 +23,7 @@ import aeecommerce.service.CarrelloService;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","type","name"})
+@SessionAttributes(value = {"user","type","name","carrello"})
 public class UserController {
 
 	@Autowired
@@ -33,7 +33,7 @@ public class UserController {
 	private CarrelloService carrelloService;
 	
 	@RequestMapping(value = "/ajaxLogin.htm", method = RequestMethod.POST)
-	public @ResponseBody String ajaxLogin(@RequestParam String username, @RequestParam String password, ModelMap model, HttpSession session) {
+	public @ResponseBody String ajaxLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
 		
 		User userDB = userService.findByUsername(username);
 		
@@ -56,9 +56,9 @@ public class UserController {
 			name = username;
 		}
 		
+		Carrello c = null;
 		if (!type.equals("admin")) {
 			List<Carrello> carrelliCliente = ((Cliente) userDB).getCarrelli();
-			Carrello c = null;
 			if(carrelliCliente.size() > 0)
 				c = carrelliCliente.get(carrelliCliente.size()-1);
 			
@@ -77,18 +77,12 @@ public class UserController {
 			}
 			
 			System.out.println(c);
-			session.setAttribute("carrello", c);
-		} else {
-			session.setAttribute("carrello", new Carrello());
 		}
-		
-		session.setAttribute("user", username);
-		session.setAttribute("name", name);
-		session.setAttribute("type", type);
 		
 		model.put("user", username);
 		model.put("name", name);
 		model.put("type", type);
+		model.put("carrello", c);
 		
 		System.out.println("login: " + username + " effettuato");
 		
@@ -99,14 +93,11 @@ public class UserController {
 	public @ResponseBody String logout(ModelMap model, HttpSession session) {
 		String user = (String) session.getAttribute("user");
 		System.out.println("logout " + user);
-		session.setAttribute("user", "");
-		session.setAttribute("name", "");
-		session.setAttribute("type", "");
-		session.setAttribute("carrello", "");
 		
 		model.put("user", "");
 		model.put("name", "");
 		model.put("type", "");
+		model.put("carrello", "");
 		
 		return user;
 	}
