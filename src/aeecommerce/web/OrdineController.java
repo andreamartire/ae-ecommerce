@@ -1,0 +1,60 @@
+package aeecommerce.web;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import aeecommerce.pojo.Carrello;
+import aeecommerce.pojo.Ordine;
+import aeecommerce.service.CarrelloService;
+import aeecommerce.service.ModalitaPagamentoService;
+import aeecommerce.service.OrdineService;
+import aeecommerce.service.TipoSpedizioneService;
+import aeecommerce.service.UserService;
+
+@Controller
+@SessionAttributes(value = {"user","type","name","carrello"})
+public class OrdineController {
+	
+	@Autowired
+	CarrelloService carrelloService;
+	
+	@Autowired
+	UserService userService;
+	
+	@Autowired
+	TipoSpedizioneService spedizioneService;
+	
+	@Autowired
+	ModalitaPagamentoService pagamentoService;
+	
+	@Autowired
+	OrdineService ordineService;
+
+	@RequestMapping(value = "/ordine.htm", method = RequestMethod.POST)
+	public String ordine(@ModelAttribute("carrello") Object carrello, ModelMap model, 
+			@RequestParam int idSpedizione, @RequestParam int idPagamento, 
+			@RequestParam int pesoTotale, @RequestParam double totaleDaPagare) {
+		
+		if (carrello instanceof Carrello) {
+			Ordine ordine = new Ordine();
+			ordine.setCarrello((Carrello) carrello);
+			ordine.setData(new Date());
+			ordine.setModalitaPagamento(pagamentoService.findById(idPagamento));
+			ordine.setTipoSpedizione(spedizioneService.findById(idSpedizione));
+			ordine.setPesoTotaleApprossimato(pesoTotale);
+			ordine.setTotaleDaPagare(totaleDaPagare);
+//			ordineService.insert(ordine);
+			model.put("ordine", ordine);
+		}
+		
+		return "ordine";
+	}
+}

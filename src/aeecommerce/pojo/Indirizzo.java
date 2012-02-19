@@ -11,6 +11,9 @@ public class Indirizzo {
 	@GeneratedValue
 	int id;
 	
+	/** nome e cognome di chi potra' accettare il pacco */
+	String destinatario;
+	
 	String via;
 	
 	String numero;
@@ -29,6 +32,14 @@ public class Indirizzo {
 		this.citta = citta;
 		this.provincia = provincia;
 		this.cap = cap;
+	}
+
+	public String getDestinatario() {
+		return destinatario;
+	}
+
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
 	}
 
 	public int getId() {
