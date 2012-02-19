@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Carrello;
+import aeecommerce.pojo.Indirizzo;
 import aeecommerce.pojo.Ordine;
 import aeecommerce.service.CarrelloService;
 import aeecommerce.service.ModalitaPagamentoService;
@@ -20,7 +21,7 @@ import aeecommerce.service.TipoSpedizioneService;
 import aeecommerce.service.UserService;
 
 @Controller
-@SessionAttributes(value = {"user","type","name","carrello"})
+@SessionAttributes(value = {"user","type","name","carrello","ordine"})
 public class OrdineController {
 	
 	@Autowired
@@ -51,10 +52,41 @@ public class OrdineController {
 			ordine.setTipoSpedizione(spedizioneService.findById(idSpedizione));
 			ordine.setPesoTotaleApprossimato(pesoTotale);
 			ordine.setTotaleDaPagare(totaleDaPagare);
-//			ordineService.insert(ordine);
 			model.put("ordine", ordine);
 		}
 		
 		return "ordine";
+	}
+	
+	@RequestMapping(value = "/proseguiOrdine.htm", method = RequestMethod.POST)
+	public String proseguiOrdine(@ModelAttribute("carrello") Object carrello, @ModelAttribute("ordine") Ordine ordine, ModelMap model, 
+			@RequestParam String dest, @RequestParam String via, @RequestParam String num,
+			@RequestParam String citta, @RequestParam String prov, @RequestParam String cap) {
+				
+		Indirizzo indirizzo = new Indirizzo();
+		indirizzo.setDestinatario(dest);
+		indirizzo.setVia(via);
+		indirizzo.setCap(cap);
+		indirizzo.setCitta(citta);
+		indirizzo.setProvincia(prov);
+		indirizzo.setNumero(num);
+		
+		ordine.setDestinazione(indirizzo);
+		
+		model.put("carrelloList", carrelloService.list((Carrello) carrello));
+		
+		return "riepilogoOrdine";
+	}
+	
+	@RequestMapping(value = "/concludiOrdine.htm", method = RequestMethod.GET)
+	public String concludiOrdine(@ModelAttribute("ordine") Ordine ordine, @ModelAttribute("carrello") Carrello carrello, ModelMap model) {
+				
+		System.out.println("Ordine confermato: " + ordine);
+		ordineService.insert(ordine);
+		
+		carrello.setOrdine(ordine);
+		carrelloService.save(carrello);
+		
+		return "ordineConfermato";
 	}
 }

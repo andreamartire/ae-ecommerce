@@ -25,7 +25,7 @@ public class Ordine {
 	
 	/** dove spedire il pacco
 	 */
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	Indirizzo destinazione;
 	
 	/**

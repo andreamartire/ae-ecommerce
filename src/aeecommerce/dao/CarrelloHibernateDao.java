@@ -19,7 +19,7 @@ public class CarrelloHibernateDao extends MasterDao implements CarrelloDao {
 	@Transactional
 	@Override
 	public void update(Carrello entity) {
-		getHibernateTemplate().save(entity);
+		getHibernateTemplate().saveOrUpdate(entity);
 	}
 
 	@Transactional
