@@ -26,7 +26,7 @@
 
 <h2 style="margin-left: 15px" id="nomeProdotto">${prodotto.nome}</h2>
 
-<table style="width: 600px; padding: 5px">
+<table style="width: 615px; padding: 5px">
 	<tr>
 		<td colspan="2" align="right"><font size="5"><b>${prodotto.prezzoUnitario}</b> Euro</font></td>
 	</tr>
@@ -43,7 +43,9 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<div>${prodotto.descrizione}</div>
+			<div style="border: 1px solid black; padding: 5px">
+				${prodotto.descrizione}
+			</div>
 		</td>
 	</tr>
 </table>

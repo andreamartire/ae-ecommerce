@@ -64,8 +64,19 @@
 	</tbody>
 </table>
 
-<div style="text-align: center;">
+<div style="text-align: right; float: right">
 	<a href="concludiOrdine.htm">
-		<button style="font-size: 14pt; font-weight: bold;">Conferma Ordine</button>
+		<button style="font-size: 12pt; font-weight: bold;">Conferma</button>
 	</a>
 </div>
+
+<div style="text-align: right; float: right">
+	<form action="ordine.htm" method="post">
+		<input type="hidden" value="${ordine.tipoSpedizione.id}" name="idSpedizione"/>
+		<input type="hidden" value="${ordine.modalitaPagamento.id}" name="idPagamento"/>
+		<input type="hidden" value="${ordine.totaleDaPagare}" name="totaleDaPagare"/>
+		<input type="hidden" value="${ordine.pesoTotaleApprossimato}" name="pesoTotale"/>
+		<button type="submit" style="font-size: 12pt; font-weight: bold;">Indietro</button>
+	</form>
+</div>
+

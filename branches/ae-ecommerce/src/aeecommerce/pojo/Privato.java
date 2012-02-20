@@ -77,7 +77,7 @@ public class Privato extends Cliente {
 	
 	@Override
 	public String toString() {
-		return super.toString() + "\n" + nome + " " + cognome + " " + codiceFiscale + " " + dataNascita + " " + luogoNascita;
+		return nome + " " + cognome;
 	}
 	
 	public RegistrationInfo toRegInfo(){

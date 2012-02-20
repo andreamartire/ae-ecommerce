@@ -33,9 +33,9 @@
 	function aggiornaTotale() {
 		var totaleCarrello = parseFloat($('#totaleCarrello').text());
 		var spedID = $("input[name='spedizione']:checked").val();
-		var costoSpedizione = parseFloat($("#"+spedID).text());
+		var costoSpedizione = parseFloat($("#spedizione"+spedID).text());
 		var pagID = $("input[name='pagamento']:checked").val();
-		var costoPagamento = parseFloat($("#"+pagID).text());
+		var costoPagamento = parseFloat($("#pagamento"+pagID).text());
 		var totale = totaleCarrello + costoPagamento + costoSpedizione;
 		$('#totale').text(totale.toFixed(2));
 	}
@@ -64,9 +64,9 @@
 
 </script>
 
-<h3>Carrello della spesa</h3>
+<h3>Carrello - ${carrello.cliente}</h3>
 
-<div id="emptyCart" style="display: none; text-align: center; font-size: 14pt; font-weight: bold; width: 580px; background-color: orange; color: blue; padding: 10px">
+<div id="emptyCart" style="display: none; text-align: center; font-size: 14pt; font-weight: bold; width: 595px; background-color: orange; color: blue; padding: 10px">
 Carrello vuoto
 </div>
 
@@ -74,7 +74,7 @@ Carrello vuoto
 	<table id='carrelloTable'>
 		<thead>
 			<tr>
-				<td width="250">Prodotto</td>
+				<td width="240">Prodotto</td>
 				<td>Prezzo</td>
 				<td>Quantita'</td>
 				<td>Totale</td>
@@ -121,7 +121,7 @@ Carrello vuoto
 					<input type="radio" checked="checked" name="spedizione" value="${spedizione.id}"/>
 				</td>
 				<td><b>${spedizione.nome}</b></td>
-				<td id="${spedizione.id}">${spedizione.prezzoBase}</td>
+				<td id="spedizione${spedizione.id}">${spedizione.prezzoBase}</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -141,7 +141,7 @@ Carrello vuoto
 					<input type="radio" checked="checked" name="pagamento" value="${pagamento.id}"/>
 				</td>
 				<td><b>${pagamento.nome}</b></td>
-				<td id="${pagamento.id}">${pagamento.commissioni}</td>
+				<td id="pagamento${pagamento.id}">${pagamento.commissioni}</td>
 			</tr>
 		</c:forEach>
 	</table>
