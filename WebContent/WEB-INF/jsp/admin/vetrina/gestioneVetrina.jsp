@@ -216,7 +216,7 @@ Prodotti in Vetrina
 	<div class="prodotto${prodotto.id}">
 		<table style="width: 600px; padding: 5px">
 			<tr>
-				<td><b>Nome</b></td><td>${prodotto.nome}</td>
+				<td style="width: 50%;"><b>Nome</b></td><td>${prodotto.nome}</td>
 			</tr>
 			<tr>
 				<td><b>Prezzo</b></td><td>${prodotto.prezzoUnitario} euro</td>
