@@ -1,5 +1,6 @@
 package aeecommerce.pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Carrello {
+public class Carrello implements Serializable{
 
 	@Id
 	@GeneratedValue

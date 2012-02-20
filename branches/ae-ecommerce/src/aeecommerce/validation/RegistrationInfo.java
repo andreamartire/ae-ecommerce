@@ -127,6 +127,7 @@ public class RegistrationInfo {
 	public Privato toPrivato() {
 		Privato pvt = new Privato(username,password,cognome,nome,codiceFiscale,luogoNascita,dataNascita);
 		pvt.setId(id);
+		pvt.setDataRegistrazione(new Date());
 		pvt.getRecapiti().add(new Recapito(getEmail(), Recapito.EMAIL));
 		return pvt;
 	}
@@ -134,6 +135,7 @@ public class RegistrationInfo {
 	public Azienda toAzienda() {
 		Azienda az = new Azienda(username,password,piva,ragioneSociale);
 		az.setId(id);
+		az.setDataRegistrazione(new Date());
 		az.getRecapiti().add(new Recapito(getEmail(), Recapito.EMAIL));
 		return az;
 	}
