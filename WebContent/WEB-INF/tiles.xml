@@ -280,4 +280,8 @@
 	  	<put-attribute name="body" value="/WEB-INF/jsp/admin/prodotti/modificaProdotto.jsp" />
 	</definition>
 	
+	<definition name="storicoOrdini" extends="baseLayout">
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/storicoOrdini.jsp" />
+	</definition>
+	
 </tiles-definitions>

@@ -1,6 +1,8 @@
 package aeecommerce.web;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Carrello;
+import aeecommerce.pojo.Cliente;
 import aeecommerce.pojo.Indirizzo;
 import aeecommerce.pojo.Ordine;
+import aeecommerce.pojo.User;
 import aeecommerce.service.CarrelloService;
 import aeecommerce.service.ModalitaPagamentoService;
 import aeecommerce.service.OrdineService;
@@ -39,6 +43,22 @@ public class OrdineController {
 	@Autowired
 	OrdineService ordineService;
 
+	@RequestMapping(value = "/storicoOrdini.htm", method = RequestMethod.GET)
+	public String storicoOrdini(@ModelAttribute("user") String user, ModelMap model) {
+		
+		List<Ordine> list = new LinkedList<Ordine>();
+		Cliente cliente = (Cliente) userService.findByUsername(user);
+		
+		for (Carrello c : cliente.getCarrelli()) {
+			if (c.getOrdine() != null)
+				list.add(c.getOrdine());
+		}
+		
+		model.put("listOrdini", list);
+		
+		return "storicoOrdini";
+	}
+	
 	@RequestMapping(value = "/ordine.htm", method = RequestMethod.POST)
 	public String ordine(@ModelAttribute("carrello") Object carrello, ModelMap model, 
 			@RequestParam int idSpedizione, @RequestParam int idPagamento, 

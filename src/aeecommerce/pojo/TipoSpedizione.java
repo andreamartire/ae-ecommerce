@@ -85,6 +85,6 @@ public class TipoSpedizione {
 
 	@Override
 	public String toString() {
-		return nome + "\n" + descrizione + "\n" + prezzoBase + "\n";
+		return nome;
 	}
 }
