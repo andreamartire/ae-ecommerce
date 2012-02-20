@@ -58,8 +58,10 @@ public class MenuStandardController {
 		if( documentService.load() == null )
 			documentService.save(new Document());
 		model.put("data", documentService.load().getHome());
-		model.put("prodottiVetrina", vetrinaService.load().getProdotti());
-		
+		if (vetrinaService.load() != null)
+			model.put("prodottiVetrina", vetrinaService.load().getProdotti());
+		else 
+			model.put("prodottiVetrina", "");
 		return "home";
 	}
 	

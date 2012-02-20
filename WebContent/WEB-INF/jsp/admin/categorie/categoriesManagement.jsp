@@ -109,14 +109,16 @@
 	}
 	
 	function creaListaCategorie(data) {
-		$.each(data.categorie, function(key, categoria) {
-				// categoria
-			var html = 
+		var html = 
 				"<li>" +
 					"Aggiungi Categoria: " +
 					"<input type='text' style='width: 150px' id='-1' /> " +
 					"<a  onclick='aggiungi(-1)'><img src='resources/images/add.png' /></a>" +
-				"</li>" +
+				"</li>";
+			
+		$.each(data.categorie, function(key, categoria) {
+				// categoria
+			html +=
 				"<li id='li"+categoria.id+"'" +
 					"onmouseover='$(\"#span"+categoria.id+"\").show()'" +
 					"onmouseout='$(\"#span"+categoria.id+"\").hide()'>" +
@@ -191,9 +193,9 @@
 			html += "</ul>" +
 				"</li>";
 				// fine categoria
-			
-			$("#listaCategorie").append(html);
 		});
+		
+		$("#listaCategorie").append(html);
 	}
 	
 	$(document).ready(function(){
