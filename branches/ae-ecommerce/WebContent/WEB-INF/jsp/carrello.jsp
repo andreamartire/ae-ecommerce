@@ -37,7 +37,7 @@
 		var pagID = $("input[name='pagamento']:checked").val();
 		var costoPagamento = parseFloat($("#"+pagID).text());
 		var totale = totaleCarrello + costoPagamento + costoSpedizione;
-		$('#totale').text(totale);
+		$('#totale').text(totale.toFixed(2));
 	}
 	
 	function ordina() {
@@ -66,7 +66,7 @@
 
 <h3>Carrello della spesa</h3>
 
-<div id="emptyCart" style="display: none; text-align: center; font-size: 14pt; font-weight: bold; width: 600px; background-color: orange; color: blue; padding: 10px">
+<div id="emptyCart" style="display: none; text-align: center; font-size: 14pt; font-weight: bold; width: 580px; background-color: orange; color: blue; padding: 10px">
 Carrello vuoto
 </div>
 
@@ -146,12 +146,12 @@ Carrello vuoto
 		</c:forEach>
 	</table>
 	
-	<div id='totaleDiv'>
+	<div id='totaleDiv' style="margin-bottom: 20px">
 		Totale: <b><span id='totale'></span> &euro;</b>
 	</div>
 	
-	<div style="text-align: center; margin: 30px; width: 540px">
-		<button onclick='ordina()'>Ordina</button>
+	<div style="text-align: center; margin: auto">
+		<a><img src="resources/images/ordina.jpg" /></a>
 	</div>
 </div>
 
