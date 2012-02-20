@@ -46,12 +46,12 @@ public class OrdineController {
 	@RequestMapping(value = "/storicoOrdini.htm", method = RequestMethod.GET)
 	public String storicoOrdini(@ModelAttribute("user") String user, ModelMap model) {
 		
-		List<Ordine> list = new LinkedList<Ordine>();
+		LinkedList<Ordine> list = new LinkedList<Ordine>();
 		Cliente cliente = (Cliente) userService.findByUsername(user);
 		
 		for (Carrello c : cliente.getCarrelli()) {
 			if (c.getOrdine() != null)
-				list.add(c.getOrdine());
+				list.push(c.getOrdine());
 		}
 		
 		model.put("listOrdini", list);

@@ -99,7 +99,7 @@
 		}
 	}
 </script>
-<a href="home.htm">Home</a> &gt; Gestione Utenti & Ordini
+<a href="home.htm">Home</a> &gt; Gestione Utenti &amp; Ordini
 <hr></hr>
 <table id="ordiniTable">
 	<tr>
