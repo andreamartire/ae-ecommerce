@@ -29,9 +29,9 @@ public class Carrello {
 	
 	/**
 	 * Non e' necessario che ad ogni carrello sia associato un ordine, mentre
-	 * lo e' il viceversa (ad un ordine deve essere associato un carrello..)
+	 * lo e' il viceversa (ad un ordine deve essere associato un carrello)
 	 */
-	@OneToOne(mappedBy="carrello", optional=true)
+	@OneToOne(mappedBy="carrello", optional=true, cascade = CascadeType.ALL)
 	Ordine ordine;
 	
 	@ManyToOne

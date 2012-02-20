@@ -2,6 +2,7 @@ package aeecommerce.pojo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,10 +28,21 @@ public class Prodotto {
 
 	double prezzoUnitario;
 	
-	String immagine; //TODO string o Image? una o tante?
+	String immagine; //non usato attualmente
 	
-	@OneToMany(mappedBy="prodotto")
+	/** 
+	 * Se un certo prodotto viene cancellato, vengono cancellate 
+	 * tutte le offerte che lo riguardano
+	 */
+	@OneToMany(mappedBy="prodotto", cascade = CascadeType.ALL)
 	List<Offerta> offerte;
+	
+	/** 
+	 * Se un certo prodotto viene cancellato, vengono cancellati 
+	 * tutti gli elementi di carrello che lo contenevano
+	 */
+	@OneToMany(mappedBy="prodotto", cascade = CascadeType.ALL)
+	List<ElementoCarrello> elementiCarrello;
 	
 	@ManyToOne
 	Categoria categoria;

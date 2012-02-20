@@ -64,7 +64,7 @@
 
 </script>
 
-<h3>Carrello - ${carrello.cliente}</h3>
+<h3>Carrello</h3>
 
 <div id="emptyCart" style="display: none; text-align: center; font-size: 14pt; font-weight: bold; width: 595px; background-color: orange; color: blue; padding: 10px">
 Carrello vuoto
