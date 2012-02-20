@@ -10,20 +10,30 @@ import aeecommerce.pojo.Vetrina;
 public class VetrinaServiceImpl implements VetrinaService {
 	
 	@Autowired
-	private VetrinaDao VetrinasDao;
+	private VetrinaDao vetrinaDao;
 
 	@Override
 	public void update(Vetrina d) {
-		VetrinasDao.update(d);
+		vetrinaDao.update(d);
 	}
 
 	@Override
 	public Vetrina load() {
-		return VetrinasDao.load();
+		return vetrinaDao.load();
 	}
 
 	@Override
 	public void save(Vetrina Vetrina) {
-		VetrinasDao.insert(Vetrina);
+		vetrinaDao.insert(Vetrina);
+	}
+
+	@Override
+	public void delete(Vetrina vetrina) {
+		vetrinaDao.delete(vetrina);
+	}
+
+	@Override
+	public void deleteProdotto(int idProdotto) {
+		vetrinaDao.deleteProdotto(idProdotto);
 	}
 }

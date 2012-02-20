@@ -17,6 +17,7 @@ import aeecommerce.service.DocumentService;
 import aeecommerce.service.ModalitaPagamentoService;
 import aeecommerce.service.SpedizioniService;
 import aeecommerce.service.UserService;
+import aeecommerce.service.VetrinaService;
 
 
 @Controller
@@ -35,6 +36,9 @@ public class MenuStandardController {
 	@Autowired
 	ModalitaPagamentoService modalitaPagamentoService;
 	
+	@Autowired
+	VetrinaService vetrinaService;
+	
 	@RequestMapping(value={"/home.htm"}, method = RequestMethod.GET)
 	public String getHome(ModelMap model)
 	{
@@ -51,10 +55,10 @@ public class MenuStandardController {
 			model.put("type", "");
 			model.put("carrello", "");
 		}
-		
 		if( documentService.load() == null )
 			documentService.save(new Document());
 		model.put("data", documentService.load().getHome());
+		model.put("prodottiVetrina", vetrinaService.load().getProdotti());
 		
 		return "home";
 	}

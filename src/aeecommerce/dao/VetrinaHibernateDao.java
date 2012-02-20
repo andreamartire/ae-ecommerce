@@ -1,5 +1,7 @@
 package aeecommerce.dao;
 
+import org.hibernate.SQLQuery;
+import org.hibernate.classic.Session;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,5 +31,18 @@ public class VetrinaHibernateDao extends MasterDao implements VetrinaDao {
 	@Override
 	public void insert(Vetrina Vetrina) {
 		getHibernateTemplate().save(Vetrina);
+	}
+
+	@Override
+	public void delete(Vetrina vetrina) {
+		getHibernateTemplate().delete(vetrina);
+	}
+
+	@Override
+	public void deleteProdotto(int idProdotto) {
+		Session session = getHibernateTemplate().getSessionFactory().openSession();
+		SQLQuery q = session.createSQLQuery("delete from Vetrina_Prodotto where prodotti_id=" + idProdotto);
+		q.executeUpdate();
+		session.close();
 	}
 }

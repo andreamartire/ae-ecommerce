@@ -4,25 +4,25 @@
 function checkPassword() {
 	$(".error").html('');
 	if( $('#confirmPassword').val().length < 8){
-		$('#passwordError').html("<h5 style=\"color: red;\">Debole</h5>");
+		$('#passwordError').html("<font style=\"color: red;\">Debole</font>");
 		return;
 	}
 	if( $('#confirmPassword').val().length < 13){
-		$('#passwordError').html("<h5 style=\"color: yellow;\">Media</h5>");
+		$('#passwordError').html("<font style=\"color: yellow;\">Media</font>");
 		return;
 	}
 	if( $('#confirmPassword').val().length < 20){
-		$('#passwordError').html("<h5 style=\"color: green;\">Forte</h5>");
+		$('#passwordError').html("<font style=\"color: green;\">Forte</font>");
 		return;
 	}
 }
 function checkConfirmPassword() {
 	$(".error").html('');
 	if( $('#confirmPassword2').val() != $('#confirmPassword').val()){
-		$('#confirmPasswordError').html("<h5 style=\"color: red;\">Non coincide</h5>");
+		$('#confirmPasswordError').html("<font style=\"color: red;\">Non coincide</font>");
 		return;
 	}
-	$('#confirmPasswordError').html("<h5 style=\"color: green;\">Coincide</h5>");
+	$('#confirmPasswordError').html("<font style=\"color: green;\">Coincide</font>");
 	return;
 }
 </script>

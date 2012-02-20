@@ -9,4 +9,8 @@ public interface VetrinaDao {
 	public Vetrina load();
 
 	public void insert(Vetrina Vetrina);
+
+	public void delete(Vetrina vetrina);
+
+	public void deleteProdotto(int idProdotto);
 }
