@@ -122,7 +122,7 @@ TABLE#carrello TD{font-family: times; font-size: 10pt;}
 		<a href="gestioneTipoSpedizione.htm">Tipi di Spedizione</a> <br/>
 		<a href="gestioneModalitaPagamento.htm">Modalita' di Pagamento</a> <br/>
 		<a href="gestioneVetrina.htm">Modifica Vetrina</a> <br/>
-		<a href="gestioneOfferte.htm">Modifica Offerte</a> <br/>
+<!-- 		<a href="gestioneOfferte.htm">Modifica Offerte</a> <br/> -->
 		<a href="gestioneFAQ.htm">Modifica F.A.Q.</a> <br/>
 		<a href="gestioneCondizioni.htm">Modifica Condizioni</a> <br/>
 		<a href="gestioneDoveSiamo.htm">Modifica DoveSiamo</a> <br/>
