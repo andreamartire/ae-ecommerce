@@ -60,123 +60,90 @@
 		});
 	}
 	
-	function load(jsonProdotti, idCategoria) {
-		$.ajax({
-			url: 'listCategorie.htm',
-			dataType: 'json',
-			success: function(categorie) {
-				Object.size = function(obj) {
-				    var size = 0, key;
-				    for (key in obj) {
-				        if (obj.hasOwnProperty(key)) size++;
-				    }
-				    return size;
-				};
-
-				// Get the size of an object
-				var size = Object.size(jsonProdotti.prodotti);
-				if(size > 0){
-					html = "<span id='spanProdotti" + idCategoria + "'>" +
-								"Prodotti" + 
-							"</span>" +
-							"<ul id='ulProdotti" + idCategoria + "'>";
-					$.each(jsonProdotti.prodotti, function(key, prod) {
-						html += "<li><span>"+prod.nome+"</span>" +
-									"<button onclick='aggiungiProdotto(" + prod.id + ")'>" +
-										"<img src=\"resources/images/add.png\"/>" +
-									"</button>" +
-								"</li>";
-					});
-					html += "</ul>";
-					$('#prodotti'+idCategoria).html(html);
-	
-					refreshTree();
-				}
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
-			}
-		});
-	}
-	
-	function listProdotti(idCategoria) {
-		$.ajax({
-			url : 'listProdotti.htm',
-			type: "GET",
-			data : ({
-				idCategoria : idCategoria
-			}),
-			dataType: 'json',
-			success: function (jsonProdotti) {
-				load(jsonProdotti, idCategoria);
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
-			}
-		});
-	}
-	
-	function creaListaCategorie(data) {
-		$.each(data.categorie, function(key, categoria) {
-				// categoria
+	function creaListaCategorie(list) {
+		$.each(list.categorie, function(key, categoria) {
 			var html = 
-				"<li id='li"+categoria.id+"'>" +
+				"<li>" +
 					"<span>" +
-						"<b id='nome"+categoria.id+"'>" + categoria.nome + "</b>" +
+						"<b>" + categoria.nome + "</b>" +
 					"</span>";
-			html += "<ul>" + 
-						"<li id='prodotti"+categoria.id+"'></li>";
-			if (categoria.children != "") {
+			if (categoria.children == "") {
+				html += "<ul class='prodotti' id='"+categoria.id+"'></ul>";
+			} else {
+				html += 
+					"<ul>";
 				$.each(categoria.children, function(key, subcat) {
-					// sotto categoria
 					html +=
-						"<li id='li"+subcat.id+"'>" +
+						"<li>" +
 							"<span>" +
-								"<b id='nome"+subcat.id+"'>" + subcat.nome + "</b>" +
-							"</span>" +
-							"<ul>" +
-								"<li id='prodotti"+subcat.id+"'></li>";
-					if (subcat.children != "") {
+								"<b>" + subcat.nome + "</b>" +
+							"</span>";
+					if (subcat.children == "") {
+						html += "<ul class='prodotti' id='"+subcat.id+"'></ul>";
+					} else {
+						html += 
+							"<ul>";
 						$.each(subcat.children, function(key, subsubcat) {
-							// sotto sotto categoria
 							html += 
-								"<li id='li"+subsubcat.id+"'>" +
+								"<li>" +
 									"<span>" +
-										"<b id='nome"+subsubcat.id+"'>" + subsubcat.nome + "</b>" +
+										"<b>" + subsubcat.nome + "</b>" +
 									"</span>" +
-									"<ul>" +
-										"<li id='prodotti"+subsubcat.id+"'></li>" +
-									"</ul>" +
+									"<ul class='prodotti' id='"+subsubcat.id+"'></ul>" +
 								"</li>";
 						});
+						html += 
+							"</ul>";
 					}
-					html += "</ul>";
-							// fine sotto sotto categoria
 					html += 
 						"</li>";
-						// fine sotto categoria
 				});
+				html += 
+					"</ul>";
 			} 
-			html += "</ul>" +
+			html += 
 				"</li>";
-				// fine categoria
 			
 			$("#listaCategorie").append(html);
 		});
-	}
-	function creaListaProdotti(data) {
-		$.each(data.categorie, function(key, categoria) {
-			listProdotti(categoria.id);
-			if (categoria.children != "") {
-				$.each(categoria.children, function(key, subcat) {
-					listProdotti(subcat.id);
-					if (subcat.children != "") {
-						$.each(subcat.children, function(key, subsubcat) {
-							listProdotti(subsubcat.id);
+		
+		var count = 0;
+		var size = $('.prodotti').size();
+		if (size == 0)
+			refreshTree();
+		
+		$('.prodotti').each(function(index) {
+			var id = $(this).attr("id");
+			$.ajax({
+				url : 'listProdotti.htm',
+				type: "GET",
+				data : ({
+					idCategoria : id
+				}),
+				dataType: 'json',
+				success: function (jsonProdotti) {
+					if (jsonProdotti.prodotti != "") {
+						var html = "";
+						$.each(jsonProdotti.prodotti, function(key, prod) {
+							html += "<li>" +
+										"<span>"+prod.nome+"</span>" +
+										"<button onclick='aggiungiProdotto(" + prod.id + ")'>" +
+											"<img src='resources/images/add.png'/>" +
+										"</button>" +
+									"</li>";
 						});
+						$('#'+id).append(html);
+					} else {
+						$('#'+id).remove();
 					}
-				});
-			} 
+					count = count +1;
+					if (count == size)
+						refreshTree();
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
+				}
+			});
 		});
 	}
 	
@@ -186,8 +153,6 @@
 			dataType: 'json',
 			success: function(data) {
 				creaListaCategorie(data);
-				creaListaProdotti(data);
-				refreshTree();
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
