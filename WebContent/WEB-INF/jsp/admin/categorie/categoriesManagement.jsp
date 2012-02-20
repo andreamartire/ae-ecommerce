@@ -18,7 +18,7 @@
 						"<a href='gestioneProdotti.htm?idCategoria="+idCategoria+"'><b>Gestione prodotti</b></a>" +
 					"</span></li>";
 				$.each(jsonProdotti.prodotti, function(key, prod) {
-					html += "<li><span>"+prod.nome+"</span></li>";
+					html += "<li><a href='editorProdotto.htm?id="+prod.id+"'>"+prod.nome+"</a></li>";
 				});
 				$('#prodotti'+idCategoria).append(html);
 				
@@ -112,6 +112,11 @@
 		$.each(data.categorie, function(key, categoria) {
 				// categoria
 			var html = 
+				"<li>" +
+					"Aggiungi Categoria: " +
+					"<input type='text' style='width: 150px' id='-1' /> " +
+					"<a  onclick='aggiungi(-1)'><img src='resources/images/add.png' /></a>" +
+				"</li>" +
 				"<li id='li"+categoria.id+"'" +
 					"onmouseover='$(\"#span"+categoria.id+"\").show()'" +
 					"onmouseout='$(\"#span"+categoria.id+"\").hide()'>" +
@@ -210,10 +215,5 @@
 <hr></hr>
 
 <ul id="listaCategorie" class="treeview-gray">
-	<li>
-		Aggiungi Categoria: 
-		<input type="text" style="width: 150px" id="-1" /> 
-		<a  onclick='aggiungi(-1)'><img src="resources/images/add.png" /></a>
-	</li>
 	<!-- contenuto dinamico -->
 </ul>

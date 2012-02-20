@@ -10,7 +10,7 @@
 				idProdotto : idProdotto,
 				nome : $('#nomeProdotto'+idProdotto).val(),
 				prezzo : $('#prezzoProdotto'+idProdotto).val(),
-				descrizione : CKEDITOR.instances['editor'+idProdotto].getData(),
+				descrizione : $('#descrizione'+idProdotto).val(),
 				iva : $('#ivaProdotto'+idProdotto).val(),
 				peso : $('#pesoProdotto'+idProdotto).val()
 			}),
@@ -59,7 +59,7 @@
 				idCategoria :$('#idCategoria').html(),
 				nome : $('#nomeProdotto').val(),
 				prezzo : $('#prezzoProdotto').val(),
-				descrizione : CKEDITOR.instances['editor'].getData(),
+				descrizione : "",
 				iva : $('#ivaProdotto').val(),
 				peso : $('#pesoProdotto').val()
 			}),
@@ -72,35 +72,8 @@
 		});
 		$('#nomeProdotto').val('');
 		$('#prezzoProdotto').val('');
-		$('#editor').val('');
 		$('#ivaProdotto').val('');
 		$('#pesoProdotto').val('');
-	}
-	
-	var editor;
-
-	function replace( id )
-	{
-		if ( editor )
-			editor.destroy();
-
-		editor = CKEDITOR.replace( id,
-			{
-				toolbar :
-				[
-					{ name: 'document', items : [ 'Save','DocProps','Preview','-','Templates' ] },
-					{ name: 'clipboard', items : [ 'Cut','Copy','Paste','-','Undo','Redo' ] },
-					{ name: 'editing', items : [ 'Find','Replace','-','SelectAll'] },
-					{ name: 'forms', items : [ 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button'] },
-					{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-					'/',
-					{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
-					{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','SpecialChar'] },
-					'/',
-					{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Subscript','Superscript','-','RemoveFormat' ] },
-					{ name: 'styles', items : [ 'Format','Font','FontSize','TextColor','BGColor' ] }
-				]
-			});
 	}
 </script>
 
@@ -121,14 +94,6 @@
 		<tr>
 			<td><b>Peso: </b><input type="number" name="peso" id="pesoProdotto" style="width: 30px"> Kg</td>
 			<td><b>IVA: </b><input type="number" name="iva" id="ivaProdotto" style="width: 30px"/>%</td>
-		</tr>
-		<tr>
-			<td colspan="2"><b>Descrizione:</b></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<textarea id="editor" rows="4" cols="70" name="descrizione"></textarea>
-			</td>
 		</tr>
 		<tr>
 			<td> </td>
@@ -154,23 +119,16 @@
 				<td><b>IVA</b><input type="number" name="iva" id="ivaProdotto${prodotto.id}" style="width: 30px" value="${prodotto.percentualeIVA}" />%</td>
 			</tr>
 			<tr>
-				<td colspan="2"><b>Descrizione</b></td>
-			</tr>
-			<tr>
-				<td colspan="2" width="600">
-					<textarea rows="4" cols="70" name="descrizione" id="editor${prodotto.id}" onclick="replace('editor${prodotto.id}');">
-						${prodotto.descrizione}
-					</textarea>
+				<td>
+					<a href="editorProdotto.htm?id=${prodotto.id}"><button>Modifica Descrizione</button></a>
 				</td>
-			</tr>
-			<tr>
-				<td> </td>
 				<td align="right">
 					<button onclick="modifica(${prodotto.id})"><img src="resources/images/ok.png"/></button>
 					<button onclick="elimina(${prodotto.id})"><img src="resources/images/delete.png"/></button>
 				</td>
 			</tr>
 		</table>
+		<input type="hidden" id="descrizione${prodotto.id}" value="${prodotto.descrizione}"/>
 	</div>
 	<hr class="prodotto${prodotto.id}"/>
 </c:forEach>

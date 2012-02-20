@@ -102,23 +102,19 @@ public class RegistrationController {
 				type = "admin";
 				name = u.getUsername();
 			}
-			
-			System.out.println("creazione nuovo carrello");
+
+			// loggo l'utente e gli creo un carrello
+			model.addAttribute("user", u.getUsername());
+			model.addAttribute("type", type);
+			model.addAttribute("name", name);
+
 			Carrello c = new Carrello();
 			c.setDataCreazione(new Date());
-
 			c.setCliente((Cliente) u);
-			List<Carrello> carrelliCliente = ((Cliente) u).getCarrelli();
-			carrelliCliente.add(c);
-			
+			((Cliente) u).getCarrelli().add(c);
 			userService.update(u);
 			carrelloService.save(c);
-				
-			model.put("carrello", c);
-				
-			model.put("user", u.getUsername());
-			model.put("name", name);
-			model.put("type", type);
+			model.addAttribute("carrello", c);
 			
 			return "redirect:aggiungiIndirizzo.htm";
 		}

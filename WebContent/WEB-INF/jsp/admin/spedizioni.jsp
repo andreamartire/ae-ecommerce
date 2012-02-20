@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<a href="home.htm">Home</a> > Spedizioni Disponibili
+<a href="home.htm">Home</a> &gt; Spedizioni Disponibili
 <hr></hr> 
 
 <c:forEach var="TipoSpedizione" items="${spedizioni}">

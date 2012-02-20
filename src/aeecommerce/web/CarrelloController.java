@@ -45,7 +45,7 @@ public class CarrelloController {
 		if (c != null && c instanceof Carrello) {
 			carrelloService.aggiungi(idProdotto, qnt, (Carrello) c);
 		} else {
-			System.out.println("CARRELLO NULL");
+			System.out.println("CARRELLO = " + c);
 			return "nop";
 		}
 		
