@@ -115,17 +115,18 @@ TABLE#carrello TD{font-family: times; font-size: 10pt;}
 	</div>
 	
 	<div id="accountAdmin" style="display: none; padding: 5px">
-		<a href="gestioneUtenti.htm">Utenti</a> <br/>
+		<a href="gestioneHome.htm">Modifica Homepage</a> <br/>
 		<a href="gestioneCategorie.htm">Categorie e Prodotti</a> <br/>
-		<a href="gestioneTipoSpedizione.htm">Tipo Spedizione</a> <br/>
-		<a href="gestioneModalitaPagamento.htm">Modalita' Pagamento</a> <br/>
-		<a href="gestioneVetrina.htm">Vetrina</a> <br/>
-		<a href="gestioneOfferte.htm">Offerte</a> <br/>
-		<a href="gestioneFAQ.htm">F.A.Q.</a> <br/>
-		<a href="gestioneCondizioni.htm">Condizioni</a> <br/>
-		<a href="gestioneDoveSiamo.htm">DoveSiamo</a> <br/>
-		<a href="gestioneContattaci.htm">Contattaci</a> <br/>
-		<a href="gestioneInfo.htm">Banner</a> <br/>
+		<a href="gestioneUtenti.htm">Gestione utenti</a> <br/>
+		<a href="gestioneTipoSpedizione.htm">Tipi di Spedizione</a> <br/>
+		<a href="gestioneModalitaPagamento.htm">Modalita' di Pagamento</a> <br/>
+		<a href="gestioneVetrina.htm">Modifica Vetrina</a> <br/>
+		<a href="gestioneOfferte.htm">Modifica Offerte</a> <br/>
+		<a href="gestioneFAQ.htm">Modifica F.A.Q.</a> <br/>
+		<a href="gestioneCondizioni.htm">Modifica Condizioni</a> <br/>
+		<a href="gestioneDoveSiamo.htm">Modifica DoveSiamo</a> <br/>
+		<a href="gestioneContattaci.htm">Modifica Contattaci</a> <br/>
+		<a href="gestioneInfo.htm">Modifica Banner</a> <br/>
 		<a href="" id="logoutButton" onclick="logout()">Logout</a>
 	</div>
 	
