@@ -65,6 +65,31 @@ a:hover {
 }
 
 
+#ordiniTable {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	width: 615px;
+	border-spacing: 0px 5px;
+}
+
+#ordiniTable td {
+	text-align: center;
+	font-size: 12pt;
+	border-bottom: 1px solid green;
+	border-top: 1px solid green;
+	padding: 3px 7px 2px 7px;
+}
+
+#ordiniTable thead {
+	font-size: 12pt;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: orange;
+	color: black;
+}
+
+
 #spedTable {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	width: 615px;

@@ -30,7 +30,7 @@
 
 <c:forEach var="prodotto" items="${prodotti}">
 	<div class="prodotto${prodotto.id}">
-		<table style="width: 600px; border-spacing: 5px">
+		<table style="width: 615px; border-spacing: 5px">
 			<tr>
 				<td width="500">
 					<a href="prodotti?id=${prodotto.id}">

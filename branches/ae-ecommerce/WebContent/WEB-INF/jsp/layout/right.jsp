@@ -110,7 +110,7 @@ TABLE#carrello TD{font-family: times; font-size: 10pt;}
 
 <div style="width: 180px;">
 	<div id="accountCliente" style="display: none; padding: 5px">
-		<a href="#">I miei ordini</a> <br/>
+		<a href="storicoOrdini.htm">I miei ordini</a> <br/>
 		<a href="account.htm">Il mio account</a> <br/>
 		<a id="logoutButton" onclick="logout()">Logout</a>
 	</div>

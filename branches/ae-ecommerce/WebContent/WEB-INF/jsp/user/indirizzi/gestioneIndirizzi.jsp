@@ -3,7 +3,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
-<script type="text/javascript" src="resources/js/jquery-1.7.1.js"></script>
 <script type="text/javascript">
 function elimina(id){
 	if (confirm("Confermi eliminazione?"))
