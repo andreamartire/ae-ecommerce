@@ -120,32 +120,32 @@
 		$.each(data.categorie, function(key, categoria) {
 				// categoria
 			var html = 
-				"<li id='li"+categoria.id+"' class=\"collapsable\">" +
+				"<li id='li"+categoria.id+"'>" +
 					"<span>" +
 						"<b id='nome"+categoria.id+"'>" + categoria.nome + "</b>" +
 					"</span>";
-			html += "<ul><li id='prodotti"+categoria.id+"'></li>";
+			html += "<ul>" + 
+						"<li id='prodotti"+categoria.id+"'></li>";
 			if (categoria.children != "") {
 				$.each(categoria.children, function(key, subcat) {
-						// sotto categoria
+					// sotto categoria
 					html +=
-						"<li id='li"+subcat.id+"' class=\"collapsable\">" +
+						"<li id='li"+subcat.id+"'>" +
 							"<span>" +
 								"<b id='nome"+subcat.id+"'>" + subcat.nome + "</b>" +
 							"</span>" +
-							"<ul><li id='prodotti"+subcat.id+"'></li>";
+							"<ul>" +
+								"<li id='prodotti"+subcat.id+"'></li>";
 					if (subcat.children != "") {
 						$.each(subcat.children, function(key, subsubcat) {
-								// sotto sotto categoria
+							// sotto sotto categoria
 							html += 
-								"<li id='li"+subsubcat.id+"' class=\"collapsable\">" +
+								"<li id='li"+subsubcat.id+"'>" +
 									"<span>" +
 										"<b id='nome"+subsubcat.id+"'>" + subsubcat.nome + "</b>" +
 									"</span>" +
 									"<ul>" +
-										"<li>" +
-											"<ul><li id='prodotti"+subsubcat.id+"'></li></ul>" +
-										"</li>" +
+										"<li id='prodotti"+subsubcat.id+"'></li>" +
 									"</ul>" +
 								"</li>";
 						});
