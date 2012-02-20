@@ -151,7 +151,7 @@ Carrello vuoto
 	</div>
 	
 	<div style="text-align: center; margin: auto">
-		<a><img src="resources/images/ordina.jpg" /></a>
+		<a onclick="ordina()"><img src="resources/images/ordina.jpg"/></a>
 	</div>
 </div>
 

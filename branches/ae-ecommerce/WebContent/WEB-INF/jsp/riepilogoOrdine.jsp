@@ -26,7 +26,7 @@
 	</c:forEach>
 	
 	<tr>
-		<td><b>${ordine.tipoSpedizione.nome}</b></td>
+		<td>Spedizione: <b>${ordine.tipoSpedizione.nome}</b></td>
 		<td align="center"><b>${ordine.tipoSpedizione.prezzoBase}</b></td>
 		<td align="center">1</td>
 		<td align="center"><b>${ordine.tipoSpedizione.prezzoBase}</b></td>
@@ -34,7 +34,7 @@
 	<c:set var="totaleCarrello" value="${totaleCarrello + ordine.tipoSpedizione.prezzoBase}" />
 	
 	<tr>
-		<td><b>${ordine.modalitaPagamento.nome}</b></td>
+		<td>Pagamento: <b>${ordine.modalitaPagamento.nome}</b></td>
 		<td align="center"><b>${ordine.modalitaPagamento.commissioni}</b></td>
 		<td align="center">1</td>
 		<td align="center"><b>${ordine.modalitaPagamento.commissioni}</b></td>
@@ -44,17 +44,25 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan='4'>Peso Totale: <span id="pesoTot">${pesoTotale}</span>Kg - Totale carrello: <b id='totaleCarrello'>${totaleCarrello} &euro;</b></td>
+			<td colspan='4'>Peso Totale: <b><span id="pesoTot">${pesoTotale}</span>Kg</b> - Totale da pagare: <b id='totaleCarrello'>${totaleCarrello} &euro;</b></td>
 		</tr>
 	</tfoot>
 </table>
 
-<h3>Spedizione all'indirizzo:</h3>
-<div style="margin: 10px; font-size: 14pt">
-	${ordine.destinazione.destinatario}<br/>
-	${ordine.destinazione.via} ${ordine.destinazione.numero}<br/>
-	${ordine.destinazione.cap} ${ordine.destinazione.citta} ${ordine.destinazione.provincia}
-</div>
+<table id='spedTable'>
+	<thead>
+		<tr>
+			<td>Spedizione all'indirizzo:</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>${ordine.destinazione.destinatario}<br/>
+			${ordine.destinazione.via} ${ordine.destinazione.numero}<br/>
+			${ordine.destinazione.cap} ${ordine.destinazione.citta} ${ordine.destinazione.provincia}</td>
+		</tr>
+	</tbody>
+</table>
 
 <div style="text-align: center;">
 	<a href="concludiOrdine.htm">

@@ -119,6 +119,6 @@
 		<input type="hidden" id="cittaForm" name="citta"/>
 		<input type="hidden" id="provinciaForm" name="prov"/>
 		<input type="hidden" id="capForm" name="cap"/>
-		<input type="button" onclick="prosegui()" value="Prosegui nell'ordine"/>
+		<button onclick="prosegui()" style="margin: auto; font-size: 14pt; font-weight: bold;">Prosegui nell'ordine</button>
 	</form>
 </div>
