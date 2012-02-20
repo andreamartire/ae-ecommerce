@@ -24,18 +24,18 @@
 	}
 </script>
 
-
-<h2>${prodotto.nome}</h2>
+<h2 style="margin-left: 15px">${prodotto.nome}</h2>
 
 <table style="width: 600px; padding: 5px">
 	<tr>
-		<td><b id="nomeProdotto${prodotto.id}">${prodotto.nome}</b></td>
-		<td align="right"><b>${prodotto.prezzoUnitario}</b> Euro</td>
+		<td colspan="2" align="right"><font size="5"><b>${prodotto.prezzoUnitario}</b> Euro</font></td>
 	</tr>
 	<tr>
-		<td colspan="2" align="right">
-			Quantita': <input id="quantita" type="number" style="width: 20px" value="1"/>
-			<input type="button" value="Aggiungi" onclick="aggiungiACarrello(${prodotto.id})"/>
+		<td width="500px" align="right" valign="middle">
+			<a onclick="aggiungiACarrello(${prodotto.id})"><img src="resources/images/addToCart.gif" /></a>
+		</td>
+		<td>
+			<input id="quantita" type="number" style="width: 40px" value="1"/>
 		</td>
 	</tr>
 	<tr>
@@ -43,7 +43,7 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<textarea rows="20" cols="70" readonly="readonly">${prodotto.descrizione}</textarea>
+			<div>${prodotto.descrizione}</div>
 		</td>
 	</tr>
 </table>

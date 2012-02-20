@@ -10,7 +10,7 @@
 				idProdotto : idProdotto,
 				nome : $('#nomeProdotto'+idProdotto).val(),
 				prezzo : $('#prezzoProdotto'+idProdotto).val(),
-				descrizione : $('#descrizioneProdotto'+idProdotto).val(),
+				descrizione : CKEDITOR.instances['editor'+idProdotto].getData(),
 				iva : $('#ivaProdotto'+idProdotto).val(),
 				peso : $('#pesoProdotto'+idProdotto).val()
 			}),
@@ -44,6 +44,7 @@
 	
 	function showAggiungi() {
 		$('#aggiungiProdotto').fadeIn('slow');
+		replace('editor');
 	}
 	
 	function annulla() {
@@ -58,7 +59,7 @@
 				idCategoria :$('#idCategoria').html(),
 				nome : $('#nomeProdotto').val(),
 				prezzo : $('#prezzoProdotto').val(),
-				descrizione : $('#descrizioneProdotto').val(),
+				descrizione : CKEDITOR.instances['editor'].getData(),
 				iva : $('#ivaProdotto').val(),
 				peso : $('#pesoProdotto').val()
 			}),
@@ -71,11 +72,39 @@
 		});
 		$('#nomeProdotto').val('');
 		$('#prezzoProdotto').val('');
-		$('#descrizioneProdotto').val('');
+		$('#editor').val('');
 		$('#ivaProdotto').val('');
 		$('#pesoProdotto').val('');
 	}
+	
+	var editor;
+
+	function replace( id )
+	{
+		if ( editor )
+			editor.destroy();
+
+		editor = CKEDITOR.replace( id,
+			{
+				toolbar :
+				[
+					{ name: 'document', items : [ 'Save','DocProps','Preview','-','Templates' ] },
+					{ name: 'clipboard', items : [ 'Cut','Copy','Paste','-','Undo','Redo' ] },
+					{ name: 'editing', items : [ 'Find','Replace','-','SelectAll'] },
+					{ name: 'forms', items : [ 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button'] },
+					{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+					'/',
+					{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+					{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','SpecialChar'] },
+					'/',
+					{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Subscript','Superscript','-','RemoveFormat' ] },
+					{ name: 'styles', items : [ 'Format','Font','FontSize','TextColor','BGColor' ] }
+				]
+			});
+	}
 </script>
+
+<script type="text/javascript" src="resources/js/ckeditor/ckeditor.js"></script>
 
 <a href="home.htm">Home</a> &gt; Gestione prodotti - Categoria: <b>${categoria.nome}</b>
 <hr></hr> 
@@ -86,20 +115,20 @@
 <div style="display: none" id="aggiungiProdotto">
 	<table style="width: 600px; padding: 5px">
 		<tr>
-			<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto"/></td>
-			<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto" style="width: 50px"/> Euro</td>
+			<td><b>Nome: </b><input type="text" name="nome" id="nomeProdotto"/></td>
+			<td><b>Prezzo: </b><input type="number" name="prezzo" id="prezzoProdotto" style="width: 50px"/> Euro</td>
 		</tr>
 		<tr>
-			<td colspan="2"><b>Descrizione</b></td>
+			<td><b>Peso: </b><input type="number" name="peso" id="pesoProdotto" style="width: 30px"> Kg</td>
+			<td><b>IVA: </b><input type="number" name="iva" id="ivaProdotto" style="width: 30px"/>%</td>
 		</tr>
 		<tr>
-			<td colspan="2" width="600">
-				<textarea rows="4" cols="70" name="descrizione" id="descrizioneProdotto"></textarea>
+			<td colspan="2"><b>Descrizione:</b></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<textarea id="editor" rows="4" cols="70" name="descrizione"></textarea>
 			</td>
-		</tr>
-		<tr>
-			<td><b>Peso</b><input type="number" name="peso" id="pesoProdotto" style="width: 30px"> Kg</td>
-			<td><b>IVA</b><input type="number" name="iva" id="ivaProdotto" style="width: 30px"/>%</td>
 		</tr>
 		<tr>
 			<td> </td>
@@ -121,16 +150,18 @@
 				<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto${prodotto.id}" style="width: 50px" value="${prodotto.prezzoUnitario}" /> Euro</td>
 			</tr>
 			<tr>
+				<td><b>Peso</b><input type="number" name="peso" id="pesoProdotto${prodotto.id}" style="width: 30px" value="${prodotto.pesoApprossimato}" /> Kg</td>
+				<td><b>IVA</b><input type="number" name="iva" id="ivaProdotto${prodotto.id}" style="width: 30px" value="${prodotto.percentualeIVA}" />%</td>
+			</tr>
+			<tr>
 				<td colspan="2"><b>Descrizione</b></td>
 			</tr>
 			<tr>
 				<td colspan="2" width="600">
-					<textarea rows="4" cols="70" name="descrizione" id="descrizioneProdotto${prodotto.id}">${prodotto.descrizione}</textarea>
+					<textarea rows="4" cols="70" name="descrizione" id="editor${prodotto.id}" onclick="replace('editor${prodotto.id}');">
+						${prodotto.descrizione}
+					</textarea>
 				</td>
-			</tr>
-			<tr>
-				<td><b>Peso</b><input type="number" name="peso" id="pesoProdotto${prodotto.id}" style="width: 30px" value="${prodotto.pesoApprossimato}" /> Kg</td>
-				<td><b>IVA</b><input type="number" name="iva" id="ivaProdotto${prodotto.id}" style="width: 30px" value="${prodotto.percentualeIVA}" />%</td>
 			</tr>
 			<tr>
 				<td> </td>
