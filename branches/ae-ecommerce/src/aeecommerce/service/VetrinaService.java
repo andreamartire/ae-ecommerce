@@ -9,5 +9,9 @@ public interface VetrinaService {
 	public Vetrina load();
 
 	public void save(Vetrina Vetrina);
+
+	public void delete(Vetrina vetrina);
+
+	public void deleteProdotto(int idProdotto);
 }
 

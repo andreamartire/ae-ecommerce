@@ -31,12 +31,12 @@
 		$('#aggiungiProdotto').fadeOut('slow');
 	}
 	
-	function aggiungi() {
+	function aggiungiProdotto(idProd) {
 		$.ajax({
 			url : 'aggiungiProdottoVetrina.htm',
 			type: "POST",
 			data : ({
-				idProdotto :$('#idProdotto').html()
+				idProdotto : idProd
 			}),
 			success : function(res) {
 				location.reload();
@@ -64,19 +64,34 @@
 		$.ajax({
 			url: 'listCategorie.htm',
 			dataType: 'json',
-			success: function(categorie) {	
-				html = "<span id='insLiProdotti" + idCategoria + "'><ul id='insUlProdotti" + idCategoria + "'>";
-				$.each(jsonProdotti.prodotti, function(key, prod) {
-					html += "<li><span>"+prod.nome+"</span></li>";
-				});
-				$('#prodotti'+idCategoria).html(html);
-// 				$('#prodotti'+idCategoria).html("<span class=\"folder\">Subfolder 2.1</span>"+
-// 									"	<ul id=\"folder21\">"+
-// 									"		<li><span class=\"file\">File 2.1.1</span></li>"+
-// 									"		<li><span class=\"file\">File 2.1.2</span></li>"+
-// 									"	</ul>");
+			success: function(categorie) {
+				Object.size = function(obj) {
+				    var size = 0, key;
+				    for (key in obj) {
+				        if (obj.hasOwnProperty(key)) size++;
+				    }
+				    return size;
+				};
 
-				refreshTree();
+				// Get the size of an object
+				var size = Object.size(jsonProdotti.prodotti);
+				if(size > 0){
+					html = "<span id='spanProdotti" + idCategoria + "'>" +
+								"Prodotti" + 
+							"</span>" +
+							"<ul id='ulProdotti" + idCategoria + "'>";
+					$.each(jsonProdotti.prodotti, function(key, prod) {
+						html += "<li><span>"+prod.nome+"</span>" +
+									"<button onclick='aggiungiProdotto(" + prod.id + ")'>" +
+										"<img src=\"resources/images/add.png\"/>" +
+									"</button>" +
+								"</li>";
+					});
+					html += "</ul>";
+					$('#prodotti'+idCategoria).html(html);
+	
+					refreshTree();
+				}
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
 				alert(thrownError + "\n\n" + ajaxOptions + "\n\n" + xhr.responseText );
@@ -105,39 +120,30 @@
 		$.each(data.categorie, function(key, categoria) {
 				// categoria
 			var html = 
-				"<li id='li"+categoria.id+"'" +
-					"onmouseover='$(\"#span"+categoria.id+"\").show()'" +
-					"onmouseout='$(\"#span"+categoria.id+"\").hide()'>" +
+				"<li id='li"+categoria.id+"' class=\"collapsable\">" +
 					"<span>" +
 						"<b id='nome"+categoria.id+"'>" + categoria.nome + "</b>" +
-					"</span>" +
-					"<a onclick='listProdotti("+categoria.id+")'>prodotti</a>";
+					"</span>";
 			html += "<ul><li id='prodotti"+categoria.id+"'></li>";
 			if (categoria.children != "") {
 				$.each(categoria.children, function(key, subcat) {
 						// sotto categoria
 					html +=
-						"<li id='li"+subcat.id+"'" +
-								"onmouseover='$(\"#span"+subcat.id+"\").show()'" +
-								"onmouseout='$(\"#span"+subcat.id+"\").hide()'>" +
+						"<li id='li"+subcat.id+"' class=\"collapsable\">" +
 							"<span>" +
 								"<b id='nome"+subcat.id+"'>" + subcat.nome + "</b>" +
 							"</span>" +
-							" <a onclick='listProdotti("+subcat.id+")'>prodotti</a>";
-					html += "<ul><li id='prodotti"+subcat.id+"'></li>";
+							"<ul><li id='prodotti"+subcat.id+"'></li>";
 					if (subcat.children != "") {
 						$.each(subcat.children, function(key, subsubcat) {
 								// sotto sotto categoria
 							html += 
-								"<li id='li"+subsubcat.id+"'" +
-										"onmouseover='$(\"#span"+subsubcat.id+"\").show()'" +
-										"onmouseout='$(\"#span"+subsubcat.id+"\").hide()'>" +
+								"<li id='li"+subsubcat.id+"' class=\"collapsable\">" +
 									"<span>" +
 										"<b id='nome"+subsubcat.id+"'>" + subsubcat.nome + "</b>" +
 									"</span>" +
-									"<ul id='prodotti"+subsubcat.id+"'>" +
+									"<ul>" +
 										"<li>" +
-											"<a onclick='listProdotti("+subsubcat.id+")'>Elenca prodotti</a>" +
 											"<ul><li id='prodotti"+subsubcat.id+"'></li></ul>" +
 										"</li>" +
 									"</ul>" +
@@ -158,6 +164,21 @@
 			$("#listaCategorie").append(html);
 		});
 	}
+	function creaListaProdotti(data) {
+		$.each(data.categorie, function(key, categoria) {
+			listProdotti(categoria.id);
+			if (categoria.children != "") {
+				$.each(categoria.children, function(key, subcat) {
+					listProdotti(subcat.id);
+					if (subcat.children != "") {
+						$.each(subcat.children, function(key, subsubcat) {
+							listProdotti(subsubcat.id);
+						});
+					}
+				});
+			} 
+		});
+	}
 	
 	$(document).ready(function(){
 		$.ajax({
@@ -165,6 +186,7 @@
 			dataType: 'json',
 			success: function(data) {
 				creaListaCategorie(data);
+				creaListaProdotti(data);
 				refreshTree();
 			},
 			error: function (xhr, ajaxOptions, thrownError) {
@@ -194,17 +216,14 @@ Prodotti in Vetrina
 	<div class="prodotto${prodotto.id}">
 		<table style="width: 600px; padding: 5px">
 			<tr>
-				<td><b>Nome</b><input type="text" name="nome" id="nomeProdotto${prodotto.id}" value="${prodotto.nome}" /></td>
-				<td><b>Prezzo</b><input type="number" name="prezzo" id="prezzoProdotto${prodotto.id}" style="width: 50px" value="${prodotto.prezzoUnitario}" /> Euro</td>
+				<td><b>Nome</b></td><td>${prodotto.nome}</td>
 			</tr>
 			<tr>
-				<td colspan="2"><b>Descrizione</b></td>
-				<td colspan="2" width="600">
-					<textarea rows="4" cols="70" name="descrizione" id="descrizioneProdotto${prodotto.id}">${prodotto.descrizione}</textarea>
-				</td>
+				<td><b>Prezzo</b></td><td>${prodotto.prezzoUnitario} euro</td>
 			</tr>
 			<tr>
-				<td> </td>
+				<td><b>Descrizione</b></td>
+				<td>${prodotto.descrizione}</td><td> </td>
 				<td align="right">
 					<button onclick="elimina(${prodotto.id})"><img src="resources/images/delete.png"/></button>
 				</td>

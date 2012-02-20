@@ -2,6 +2,7 @@ package aeecommerce.web;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -17,15 +18,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Azienda;
 import aeecommerce.pojo.Carrello;
+import aeecommerce.pojo.Cliente;
 import aeecommerce.pojo.Privato;
 import aeecommerce.pojo.User;
+import aeecommerce.service.CarrelloService;
 import aeecommerce.service.UserService;
 import aeecommerce.validation.RegistrationInfo;
 import aeecommerce.validation.UserValidator;
 
 
 @Controller
-@SessionAttributes(value = {"user","type","name","registrationInfo"})
+@SessionAttributes(value = {"user","type","name","registrationInfo","carrello"})
 public class RegistrationController {
 
 	@Autowired
@@ -33,6 +36,9 @@ public class RegistrationController {
 
 	@Autowired
 	private UserValidator userValidator;
+	
+	@Autowired
+	private CarrelloService carrelloService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -83,18 +89,36 @@ public class RegistrationController {
 			userService.insert(u);
 			System.out.println("----------------------------------");
 			
-			String type;
-			if (u instanceof Privato)
+			String name, type;
+			if (u instanceof Privato) {
 				type = "privato";
-			else if (u instanceof Azienda)
+				name = ((Privato) u).getNome();
+			}
+			else if (u instanceof Azienda) {
 				type = "azienda";
-			else
+				name = ((Azienda) u).getRagioneSociale();
+			}
+			else {
 				type = "admin";
+				name = u.getUsername();
+			}
 			
-			model.addAttribute("user", u.getUsername());
-			model.addAttribute("type", type);
-			model.addAttribute("name", regInfo.getNome());
-			model.addAttribute("carrello", new Carrello());
+			System.out.println("creazione nuovo carrello");
+			Carrello c = new Carrello();
+			c.setDataCreazione(new Date());
+
+			c.setCliente((Cliente) u);
+			List<Carrello> carrelliCliente = ((Cliente) u).getCarrelli();
+			carrelliCliente.add(c);
+			
+			userService.update(u);
+			carrelloService.save(c);
+				
+			model.put("carrello", c);
+				
+			model.put("user", u.getUsername());
+			model.put("name", name);
+			model.put("type", type);
 			
 			return "redirect:aggiungiIndirizzo.htm";
 		}
