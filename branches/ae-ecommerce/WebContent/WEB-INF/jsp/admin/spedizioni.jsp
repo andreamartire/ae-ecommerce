@@ -5,12 +5,12 @@
 
 <c:forEach var="TipoSpedizione" items="${spedizioni}">
 	<div class="TipoSpedizione${TipoSpedizione.id}">
-		<table style="width: 500px; padding: 5px">
+		<table style="width: 500px;">
 			<tr>
-				<td><b>Nome</b></td><td>${TipoSpedizione.nome}</td>
+				<td style="width: 50%;"><b>Nome</b></td><td>${TipoSpedizione.nome}</td>
 			</tr>
 			<tr>
-				<td><b>Prezzo</b></td><td>${TipoSpedizione.prezzoBase} euro</td>
+				<td ><b>Prezzo</b></td><td>${TipoSpedizione.prezzoBase} euro</td>
 			</tr>
 			<tr>
 				<td><b>Descrizione</b></td><td>${TipoSpedizione.descrizione}</td>

@@ -7,7 +7,7 @@
 	<div class="ModalitaPagamento${ModalitaPagamento.id}">
 		<table style="width: 500px; padding: 5px">
 			<tr>
-				<td><b>Nome</b></td><td>${ModalitaPagamento.nome}</td>
+				<td style="width: 50%;"><b>Nome</b></td><td>${ModalitaPagamento.nome}</td>
 			</tr>
 			<tr>
 				<td><b>Commissioni</b></td><td>${ModalitaPagamento.commissioni} euro</td>
