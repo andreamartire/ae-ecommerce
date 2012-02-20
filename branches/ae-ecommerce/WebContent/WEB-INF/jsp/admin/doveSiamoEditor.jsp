@@ -3,6 +3,13 @@
 <script type="text/javascript" src="resources/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="resources/js/ckeditor/mytoolbar.js"></script>
 
+<style type="text/css">
+.cke_contents {
+	height: 400px !important;
+	width: 800px !important;
+}
+</style>
+
 <a href="home.htm">Home</a> &gt; Gestione Pagina DoveSiamo
 <hr></hr>
 <form:form method="POST" commandName="document">
@@ -11,7 +18,7 @@
 			<td><form:textarea class="ckeditor" id="editor" name="editor" path="doveSiamo" type="text" cols="60" rows="15"/></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit"></td>
+			<td colspan="2" align="center"><input style="font-size: 14pt; font-weight: bold;" type="submit" value="Salva Modifiche"></td>
 		</tr>
 	</table>
 </form:form>

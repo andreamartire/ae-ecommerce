@@ -1,13 +1,9 @@
 package aeecommerce.pojo;
 
-import java.io.BufferedReader;
-import java.sql.Clob;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.Hibernate;
+import javax.persistence.Lob;
 
 @Entity
 public class Document {
@@ -16,22 +12,30 @@ public class Document {
 	@GeneratedValue
 	private int id;
 
-	private Clob faq;
+	@Lob
+	private String faq;
 
-	private Clob condizioni;
+	@Lob
+	private String condizioni;
 	
-	private Clob doveSiamo;
+	@Lob
+	private String doveSiamo;
 	
-	private Clob contattaci;
+	@Lob
+	private String contattaci;
+	
+	@Lob
+	private String home;
 	
 	public Document() {
-		this.faq = Hibernate.createClob("FAQ non specificate");
-		this.condizioni = Hibernate.createClob("Condizioni non specificate");
-		this.doveSiamo = Hibernate.createClob("<p style=\"display:inline-block; vertical-align:middle; margin:0px auto; text-align:center;\"><iframe width=\"425\" height=\"350\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=Universit%C3%A0+della+Calabria,+Via+Pietro+Bucci,+Rende&amp;aq=0&amp;oq=universit%C3%A0+della&amp;sll=41.442726,12.392578&amp;sspn=16.852427,39.506836&amp;ie=UTF8&amp;hq=Universit%C3%A0+della+Calabria,+Via+Pietro+Bucci,+Rende&amp;t=h&amp;ll=39.355604,16.226978&amp;spn=0.023228,0.036478&amp;z=14&amp;iwloc=A&amp;output=embed\"></iframe><br /><small><a href=\"http://maps.google.it/maps?f=q&amp;source=embed&amp;hl=it&amp;geocode=&amp;q=Universit%C3%A0+della+Calabria,+Via+Pietro+Bucci,+Rende&amp;aq=0&amp;oq=universit%C3%A0+della&amp;sll=41.442726,12.392578&amp;sspn=16.852427,39.506836&amp;ie=UTF8&amp;hq=Universit%C3%A0+della+Calabria,+Via+Pietro+Bucci,+Rende&amp;t=h&amp;ll=39.355604,16.226978&amp;spn=0.023228,0.036478&amp;z=14&amp;iwloc=A\" style=\"color:#0000FF;text-align:left\">Visualizzazione ingrandita della mappa</a></small></p>");
-		this.contattaci = Hibernate.createClob("Contatti non specificati");
+		this.faq = "FAQ non specificate";
+		this.condizioni = "Condizioni non specificate";
+		this.doveSiamo = "<p style=\"display:inline-block; vertical-align:middle; margin:0px auto; text-align:center;\"><iframe width=\"425\" height=\"350\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"http://maps.google.it/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=Universit%C3%A0+della+Calabria,+Via+Pietro+Bucci,+Rende&amp;aq=0&amp;oq=universit%C3%A0+della&amp;sll=41.442726,12.392578&amp;sspn=16.852427,39.506836&amp;ie=UTF8&amp;hq=Universit%C3%A0+della+Calabria,+Via+Pietro+Bucci,+Rende&amp;t=h&amp;ll=39.355604,16.226978&amp;spn=0.023228,0.036478&amp;z=14&amp;iwloc=A&amp;output=embed\"></iframe><br /><small><a href=\"http://maps.google.it/maps?f=q&amp;source=embed&amp;hl=it&amp;geocode=&amp;q=Universit%C3%A0+della+Calabria,+Via+Pietro+Bucci,+Rende&amp;aq=0&amp;oq=universit%C3%A0+della&amp;sll=41.442726,12.392578&amp;sspn=16.852427,39.506836&amp;ie=UTF8&amp;hq=Universit%C3%A0+della+Calabria,+Via+Pietro+Bucci,+Rende&amp;t=h&amp;ll=39.355604,16.226978&amp;spn=0.023228,0.036478&amp;z=14&amp;iwloc=A\" style=\"color:#0000FF;text-align:left\">Visualizzazione ingrandita della mappa</a></small></p>";
+		this.contattaci = "Contatti non specificati";
+		this.home = "Home page da personalizzare.";
 	}
 
-	public Document(int id, Clob faq, Clob conditions, Clob doveSiamo, Clob contattaci) {
+	public Document(int id, String home, String faq, String conditions, String doveSiamo, String contattaci) {
 		this.id = id;
 		this.faq = faq;
 		this.condizioni = conditions;
@@ -43,64 +47,60 @@ public class Document {
 		return id;
 	}
 
+	public String getCondizioni() {
+		return condizioni;
+	}
+
+	public void setCondizioni(String condizioni) {
+		this.condizioni = condizioni;
+	}
+
+	public String getHome() {
+		return home;
+	}
+
+	public void setHome(String home) {
+		this.home = home;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Clob getFaq() {
+	public String getFaq() {
 		return faq;
 	}
 
-	public void setFaq(Clob faq) {
+	public void setFaq(String faq) {
 		this.faq = faq;
 	}
 
-	public Clob getConditions() {
+	public String getConditions() {
 		return condizioni;
 	}
 
-	public void setConditions(Clob conditions) {
+	public void setConditions(String conditions) {
 		this.condizioni = conditions;
 	}
 
-	public Clob getDoveSiamo() {
+	public String getDoveSiamo() {
 		return doveSiamo;
 	}
 
-	public void setDoveSiamo(Clob doveSiamo) {
+	public void setDoveSiamo(String doveSiamo) {
 		this.doveSiamo = doveSiamo;
 	}
 
-	public Clob getContattaci() {
+	public String getContattaci() {
 		return contattaci;
 	}
 
-	public void setContattaci(Clob contattaci) {
+	public void setContattaci(String contattaci) {
 		this.contattaci = contattaci;
 	}
 
 	@Override
 	public String toString(){
 		return id + " " + faq + " " + condizioni + " " + doveSiamo + " " + contattaci;
-	}
-
-	public String ClobToString(Clob clob){
-		StringBuffer str = new StringBuffer();
-		String out;
-		
-		try {
-			BufferedReader bufferRead = new BufferedReader(clob.getCharacterStream());
-			while ((out=bufferRead.readLine())!=null)
-				str.append(out);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return str.toString();
-	}
-
-	public DocumentForm toDocumentForm(){
-		return new DocumentForm(id, ClobToString(faq), ClobToString(condizioni),
-				ClobToString(doveSiamo), ClobToString(contattaci));
 	}
 }

@@ -203,7 +203,7 @@
 
 	<!-- Outuput jsp -->
 	<definition name="output" extends="baseLayout">
-		<put-attribute name="body" value="/WEB-INF/jsp/admin/output.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/output.jsp" />
 	</definition>
 	
 	<!-- Spedizioni jsp -->
@@ -232,6 +232,11 @@
 	<definition name="doveSiamoEditor" extends="baseLayout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/admin/doveSiamoEditor.jsp" />
+	</definition>
+	
+	<definition name="homeEditor" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/admin/homeEditor.jsp" />
 	</definition>
 	
 	<!-- Contattaci -->

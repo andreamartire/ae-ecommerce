@@ -52,6 +52,10 @@ public class MenuStandardController {
 			model.put("carrello", "");
 		}
 		
+		if( documentService.load() == null )
+			documentService.save(new Document());
+		model.put("data", documentService.load().getHome());
+		
 		return "home";
 	}
 	
@@ -85,7 +89,7 @@ public class MenuStandardController {
 	{
 		if( documentService.load() == null )
 			documentService.save(new Document());
-		model.put("data", documentService.load().toDocumentForm().getFaq());
+		model.put("data", documentService.load().getFaq());
 		return "output";
 	}
 	
@@ -94,7 +98,7 @@ public class MenuStandardController {
 	{
 		if( documentService.load() == null )
 			documentService.save(new Document());
-		model.put("data", documentService.load().toDocumentForm().getConditions());
+		model.put("data", documentService.load().getConditions());
 		return "output";
 	}
 	
@@ -103,7 +107,7 @@ public class MenuStandardController {
 	{
 		if( documentService.load() == null )
 			documentService.save(new Document());
-		model.put("data", documentService.load().toDocumentForm().getDoveSiamo());
+		model.put("data", documentService.load().getDoveSiamo());
 		return "output";
 	}
 	
@@ -112,7 +116,7 @@ public class MenuStandardController {
 	{
 		if( documentService.load() == null )
 			documentService.save(new Document());
-		model.put("data", documentService.load().toDocumentForm().getContattaci());
+		model.put("data", documentService.load().getContattaci());
 		return "output";
 	}
 }

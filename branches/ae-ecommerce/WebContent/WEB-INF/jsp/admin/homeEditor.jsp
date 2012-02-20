@@ -10,12 +10,12 @@
 }
 </style>
 
-<a href="home.htm">Home</a> &gt; Gestione Pagina Contattaci
+<a href="home.htm">Home</a> &gt; Gestione Home.
 <hr></hr>
 <form:form method="POST" commandName="document">
 	<table>
 		<tr>
-			<td><form:textarea class="ckeditor" id="editor" name="editor" path="contattaci" type="text" cols="60" rows="15"/></td>
+			<td><form:textarea class="ckeditor" id="editor" name="editor" path="home" type="text" cols="60" rows="30"/></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input style="font-size: 14pt; font-weight: bold;" type="submit" value="Salva Modifiche"></td>
