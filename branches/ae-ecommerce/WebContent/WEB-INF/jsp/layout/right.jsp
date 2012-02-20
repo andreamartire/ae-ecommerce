@@ -85,11 +85,12 @@
 					tot = tot.toFixed(2);
 					html += "<tr><td height='40' align='right' colspan='3'>Totale: <b>"+ tot +"</b></td></tr>";
 				} 
+				$('#carrelloUtente').append(html);
 			});
 		} else {
 			html += "<tr><td>Nessun elemento nel carrello</td></tr>";
+			$('#carrelloUtente').append(html);
 		}
-		$('#carrello').append(html);
 	}
 	$(document).ready(startup);
 </script>
@@ -151,5 +152,5 @@ TABLE#carrello TD{font-family: times; font-size: 10pt;}
 <hr/>
 
 <p>Il tuo carrello:</p>
-<table id="carrello" style="width: 180px; border: 0px solid black">
+<table id="carrelloUtente" style="width: 180px; border: 0px solid black">
 </table>

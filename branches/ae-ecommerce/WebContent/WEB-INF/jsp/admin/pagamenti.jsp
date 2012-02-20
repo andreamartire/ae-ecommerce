@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<a href="home.htm">Home</a> > Modalita' di pagamento Disponibili
+<a href="home.htm">Home</a> &gt; Modalita' di pagamento Disponibili
 <hr></hr> 
 
 <c:forEach var="ModalitaPagamento" items="${pagamenti}">

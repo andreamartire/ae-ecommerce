@@ -55,6 +55,14 @@ public class ProdottiController {
 		return list;
 	}
 	
+	@RequestMapping(value = "/editorProdotto.htm", method = RequestMethod.GET)
+	public String modificaProdotto(@RequestParam int id, ModelMap model) {
+		
+		model.put("prodotto", prodService.findById(id));
+		
+		return "modificaProdotto";
+	}
+	
 	@RequestMapping(value = "/elencoProdotti.htm", method = RequestMethod.GET)
 	public String elencoProdotti(@RequestParam int idCategoria, ModelMap model) {
 		

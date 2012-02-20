@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
 	function aggiungiACarrello(idProdotto) {
-		var qnt = $('#quantita').val();
+		var qnt = $('#quantita'+idProdotto).val();
 		var nomeProd = $('#nomeProdotto'+idProdotto).text();
 		
 		$.ajax({
@@ -44,7 +44,7 @@
 					<a onclick="aggiungiACarrello(${prodotto.id})"><img src="resources/images/addToCart.gif" /></a>
 				</td>
 				<td>
-					<input id="quantita" type="number" style="width: 40px" value="1"/>
+					<input id="quantita${prodotto.id}" type="number" style="width: 40px" value="1"/>
 				</td>
 			</tr>
 		</table>
