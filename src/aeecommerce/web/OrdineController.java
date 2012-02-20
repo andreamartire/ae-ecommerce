@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import aeecommerce.pojo.Carrello;
 import aeecommerce.pojo.Cliente;
 import aeecommerce.pojo.Indirizzo;
 import aeecommerce.pojo.Ordine;
-import aeecommerce.pojo.User;
 import aeecommerce.service.CarrelloService;
 import aeecommerce.service.ModalitaPagamentoService;
 import aeecommerce.service.OrdineService;
@@ -57,6 +57,47 @@ public class OrdineController {
 		model.put("listOrdini", list);
 		
 		return "storicoOrdini";
+	}
+	
+	@RequestMapping(value = "/storicoOrdiniJSON.htm", method = RequestMethod.GET)
+	public @ResponseBody String storicoOrdiniJSON(@RequestParam int userId) {
+		
+		List<Ordine> list = new LinkedList<Ordine>();
+		Cliente cliente = (Cliente) userService.findById(userId);
+		
+		for (Carrello c : cliente.getCarrelli()) {
+			if (c.getOrdine() != null)
+				list.add(c.getOrdine());
+		}
+		
+		String json = "{\"ordini\":[";
+		
+		if (!list.isEmpty()) {
+			for (Ordine o : list) {
+				json += "{" +
+							"\"id\":\""+ o.getId() + "\"," +
+							"\"data\":\""+o.getData()+"\"," +
+							"\"tot\":\""+ o.getTotaleDaPagare() +"\"," +
+							"\"sped\":\""+ o.getTipoSpedizione() +"\"," +
+							"\"stato\":\""+ o.getStato() +"\"" +
+						"},";
+			}
+			json = json.substring(0, json.length()-1);
+		}
+		
+		json += "]}";
+		
+		return json;
+	}
+	
+	@RequestMapping(value = "/modificaStatoOrdine.htm", method = RequestMethod.POST)
+	public @ResponseBody String modificaStatoOrdine(@RequestParam int ordineId, @RequestParam String stato) {
+		
+		Ordine o = ordineService.findById(ordineId);
+		o.setStato(stato);
+		ordineService.update(o);
+		
+		return "ok";
 	}
 	
 	@RequestMapping(value = "/ordine.htm", method = RequestMethod.POST)
@@ -99,7 +140,8 @@ public class OrdineController {
 	}
 	
 	@RequestMapping(value = "/concludiOrdine.htm", method = RequestMethod.GET)
-	public String concludiOrdine(@ModelAttribute("ordine") Ordine ordine, @ModelAttribute("carrello") Carrello carrello, ModelMap model) {
+	public String concludiOrdine(@ModelAttribute("ordine") Ordine ordine, @ModelAttribute("carrello") Carrello carrello,
+			@ModelAttribute("user") String user, ModelMap model) {
 				
 		System.out.println("Ordine confermato: " + ordine);
 		ordineService.insert(ordine);
@@ -107,6 +149,31 @@ public class OrdineController {
 		carrello.setOrdine(ordine);
 		carrelloService.save(carrello);
 		
+		// creazione nuovo carrello
+		Carrello newcarrello = new Carrello();
+		newcarrello.setDataCreazione(new Date());
+
+		Cliente cliente = (Cliente) userService.findByUsername(user);
+		newcarrello.setCliente(cliente);
+		cliente.getCarrelli().add(newcarrello);
+		
+		userService.update(cliente);
+		carrelloService.save(newcarrello);
+		
+		model.put("carrello", newcarrello);
+		
 		return "ordineConfermato";
 	}
+	
+	@RequestMapping(value = "/dettagliOrdine.htm", method = RequestMethod.GET)
+	public String dettagliOrdine(@RequestParam int idOrdine, ModelMap model) {
+		
+		Ordine o = ordineService.findById(idOrdine);
+		model.put("ordine", o);
+		
+		model.put("carrelloList", carrelloService.list((Carrello) o.getCarrello()));
+		
+		return "dettagliOrdine";
+	}
+	
 }

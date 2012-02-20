@@ -79,6 +79,10 @@ a:hover {
 	padding: 3px 7px 2px 7px;
 }
 
+#ordiniTable #alt {
+	background-color: #E6E6E6;
+}
+
 #ordiniTable thead {
 	font-size: 12pt;
 	font-weight: bold;

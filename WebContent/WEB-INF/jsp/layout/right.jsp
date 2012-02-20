@@ -118,7 +118,7 @@ TABLE#carrello TD{font-family: times; font-size: 10pt;}
 	<div id="accountAdmin" style="display: none; padding: 5px">
 		<a href="gestioneHome.htm">Modifica Homepage</a> <br/>
 		<a href="gestioneCategorie.htm">Categorie e Prodotti</a> <br/>
-		<a href="gestioneUtenti.htm">Gestione utenti</a> <br/>
+		<a href="gestioneUtenti.htm">Gestione utenti & ordini</a> <br/>
 		<a href="gestioneTipoSpedizione.htm">Tipi di Spedizione</a> <br/>
 		<a href="gestioneModalitaPagamento.htm">Modalita' di Pagamento</a> <br/>
 		<a href="gestioneVetrina.htm">Modifica Vetrina</a> <br/>

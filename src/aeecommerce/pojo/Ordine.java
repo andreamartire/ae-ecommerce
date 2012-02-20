@@ -14,11 +14,6 @@ import javax.persistence.TemporalType;
 @Entity
 public class Ordine {
 
-	public static final String APERTO = "aperto";
-	public static final String CHIUSO = "chiuso";
-	public static final String IN_LAVORAZIONE = "in lavorazione";
-	public static final String SPEDITO = "spedito";
-	
 	@Id
 	@GeneratedValue
 	int id;
@@ -69,7 +64,7 @@ public class Ordine {
 	Carrello carrello;
 	
 	public Ordine() {
-		stato = APERTO;
+		stato = "aperto";
 	}
 
 	public int getId() {
