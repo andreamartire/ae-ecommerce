@@ -281,7 +281,11 @@
 	</definition>
 	
 	<definition name="storicoOrdini" extends="baseLayout">
-	  	<put-attribute name="body" value="/WEB-INF/jsp/user/storicoOrdini.jsp" />
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/ordini/storicoOrdini.jsp" />
+	</definition>
+
+	<definition name="dettagliOrdine" extends="baseLayout">
+	  	<put-attribute name="body" value="/WEB-INF/jsp/user/ordini/dettagliOrdine.jsp" />
 	</definition>
 	
 </tiles-definitions>
