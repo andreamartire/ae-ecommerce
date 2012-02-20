@@ -44,7 +44,7 @@ public class Azienda extends Cliente {
 	
 	@Override
 	public String toString() {
-		return super.toString() + "\n" + ragioneSociale + " " + piva;
+		return ragioneSociale;
 	}
 	
 	public RegistrationInfo toRegInfo(){

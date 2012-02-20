@@ -38,23 +38,25 @@ a:hover {
 
 #carrelloTable {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	width: 600px;
-	border-spacing: 5px;
+	width: 615px;
+	border-spacing: 0px 5px;
 }
 
 #carrelloTable td {
-	font-size: 1em;
+	font-size: 12pt;
 	border: 1px solid green;
 	padding: 3px 7px 2px 7px;
 }
 
 #carrelloTable tfoot {
+	font-size: 12pt;
 	background-color: orange;
 	text-align: right;
 }
 
 #carrelloTable thead {
-	font-size: 10pt;
+	font-size: 12pt;
+	font-weight: bold;
 	text-align: center;
 	padding-top: 5px;
 	padding-bottom: 4px;
@@ -65,23 +67,24 @@ a:hover {
 
 #spedTable {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	width: 600px;
+	width: 615px;
 	border-spacing: 0px 5px;
 }
 
 #spedTable td {
-	font-size: 1em;
+	font-size: 12pt;
 	border: 1px solid #6699FF;
 	padding: 3px 7px 2px 7px;
 }
 
 #spedTable tfoot {
+	font-size: 12pt;
 	background-color: #66FFFF;
 	text-align: right;
 }
 
 #spedTable thead {
-	font-size: 10pt;
+	font-size: 12pt;
 	font-weight: bold;
 	text-align: center;
 	padding-top: 5px;
@@ -92,7 +95,8 @@ a:hover {
 
 
 #totaleDiv {
-	width: 600px;
+	width: 615px;
+	border: 1px solid green;
 	font-size: 14pt;
 	font-weight: bold;
 	text-align: center;
@@ -100,16 +104,6 @@ a:hover {
 	padding-bottom: 5px;
 	color: white;
 	background-color: #FF9900;
-}
-
-TH {
-/* 	background-color: #F5D0A9; */
-	font-weight: bold;
-	font-size: 11pt;
-}
-
-TD {
-	font-size: 11pt;
 }
 
 /* horizontal menu */
