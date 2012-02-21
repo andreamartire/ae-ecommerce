@@ -50,7 +50,7 @@
 	}
 	
 	function checkDest() {
-		if (!$('#destinatario').val().match(/^\w+$/)) {
+		if (!$('#destinatario').val().match(/^\w+.*$/)) {
 			$('#avanti').attr("disabled", "disabled");
 			$('#destinatario').css({'border-color' : 'red'});
 		} else {
@@ -77,7 +77,7 @@
 	}
 	
 	function checkVia() {
-		if (!$('#via').val().match(/^\w+$/)) {
+		if (!$('#via').val().match(/^\w+.*$/)) {
 			$('#avanti').attr("disabled", "disabled");
 			$('#via').css({'border-color' : 'red'});
 		} else {
@@ -86,7 +86,7 @@
 	}
 	
 	function checkCitta() {
-		if (!$('#citta').val().match(/^\w+$/)) {
+		if (!$('#citta').val().match(/^\w+.*$/)) {
 			$('#avanti').attr("disabled", "disabled");
 			$('#citta').css({'border-color' : 'red'});
 		} else {

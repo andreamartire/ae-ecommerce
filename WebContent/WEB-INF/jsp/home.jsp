@@ -26,7 +26,7 @@ Home
 	}
 </script>
 
-<div id="vetrina" style="margin: 10px">
+<div id="vetrina">
 <c:forEach var="prodotto" items="${prodottiVetrina}">
 	<div class="prodotto${prodotto.id}">
 		<table style="width: 600px; border-spacing: 5px">

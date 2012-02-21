@@ -11,6 +11,7 @@ $(document).ready(function () {
 					'/',
 					{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
 					{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','SpecialChar'] },
+					{ name: 'sourcecode', items : [ 'Source' ]},
 					'/',
 					{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Subscript','Superscript','-','RemoveFormat' ] },
 					{ name: 'styles', items : [ 'Format','Font','FontSize','TextColor','BGColor' ] }
